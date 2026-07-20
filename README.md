@@ -1,0 +1,2 @@
+# pydocusaurus
+Inspired by Sphinx, this tool is designed for generating the Docusaurus Documentation Project from Python Docstrings.
