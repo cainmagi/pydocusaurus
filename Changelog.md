@@ -14,3 +14,7 @@
 4. Finish the `renderer` package for rendering documentation pages.
 5. Finish the CLIs.
 6. Finish GitHub configurations and actions.
+
+#### :floppy_disk: Change
+
+1. Drop the support for `Python 3.13` because it does not support `annotationlib`.
