@@ -18,3 +18,4 @@
 #### :floppy_disk: Change
 
 1. Drop the support for `Python 3.13` because it does not support `annotationlib`.
+2. Improve the code structure for maintaing the implementation complexity.

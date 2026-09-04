@@ -26,7 +26,7 @@ import logging
 
 from typing import Any
 from typing_extensions import Literal, Self, get_overloads
-from collections.abc import Sequence, Callable
+from collections.abc import Sequence, Mapping, Callable
 
 from functools import cached_property
 from pydantic import BaseModel, Field
@@ -433,6 +433,70 @@ class DocFunctionOverload(BaseModel):
             res = "@staticmethod\n{0}".format(res)
         return res
 
+    @staticmethod
+    def _add_table_arg(
+        table: _texts.Table,
+        renderer: ProtocolComponent,
+        idx: int,
+        arg: DocArgument,
+        idx_type: int | None = None,
+        idx_required: int | None = None,
+        idx_default: int | None = None,
+        idx_doc: int | None = None,
+    ) -> None:
+        """Format and add an argument as a table row.
+
+        Arguments
+        ---------
+        table: `Table`
+            The table where the field will be added.
+
+        renderer: `ProtocolComponent`
+            The renderer providing component rendering.
+
+        idx: `int`
+            The index of the current field.
+
+        arg: `DocArgument`
+            The data of the argument to be added.
+
+        idx_type: `int | None`
+            The index of the column specifying the type. If not provided, will not
+            add it.
+
+        idx_required: `int | None`
+            The index of the column specifying whether the field is required. If not
+            provided, will not add it.
+
+        idx_default: `int | None`
+            The index of the column specifying the default value. If not provided, will
+            not add it.
+
+        idx_doc: `int | None`
+            The index of the column specifying the description text. If not provided,
+            will not add it.
+        """
+        name = (
+            ("*" if arg.p_type == ParameterKind.VAR_POSITIONAL else "")
+            + ("**" if arg.p_type == ParameterKind.VAR_KEYWORD else "")
+            + arg.name
+        )
+        table.cells[(idx, 0)] = "`{0}`".format(name) if name else ""
+        if idx_type is not None:
+            table.cells[(idx, idx_type)] = (
+                "`{0}`".format(arg.type.replace("|", R"\|")) if arg.type else ""
+            )
+        if idx_required is not None:
+            table.cells[(idx, idx_required)] = (
+                renderer.inline_icon("check") if (not arg.default) else ""
+            )
+        if idx_default is not None:
+            table.cells[(idx, idx_default)] = (
+                "`{0}`".format(arg.default.replace("|", R"\|")) if arg.default else ""
+            )
+        if idx_doc is not None:
+            table.cells[(idx, idx_doc)] = arg.format_doc().replace("|", R"\|")
+
     def table_args(
         self,
         renderer: ProtocolComponent,
@@ -506,28 +570,16 @@ class DocFunctionOverload(BaseModel):
         if len(args) > 0 and ignore_self:
             args = args[1:]
         for idx, arg in enumerate(args, start=1):
-            name = (
-                ("*" if arg.p_type == ParameterKind.VAR_POSITIONAL else "")
-                + ("**" if arg.p_type == ParameterKind.VAR_KEYWORD else "")
-                + arg.name
+            self._add_table_arg(
+                table,
+                renderer=renderer,
+                idx=idx,
+                arg=arg,
+                idx_type=idx_type,
+                idx_required=idx_required,
+                idx_default=idx_default,
+                idx_doc=idx_doc,
             )
-            table.cells[(idx, 0)] = "`{0}`".format(name) if name else ""
-            if idx_type is not None:
-                table.cells[(idx, idx_type)] = (
-                    "`{0}`".format(arg.type.replace("|", R"\|")) if arg.type else ""
-                )
-            if idx_required is not None:
-                table.cells[(idx, idx_required)] = (
-                    renderer.inline_icon("check") if (not arg.default) else ""
-                )
-            if idx_default is not None:
-                table.cells[(idx, idx_default)] = (
-                    "`{0}`".format(arg.default.replace("|", R"\|"))
-                    if arg.default
-                    else ""
-                )
-            if idx_doc is not None:
-                table.cells[(idx, idx_doc)] = arg.format_doc().replace("|", R"\|")
         return table.as_md_text()
 
     def table_retval(
@@ -873,6 +925,63 @@ class DocFunction(BaseModel):
         return self._as_md_text_method(renderer=renderer)
 
 
+def _preparse_argument_docs(
+    docstring: Sequence[str], params: Mapping[str, inspect.Parameter]
+) -> dict[str, DocArgument]:
+    """(Private) Pre-parse the docstrings of function arguments.
+
+    This method is a part of `parse_argument_docs(...)`. It only detects the argument
+    information from the docstring.
+
+    Arguments
+    ---------
+    docstring: `list[str]`
+        The line-by-line docstring of all arguments. This value should be provided
+        by an analyzed `Section` object.
+
+    params: `Mapping[str, Parameter]`
+        The list of parameters provided by the inspection tool.
+
+    Returns
+    -------
+    #1: `dict[str, DocArgument]`
+        A mapping from name to the argument detected in the docstring.
+    """
+    args: dict[str, DocArgument] = dict()
+
+    names = set(re.escape(name.strip()) for name in params.keys())
+    pattern = re.compile(r"^\**?((?!\*)[^\s\*]*)\s*?:\s*?(?:\:*)(?!\s)(.*?)(?:\:*)$")
+
+    cur_doc: DocArgument | None = None
+    for line in docstring:
+        reobj = pattern.match(line)
+        if reobj is not None:
+            if cur_doc is not None:
+                args[cur_doc.name] = cur_doc
+            _name = reobj.group(1).strip()
+            cur_doc = (
+                DocArgument(
+                    name=_name,
+                    type=reobj.group(2).strip().strip("`:").strip(),
+                    default=(
+                        get_arg_default_name(params[_name].default)
+                        if _name in params
+                        else ""
+                    ),
+                    doc=[],
+                )
+                if _name
+                else None
+            )
+            continue
+        if cur_doc is None:
+            continue
+        cur_doc.doc.append(line)
+    if cur_doc is not None and cur_doc.name in names:
+        args[cur_doc.name] = cur_doc
+    return args
+
+
 def parse_argument_docs(
     func: Any,
     docstring: Sequence[str],
@@ -913,39 +1022,11 @@ def parse_argument_docs(
     anno = annotationlib.get_annotations(func, format=annotationlib.Format.STRING)
     if "return" in anno:
         anno.pop("return")
-    names = set(re.escape(name.strip()) for name in params.keys())
-    pattern = re.compile(r"^\**?((?!\*)[^\s\*]*)\s*?:\s*?(?:\:*)(?!\s)(.*?)(?:\:*)$")
 
-    args: dict[str, DocArgument] = {}
+    args: dict[str, DocArgument] = _preparse_argument_docs(
+        docstring=docstring, params=params
+    )
     _func_name = getattr(func, "__name__", "Unknown") if not func_name else func_name
-
-    cur_doc: DocArgument | None = None
-    for line in docstring:
-        reobj = pattern.match(line)
-        if reobj is not None:
-            if cur_doc is not None:
-                args[cur_doc.name] = cur_doc
-            _name = reobj.group(1).strip()
-            cur_doc = (
-                DocArgument(
-                    name=_name,
-                    type=reobj.group(2).strip().strip("`:").strip(),
-                    default=(
-                        get_arg_default_name(params[_name].default)
-                        if _name in params
-                        else ""
-                    ),
-                    doc=[],
-                )
-                if _name
-                else None
-            )
-            continue
-        if cur_doc is None:
-            continue
-        cur_doc.doc.append(line)
-    if cur_doc is not None and cur_doc.name in names:
-        args[cur_doc.name] = cur_doc
 
     res: list[DocArgument] = []
     for name, param in params.items():
@@ -972,6 +1053,53 @@ def parse_argument_docs(
         res.append(arg)
 
     return res
+
+
+def _preparse_return_docs(docstring: Sequence[str]) -> dict[int, DocArgument]:
+    """(Private) Pre-parse the docstrings of returned values.
+
+    This method is a part of `parse_return_docs(...)`. It only detects the argument
+    information from the docstring.
+
+    Arguments
+    ---------
+    docstring: `list[str]`
+        The line-by-line docstring of all arguments. This value should be provided
+        by an analyzed `Section` object.
+
+    Returns
+    -------
+    #1: `dict[int, DocArgument]`
+        A mapping from value index to the returned value detected in the docstring.
+    """
+    args: dict[int, DocArgument] = dict()
+
+    pattern = re.compile(r"^\#(\d+?)\s*?:\s*?(?:\:*)(?!\s)(.*?)(?:\:*)$")
+
+    cur_doc: DocArgument | None = None
+    for line in docstring:
+        reobj = pattern.match(line)
+        if reobj is not None:
+            if cur_doc is not None:
+                args[int(cur_doc.name[1:])] = cur_doc
+            _idx = int(reobj.group(1).strip())
+            cur_doc = (
+                DocArgument(
+                    name="#{0}".format(_idx),
+                    type=reobj.group(2).strip().strip("`:").strip(),
+                    p_type=ParameterKind.POSITIONAL_ONLY,
+                    doc=[],
+                )
+                if _idx
+                else None
+            )
+            continue
+        if cur_doc is None:
+            continue
+        cur_doc.doc.append(line)
+    if cur_doc is not None:
+        args[int(cur_doc.name[1:])] = cur_doc
+    return args
 
 
 def parse_return_docs(
@@ -1021,33 +1149,7 @@ def parse_return_docs(
         )
     )
 
-    pattern = re.compile(r"^\#(\d+?)\s*?:\s*?(?:\:*)(?!\s)(.*?)(?:\:*)$")
-
-    args: dict[int, DocArgument] = {}
-
-    cur_doc: DocArgument | None = None
-    for line in docstring:
-        reobj = pattern.match(line)
-        if reobj is not None:
-            if cur_doc is not None:
-                args[int(cur_doc.name[1:])] = cur_doc
-            _idx = int(reobj.group(1).strip())
-            cur_doc = (
-                DocArgument(
-                    name="#{0}".format(_idx),
-                    type=reobj.group(2).strip().strip("`:").strip(),
-                    p_type=ParameterKind.POSITIONAL_ONLY,
-                    doc=[],
-                )
-                if _idx
-                else None
-            )
-            continue
-        if cur_doc is None:
-            continue
-        cur_doc.doc.append(line)
-    if cur_doc is not None:
-        args[int(cur_doc.name[1:])] = cur_doc
+    args: dict[int, DocArgument] = _preparse_return_docs(docstring=docstring)
 
     _func_name = getattr(func, "__name__", "Unknown") if not func_name else func_name
     if (not warn_supp) and return_annotation == ("Unknown",) and (not docstring):
@@ -1105,6 +1207,83 @@ def parse_return_docs(
         res.append(arg)
 
     return res
+
+
+def _parse_func_overload_docs(
+    func_o: Any, f_type: FunctionType, idx: int, func_full_name: str, warn_supp: bool
+) -> DocFunctionOverload:
+    """(Private) Parse the docstring of a function overload.
+
+    This method is a part of `parse_func_docs(...)` and should not be called manually.
+
+    Arguments
+    ---------
+    func_o: `Any`
+        The overload function.
+
+    f_type: `FunctionType`
+        The type of the function. This information is detected from the main functon
+        body.
+
+    idx: `int`
+        The index of this overload.
+
+    func_full_name: `str`
+        The function full name to be displayed in the rendered documentation.
+
+    warn_supp: `bool`
+        A flag. If specified, will not display warning messages. It is used for
+        excluding special/private functions.
+
+    Returns
+    -------
+    #1: `DocFunction`
+        The parsed docstring of the function/method.
+    """
+    _doc = inspect.cleandoc(func_o.__doc__) if func_o.__doc__ else ""
+    _doc_secs = _texts.Section.from_md_text(_doc)
+    _descr = (
+        _doc_secs[0].as_md_text()
+        if (len(_doc_secs) > 0 and _doc_secs[0].level == 0)
+        else ""
+    )
+    if not (warn_supp or bool(_descr)):
+        log.warning(
+            "{0} {1} overload #{2} does not provide its main docstring.".format(
+                "Method" if f_type == FunctionType.METHOD else "Function",
+                func_full_name,
+                idx,
+            )
+        )
+    _doc_args: list[str] = list()
+    _doc_ret: list[str] = list()
+    _is_func_yield_o = is_func_yield(func_o)
+    _title_ret = (
+        ("yields", "yield", "iterates", "iterate")
+        if _is_func_yield_o
+        else ("returns", "return", "results", "result")
+    )
+
+    for sec in _doc_secs:
+        if sec.level == 0:
+            continue
+        title = sec.title.strip().casefold()
+        if title in ("parameters", "arguments", "parameter", "argument"):
+            _doc_args.extend(sec.content)
+            continue
+        if title in _title_ret:
+            _doc_ret.extend(sec.content)
+            continue
+    return DocFunctionOverload(
+        descr=_descr,
+        args=parse_argument_docs(
+            func_o, _doc_args, func_name=func_full_name, warn_supp=warn_supp
+        ),
+        retval=parse_return_docs(
+            func_o, _doc_ret, func_name=func_full_name, warn_supp=warn_supp
+        ),
+        is_yield=_is_func_yield_o,
+    )
 
 
 def parse_func_docs(func: Any, base_cls: type[Any] | None = None) -> DocFunction:
@@ -1174,50 +1353,13 @@ def parse_func_docs(func: Any, base_cls: type[Any] | None = None) -> DocFunction
     # Parse overloads
     overloads: list[DocFunctionOverload] = []
     for idx, func_o in enumerate(get_overloads(_func)):
-        _doc = inspect.cleandoc(func_o.__doc__) if func_o.__doc__ else ""
-        _doc_secs = _texts.Section.from_md_text(_doc)
-        _descr = (
-            _doc_secs[0].as_md_text()
-            if (len(_doc_secs) > 0 and _doc_secs[0].level == 0)
-            else ""
-        )
-        if not (_warn_supp or bool(_descr)):
-            log.warning(
-                "{0} {1} overload #{2} does not provide its main docstring.".format(
-                    "Method" if f_type == FunctionType.METHOD else "Function",
-                    func_full_name,
-                    idx,
-                )
-            )
-        _doc_args: list[str] = list()
-        _doc_ret: list[str] = list()
-        _is_func_yield_o = is_func_yield(func_o)
-        _title_ret = (
-            ("yields", "yield", "iterates", "iterate")
-            if _is_func_yield_o
-            else ("returns", "return", "results", "result")
-        )
-
-        for sec in _doc_secs:
-            if sec.level == 0:
-                continue
-            title = sec.title.strip().casefold()
-            if title in ("parameters", "arguments", "parameter", "argument"):
-                _doc_args.extend(sec.content)
-                continue
-            if title in _title_ret:
-                _doc_ret.extend(sec.content)
-                continue
         overloads.append(
-            DocFunctionOverload(
-                descr=_descr,
-                args=parse_argument_docs(
-                    func_o, _doc_args, func_name=func_full_name, warn_supp=_warn_supp
-                ),
-                retval=parse_return_docs(
-                    func_o, _doc_ret, func_name=func_full_name, warn_supp=_warn_supp
-                ),
-                is_yield=_is_func_yield_o,
+            _parse_func_overload_docs(
+                func_o,
+                f_type=f_type,
+                idx=idx,
+                func_full_name=func_full_name,
+                warn_supp=_warn_supp,
             )
         )
 

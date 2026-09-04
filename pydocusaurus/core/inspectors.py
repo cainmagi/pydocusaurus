@@ -30,7 +30,7 @@ import dataclasses
 import annotationlib
 
 from typing import Any
-from typing_extensions import Annotated, is_typeddict, get_args, get_origin
+from typing_extensions import Annotated, TypeGuard, is_typeddict, get_args, get_origin
 from collections.abc import (
     Sequence,
     Generator,
@@ -66,9 +66,53 @@ __all___ = (
     "relative_url_path",
 )
 
-
 ANNO_NAME_PATTERN = re.compile(r"\b([A-Za-z_][A-Za-z0-9_\.]*)\b")
 """The name pattern used for revising annotation items."""
+
+
+def _get_mro_typeddict(cls: type[Any], stop_by: Callable[[type[Any]], bool] | None):
+    """(Private) Get the mro of a typed dictionary.
+
+    This method is a part of `get_mro(...)`.
+
+    Arguments
+    ---------
+    cls: `type[Any]`
+        The typed dictionary class where the MRO will be picked.
+
+    stop_by: `((type[Any]) -> bool) | None`
+        An optional stop indicator. If this function returns `True`, it means that
+        the class is detected to be a stopper.
+
+    Returns
+    -------
+    #1: `list[type[Any]]`
+        The MRO list of `cls`.
+    """
+    if not is_typeddict(cls):
+        raise TypeError(
+            "The provided class is not a typed dictionary: " "{0}".format(cls.__name__)
+        )
+    res: list[type[Any]] = []
+    _res: set[type[Any]] = set()
+    res.append(cls)
+    _res.add(cls)
+    _cls_list: set[type[Any]] = set((cls,))
+    while bases := getattr(_cls_list.pop(), "__orig_bases__", []):
+        for base in bases:
+            _origin = get_origin(base) or base
+            if not isinstance(_origin, type):
+                break
+            if stop_by is not None:
+                if stop_by(_origin):
+                    break
+            if _origin not in _res:
+                _res.add(_origin)
+                res.append(_origin)
+                _cls_list.add(_origin)
+        if not _cls_list:
+            break
+    return res
 
 
 def get_mro(
@@ -90,29 +134,12 @@ def get_mro(
     #1: `list[type[Any]]`
         The MRO list of `cls`.
     """
-    res: list[type[Any]] = []
-    _res: set[type[Any]] = set()
-
     # The typed dictionary does not use mro, it needs to be handled specially.
     if is_typeddict(cls):
-        res.append(cls)
-        _res.add(cls)
-        _cls_list: set[type[Any]] = set((cls,))
-        while bases := getattr(_cls_list.pop(), "__orig_bases__", []):
-            for base in bases:
-                _origin = get_origin(base) or base
-                if not isinstance(_origin, type):
-                    break
-                if stop_by is not None:
-                    if stop_by(_origin):
-                        break
-                if _origin not in _res:
-                    _res.add(_origin)
-                    res.append(_origin)
-                    _cls_list.add(_origin)
-            if not _cls_list:
-                break
-        return res
+        return _get_mro_typeddict(cls, stop_by=stop_by)
+
+    res: list[type[Any]] = []
+    _res: set[type[Any]] = set()
 
     for base in cls.__mro__:
         if stop_by is not None:
@@ -300,6 +327,165 @@ def get_members_defined_in_enum(
         yield (name, value)
 
 
+class _FieldDocstringFetcher:
+    """(Private) The class used for detecting the docstrings of fields.
+
+    Such docstrings will be trimmed during runtime and can only be retrieved from the
+    source code.
+    """
+
+    def __init__(self, model_cls: type[Any], include_dyn_assign: bool = False) -> None:
+        """Initialization.
+
+        Arguments
+        ---------
+        model_cls: `type[Any]`
+            The class to be analyzed. Typically, it can be a pydantic model, a
+            dataclass, an enum class, or a typeddict.
+
+        include_dyn_assign: `bool`
+            A flag specifying whether to match the assignments without the explicit
+            type annotation.
+        """
+        self.model_cls = model_cls
+        self.include_dyn_assign = include_dyn_assign
+
+    @staticmethod
+    def check_mro_pyd(_cls: type[Any]) -> TypeGuard[type[BaseModel]]:
+        if _cls is BaseModel or (not issubclass(_cls, BaseModel)):
+            return True
+        return False
+
+    @staticmethod
+    def check_mro_dcls(_cls: type[Any]) -> bool:
+        if not dataclasses.is_dataclass(_cls):
+            return True
+        return False
+
+    @staticmethod
+    def check_mro_enum(_cls: type[Any]) -> TypeGuard[type[enum.Enum]]:
+        if _cls is enum.Enum or (not issubclass(_cls, enum.Enum)):
+            return True
+        return False
+
+    @staticmethod
+    def check_mro_tdict(_cls: type[Any]) -> bool:
+        if not is_typeddict(_cls):
+            return True
+        return False
+
+    def get_datacls_mro(self) -> list[type[Any]]:
+        """Get the MRO of the potential model class.
+
+        The stop-by rule is configured according to the type of the given class.
+
+        Returns
+        -------
+        #1: `list[type[Any]]`
+            The MRO list of `cls`.
+        """
+        stop_by = None
+        model_cls = self.model_cls
+        if isinstance(model_cls, type):
+            if issubclass(model_cls, BaseModel):
+                stop_by = self.check_mro_pyd
+            elif dataclasses.is_dataclass(model_cls):
+                stop_by = self.check_mro_dcls
+            elif issubclass(model_cls, enum.Enum):
+                stop_by = self.check_mro_enum
+            elif is_typeddict(model_cls):
+                stop_by = self.check_mro_tdict
+
+        return get_mro(model_cls, stop_by=stop_by)
+
+    @staticmethod
+    def get_doc(class_def: ast.ClassDef, idx: int) -> str | None:
+        """Attempt to get the docstring of a field defined in a class.
+
+        Arguments
+        ---------
+        class_def: `ClassDef`
+            The class definition providing the body.
+
+        idx: `int`
+            The index locating the field.
+        """
+        if len(class_def.body) < idx + 2:
+            return None
+        body = class_def.body[idx + 1]
+        if not isinstance(body, ast.Expr):
+            return None
+        cst = body.value
+        if not isinstance(cst, ast.Constant):
+            return None
+        doc = cst.value
+        if not isinstance(doc, str):
+            return None
+        return doc
+
+    def get_single_docstrings(self, model_cls: type[Any]) -> dict[str, str | None]:
+        """Get the docstring of a single class. This method will not backtrack the
+        MRO list of `model_cls`.
+
+        Arguments
+        ---------
+        model_cls: `type[Any]`
+            The model class to be detected.
+
+        Returns
+        -------
+        #1: `dict[str, str | None]`
+            The docstrings of the fields in the given `model_cls`. If the value of a
+            key is `None`, it means that this field does not have the docstring.
+        """
+        try:
+            source = inspect.getsource(model_cls)
+        except OSError, TypeError:
+            return dict()
+        try:
+            tree = ast.parse(source)
+        except IndentationError:
+            tree = ast.parse(source.strip())
+
+        class_def = next(
+            node
+            for node in tree.body
+            if isinstance(node, ast.ClassDef) and node.name == model_cls.__name__
+        )
+
+        docs: dict[str, str | None] = dict()
+        for i, node in enumerate(class_def.body):
+            if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+                field_name = node.target.id
+                docs[field_name] = self.get_doc(class_def, i)
+            elif (
+                self.include_dyn_assign
+                and isinstance(node, ast.Assign)
+                and len(node.targets) == 1
+                and isinstance(node.targets[0], ast.Name)
+            ):
+                field_name = node.targets[0].id
+                docs[field_name] = self.get_doc(class_def, i)
+
+        return docs
+
+    def get_docstrings(self) -> dict[str, str | None]:
+        """Capture the docstrings of each assignment item in the initialized
+        `model_cls` by its source code.
+
+        Returns
+        -------
+        #1: `dict[str, str | None]`
+            The docstrings of the fields. If the value of a key is `None`, it means that
+            this field does not have the docstring.
+        """
+        cls_list = self.get_datacls_mro()
+        _res: dict[str, str | None] = dict()
+        for cls in cls_list[::-1]:
+            _res.update(self.get_single_docstrings(cls))
+        return _res
+
+
 def get_field_docstrings(
     model_cls: type[Any], include_dyn_assign: bool = False
 ) -> dict[str, str | None]:
@@ -326,101 +512,9 @@ def get_field_docstrings(
         The docstrings of the fields. If the value of a key is `None`, it means that
         this field does not have the docstring.
     """
-
-    def check_mro_pyd(_cls: type[Any]) -> bool:
-        if _cls is BaseModel or (not issubclass(_cls, BaseModel)):
-            return True
-        return False
-
-    def check_mro_dcls(_cls: type[Any]) -> bool:
-        if not dataclasses.is_dataclass(_cls):
-            return True
-        return False
-
-    def check_mro_enum(_cls: type[Any]) -> bool:
-        if _cls is enum.Enum or (not issubclass(_cls, enum.Enum)):
-            return True
-        return False
-
-    def check_mro_tdict(_cls: type[Any]) -> bool:
-        if not is_typeddict(_cls):
-            return True
-        return False
-
-    stop_by = None
-    if isinstance(model_cls, type):
-        if issubclass(model_cls, BaseModel):
-            stop_by = check_mro_pyd
-        elif dataclasses.is_dataclass(model_cls):
-            stop_by = check_mro_dcls
-        elif issubclass(model_cls, enum.Enum):
-            stop_by = check_mro_enum
-        elif is_typeddict(model_cls):
-            stop_by = check_mro_tdict
-
-    cls_list = get_mro(model_cls, stop_by=stop_by)
-
-    def _get_single_docstring(_model_cls: type[Any]) -> dict[str, str | None]:
-        """Get the docstring of a single class."""
-        try:
-            source = inspect.getsource(_model_cls)
-        except (OSError, TypeError):
-            return dict()
-        try:
-            tree = ast.parse(source)
-        except IndentationError:
-            tree = ast.parse(source.strip())
-
-        class_def = next(
-            node
-            for node in tree.body
-            if isinstance(node, ast.ClassDef) and node.name == _model_cls.__name__
-        )
-
-        def get_doc(class_def: ast.ClassDef, idx: int) -> str | None:
-            """Attempt to get the docstring of a field defined in a class.
-
-            Arguments
-            ---------
-            class_def: `ClassDef`
-                The class definition providing the body.
-
-            idx: `int`
-                The index locating the field.
-            """
-            if len(class_def.body) < idx + 2:
-                return None
-            body = class_def.body[idx + 1]
-            if not isinstance(body, ast.Expr):
-                return None
-            cst = body.value
-            if not isinstance(cst, ast.Constant):
-                return None
-            doc = cst.value
-            if not isinstance(doc, str):
-                return None
-            return doc
-
-        docs: dict[str, str | None] = dict()
-        for i, node in enumerate(class_def.body):
-            if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
-                field_name = node.target.id
-                docs[field_name] = get_doc(class_def, i)
-            elif (
-                include_dyn_assign
-                and isinstance(node, ast.Assign)
-                and len(node.targets) == 1
-                and isinstance(node.targets[0], ast.Name)
-            ):
-                field_name = node.targets[0].id
-                docs[field_name] = get_doc(class_def, i)
-
-        return docs
-
-    _res: dict[str, str | None] = dict()
-    for cls in cls_list[::-1]:
-        _res.update(_get_single_docstring(cls))
-    return _res
+    return _FieldDocstringFetcher(
+        model_cls=model_cls, include_dyn_assign=include_dyn_assign
+    ).get_docstrings()
 
 
 def get_arg_default_name(val: Any) -> str:

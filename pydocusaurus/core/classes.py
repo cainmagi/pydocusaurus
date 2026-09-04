@@ -28,6 +28,7 @@ import logging
 from functools import cached_property
 
 from typing import Any
+from collections.abc import Sequence
 from typing_extensions import Self, Literal
 
 from pydantic import BaseModel, Field
@@ -55,6 +56,37 @@ __all__ = (
     "parse_class_docs",
 )
 log = logging.getLogger("pydocusaurus")
+
+
+def _add_md_section(
+    texts: list[str],
+    renderer: ProtocolComponent,
+    title: str,
+    contents: Sequence[_funcs.DocFunction | DocProp | _ops.DocOpTemplate],
+) -> None:
+    """(Private) Add a Markdown section.
+
+    Arguments
+    ---------
+    texts: `list[str]`
+        The markdown text body to be extended.
+
+    renderer: `ProtocolComponent`
+        The renderer providing component rendering.
+
+    title: `str`
+        The title of the current section.
+
+    contents: `list[DocFunction | DocProp | DocOpTemplate]`
+        The contents to be rendered.
+    """
+    if not contents:
+        return
+    texts.append(title)
+    for idx, part in enumerate(contents):
+        if idx > 0:
+            texts.append("---")
+        texts.append(part.as_md_text(renderer=renderer))
 
 
 @dataclasses.dataclass
@@ -297,24 +329,21 @@ class DocClassAbstractAttrs(BaseModel):
             The Markdown text rendered from the section.
         """
         texts: list[str] = []
-        if self.methods:
-            texts.append("## Abstract methods")
-            for idx, method in enumerate(self.methods):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(method.as_md_text(renderer=renderer))
-        if self.properties:
-            texts.append("## Abstract properties")
-            for idx, prop in enumerate(self.properties):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(prop.as_md_text(renderer=renderer))
-        if self.operators:
-            texts.append("## Abstract operators")
-            for idx, op in enumerate(self.operators):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(op.as_md_text(renderer=renderer))
+        _add_md_section(
+            texts, renderer=renderer, title="## Abstract methods", contents=self.methods
+        )
+        _add_md_section(
+            texts,
+            renderer=renderer,
+            title="## Abstract properties",
+            contents=self.properties,
+        )
+        _add_md_section(
+            texts,
+            renderer=renderer,
+            title="## Abstract operators",
+            contents=self.operators,
+        )
         if not texts:
             return ""
         return mdformat.text("\n\n".join(texts))
@@ -519,24 +548,15 @@ class _DocClassPrototype(BaseModel):
             _text = self.abstract_attrs.as_md_text(renderer=renderer)
             if _text:
                 texts.append(_text)
-        if self.methods:
-            texts.append("## Methods")
-            for idx, method in enumerate(self.methods):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(method.as_md_text(renderer=renderer))
-        if self.properties:
-            texts.append("## Properties")
-            for idx, prop in enumerate(self.properties):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(prop.as_md_text(renderer=renderer))
-        if self.operators:
-            texts.append("## Operators")
-            for idx, op in enumerate(self.operators):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(op.as_md_text(renderer=renderer))
+        _add_md_section(
+            texts, renderer=renderer, title="## Methods", contents=self.methods
+        )
+        _add_md_section(
+            texts, renderer=renderer, title="## Properties", contents=self.properties
+        )
+        _add_md_section(
+            texts, renderer=renderer, title="## Operators", contents=self.operators
+        )
         return mdformat.text("\n\n".join(texts))
 
 

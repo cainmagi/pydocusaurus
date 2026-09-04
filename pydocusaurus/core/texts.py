@@ -20,6 +20,7 @@ The MDX rendering of documentation units.
 
 import re
 
+from collections.abc import Sequence, Callable
 from typing_extensions import Literal, Self
 
 from pydantic import BaseModel, Field
@@ -43,6 +44,66 @@ class Section(BaseModel):
 
     content: list[str] = Field(default_factory=list)
     """The line-by-line content in the section."""
+
+    @classmethod
+    def _parse_md_line(
+        cls: type[Self],
+        current: Self | None,
+        start_section: Callable[[Self | None, int, str], Self],
+        lines: Sequence[str],
+        idx: int,
+    ) -> tuple[Self, int]:
+        """(Private) Parse Markdown docstring as a list of sections.
+
+        Each section starts with a title.
+
+        Arguments
+        ---------
+        current: `Section | None`
+            The current section where the texts will be added to.
+
+        start_section: `(Section | None, int, str) -> Section`
+            The function used for starting a new section. The input arguments are
+            `current_section`, `section_index`, and `section_title`.
+
+        lines: `Sequence[str]`
+            The full text to be parsed.
+
+        idx: `int`
+            The index of the current parsed line.
+
+        Returns
+        -------
+        #1: `Section`
+            The modified current section.
+
+        #2: `int`
+            The modified index. It needs to be larger than the input index.
+        """
+        line = lines[idx]
+
+        reobj = re.match(r"^(#{1,6})\s+(.*)", line)
+        if reobj:
+            level = len(reobj.group(1))
+            title = reobj.group(2).strip()
+            current = start_section(current, level, title)
+            return current, idx + 1
+
+        if idx + 1 < len(lines):  # Special headings
+            next_line = lines[idx + 1].strip()
+            if re.match(r"^=+$", next_line):  # H1
+                current = start_section(current, 1, line.strip())
+                return current, idx + 2
+            if re.match(r"^-+$", next_line):  # H2
+                current = start_section(current, 2, line.strip())
+                return current, idx + 2
+
+        if current:
+            current.content.append(line)
+        else:
+            current = cls(level=0, title="", content=[line])
+
+        return current, idx + 1
 
     @classmethod
     def from_md_text(cls: type[Self], md_text: str | None) -> list[Self]:
@@ -74,35 +135,9 @@ class Section(BaseModel):
             current = cls(level=level, title=title)
             return current
 
-        i = 0
-        while i < len(lines):
-            line = lines[i]
-
-            reobj = re.match(r"^(#{1,6})\s+(.*)", line)
-            if reobj:
-                level = len(reobj.group(1))
-                title = reobj.group(2).strip()
-                current = start_section(current, level, title)
-                i += 1
-                continue
-
-            if i + 1 < len(lines):  # Special headings
-                next_line = lines[i + 1].strip()
-                if re.match(r"^=+$", next_line):  # H1
-                    current = start_section(current, 1, line.strip())
-                    i += 2
-                    continue
-                if re.match(r"^-+$", next_line):  # H2
-                    current = start_section(current, 2, line.strip())
-                    i += 2
-                    continue
-
-            if current:
-                current.content.append(line)
-            else:
-                current = cls(level=0, title="", content=[line])
-
-            i += 1
+        idx = 0
+        while idx < len(lines):
+            current, idx = cls._parse_md_line(current, start_section, lines, idx)
 
         if current:  # Handle the last section
             sections.append(current)

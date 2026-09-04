@@ -209,24 +209,15 @@ class DocEnum(_classes._DocClassPrototype):
         """
         texts: list[str] = []
         texts.append(self._as_md_title(renderer=renderer))
-        if self.methods:
-            texts.append("## Methods")
-            for idx, method in enumerate(self.methods):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(method.as_md_text(renderer=renderer))
-        if self.properties:
-            texts.append("## Properties")
-            for idx, prop in enumerate(self.properties):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(prop.as_md_text(renderer=renderer))
-        if self.operators:
-            texts.append("## Operators")
-            for idx, op in enumerate(self.operators):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(op.as_md_text(renderer=renderer))
+        _classes._add_md_section(
+            texts, renderer=renderer, title="## Methods", contents=self.methods
+        )
+        _classes._add_md_section(
+            texts, renderer=renderer, title="## Properties", contents=self.properties
+        )
+        _classes._add_md_section(
+            texts, renderer=renderer, title="## Operators", contents=self.operators
+        )
         return mdformat.text("\n\n".join(texts))
 
 

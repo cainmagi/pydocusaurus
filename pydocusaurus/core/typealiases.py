@@ -24,6 +24,7 @@ import logging
 from functools import cached_property
 
 from typing import Any
+from collections.abc import Sequence
 from typing_extensions import Literal, TypeGuard
 
 from pydantic import BaseModel, Field
@@ -305,6 +306,40 @@ def is_possibly_type_expression(node: ast.AST) -> bool:
     return False
 
 
+def _get_docstring_after(
+    index: int, body: Sequence[ast.stmt], n_body: int
+) -> str | None:
+    """(Private) Attempt to get the docstring after a specific code line.
+
+    Arguments
+    ---------
+    index: `int`
+        The line index in the source code.
+
+    body: `list[ast.stmt]`
+        The body of the parsed source codes.
+
+    n_body: `int`
+        The `len(body)`.
+
+    Returns
+    -------
+    #1: `str | None`
+        The extracted docstring. It is `None` if the docstring cannot be found.
+    """
+    if index + 2 > n_body:
+        return None
+    next_node = body[index + 1]
+    if not (
+        isinstance(next_node, ast.Expr) and isinstance(next_node.value, ast.Constant)
+    ):
+        return None
+    value = next_node.value
+    if isinstance(value.value, str):
+        return value.value
+    return None
+
+
 def parse_type_aliases_doc(obj: Any) -> list[DocTypeAlias]:
     """Parse the docstring of all type aliases defined in a module.
 
@@ -324,25 +359,11 @@ def parse_type_aliases_doc(obj: Any) -> list[DocTypeAlias]:
     source = inspect.getsource(obj)
     tree = ast.parse(source)
     body = tree.body
-    n = len(body)
+    n_body = len(body)
 
     results: list[DocTypeAlias] = []
 
-    def get_docstring_after(index: int) -> str | None:
-        if index + 2 > n:
-            return None
-        next_node = body[index + 1]
-        if not (
-            isinstance(next_node, ast.Expr)
-            and isinstance(next_node.value, ast.Constant)
-        ):
-            return None
-        value = next_node.value
-        if isinstance(value.value, str):
-            return value.value
-        return None
-
-    for i, node in enumerate(body):
+    for idx, node in enumerate(body):
         if isinstance(node, ast.TypeAlias):
             name = DocTypeAlias.is_node_type_alias_expr(node)
         elif isinstance(node, ast.Assign):
@@ -355,7 +376,7 @@ def parse_type_aliases_doc(obj: Any) -> list[DocTypeAlias]:
         if name is None:
             continue
 
-        doc = get_docstring_after(i)
+        doc = _get_docstring_after(idx, body=body, n_body=n_body)
         if not doc:
             log.warning("Type {0} is undocumented.".format(name))
         definition = ast.get_source_segment(source, node)

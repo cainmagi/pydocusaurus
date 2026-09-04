@@ -138,6 +138,75 @@ class DocDataClass(_classes._DocClassPrototype):
         )
         return _funcs.DocFunctionOverload.str_v1(_overload, parent=cls_p)
 
+    @staticmethod
+    def _add_table_field(
+        table: _texts.Table,
+        renderer: ProtocolComponent,
+        idx: int,
+        field: DocField,
+        idx_type: int | None = None,
+        idx_required: int | None = None,
+        idx_default: int | None = None,
+        idx_doc: int | None = None,
+    ) -> None:
+        """Format and add a field as a table row.
+
+        Arguments
+        ---------
+        table: `Table`
+            The table where the field will be added.
+
+        renderer: `ProtocolComponent`
+            The renderer providing component rendering.
+
+        idx: `int`
+            The index of the current field.
+
+        field: `DocField`
+            The data of the field to be added.
+
+        idx_type: `int | None`
+            The index of the column specifying the type. If not provided, will not
+            add it.
+
+        idx_required: `int | None`
+            The index of the column specifying whether the field is required. If not
+            provided, will not add it.
+
+        idx_default: `int | None`
+            The index of the column specifying the default value. If not provided, will
+            not add it.
+
+        idx_doc: `int | None`
+            The index of the column specifying the description text. If not provided,
+            will not add it.
+        """
+        name = field.name
+        table.cells[(idx, 0)] = "`{0}`".format(name) if name else ""
+        if idx_type is not None:
+            table.cells[(idx, idx_type)] = (
+                "`{0}`".format(field.type.replace("|", R"\|")) if field.type else ""
+            )
+        if idx_required is not None:
+            table.cells[(idx, idx_required)] = (
+                renderer.inline_icon("check") if (not field.default) else ""
+            )
+        if idx_default is not None:
+            table.cells[(idx, idx_default)] = (
+                "`{0}`".format(field.default.replace("|", R"\|"))
+                if field.default
+                else ""
+            )
+        if idx_doc is not None:
+            table.cells[(idx, idx_doc)] = (
+                mdformat.text(
+                    field.descr,
+                    options={"wrap": "no"},
+                )
+                .strip()
+                .replace("|", R"\|")
+            )
+
     def table_fields(
         self,
         renderer: ProtocolComponent,
@@ -204,31 +273,16 @@ class DocDataClass(_classes._DocClassPrototype):
             table.cells[(0, idx_doc)] = "<center>{0}</center>".format(cols[idx_doc])
         fields = self.fields
         for idx, field in enumerate(fields, start=1):
-            name = field.name
-            table.cells[(idx, 0)] = "`{0}`".format(name) if name else ""
-            if idx_type is not None:
-                table.cells[(idx, idx_type)] = (
-                    "`{0}`".format(field.type.replace("|", R"\|")) if field.type else ""
-                )
-            if idx_required is not None:
-                table.cells[(idx, idx_required)] = (
-                    renderer.inline_icon("check") if (not field.default) else ""
-                )
-            if idx_default is not None:
-                table.cells[(idx, idx_default)] = (
-                    "`{0}`".format(field.default.replace("|", R"\|"))
-                    if field.default
-                    else ""
-                )
-            if idx_doc is not None:
-                table.cells[(idx, idx_doc)] = (
-                    mdformat.text(
-                        field.descr,
-                        options={"wrap": "no"},
-                    )
-                    .strip()
-                    .replace("|", R"\|")
-                )
+            self._add_table_field(
+                table,
+                renderer=renderer,
+                idx=idx,
+                field=field,
+                idx_type=idx_type,
+                idx_required=idx_required,
+                idx_default=idx_default,
+                idx_doc=idx_doc,
+            )
         return table.as_md_text()
 
     def _as_md_title(self, renderer: ProtocolComponent) -> str:
@@ -263,24 +317,19 @@ class DocDataClass(_classes._DocClassPrototype):
         """
         texts: list[str] = []
         texts.append(self._as_md_title(renderer=renderer))
-        if self.methods:
-            texts.append("## Methods")
-            for idx, method in enumerate(self.methods):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(method.as_md_text(renderer=renderer))
-        if self.properties:
-            texts.append("## Properties")
-            for idx, prop in enumerate(self.properties):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(prop.as_md_text(renderer=renderer))
-        if self.operators:
-            texts.append("## Operators")
-            for idx, op in enumerate(self.operators):
-                if idx > 0:
-                    texts.append("---")
-                texts.append(op.as_md_text(renderer=renderer))
+        if self.abstract_attrs is not None:
+            _text = self.abstract_attrs.as_md_text(renderer=renderer)
+            if _text:
+                texts.append(_text)
+        _classes._add_md_section(
+            texts, renderer=renderer, title="## Methods", contents=self.methods
+        )
+        _classes._add_md_section(
+            texts, renderer=renderer, title="## Properties", contents=self.properties
+        )
+        _classes._add_md_section(
+            texts, renderer=renderer, title="## Operators", contents=self.operators
+        )
         return mdformat.text("\n\n".join(texts))
 
 
@@ -320,6 +369,82 @@ def _get_field_descr_fetcher(cls: type[Any]) -> Callable[[str], str | None]:
     return descr_fetcher
 
 
+def _parse_fields_pydantic(cls: type[Any]) -> list[DocField]:
+    """Parse the fields of a pydantic model.
+
+    Arguments
+    ---------
+    cls: `type[Any]`
+        A data model object to be parsed.
+
+    Returns
+    -------
+    #1: `list[DocField]`
+        The list of parsed model fields.
+    """
+    fields: list[DocField] = []
+    if (not isinstance(cls, type)) or (not issubclass(cls, BaseModel)):
+        raise TypeError(
+            "Cannot parse the class because it is not a pydantic model: "
+            "{0}".format(cls.__name__)
+        )
+    f_descr = _get_field_descr_fetcher(cls)
+    for name, field in cls.model_fields.items():
+        descr = f_descr(name)
+        if descr is None:
+            continue
+        fields.append(
+            DocField(
+                name=name,
+                type=strip_annotation_name(
+                    unwrap_annotated_annotation(field.annotation)
+                ),
+                default=get_field_default(field.default, field.default_factory),
+                init_skipped=(field.init is not None) and (not field.init),
+                descr=descr,
+                doc=field.description if field.description else "",
+            )
+        )
+    return fields
+
+
+def _parse_fields_dataclass(cls: type[Any]) -> list[DocField]:
+    """Parse the fields of a dataclass.
+
+    Arguments
+    ---------
+    cls: `type[Any]`
+        A dataclass object to be parsed.
+
+    Returns
+    -------
+    #1: `list[DocField]`
+        The list of parsed dataclass fields.
+    """
+    fields: list[DocField] = []
+    if not dataclasses.is_dataclass(cls):
+        raise TypeError(
+            "Cannot parse the class because it is not a dataclass: "
+            "{0}".format(cls.__name__)
+        )
+    f_descr = _get_field_descr_fetcher(cls)
+    for field in dataclasses.fields(cls):
+        descr = f_descr(field.name)
+        if descr is None:
+            continue
+        fields.append(
+            DocField(
+                name=field.name,
+                type=strip_annotation_name(unwrap_annotated_annotation(field.type)),
+                default=get_field_default(field.default, field.default_factory),
+                init_skipped=(field.init is not None) and (not field.init),
+                descr=descr,
+                doc=field.doc if field.doc else "",
+            )
+        )
+    return fields
+
+
 def parse_dataclass_docs(cls: type[Any]) -> DocDataClass:
     """Parse the docstring of a data model/class.
 
@@ -335,43 +460,11 @@ def parse_dataclass_docs(cls: type[Any]) -> DocDataClass:
     """
     doc_class = _classes.parse_class_docs(cls)
 
-    f_descr = _get_field_descr_fetcher(cls)
     fields: list[DocField] = []
-
     if isinstance(cls, type) and issubclass(cls, BaseModel):
-        for name, field in cls.model_fields.items():
-            descr = f_descr(name)
-            if descr is None:
-                continue
-            fields.append(
-                DocField(
-                    name=name,
-                    type=strip_annotation_name(
-                        unwrap_annotated_annotation(field.annotation)
-                    ),
-                    default=get_field_default(field.default, field.default_factory),
-                    init_skipped=(field.init is not None) and (not field.init),
-                    descr=descr,
-                    doc=field.description if field.description else "",
-                )
-            )
-            field.default_factory
+        fields.extend(_parse_fields_pydantic(cls))
     elif dataclasses.is_dataclass(cls):
-        for field in dataclasses.fields(cls):
-            descr = f_descr(field.name)
-            if descr is None:
-                continue
-            fields.append(
-                DocField(
-                    name=field.name,
-                    type=strip_annotation_name(unwrap_annotated_annotation(field.type)),
-                    default=get_field_default(field.default, field.default_factory),
-                    init_skipped=(field.init is not None) and (not field.init),
-                    descr=descr,
-                    doc=field.doc if field.doc else "",
-                )
-            )
-            field.default_factory
+        fields.extend(_parse_fields_dataclass(cls))
 
     return DocDataClass(
         name=doc_class.name,

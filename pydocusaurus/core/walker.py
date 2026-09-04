@@ -25,7 +25,9 @@ import inspect
 import importlib
 import pkgutil
 import sys
+import logging
 from types import ModuleType
+
 from typing import Any
 from typing_extensions import Literal, is_typeddict, is_protocol, final
 from collections.abc import Iterator
@@ -55,6 +57,7 @@ __all__ = (
     "ParserAbstract",
     "PackageWalker",
 )
+log = logging.getLogger("pydocusaurus")
 
 
 def analyze_module_ast(module: ModuleType) -> dict[str, tuple[int, bool]]:
@@ -96,23 +99,24 @@ def analyze_module_ast(module: ModuleType) -> dict[str, tuple[int, bool]]:
     result: dict[str, tuple[int, bool]] = {}
 
     for node in tree.body:
-        if isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
-            result[node.name] = (node.lineno, False)
-        elif isinstance(node, ast.Assign):
-            for target in node.targets:
-                if isinstance(target, ast.Name):
-                    result[target.id] = (node.lineno, False)
-        elif isinstance(node, ast.Import):
-            for alias in node.names:
-                name = alias.asname or alias.name.split(".")[0]
-                result[name] = (node.lineno, True)
-        elif isinstance(node, ast.ImportFrom):
-            level = node.level
-            module_name = node.module  # may be None
-            for alias in node.names:
-                name = alias.asname or alias.name
-                lineno = node.lineno
-                result[name] = (lineno, (level > 0) or (module_name is not None))
+        match node:
+            case ast.ClassDef() | ast.FunctionDef() | ast.AsyncFunctionDef():
+                result[node.name] = (node.lineno, False)
+            case ast.Assign():
+                for target in node.targets:
+                    if isinstance(target, ast.Name):
+                        result[target.id] = (node.lineno, False)
+            case ast.Import():
+                for alias in node.names:
+                    name = alias.asname or alias.name.split(".")[0]
+                    result[name] = (node.lineno, True)
+            case ast.ImportFrom():
+                level = node.level
+                module_name = node.module  # may be None
+                for alias in node.names:
+                    name = alias.asname or alias.name
+                    lineno = node.lineno
+                    result[name] = (lineno, (level > 0) or (module_name is not None))
     return result
 
 
@@ -632,8 +636,8 @@ class PackageWalker:
             ):
                 try:
                     module = importlib.import_module(name)
-                except Exception as e:
-                    print(f"Failed to import {name}: {e}", file=sys.stderr)
+                except Exception as exc:
+                    log.warning("Failed to import {0}: {1}".format(name, exc))
                 else:
                     if is_main_module(module):
                         continue
