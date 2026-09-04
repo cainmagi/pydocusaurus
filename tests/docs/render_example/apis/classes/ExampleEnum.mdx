@@ -1,0 +1,60 @@
+---
+id: ExampleEnum
+title: ExampleEnum
+sidebar_label: ExampleEnum
+slug: /apis/classes/ExampleEnum
+description: An example enum class with a property and a method.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+
+<APITopBar type="class" isEnum={true} source="classes.ExampleEnum" />
+
+```python
+ExampleEnum.enum_1 = 1
+ExampleEnum.enum_2 = 2
+ExampleEnum.enum_3 = 10
+```
+
+An example enum class with a property and a method.
+
+## Enums
+
+| Name | Type | Value |
+| :-----: | :-----: | :-----: |
+| `enum_1` | `int` | `1` |
+| `enum_2` | `int` | `2` |
+| `enum_3` | `int` | `10` |
+
+## Methods
+
+### <IconObjType type="method"/> `method_ex`
+
+```python
+v_1: int = self.method_ex(arg: int)
+```
+
+An enum method testing the functionality of the enum class as a vanilla class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `arg` | `int` | <InlineIcon icon={vsiCheckIcon}/> | The input value with the type specified by the annotation. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `int` | The method output. |
+
+## Properties
+
+### <IconObjType type="param"/> `prop1`
+
+```python
+prop1: int = self.prop1
+```
+
+An enum property which is not a field.

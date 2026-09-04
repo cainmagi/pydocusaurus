@@ -1,0 +1,38 @@
+---
+id: example_complicated_func
+title: example_complicated_func
+sidebar_label: example_complicated_func
+slug: /apis/funcs/example_complicated_func
+description: A complicated example function.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+
+<APITopBar type="func" source="funcs.example_complicated_func" />
+
+```python
+(v_1: int, v_2: tuple[str, str]) = example_complicated_func(
+    arg1: str = "test", arg2: int = 0, *args: str | int, **kwargs: list[str]
+)
+```
+
+A complicated example function.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `arg1` | `str` | | The first argument. |
+| `arg2` | `int` | | The second argument. |
+| `*args` | `str \| int` | <InlineIcon icon={vsiCheckIcon}/> | More arguments. |
+| `**kwargs` | `list[str]` | <InlineIcon icon={vsiCheckIcon}/> | More keyword arguments. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `int` | The returned value. |
+| `v_2` | `tuple[str, str]` | The second returned value. |

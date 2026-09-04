@@ -1,0 +1,41 @@
+---
+id: api-overview
+title: Overview of APIs
+sidebar_label: Overview
+slug: /apis/
+description: An example package used for testing the performance of the documentation
+  rendering.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="package" source="." />
+
+An example package used for testing the performance of the documentation rendering.
+
+## Modules
+
+| Member | <center>Description</center> |
+| :-----: | :-----: |
+| [<IconObjType type="package" hasText={true} text="subpackage"/>](./subpackage.mdx) | An example subpackage with a sole function inside it. |
+| [<IconObjType type="module" hasText={true} text="classes"/>](./classes.mdx) | Test the rendering of classes. |
+| [<IconObjType type="module" hasText={true} text="funcs"/>](./funcs.mdx) | Test the rendering of functions. |
+| [<IconObjType type="module" hasText={true} text="typecls"/>](./typecls.mdx) | Test the rendering of types (classes used for annotating). |
+
+## Classes
+
+| Member | <center>Description</center> |
+| :-----: | :-----: |
+| [<IconObjType type="class" hasText={true} text="ExampleRootClass"/>](./ExampleRootClass.mdx) | An example class in the package root. |
+
+## Functions
+
+| Member | <center>Description</center> |
+| :-----: | :-----: |
+| [<IconObjType type="func" hasText={true} text="example_root_func"/>](./example_root_func.mdx) | An example function in the package root. |
+
+## Aliases
+
+| Member | <center>Description</center> |
+| :-----: | :-----: |
+| [<IconObjType type="func" hasText={true} text="example_complicated_func"/>](./funcs/example_complicated_func.mdx) | A complicated example function. |

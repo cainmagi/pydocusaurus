@@ -1,0 +1,68 @@
+---
+id: ExampleModel
+title: ExampleModel
+sidebar_label: ExampleModel
+slug: /apis/classes/ExampleModel
+description: An example PyDantic model that is used for testing the docstring extraction.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+
+<APITopBar type="class" isDataClass={true} source="classes.ExampleModel" />
+
+```python
+ExampleModel(
+    val_1: int,
+    val_2: str = "",
+    val_3: int | str = "",
+    val_4: list[str] = [],
+    val_5: list[str] = []
+)
+```
+
+An example PyDantic model that is used for testing the docstring extraction.
+
+The initialization function are synthesized from the field definitions.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `val_1` | `int` | <InlineIcon icon={vsiCheckIcon}/> | The most plain field that is required. |
+| `val_2` | `str` | | An optional field with a default value. |
+| `val_3` | `int \| str` | | A union field with the default value specified by the `Field` creator. |
+| `val_4` | `list[str]` | | A list field with a default value specified by the factory function. |
+| `val_5` | `list[str]` | | A list field with the default value specified by the annotation. |
+
+## Methods
+
+### <IconObjType type="method"/> `method_ex`
+
+```python
+v_1: int = self.method_ex(arg: int)
+```
+
+A model method testing the functionality of the model as a vanilla class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `arg` | `int` | <InlineIcon icon={vsiCheckIcon}/> | The input value with the type specified by the annotation. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `int` | The method output. |
+
+## Properties
+
+### <IconObjType type="param"/> `prop1`
+
+```python
+prop1: int = self.prop1
+```
+
+A model property which is not a field.

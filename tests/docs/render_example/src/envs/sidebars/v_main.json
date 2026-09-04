@@ -1,0 +1,62 @@
+[
+  "apis/index",
+  {
+    "type": "category",
+    "label": "funcs",
+    "collapsed": true,
+    "link": {
+      "type": "doc",
+      "id": "apis/funcs/index"
+    },
+    "items": [
+      "apis/funcs/example_complicated_func",
+      "apis/funcs/example_iterator_func",
+      "apis/funcs/example_overload_func"
+    ]
+  },
+  "apis/ExampleRootClass",
+  "apis/example_root_func",
+  {
+    "type": "category",
+    "label": "classes",
+    "collapsed": true,
+    "link": {
+      "type": "doc",
+      "id": "apis/classes/index"
+    },
+    "items": [
+      "apis/classes/ExampleClass",
+      "apis/classes/ExampleModel",
+      "apis/classes/ExampleEnum"
+    ]
+  },
+  {
+    "type": "category",
+    "label": "subpackage",
+    "collapsed": true,
+    "link": {
+      "type": "doc",
+      "id": "apis/subpackage/index"
+    },
+    "items": [
+      "apis/subpackage/ExampleAnno",
+      "apis/subpackage/empty_function"
+    ]
+  },
+  {
+    "type": "category",
+    "label": "typecls",
+    "collapsed": true,
+    "link": {
+      "type": "doc",
+      "id": "apis/typecls/index"
+    },
+    "items": [
+      "apis/typecls/CustomType",
+      "apis/typecls/SpecifiedList",
+      "apis/typecls/ComplicatedList",
+      "apis/typecls/ExampleDict",
+      "apis/typecls/ExampleProtocol"
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+Development Status :: 4 - Beta
+Environment :: Console
+Intended Audience :: Developers
+Programming Language :: Python :: 3
+Programming Language :: Python :: 3 :: Only
+Programming Language :: Python :: 3.10
+Programming Language :: Python :: 3.11
+Programming Language :: Python :: 3.12
+Programming Language :: Python :: 3.13
+Programming Language :: Python :: 3.14
+Operating System :: OS Independent
+Topic :: Documentation
+Topic :: Internet :: WWW/HTTP :: Site Management
+Topic :: Software Development
+Topic :: Software Development :: Documentation
+Topic :: Text Editors :: Documentation
+Topic :: Text Processing
+Topic :: Text Processing :: Markup :: Markdown
+Typing :: Typed

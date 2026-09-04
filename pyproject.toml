@@ -1,0 +1,130 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pydocusaurus"
+authors = [{ name = "Yuchen Jin", email = "cainmagi@gmail.com" }]
+maintainers = [{ name = "Yuchen Jin", email = "cainmagi@gmail.com" }]
+dynamic = [
+  "version",
+  "readme",
+  "description",
+  "classifiers",
+  "dependencies",
+  "optional-dependencies",
+]
+keywords = [
+  "python",
+  "python3",
+  "python-library",
+  "documentation",
+  "documentation-tool",
+  "documentation-generator",
+  "docs",
+  "docusaurus",
+  "docusaurus-python",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+requires-python = ">=3.13"
+
+[project.urls]
+Homepage = "https://github.com/cainmagi/pydocusaurus"
+Documentation = "https://cainmagi.github.io/pydocusaurus/"
+Repository = "https://github.com/cainmagi/pydocusaurus.git"
+Issues = "https://github.com/cainmagi/pydocusaurus/issues"
+Changelog = "https://github.com/cainmagi/pydocusaurus/blob/main/Changelog.md"
+
+[tool.setuptools]
+zip-safe = true
+include-package-data = false
+
+[tool.setuptools.dynamic]
+version = { attr = "version.__version__" }
+description = { file = "py-description.txt" }
+readme = { file = ["README.md"], content-type = "text/markdown" }
+classifiers = { file = "classifiers.txt" }
+dependencies = { file = ["requirements/requirements.txt"] }
+
+[tool.setuptools.dynamic.optional-dependencies]
+dev = { file = ["requirements/dev.txt"] }
+test = { file = ["tests/requirements.txt"] }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pydocusaurus*"]
+exclude = [
+  "version",
+  "docker",
+  "tests*",
+  "examples*",
+  "requirements*",
+  "docs*",
+  "instance",
+  "migrations",
+]
+namespaces = false
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+# 'extend-exclude' excludes files or directories in addition to the defaults
+extend-exclude = '''
+# A regex preceded with ^/ will apply only to files and directories
+# in the root of the project.
+(
+  ^/docs
+  |^/pydocusaurus\.egg-info
+  |^/instance
+  |^/migrations
+  |^/requirements
+  |^/tests/data
+)
+'''
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = "tests/"
+addopts = "-rsxX -vv"
+log_level = "DEBUG"
+log_format = "%(name)s | %(filename)s - %(funcName)s @ %(asctime)s: %(levelname)s %(message)s"
+log_date_format = "%Y-%m-%d %H:%M:%S"
+log_cli = true
+log_cli_level = "DEBUG"
+filterwarnings = []
+
+[tool.pyright]
+include = ["pydocusaurus", "tests", "examples"]
+exclude = [
+  "**/node_modules",
+  "**/.*",
+  "**/__pycache__",
+  "alpha-*",
+  "data-*",
+  "logs",
+  "outputs",
+  "docs",
+  "requirements",
+  "instance",
+  "migrations",
+  ".VSCodeCounter",
+  ".github",
+  ".git",
+  "deps",
+  "inst/deps",
+  "man",
+  "env",
+  "ENV",
+  "venv",
+  "VENV",
+  ".env",
+  ".venv",
+  "typestubs",
+  "setup.py",
+  "version",
+]
+ignore = ["version", "setup.py"]
+defineConstant = { DEBUG = true }
+reportMissingImports = "error"
+reportMissingTypeStubs = false

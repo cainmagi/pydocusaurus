@@ -1,0 +1,34 @@
+---
+id: ExampleDict
+title: ExampleDict
+sidebar_label: ExampleDict
+slug: /apis/typecls/ExampleDict
+description: An example typed dictionary with docs.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+
+<APITopBar type="type" source="typecls.ExampleDict" />
+
+```python
+ExampleDict(
+    var1: int,
+    var2: float,
+    var3: str,
+    var4: tuple[int, int],
+    var5: Literal["a", "b", "c"],
+)
+```
+
+An example typed dictionary with docs.
+
+## Keywords
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `var1` | `int` | <InlineIcon icon={vsiCheckIcon}/> | An example field. |
+| `var2` | `float` | <InlineIcon icon={vsiCheckIcon}/> | Another field. |
+| `var3` | `str` | | An optional field, while the other fields are required. |
+| `var4` | `tuple[int, int]` | <InlineIcon icon={vsiCheckIcon}/> | A field of tuple. |
+| `var5` | `Literal["a", "b", "c"]` | <InlineIcon icon={vsiCheckIcon}/> | A literal field. |

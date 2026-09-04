@@ -1,0 +1,35 @@
+---
+id: example_iterator_func
+title: example_iterator_func
+sidebar_label: example_iterator_func
+slug: /apis/funcs/example_iterator_func
+description: An example function iteratively return items.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+
+<APITopBar type="func" source="funcs.example_iterator_func" />
+
+```python
+(v_1: str, v_2: str, v_3: Iterator[tuple[str]]) in example_iterator_func(arg1: str, arg2: int)
+```
+
+An example function iteratively return items.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `arg1` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The first argument. |
+| `arg2` | `int` | <InlineIcon icon={vsiCheckIcon}/> | The second argument. |
+
+### Yields
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The first iterator item. |
+| `v_2` | `str` | The second iterator item. |
+| `v_3` | `Iterator[tuple[str]]` | The third iterator item a nested iterator. |

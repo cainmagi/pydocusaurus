@@ -1,0 +1,78 @@
+---
+id: ExampleProtocol
+title: ExampleProtocol
+sidebar_label: ExampleProtocol
+slug: /apis/typecls/ExampleProtocol
+description: An example protocol class.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+
+<APITopBar type="type" source="typecls.ExampleProtocol" />
+
+```python
+ExampleProtocol(*args: Any, **kwargs: Any)
+```
+
+An example protocol class. It should be processed in the same way of a vanilla class.
+
+## Arguments
+
+Initialization function is not specified.
+
+## Protocol methods
+
+### <IconObjType type="method"/> `method_ex`
+
+```python
+v_1: int = self.method_ex(arg: int)
+```
+
+A protocol method.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `arg` | `int` | <InlineIcon icon={vsiCheckIcon}/> | The input value with the type specified by the annotation. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `int` | The method output. |
+
+## Protocol properties
+
+### <IconObjType type="param"/> `prop1`
+
+```python
+prop1: int = self.prop1
+```
+
+A protocol property which is not a field.
+
+## Protocol operators
+
+### <IconObjType type="op"/> `__call__`
+
+```python
+v_1: Any = self.__call__(arg1: float, arg2: float = 1.0, **kwargs: str)
+```
+
+Call-object operator.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `arg1` | `float` | <InlineIcon icon={vsiCheckIcon}/> | The first input value is required. |
+| `arg2` | `float` | | The second input value is optional. |
+| `**kwargs` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The extended key values. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Any` | The unknown output. |

@@ -1,0 +1,207 @@
+---
+id: ExampleClass
+title: ExampleClass
+sidebar_label: ExampleClass
+slug: /apis/classes/ExampleClass
+description: An example class which is a mixture of methods, properties, and operators.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+
+<APITopBar type="class" source="classes.ExampleClass" />
+
+```python
+ExampleClass(key: str, val: int = 10)
+```
+
+An example class which is a mixture of methods, properties, and operators.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `key` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The first key to be configured. |
+| `val` | `int` | | The first value of the given key. |
+
+## Methods
+
+### <IconObjType type="method"/> `method_a`
+
+```python
+v_1: str = self.method_a(arg: int, /, arg_any: Any, *, arg_key: str = "test")
+```
+
+A vanilla instance method.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `arg` | `int` | <InlineIcon icon={vsiCheckIcon}/> | The input argument that is positional-only. |
+| `arg_any` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The input argument without specified type. |
+| `arg_key` | `str` | | The input argument that is keyword-only. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The returned value. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `method_b`
+
+```python
+ExampleClass.method_b()
+```
+
+A class method.
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `method_c`
+
+```python
+(v_1: str, v_2: str) = ExampleClass.method_c(arg: tuple[int, int])
+```
+
+A static method.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `arg` | `tuple[int, int]` | <InlineIcon icon={vsiCheckIcon}/> | The input argument is a single tuple. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The first returned value. |
+| `v_2` | `str` | The second returned value. |
+
+## Properties
+
+### <IconObjType type="param"/> `prop1`
+
+```python
+prop1: int = self.prop1
+```
+
+A vanilla property with annotation.
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `prop2`
+
+```python
+prop2: str = self.prop2
+```
+
+A cached property.
+
+## Operators
+
+### <IconObjType type="op"/> `__add__`
+
+```python
+v_1: int = self + val
+v_1: str = self + val
+```
+
+The add operator with overloads.
+
+#### Arguments (ver. 1)
+
+The add operator (overload 1).
+
+##### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `val` | `int` | <InlineIcon icon={vsiCheckIcon}/> | The number to be added. |
+
+##### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `int` | An added number. |
+
+#### Arguments (ver. 2)
+
+The add operator (overload 2).
+
+##### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `val` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The string to be merged. |
+
+##### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | An concatenated string. |
+
+______________________________________________________________________
+
+### <IconObjType type="op"/> `__getitem__`
+
+```python
+key: str
+v_1: int = self[key]
+```
+
+An example of the get-item operator.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `key` | `str` | <InlineIcon icon={vsiCheckIcon}/> | A key used for getting the number. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `int` | The number extracted by the key. |
+
+______________________________________________________________________
+
+### <IconObjType type="op"/> `__iter__`
+
+```python
+for (v_1, v_2) in self:
+    v_1: int
+    v_2: str
+```
+
+An example of the iterator.
+
+#### Yields
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `int` | The number in the item. |
+| `v_2` | `str` | The key of the number. |
+
+______________________________________________________________________
+
+### <IconObjType type="op"/> `__setitem__`
+
+```python
+val: int
+self[key] = val
+```
+
+An example of the set-item operator.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `key` | `str` | <InlineIcon icon={vsiCheckIcon}/> | A key used for setting the number. |
+| `val` | `int` | <InlineIcon icon={vsiCheckIcon}/> | The value to be configured. |

@@ -1,0 +1,3 @@
+# More dependencies used by examples
+colorama
+termcolor

@@ -1,0 +1,10 @@
+# The basic requriements.
+typing-extensions>=4.1.0
+pydantic>=2
+rich
+typer
+black
+pyyaml
+astunparse
+markdown-it-py[linkify]
+mdformat
