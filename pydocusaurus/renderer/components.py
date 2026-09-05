@@ -151,8 +151,12 @@ class Components:
         _icon = "Unknown"
         match (icon):
             case "check":
-                self.__store.setdefault(
-                    "icon-check", CompModule(module="@iconify-icons/codicon/check")
-                )
                 _icon = "vsiCheckIcon"
+                self.__store.setdefault(
+                    "icon-check",
+                    CompModule(
+                        module="@iconify-icons/codicon/check",
+                        named={_icon},
+                    ),
+                )
         return "<InlineIcon icon={{{0}}}/>".format(_icon)

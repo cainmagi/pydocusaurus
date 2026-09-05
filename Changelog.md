@@ -6,6 +6,10 @@
 
 ### 1.0.0 @ 09/05/2026
 
+#### :wrench: Fix
+
+1. Fix: Correct the missing icon import when solving the rendered pages.
+
 #### :floppy_disk: Change
 
 1. Set the exposed port `3000` for the docker project.

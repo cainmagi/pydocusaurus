@@ -109,8 +109,8 @@ def get_example_package() -> ModuleType:
     return render_example
 
 
-def test_protocol_vanilla() -> None:
-    """Test of a vanilla protocol class with a method, a property, and an operator."""
+def test_rendering_example() -> None:
+    """Test of an example package for the full documentation rendering."""
     log = logging.getLogger("pydocusaurus").getChild("test")
 
     pkg_name = "render_example"
