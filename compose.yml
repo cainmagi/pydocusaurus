@@ -11,6 +11,8 @@ services:
     image: pydocusaurus:latest
     pull_policy: missing
     shm_size: 1gb
+    ports:
+      - 0.0.0.0:3000:3000
     ulimits:
       memlock: -1
       stack: 67108864

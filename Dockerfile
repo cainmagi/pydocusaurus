@@ -37,5 +37,7 @@ COPY ./LICENSE /app/
 # Finalize
 COPY ./docker/entrypoint.sh /app/
 
+EXPOSE 3000
+
 ENTRYPOINT ["/bin/bash", "--login", "/app/entrypoint.sh"]
 CMD [""]
