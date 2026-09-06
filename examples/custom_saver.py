@@ -56,6 +56,19 @@ class SaverSingleFile(pydocusaurus.renderer.package.SaverAbstract):
         with open(out_path, "w", encoding="utf-8") as fobj:
             yaml.safe_dump(self.data, fobj, indent=2)
 
+    def save_bytes(self, file_path: str | os.PathLike[str], data: bytes) -> None:
+        """Save the binary data.
+
+        Arguments
+        ---------
+        file_path: `str | PathLike[str]`
+            The path to the output file.
+
+        data: `bytes`
+            The byte data to be saved.
+        """
+        self.data[str(file_path).strip()] = data.decode("utf-8")
+
     def save_text(self, file_path: str | os.PathLike[str], data: str) -> None:
         """Save the text file.
 

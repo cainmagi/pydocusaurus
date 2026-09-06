@@ -4,7 +4,7 @@
 
 ## CHANGELOG
 
-### 1.0.0 @ 09/05/2026
+### 1.0.0 @ 09/06/2026
 
 #### :wrench: Fix
 
@@ -13,6 +13,7 @@
 #### :floppy_disk: Change
 
 1. Set the exposed port `3000` for the docker project.
+2. Split the `renderer.package.Saver*` into a separated module `renderer.saver`.
 
 ### 1.0.0 @ 09/03/2026
 
