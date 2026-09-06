@@ -9,3 +9,7 @@ include version/__init__.py
 include requirements/*
 include tests/*
 include examples/*
+include pydocusaurus/resources/.*
+include pydocusaurus/resources/*
+recursive-include tests/docs *.mdx *.ts *.tsx *.scss *.css
+recursive-include pydocusaurus/resources *.mdx *.ts *.tsx *.scss *.css

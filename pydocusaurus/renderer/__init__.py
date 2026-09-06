@@ -23,6 +23,7 @@ from pkgutil import extend_path
 
 from . import components
 from . import saver
+from . import resources
 from . import page
 from . import package
 
@@ -32,6 +33,7 @@ from .package import render_package_as_mdx
 __all__ = (
     "components",
     "saver",
+    "resources",
     "page",
     "package",
     "render_obj",

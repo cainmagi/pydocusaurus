@@ -11,4 +11,7 @@ exclude =
     ./man
     ./docs
     ./requirements
+    ./alpha
+    ./pydocusaurus/resources
+    ./tests/docs
     ./alpha-*.py

@@ -51,6 +51,21 @@ class Validator(pydocusaurus.renderer.package.SaverAbstract):
         self.ref_path = ref_path
         self.logger = logger
 
+    def save_bytes(self, file_path: str | os.PathLike[str], data: bytes) -> None:
+        """Dummy byte data saving. The byte saving is only used for copying data.
+        Therefore, we skip the validation for such files.
+
+        Arguments
+        ---------
+        file_path: `str | PathLike[str]`
+            The path to the output file.
+
+        data: `str`
+            The text data to be saved.
+        """
+        if self.logger is not None:
+            self.logger.debug("Skip the validation of: {0}".format(file_path))
+
     def save_text(self, file_path: str | os.PathLike[str], data: str) -> None:
         """Dummy text saving. The data will not be really saved but compared with the
         existing documentation file.
@@ -121,5 +136,8 @@ def test_rendering_example() -> None:
     cur_folder = os.path.dirname(__file__)
     pkg_folder = os.path.join(cur_folder, "docs", "render_example")
     pydocusaurus.render_package_as_mdx(
-        pkg, out_dir=pkg_folder, saver=Validator(pkg_folder, logger=log)
+        pkg,
+        out_dir=pkg_folder,
+        saver=Validator(pkg_folder, logger=log),
+        package_info="cainmagi",
     )

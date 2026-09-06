@@ -6,6 +6,10 @@
 
 ### 1.0.0 @ 09/06/2026
 
+#### :mega: New
+
+1. Integrate the resource files, including Jinja2 templates, into the package rendering.
+
 #### :wrench: Fix
 
 1. Fix: Correct the missing icon import when solving the rendered pages.

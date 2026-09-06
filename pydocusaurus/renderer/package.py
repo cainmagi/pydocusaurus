@@ -23,17 +23,121 @@ import os
 from importlib.metadata import version, PackageNotFoundError
 from types import ModuleType
 
+from typing import Any
+from typing_extensions import Self
+
+from pydantic import BaseModel
+
 from .. import core
 from ..core.attree import build_sidebar
 from ..core.walker import ParserAbstract, PackageWalker, fast_import
 from .saver import SaverAbstract, SaverDefault
 from .page import RendererPage
+from .resources import render_resource_tree
 
 __all__ = (
+    "PackageInformation",
     "URIHolder",
     "PackageRenderer",
     "render_package_as_mdx",
 )
+
+
+class PackageInformation(BaseModel):
+    """The basic information of a package. All fields are optional and can be
+    inferred from the solved results."""
+
+    user: str | None = None
+    """The user name of the repository owner. It needs to be the GitHub user name."""
+
+    package_name: str | None = None
+    """The name of the package rendered as the documentation. If not specified, will
+    infer the name automatically."""
+
+    sidebar: list[str | dict[str, Any]] | None = None
+    """The rendered sidebar data of the API documentation. If not specified, will
+    infer this sidebar structure automatically."""
+
+    source_uris: dict[str, dict[str, str]] | None = None
+    """The list of source URIs. It is used for providing the links to the source
+    codes. If not specified, will infer these URIs automatically."""
+
+    def as_vardict(self) -> dict[str, Any]:
+        """Dump the information as a variable dictionary.
+
+        Returns
+        -------
+        #1: `dict[str, Any]`
+            The variable dictionary to be used in resource rendering.
+        """
+        return {key: val for key, val in self.model_dump().items() if val is not None}
+
+    def set_pkg_info(self, pkg: ModuleType) -> Self:
+        """Set the `package_name` if it is not specified.
+
+        Arguments
+        ---------
+        pkg: `ModuleType`
+            The package providing the name.
+
+        Returns
+        -------
+        #1: `Self`
+            This data model.
+        """
+        if self.package_name:
+            return self
+        name = str(pkg.__name__).rsplit(sep=".")[-1].strip()
+        self.package_name = name
+        return self
+
+    def set_sidebar(self, pkg_renderer: PackageRenderer) -> Self:
+        """Set the `sidebar` if it is not specified.
+
+        Arguments
+        ---------
+        pkg_renderer: `PackageRenderer`
+            The package renderer providing the sidebar.
+
+        Returns
+        -------
+        #1: `Self`
+            This data model.
+        """
+        if self.sidebar:
+            return self
+        self.sidebar = pkg_renderer.sidebar.serialize_unpacked()
+        return self
+
+    def set_source_uris(
+        self, pkg_renderer: PackageRenderer, version: str | None = None
+    ) -> Self:
+        """Set the `source_uris` if it is not specified.
+
+        Arguments
+        ---------
+        pkg_renderer: `PackageRenderer`
+            The package renderer providing the uris.
+
+        version: `str | None`
+            The version text provided by the package.
+
+        Returns
+        -------
+        #1: `Self`
+            This data model.
+        """
+        if self.source_uris:
+            return self
+        uris = pkg_renderer.uris.render()
+        if version:
+            self.source_uris = {
+                "v{0}".format(str(version).strip()): uris,
+                "main": uris,
+            }
+        else:
+            self.source_uris = {"main": uris}
+        return self
 
 
 class URIHolder:
@@ -271,6 +375,7 @@ def render_package_as_mdx(
     package: str | ModuleType,
     out_dir: str | os.PathLike[str],
     saver: SaverAbstract | None = None,
+    package_info: str | PackageInformation | None = None,
 ) -> None:
     """Render a package as MDX documentation files.
 
@@ -285,8 +390,22 @@ def render_package_as_mdx(
     saver: `SaverAbstract`
         The saver used for dumping the ouput files. It can be overriden if the file
         saving needs to be customized. If not specified, will use the default saver.
+
+    package_info: `str | PackageInformation | None`
+        The package information. If `str` is provided, it will be viewed as the
+        author name. If this value is not specified or partially specified, will
+        attempt to retrive the package information from the parsed results.
     """
     package_name = str(package.__name__ if isinstance(package, ModuleType) else package)
+    package_info = (
+        (
+            PackageInformation(user=package_info)
+            if isinstance(package_info, str)
+            else package_info
+        )
+        if package_info is not None
+        else PackageInformation()
+    )
     _pacakge = fast_import(package)
     _name = package_name.split(".")
     try:
@@ -294,21 +413,17 @@ def render_package_as_mdx(
     except PackageNotFoundError:
         _ver = getattr(_pacakge, "__version__", None)
     saver = SaverDefault() if saver is None else saver
-    parser = PackageRenderer(out_dir, saver=saver)
+    parser = PackageRenderer(os.path.join(out_dir, "docs"), saver=saver)
     PackageWalker().walk_package(_pacakge, parser)
-    uri_dir = os.path.join(parser.out_dir, "src", "envs", "uris")
-    saver.save_data(
-        os.path.join(
-            uri_dir,
-            "v{0}.json".format(str(_ver).replace(".", "_") if _ver else "_main"),
-        ),
-        data=parser.uris.render(),
+    package_info = (
+        package_info.set_pkg_info(_pacakge)
+        .set_sidebar(parser)
+        .set_source_uris(parser, version=_ver)
     )
-    sbar_dir = os.path.join(parser.out_dir, "src", "envs", "sidebars")
-    saver.save_data(
-        os.path.join(
-            sbar_dir,
-            "v{0}.json".format(str(_ver).replace(".", "_") if _ver else "_main"),
-        ),
-        data=parser.sidebar.serialize_unpacked(),
+    render_resource_tree(
+        out_dir=out_dir,
+        variables=package_info.as_vardict(),
+        package="pydocusaurus",
+        resource_root="resources",
+        saver=saver,
     )

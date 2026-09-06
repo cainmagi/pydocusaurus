@@ -8,3 +8,4 @@ pyyaml
 astunparse
 markdown-it-py[linkify]
 mdformat
+jinja2>=3

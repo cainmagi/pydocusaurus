@@ -66,6 +66,17 @@ exclude = [
 ]
 namespaces = false
 
+[tool.setuptools.package-data]
+pydocusaurus = [
+  "resources/**/*.mdx",
+  "resources/**/*.ts",
+  "resources/**/*.tsx",
+  "resources/**/*.scss",
+  "resources/**/*.css",
+  "resources/.*",
+  "resources/*",
+]
+
 [tool.black]
 line-length = 88
 include = '\.pyi?$'
@@ -101,10 +112,13 @@ exclude = [
   "**/.*",
   "**/__pycache__",
   "alpha-*",
+  "alpha",
   "data-*",
   "logs",
   "outputs",
   "docs",
+  "pydocusaurus/resources",
+  "tests/docs",
   "requirements",
   "instance",
   "migrations",
