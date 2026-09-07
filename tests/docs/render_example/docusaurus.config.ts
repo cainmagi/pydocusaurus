@@ -26,7 +26,6 @@ const config: Config = {
   projectName: "render_example", // Usually your repo name.
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
   trailingSlash: false,
 
   plugins: [

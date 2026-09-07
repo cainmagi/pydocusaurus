@@ -26,7 +26,6 @@ const config: Config = {
   projectName: "{{ package_name | default("pkgname") | safe }}", // Usually your repo name.
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
   trailingSlash: false,
 
   plugins: [
