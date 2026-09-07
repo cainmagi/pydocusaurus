@@ -79,7 +79,7 @@ class RendererPage(BaseModel):
     def id(self) -> str:
         """Get the ID of this page."""
         if self.data.type == "module":
-            return "index" if self.data.name != "." else "api-overview"
+            return "index"
         return self.data.name
 
     @property

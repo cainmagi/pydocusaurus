@@ -296,12 +296,13 @@ class DocModule(BaseModel):
             name = member.name
             icon_name = renderer.icon_obj(type=member.type, text=name)
             if has_relink:
-                icon_name = "[{0}]({1}.mdx)".format(
+                icon_name = "[{0}]({1}{2}.mdx)".format(
                     icon_name,
                     _inspectors.relative_url_path(
                         path_from=_inspectors.get_slug(self.slang),
                         path_to=_inspectors.get_slug(member.slang),
                     ),
+                    "/index" if member.type in ("module", "package") else "",
                 )
             table.cells[(idx, 0)] = icon_name
             if idx_doc is not None:
