@@ -16,6 +16,7 @@
 2. Fix: Bump the typescript annotations to the newest React version.
 3. Fix: Correct the bugs of the broken sidebar and internal links.
 4. Fix: Correct some MDX rendering and format issues, especially for text escaping configurations.
+5. Fix: Correct the bad import of iconify icons.
 
 #### :floppy_disk: Change
 

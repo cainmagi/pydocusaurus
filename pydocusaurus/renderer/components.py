@@ -156,7 +156,7 @@ class Components:
                     "icon-check",
                     CompModule(
                         module="@iconify-icons/codicon/check",
-                        named={_icon},
+                        default=_icon,
                     ),
                 )
         return "<InlineIcon icon={{{0}}}/>".format(_icon)
