@@ -37,7 +37,6 @@ def santize_doc_cell(text: str) -> str:
     R"""Sanitize the cell text by
 
     1. Replace `|` with `\|`.
-    2. Replace `{}` with `\{\}`.
 
     These changes are used to render MDX formats for inline texts.
 
@@ -51,7 +50,16 @@ def santize_doc_cell(text: str) -> str:
     #1: `str`
         The sanitized text.
     """
-    return re.sub(r"(?<!\\)([{}\|])", repl=r"\\\1", string=text.strip())
+
+    def repl(mobj: re.Match[str]) -> str:
+        sym = mobj.group(1)
+        return {
+            # "{": "{",  # "&#123;",
+            # "}": "}",  # "&#125;",
+            "|": r"\|",
+        }.get(sym, R"\{0}".format(sym))
+
+    return re.sub(r"(?<!\\)([\|])", repl=repl, string=text.strip())
 
 
 class Section(BaseModel):
@@ -225,7 +233,12 @@ class Table(BaseModel):
             return ""
         if is_single_paragraph(md, text):
             return mdformat.text(text, options={"wrap": "no"}).strip()
-        return "".join((val.strip() for val in md.render(text).splitlines()))
+        return "".join(
+            (
+                str(val).strip().replace("<code class=", "<code className=")
+                for val in md.render(text).splitlines()
+            )
+        )
 
     def as_md_text(self) -> str:
         """Render as Markdown text.
