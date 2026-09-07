@@ -22,6 +22,7 @@ import {iconoirComponentSolid} from "../icons/IconoirComponentSolid";
 import {riQuillPenAiFill} from "../icons/RiQuillPenAiFill";
 import {clarityObjectsLine} from "../icons/ClarityObjectsLine";
 import {ixError} from "../icons/IxError";
+import {DataClassIcon} from "../icons/DataClassIcon";
 
 import InlineIcon from "../InlineIcon";
 import {SourceLink, Splitter} from "@site/src/envs/variables";
@@ -37,6 +38,7 @@ export type IconObjTypeProps = {
     | "op"
     | "method"
     | "ctx"
+    | "dataclass"
     | "deco"
     | "desc"
     | "abc"
@@ -58,7 +60,7 @@ export const IconObjType = ({
   vspace,
   hasText = false,
   text,
-}: IconObjTypeProps): JSX.Element => {
+}: IconObjTypeProps): React.JSX.Element => {
   switch (type) {
     case "class":
       return (
@@ -263,6 +265,27 @@ export const IconObjType = ({
                     description:
                       "The text displayed for the APITopBar icon: Context.",
                     message: "Context",
+                  },
+                  {}
+                )
+              : undefined
+          }
+        />
+      );
+    case "dataclass":
+      return (
+        <InlineIcon
+          icon={DataClassIcon}
+          vspace={vspace}
+          text={
+            hasText
+              ? text ||
+                translate(
+                  {
+                    id: "components.apitopbar.icon.dataclass",
+                    description:
+                      "The text displayed for the APITopBar icon: DataClass.",
+                    message: "DataClass",
                   },
                   {}
                 )
@@ -509,6 +532,7 @@ export type APITopBarProps = {
   isPrivate?: boolean;
   isAbstract?: boolean;
   isContext?: boolean;
+  isDataClass?: boolean;
   isDecorator?: boolean;
   isDescriptor?: boolean;
   isException?: boolean;
@@ -523,7 +547,7 @@ export type APITopBarProps = {
  * @param props - Basic information shown on the top bar.
  * @returns The one line <p> component with top bar information.
  */
-const APITopBar = (props: APITopBarProps): JSX.Element => {
+const APITopBar = (props: APITopBarProps): React.JSX.Element => {
   return (
     <p>
       <IconObjType type={props.type} hasText={true} />
@@ -543,6 +567,12 @@ const APITopBar = (props: APITopBarProps): JSX.Element => {
         <>
           <Splitter />
           <IconObjType type={"ctx"} hasText={true} />
+        </>
+      )}
+      {props.isDataClass && (
+        <>
+          <Splitter />
+          <IconObjType type={"dataclass"} hasText={true} />
         </>
       )}
       {props.isDecorator && (

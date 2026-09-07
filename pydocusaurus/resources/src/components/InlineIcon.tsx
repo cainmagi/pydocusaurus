@@ -15,12 +15,12 @@ export type InlineIconMProps = {
  *   the icon content and the vertical space.
  * @returns The <InlineIcon/> component with the customization.
  */
-const InlineIconM = (props: InlineIconMProps): JSX.Element => {
+const InlineIconM = (props: InlineIconMProps): React.JSX.Element => {
   const typeVspace = typeof props.vspace;
   const vspace =
     typeVspace === "undefined"
       ? "-0.4rem"
-      : typeVspace === "number" && Math.abs(props.vspace) > 0.001
+      : typeVspace === "number" && Math.abs(props.vspace || 0.0) > 0.001
       ? `${props.vspace}rem`
       : "0";
 

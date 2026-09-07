@@ -1,6 +1,6 @@
 import Heading, {Props as HeadingProps} from "@theme/Heading";
 
-type HeadingSafeProps = HeadingProps & JSX.IntrinsicElements["h1"];
+type HeadingSafeProps = HeadingProps & React.JSX.IntrinsicElements["h1"];
 
 /**
  * Heading component with the issue caused by the absence of `props.children` gets
@@ -9,6 +9,6 @@ type HeadingSafeProps = HeadingProps & JSX.IntrinsicElements["h1"];
  *   the property `as`.
  * @returns The <h*> component.
  */
-export const HeadingSafe = (props: HeadingSafeProps): JSX.Element => {
+export const HeadingSafe = (props: HeadingSafeProps): React.JSX.Element => {
   return <Heading {...props} />;
 };

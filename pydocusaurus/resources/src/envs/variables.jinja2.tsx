@@ -12,11 +12,31 @@ import mdiDot from "@iconify-icons/mdi/dot";
 
 const docsPluginId = undefined; // Default docs plugin instance
 
-const variables = {
+interface EnvVariables {
+  repoURL: string;
+  rawURL: string;
+  sourceVersion: {
+    {%- for key, value in source_versions | default({"main": "main"}) | dictsort %}
+    "{{ key }}": string;
+    {%- endfor %}
+    [key: string]: any; 
+  }
+  sourceURIs: {
+    {%- for key, value in source_uris | default({"main": "main"}) | dictsort %}
+    "{{ key }}": {[key: string]: string};
+    {%- endfor %}
+    [key: string]: any; 
+  }
+  [key: string]: any; 
+}
+
+const variables: EnvVariables = {
   repoURL: "https://github.com/{{ user | default("username") | safe }}/{{ package_name | default("pkgname") | safe }}",
   rawURL: "https://raw.githubusercontent.com/{{ user | default("username") | safe }}/{{ package_name | default("pkgname") | safe }}",
   sourceVersion: {
-    main: "main",
+    {%- for key, value in source_versions | default({"main": "main"}) | dictsort %}
+    "{{ key }}": "{{ key }}",
+    {%- endfor %}
   },
   sourceURIs: {{ source_uris | default({}) | ts_object(indent=2, base_indent=2) }},
 };
@@ -39,7 +59,7 @@ export const repoURL = (url: string | undefined = undefined): string => {
 };
 
 export const releaseURL = (ver: string | undefined = undefined): string => {
-  const _ver = ver?.toLowerCase() === "next" ? "main" : ver;
+  const _ver = ver?.toLowerCase() === "next" ? "main" : (ver || "");
   const version = variables.sourceVersion[_ver] || useCurrentSourceVersion();
   if (version === "main" || _ver === "main") {
     return variables.repoURL + "/releases/latest";
@@ -89,7 +109,7 @@ export type SourceLinkProps = {
   children: React.ReactNode;
 };
 
-export const SourceLink = ({url, children}: SourceLinkProps): JSX.Element => {
+export const SourceLink = ({url, children}: SourceLinkProps): React.JSX.Element => {
   return (
     <Link to={sourceURL(url)} className="noline">
       {children}
@@ -101,7 +121,7 @@ export type SplitterProps = {
   padx?: string;
 };
 
-export const Splitter = ({padx = "0"}: SplitterProps): JSX.Element => {
+export const Splitter = ({padx = "0"}: SplitterProps): React.JSX.Element => {
   return (
     <span style={{padding: "0 " + padx}}>
       <InlineIcon icon={mdiDot} />

@@ -11,8 +11,8 @@ https://github.com/facebook/docusaurus/pull/6289
 import {useColorMode} from "@docusaurus/theme-common";
 
 type ThemedComponentProps = {
-  light: JSX.Element;
-  dark: JSX.Element;
+  light: React.JSX.Element;
+  dark: React.JSX.Element;
   className?: string;
   style?: React.CSSProperties;
 };
@@ -26,7 +26,7 @@ type ThemedComponentProps = {
  * @returns The themed component that will render different components in different
  *   color modes.
  */
-const ThemedComponent = (props: ThemedComponentProps): JSX.Element => {
+const ThemedComponent = (props: ThemedComponentProps): React.JSX.Element => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

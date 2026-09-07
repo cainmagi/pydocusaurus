@@ -12,11 +12,25 @@ import mdiDot from "@iconify-icons/mdi/dot";
 
 const docsPluginId = undefined; // Default docs plugin instance
 
-const variables = {
+interface EnvVariables {
+  repoURL: string;
+  rawURL: string;
+  sourceVersion: {
+    "main": string;
+    [key: string]: any; 
+  }
+  sourceURIs: {
+    "main": {[key: string]: string};
+    [key: string]: any; 
+  }
+  [key: string]: any; 
+}
+
+const variables: EnvVariables = {
   repoURL: "https://github.com/cainmagi/render_example",
   rawURL: "https://raw.githubusercontent.com/cainmagi/render_example",
   sourceVersion: {
-    main: "main",
+    "main": "main",
   },
   sourceURIs: {
     "main": {
@@ -61,7 +75,7 @@ export const repoURL = (url: string | undefined = undefined): string => {
 };
 
 export const releaseURL = (ver: string | undefined = undefined): string => {
-  const _ver = ver?.toLowerCase() === "next" ? "main" : ver;
+  const _ver = ver?.toLowerCase() === "next" ? "main" : (ver || "");
   const version = variables.sourceVersion[_ver] || useCurrentSourceVersion();
   if (version === "main" || _ver === "main") {
     return variables.repoURL + "/releases/latest";
@@ -109,7 +123,7 @@ export type SourceLinkProps = {
   children: React.ReactNode;
 };
 
-export const SourceLink = ({url, children}: SourceLinkProps): JSX.Element => {
+export const SourceLink = ({url, children}: SourceLinkProps): React.JSX.Element => {
   return (
     <Link to={sourceURL(url)} className="noline">
       {children}
@@ -121,7 +135,7 @@ export type SplitterProps = {
   padx?: string;
 };
 
-export const Splitter = ({padx = "0"}: SplitterProps): JSX.Element => {
+export const Splitter = ({padx = "0"}: SplitterProps): React.JSX.Element => {
   return (
     <span style={{padding: "0 " + padx}}>
       <InlineIcon icon={mdiDot} />

@@ -16,7 +16,7 @@ export type IconLinkProps = {
  *   use the external link icon to render it.
  * @returns The <link/> component with `href` configured.
  */
-export const IconLinkInline = (props: IconLinkProps): JSX.Element => {
+export const IconLinkInline = (props: IconLinkProps): React.JSX.Element => {
   const text = props.text || props.href;
   const icon = props.icon ? (
     <InlineIcon icon={props.icon} />
@@ -38,7 +38,7 @@ export const IconLinkInline = (props: IconLinkProps): JSX.Element => {
  *   use the external link icon to render it.
  * @returns The <link/> component with `href` configured.
  */
-const IconLink = (props: IconLinkProps): JSX.Element => {
+const IconLink = (props: IconLinkProps): React.JSX.Element => {
   return (
     <p>
       <IconLinkInline {...props} />

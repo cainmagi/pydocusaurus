@@ -24,6 +24,7 @@ from importlib.metadata import version, PackageNotFoundError
 from types import ModuleType
 
 from typing import Any
+from collections.abc import Mapping
 from typing_extensions import Self
 
 from pydantic import BaseModel
@@ -61,6 +62,12 @@ class PackageInformation(BaseModel):
     source_uris: dict[str, dict[str, str]] | None = None
     """The list of source URIs. It is used for providing the links to the source
     codes. If not specified, will infer these URIs automatically."""
+
+    source_versions: dict[str, str] | None = None
+    """A mapping from the version names to the version identifiers. The version names
+    are used as the keys of `source_uris`, and the version identifiers are used for
+    locating the version links. If not spcified, will infer this mapping from the
+    `source_uris`."""
 
     def as_vardict(self) -> dict[str, Any]:
         """Dump the information as a variable dictionary.
@@ -137,6 +144,36 @@ class PackageInformation(BaseModel):
             }
         else:
             self.source_uris = {"main": uris}
+        return self
+
+    def set_source_versions(self, versions: Mapping[str, str] | None = None) -> Self:
+        """Set the `source_versions` if it is not specified.
+
+        Arguments
+        ---------
+        versions: `Mapping[str, str] | None`
+            The version mapping from version names to the version identifiers.
+            If not specified, will use the keys of `source_uris` to infer this value.
+
+        Returns
+        -------
+        #1: `Self`
+            This data model.
+        """
+        if self.source_versions:
+            return self
+        _versions = (
+            dict(versions)
+            if versions
+            else (
+                {key: key for key in self.source_uris.keys()}
+                if self.source_uris
+                else {"main": "main"}
+            )
+        )
+        if "main" not in _versions:
+            _versions["main"] = "main"
+        self.source_versions = _versions
         return self
 
 
@@ -419,6 +456,7 @@ def render_package_as_mdx(
         package_info.set_pkg_info(_pacakge)
         .set_sidebar(parser)
         .set_source_uris(parser, version=_ver)
+        .set_source_versions()
     )
     render_resource_tree(
         out_dir=out_dir,

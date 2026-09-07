@@ -37,7 +37,7 @@ type DarkButtonProps = {
  * @param props - The properties of the button, similar to the usage of the properties of <Link/>.
  * @returns The <Link/> component with theme configured.
  */
-const DarkButton = (props: DarkButtonProps): JSX.Element => {
+const DarkButton = (props: DarkButtonProps): React.JSX.Element => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const DarkButton = (props: DarkButtonProps): JSX.Element => {
   const iconVspace =
     typeIconVspace === "undefined"
       ? "-0.3rem"
-      : typeIconVspace === "number" && Math.abs(props.iconVspace) > 0.001
+      : typeIconVspace === "number" && Math.abs(props.iconVspace || 0.0) > 0.001
       ? `${props.iconVspace}rem`
       : "0";
 

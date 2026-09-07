@@ -13,6 +13,7 @@
 #### :wrench: Fix
 
 1. Fix: Correct the missing icon import when solving the rendered pages.
+2. Fix: Bump the typescript annotations to the newest React version.
 
 #### :floppy_disk: Change
 
