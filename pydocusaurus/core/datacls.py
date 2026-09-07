@@ -185,7 +185,9 @@ class DocDataClass(_classes._DocClassPrototype):
         table.cells[(idx, 0)] = "`{0}`".format(name) if name else ""
         if idx_type is not None:
             table.cells[(idx, idx_type)] = (
-                "`{0}`".format(field.type.replace("|", R"\|")) if field.type else ""
+                "`{0}`".format(_texts.santize_doc_cell(field.type))
+                if field.type
+                else ""
             )
         if idx_required is not None:
             table.cells[(idx, idx_required)] = (
@@ -193,18 +195,16 @@ class DocDataClass(_classes._DocClassPrototype):
             )
         if idx_default is not None:
             table.cells[(idx, idx_default)] = (
-                "`{0}`".format(field.default.replace("|", R"\|"))
+                "`{0}`".format(_texts.santize_doc_cell(field.default))
                 if field.default
                 else ""
             )
         if idx_doc is not None:
-            table.cells[(idx, idx_doc)] = (
+            table.cells[(idx, idx_doc)] = _texts.santize_doc_cell(
                 mdformat.text(
                     field.descr,
                     options={"wrap": "no"},
                 )
-                .strip()
-                .replace("|", R"\|")
             )
 
     def table_fields(

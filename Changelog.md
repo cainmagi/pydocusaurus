@@ -15,6 +15,7 @@
 1. Fix: Correct the missing icon import when solving the rendered pages.
 2. Fix: Bump the typescript annotations to the newest React version.
 3. Fix: Correct the bugs of the broken sidebar and internal links.
+4. Fix: Correct some MDX rendering and format issues, especially for text escaping configurations.
 
 #### :floppy_disk: Change
 

@@ -484,7 +484,7 @@ class DocFunctionOverload(BaseModel):
         table.cells[(idx, 0)] = "`{0}`".format(name) if name else ""
         if idx_type is not None:
             table.cells[(idx, idx_type)] = (
-                "`{0}`".format(arg.type.replace("|", R"\|")) if arg.type else ""
+                "`{0}`".format(_texts.santize_doc_cell(arg.type)) if arg.type else ""
             )
         if idx_required is not None:
             table.cells[(idx, idx_required)] = (
@@ -492,10 +492,12 @@ class DocFunctionOverload(BaseModel):
             )
         if idx_default is not None:
             table.cells[(idx, idx_default)] = (
-                "`{0}`".format(arg.default.replace("|", R"\|")) if arg.default else ""
+                "`{0}`".format(_texts.santize_doc_cell(arg.default))
+                if arg.default
+                else ""
             )
         if idx_doc is not None:
-            table.cells[(idx, idx_doc)] = arg.format_doc().replace("|", R"\|")
+            table.cells[(idx, idx_doc)] = _texts.santize_doc_cell(arg.format_doc())
 
     def table_args(
         self,
@@ -637,10 +639,12 @@ class DocFunctionOverload(BaseModel):
             table.cells[(idx, 0)] = "`{0}`".format(name) if name else ""
             if idx_type is not None:
                 table.cells[(idx, idx_type)] = (
-                    "`{0}`".format(arg.type.replace("|", R"\|")) if arg.type else ""
+                    "`{0}`".format(_texts.santize_doc_cell(arg.type))
+                    if arg.type
+                    else ""
                 )
             if idx_doc is not None:
-                table.cells[(idx, idx_doc)] = arg.format_doc().replace("|", R"\|")
+                table.cells[(idx, idx_doc)] = _texts.santize_doc_cell(arg.format_doc())
         return table.as_md_text()
 
     def as_md_text(

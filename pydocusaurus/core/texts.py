@@ -30,7 +30,28 @@ import markdown_it
 
 from .analyzer import is_single_paragraph
 
-__all__ = ("Section", "Table")
+__all__ = ("santize_doc_cell", "Section", "Table")
+
+
+def santize_doc_cell(text: str) -> str:
+    R"""Sanitize the cell text by
+
+    1. Replace `|` with `\|`.
+    2. Replace `{}` with `\{\}`.
+
+    These changes are used to render MDX formats for inline texts.
+
+    Arguments
+    ---------
+    text: `str`
+        The input cell text.
+
+    Returns
+    -------
+    #1: `str`
+        The sanitized text.
+    """
+    return re.sub(r"(?<!\\)([{}\|])", repl=r"\\\1", string=text.strip())
 
 
 class Section(BaseModel):

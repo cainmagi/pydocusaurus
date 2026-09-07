@@ -281,7 +281,7 @@ class DocModule(BaseModel):
             cols.index("Description") if "Description" in cols else None
         )
         col_styles: dict[int, Literal["l", "c", "r", "n"]] = {0: "c"}
-        for idx, style in zip((idx_doc,), ("c", "c", "l")):
+        for idx, style in zip((idx_doc,), ("l",)):
             if idx:
                 col_styles[idx] = style
         table = _texts.Table(
@@ -306,13 +306,11 @@ class DocModule(BaseModel):
                 )
             table.cells[(idx, 0)] = icon_name
             if idx_doc is not None:
-                table.cells[(idx, idx_doc)] = (
+                table.cells[(idx, idx_doc)] = _texts.santize_doc_cell(
                     mdformat.text(
                         member.descr,
                         options={"wrap": "no"},
                     )
-                    .strip()
-                    .replace("|", R"\|")
                 )
         return table.as_md_text()
 

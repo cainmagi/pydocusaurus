@@ -198,7 +198,7 @@ class DocTypedDict(BaseModel):
             table.cells[(idx, 0)] = "`{0}`".format(name) if name else ""
             if idx_type is not None:
                 table.cells[(idx, idx_type)] = (
-                    "`{0}`".format(keyword.type.replace("|", R"\|"))
+                    "`{0}`".format(_texts.santize_doc_cell(keyword.type))
                     if keyword.type
                     else ""
                 )
@@ -207,13 +207,11 @@ class DocTypedDict(BaseModel):
                     renderer.inline_icon("check") if (not keyword.optional) else ""
                 )
             if idx_doc is not None:
-                table.cells[(idx, idx_doc)] = (
+                table.cells[(idx, idx_doc)] = _texts.santize_doc_cell(
                     mdformat.text(
                         keyword.descr,
                         options={"wrap": "no"},
                     )
-                    .strip()
-                    .replace("|", R"\|")
                 )
         return table.as_md_text()
 

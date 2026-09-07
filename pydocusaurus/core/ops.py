@@ -88,8 +88,9 @@ class DocOpTemplate(BaseModel):
     """The name of the operator (do not include the underlines)."""
 
     template: str
-    """The template content. Use "{vr1}", "{tr1}", "{va1}", "{ta1}", ... to represent
-    the variables and types in the returned values and arguments, respectively."""
+    """The template content. Use `"{vr1}"`, `"{tr1}"`, `"{va1}"`, `"{ta1}"`, ...
+    to represent the variables and types in the returned values and arguments,
+    respectively."""
 
     func: _funcs.DocFunction
     """The function body of the docstring."""

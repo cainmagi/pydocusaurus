@@ -160,22 +160,22 @@ class DocEnum(_classes._DocClassPrototype):
             table.cells[(idx, 0)] = "`{0}`".format(name) if name else ""
             if idx_type is not None:
                 table.cells[(idx, idx_type)] = (
-                    "`{0}`".format(field.type.replace("|", R"\|")) if field.type else ""
+                    "`{0}`".format(_texts.santize_doc_cell(field.type))
+                    if field.type
+                    else ""
                 )
             if idx_value is not None:
                 table.cells[(idx, idx_value)] = (
-                    "`{0}`".format(field.value.replace("|", R"\|"))
+                    "`{0}`".format(_texts.santize_doc_cell(field.value))
                     if field.value
                     else ""
                 )
             if idx_doc is not None:
-                table.cells[(idx, idx_doc)] = (
+                table.cells[(idx, idx_doc)] = _texts.santize_doc_cell(
                     mdformat.text(
                         field.descr,
                         options={"wrap": "no"},
                     )
-                    .strip()
-                    .replace("|", R"\|")
                 )
         return table.as_md_text()
 
