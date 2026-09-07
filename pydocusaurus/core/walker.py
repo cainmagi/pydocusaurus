@@ -599,6 +599,13 @@ class PackageWalker:
             )
             if data is None:
                 continue
+            if (
+                isinstance(data, _modules.DocModule)
+                and isinstance(value, ModuleType)
+                and getattr(value, "__file__", None) is None
+            ):
+                # Skip namespace modules.
+                continue
 
             if (
                 (not isinstance(data, _modules.DocModule))

@@ -17,6 +17,7 @@
 3. Fix: Correct the bugs of the broken sidebar and internal links.
 4. Fix: Correct some MDX rendering and format issues, especially for text escaping configurations.
 5. Fix: Correct the bad import of iconify icons.
+6. Fix: Remove the unwanted namespace pacakges in the package member list.
 
 #### :floppy_disk: Change
 
