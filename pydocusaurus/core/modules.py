@@ -78,7 +78,18 @@ class DocModuleMetadata(BaseModel):
 
     @classmethod
     def from_long_descr(cls, text: str) -> Self:
-        """Parse the long description texts (many sections) as the metadata."""
+        """Parse the long description texts (many sections) as the metadata.
+
+        Arguments
+        ---------
+        text: `str`
+            The long module docstring text.
+
+        Returns
+        -------
+        #1: `DocModuleMetadata`
+            The parsed module metadata.
+        """
         secs = _texts.Section.from_md_text(mdformat.text(text, options={"wrap": "no"}))
         info: dict[str, str] = dict()
         for sec in secs:

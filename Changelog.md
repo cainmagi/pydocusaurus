@@ -19,6 +19,7 @@
 5. Fix: Correct the bad import of iconify icons.
 6. Fix: Remove the unwanted namespace pacakges in the package member list.
 7. Fix: Add two missing names in the `__all__` list of submodules.
+8. Fix: Add missing docstring of `core.modules.DocModuleMetadata.from_long_descr`.
 
 #### :floppy_disk: Change
 
