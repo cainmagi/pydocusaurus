@@ -19,3 +19,4 @@
 
 1. Update the security policy link.
 2. Adjust some highlight codes.
+3. Make `version` module invisible in the API documentation.
