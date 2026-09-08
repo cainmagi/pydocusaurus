@@ -14,6 +14,7 @@
 #### :wrench: Fix
 
 1. Fix: Correct a bug of the social card link.
+2. Fix: Fix a typo of the `core` package link in `special-types`.
 
 #### :floppy_disk?: Change
 
