@@ -30,6 +30,7 @@
 3. Remove the legacy option `onBrokenMarkdownLinks`.
 4. Temporarilly drop the escaping of `{}` symbols. These symbols can be manually dealt with code wrappers.
 5. Add the customization option of `--user`/`-u` in CLIs and examples.
+6. Update the project information.
 
 ### 1.0.0 @ 09/03/2026
 

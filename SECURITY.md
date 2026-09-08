@@ -6,7 +6,7 @@ The following list shows the maintenance status of all versions.
 
 | Version | Supported          | Available on [PyPI :link:][link-pypi] |
 | ------- | ------------------ | ------------------------------------- |
-| `1.0.0` | :white_check_mark: |                                       |
+| `1.0.0` | :white_check_mark: | :white_check_mark:                    |
 
 ## Reporting a Vulnerability
 

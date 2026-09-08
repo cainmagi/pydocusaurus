@@ -39,13 +39,13 @@ python -m pip install pydocusaurus
 A simple usage is to use the CLI directly:
 
 ```sh
-python -m pydocusaurus <path-to-a-package> -o <output-path>
+python -m pydocusaurus render-doc <package-name> -o <out-dir> -u <user-name>
 ```
 
 It allows customizations by adding CLI options. To find the details, review the documentation of this project or call
 
 ```sh
-python -m pydocusaurus --help
+python -m pydocusaurus render-doc --help
 ```
 
 pyDocusaurus can also be called by Python codes, for example:
@@ -54,13 +54,12 @@ pyDocusaurus can also be called by Python codes, for example:
 from pydocusaurus import render_package_as_mdx
 import any_package
 
-render_package_as_mdx(any_package, out_dir="./docs-output")
+pydocusaurus.render_package_as_mdx(
+    pydocusaurus, out_dir=out_dir, package_info="username"
+)
 ```
 
 ## 3. Documentation
-
-> [!CAUTION]
-> This documentation is a work in progress. It should be ready when the package is tested to be stable.
 
 Check the documentation to find more details about the examples and APIs.
 
