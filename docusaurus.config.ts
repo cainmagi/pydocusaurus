@@ -6,7 +6,8 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "pyDocusaurus",
-  tagline: "Inspired by Sphinx, this tool is designed for generating the Docusaurus Documentation Project from Python Docstrings.",
+  tagline:
+    "Inspired by Sphinx, this tool is designed for generating the Docusaurus Documentation Project from Python Docstrings.",
   favicon: "img/favicon.ico",
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -55,8 +56,7 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/cainmagi/pydocusaurus/edit/docs/",
+          editUrl: "https://github.com/cainmagi/pydocusaurus/edit/docs/",
           editLocalizedFiles: true,
           // versions
           lastVersion: "current",
@@ -80,6 +80,7 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: "img/social-card.webp",
+    metadata: [{name: "site_name", content: "pyDocusaurus"}],
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -129,7 +130,7 @@ const config: Config = {
           position: "right",
           className: "header-pypi-link",
           "aria-label": "PyPI repository",
-        }
+        },
       ],
     },
     footer: {

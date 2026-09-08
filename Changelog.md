@@ -23,3 +23,4 @@
 2. Adjust some highlight codes.
 3. Make `version` module invisible in the API documentation.
 4. Adjust the list of `special-types`.
+5. Adjust the social metadata. The issue of social image is not fixed in this change because we are waiting the fix [facebook/docusaurus#12369](https://github.com/facebook/docusaurus/pull/12369) to be merged.
