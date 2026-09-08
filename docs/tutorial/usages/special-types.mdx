@@ -12,35 +12,36 @@ This is a summary of the currently supported types that will be rendered as docu
 
 ## 1. Modules
 
-|         Type          |                     pyDocusaurus Data                      | <center>Example Page</center>                                                                 |
-| :-------------------: | :--------------------------------------------------------: | :-------------------------------------------------------------------------------------------- |
-|       `module`        |    [`DocModule`](../../apis/core/modules/DocModule.mdx)    | [`core.modules`](../../apis/core/modules/index.mdx)                                           |
+|   Type    |                  pyDocusaurus Data                   | <center>Example Page</center>                       |
+| :-------: | :--------------------------------------------------: | :-------------------------------------------------- |
+| `package` | [`DocModule`](../../apis/core/modules/DocModule.mdx) | [`core`](../../apis/index.mdx)                      |
+| `module`  | [`DocModule`](../../apis/core/modules/DocModule.mdx) | [`core.modules`](../../apis/core/modules/index.mdx) |
 
 ## 2. Functions and properties
 
-|         Type          |                     pyDocusaurus Data                      | <center>Example Page</center>                                                                 |
-| :-------------------: | :--------------------------------------------------------: | :-------------------------------------------------------------------------------------------- |
-|      `function`       | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`parse_argument_docs`](../../apis/core/functions/parse_argument_docs.mdx)                    |
-| `function` (iterator) | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`get_members_defined_in_class`](../../apis/core/inspectors/get_members_defined_in_class.mdx) |
-| `method` | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`Components.get_headers`](../../apis/renderer/components/Components.mdx#-get_headers) |
-| `classmethod` | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`ClassProfile.from_class`](../../apis/core/classes/ClassProfile.mdx#-from_class) |
-| `staticmethod` | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`PackageWalker.get_member_type`](../../apis/core/walker/PackageWalker.mdx#-get_member_type) |
-| `property` | [`DocProp`](../../apis/core/classes/DocProp.mdx) | [`Components.apibar`](../../apis/renderer/components/Components.mdx#-apibar) |
-| `operator` | [`DocOpTemplate`](../../apis/core/ops/DocOpTemplate.mdx) | [`dfc.caches.lrudict.LRUDict.__getitem__`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/lrudict/LRUDict#-__getitem__) |
+|         Type          |                     pyDocusaurus Data                      | <center>Example Page</center>                                                                                                                           |
+| :-------------------: | :--------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|      `function`       | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`parse_argument_docs`](../../apis/core/functions/parse_argument_docs.mdx)                                                                              |
+| `function` (iterator) | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`get_members_defined_in_class`](../../apis/core/inspectors/get_members_defined_in_class.mdx)                                                           |
+|       `method`        | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`Components.get_headers`](../../apis/renderer/components/Components.mdx#-get_headers)                                                                  |
+|     `classmethod`     | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`ClassProfile.from_class`](../../apis/core/classes/ClassProfile.mdx#-from_class)                                                                       |
+|    `staticmethod`     | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`PackageWalker.get_member_type`](../../apis/core/walker/PackageWalker.mdx#-get_member_type)                                                            |
+|      `property`       |      [`DocProp`](../../apis/core/classes/DocProp.mdx)      | [`Components.apibar`](../../apis/renderer/components/Components.mdx#-apibar)                                                                            |
+|      `operator`       |  [`DocOpTemplate`](../../apis/core/ops/DocOpTemplate.mdx)  | [`dfc.caches.lrudict.LRUDict.__getitem__`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/lrudict/LRUDict#-__getitem__) |
 
 ## 3. Classes
 
-|         Type          |                     pyDocusaurus Data                      | <center>Example Page</center>                                                                 |
-| :-------------------: | :--------------------------------------------------------: | :-------------------------------------------------------------------------------------------- |
-| `class` |  [`DocClass`](../../apis/core/classes/DocClass.mdx) | <ul><li>[`Components`](../../apis/renderer/components/Components.mdx)</li><li>[`dfc.caches.lrudict.LRUDict`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/lrudict/LRUDict)</li></ul> |
-| `abc.ABC` |  [`DocClass`](../../apis/core/classes/DocClass.mdx) | [`SaverAbstract`](../../apis/renderer/saver/SaverAbstract.mdx) |
-| `dataclass`<br/>or `pydantic.BaseModel` |  [`DocDataClass`](../../apis/core/datacls/DocDataClass.mdx) | <ul><li>[`ClassProfile`](../../apis/core/classes/ClassProfile.mdx)</li><li>[`RendererPage`](../../apis/renderer/page/RendererPage.mdx)</li></ul> |
-| `enum` |  [`DocEnum`](../../apis/core/enums/DocEnum.mdx) | [`FunctionType`](../../apis/core/functions/FunctionType.mdx) |
+|                  Type                   |                     pyDocusaurus Data                      | <center>Example Page</center>                                                                                                                                                                                          |
+| :-------------------------------------: | :--------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                 `class`                 |     [`DocClass`](../../apis/core/classes/DocClass.mdx)     | <ul><li>[`Components`](../../apis/renderer/components/Components.mdx)</li><li>[`dfc.caches.lrudict.LRUDict`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/lrudict/LRUDict)</li></ul> |
+|                `abc.ABC`                |     [`DocClass`](../../apis/core/classes/DocClass.mdx)     | [`SaverAbstract`](../../apis/renderer/saver/SaverAbstract.mdx)                                                                                                                                                         |
+| `dataclass`<br/>or `pydantic.BaseModel` | [`DocDataClass`](../../apis/core/datacls/DocDataClass.mdx) | <ul><li>[`ClassProfile`](../../apis/core/classes/ClassProfile.mdx)</li><li>[`RendererPage`](../../apis/renderer/page/RendererPage.mdx)</li></ul>                                                                       |
+|                 `enum`                  |       [`DocEnum`](../../apis/core/enums/DocEnum.mdx)       | [`FunctionType`](../../apis/core/functions/FunctionType.mdx)                                                                                                                                                           |
 
 ## 4. Types
 
-|         Type          |                     pyDocusaurus Data                      | <center>Example Page</center>                                                                 |
-| :-------------------: | :--------------------------------------------------------: | :-------------------------------------------------------------------------------------------- |
-| `typealias` |  [`DocTypeAlias`](../../apis/core/typealiases/DocTypeAlias.mdx) | [`dfc.caches.typehints.Deferred`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/typehints/Deferred) |
-| `typedict` |  [`DocTypedDict`](../../apis/core/typeddicts/DocTypedDict.mdx) | [`dfc.caches.typehints.CachedFileInfo`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/typehints/CachedFileInfo) |
-| `protocol` |  [`DocProtocol`](../../apis/core/protocols/DocProtocol.mdx) | [`ProtocolComponent`](../../apis/components/comprotocol/ProtocolComponent.mdx) |
+|    Type     |                       pyDocusaurus Data                        | <center>Example Page</center>                                                                                                                    |
+| :---------: | :------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `typealias` | [`DocTypeAlias`](../../apis/core/typealiases/DocTypeAlias.mdx) | [`dfc.caches.typehints.Deferred`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/typehints/Deferred)             |
+| `typedict`  | [`DocTypedDict`](../../apis/core/typeddicts/DocTypedDict.mdx)  | [`dfc.caches.typehints.CachedFileInfo`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/typehints/CachedFileInfo) |
+| `protocol`  |   [`DocProtocol`](../../apis/core/protocols/DocProtocol.mdx)   | [`ProtocolComponent`](../../apis/components/comprotocol/ProtocolComponent.mdx)                                                                   |
