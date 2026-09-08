@@ -37,7 +37,9 @@ def render() -> None:
     cur_dir = os.path.dirname(__file__)
     out_dir = os.path.join(cur_dir, "docs-{0}".format(pydocusaurus.__name__))
     print("Producing the documentation: {0}".format(out_dir))
-    pydocusaurus.render_package_as_mdx(pydocusaurus, out_dir=out_dir)
+    pydocusaurus.render_package_as_mdx(
+        pydocusaurus, out_dir=out_dir, package_info="cainmagi"
+    )
 
 
 if __name__ == "__main__":

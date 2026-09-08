@@ -106,7 +106,9 @@ def render() -> None:
         )
     )
     saver = SaverSingleFile()
-    pydocusaurus.render_package_as_mdx(pydocusaurus, out_dir=out_dir, saver=saver)
+    pydocusaurus.render_package_as_mdx(
+        pydocusaurus, out_dir=out_dir, saver=saver, package_info="cainmagi"
+    )
     saver.dump_yaml(os.path.join(cur_dir, "docs-pydocusaurus-single.yml"))
 
 

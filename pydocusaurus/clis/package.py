@@ -84,6 +84,16 @@ def render_doc(
             ),
         ),
     ],
+    user: Annotated[
+        str | None,
+        typer.Option(
+            "--user",
+            "-u",
+            help=(
+                "The user name specifying the owner of the package and documentation."
+            ),
+        ),
+    ] = None,
 ) -> None:
     """Render the documentation of a specific package."""
     package = fast_import(name)
@@ -109,7 +119,7 @@ def render_doc(
                 "path: {0}".format(out_dir)
             )
 
-    render_package_as_mdx(package, out_dir=out_dir)
+    render_package_as_mdx(package, out_dir=out_dir, package_info=user)
 
 
 if __name__ == "__main__":
