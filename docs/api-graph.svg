@@ -6,6 +6,7 @@
 <!-- Pages: 1 -->
 <svg
  viewBox="0.00 0.00 1040.00 764.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style>.node {stroke: black; fill: white;} .node text {stroke: none;fill: black;} .edge path,.arrow{stroke: black} .edge .arrow{fill: black}</style>
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 760)">
 <!-- pydocusaurus -->
 <g id="node1" class="node">

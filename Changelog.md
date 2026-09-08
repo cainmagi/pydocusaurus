@@ -15,6 +15,7 @@
 
 1. Fix: Correct a bug of the social card link.
 2. Fix: Fix a typo of the `core` package link in `special-types`.
+3. Fix: Refine the titles and displays of some pages.
 
 #### :floppy_disk?: Change
 
