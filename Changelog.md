@@ -4,7 +4,7 @@
 
 ## CHANGELOG
 
-### 1.0.0 @ 09/06/2026
+### 1.0.0 @ 09/08/2026
 
 #### :mega: New
 
@@ -18,6 +18,7 @@
 4. Fix: Correct some MDX rendering and format issues, especially for text escaping configurations.
 5. Fix: Correct the bad import of iconify icons.
 6. Fix: Remove the unwanted namespace pacakges in the package member list.
+7. Fix: Add two missing names in the `__all__` list of submodules.
 
 #### :floppy_disk: Change
 

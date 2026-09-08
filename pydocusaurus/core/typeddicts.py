@@ -41,7 +41,7 @@ from . import texts as _texts
 from .inspectors import get_field_docstrings, get_obj_slang, strip_annotation_name
 from ..components.comprotocol import ProtocolComponent
 
-__all__ = ("DocTypedDictItem", "parse_typeddict_doc")
+__all__ = ("DocTypedDictItem", "DocTypedDict", "parse_typeddict_doc")
 log = logging.getLogger("pydocusaurus")
 
 

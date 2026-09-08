@@ -41,7 +41,7 @@ from . import protocols as _protocols
 from . import typealiases as _taliases
 from . import inspectors as _inspectors
 
-__all__ = ("DocModuleProp", "DocModule", "parse_module_doc")
+__all__ = ("DocModuleProp", "DocModuleMetadata", "DocModule", "parse_module_doc")
 log = logging.getLogger("pydocusaurus")
 
 
