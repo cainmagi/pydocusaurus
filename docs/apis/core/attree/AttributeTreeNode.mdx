@@ -1,0 +1,48 @@
+---
+id: AttributeTreeNode
+title: AttributeTreeNode
+sidebar_label: AttributeTreeNode
+slug: /apis/core/attree/AttributeTreeNode
+description: The node in the attribute tree.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.attree.AttributeTreeNode" />
+
+```python
+AttributeTreeNode(
+    name: str,
+    attrs: dict[str, Any] = dict(...),
+    children: dict[str, AttributeTreeNode] = dict(...)
+)
+```
+
+The node in the attribute tree.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The partial name of the current node. |
+| `attrs` | `dict[str, Any]` | | The extra attributes of the current node. |
+| `children` | `dict[str, AttributeTreeNode]` | | The members/children of the current node. |
+
+## Methods
+
+### <IconObjType type="method"/> `add`
+
+```python
+self.add(segments: Sequence[str], attrs: Mapping[str, Any] | None = None)
+```
+
+Recursively add segments into the tree.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `segments` | `Sequence[str]` | <InlineIcon icon={vsiCheckIcon}/> | A sequence of name segments. Each segment represents a partial node name in the route. If an empty list such as `[]` is provided, it means update the information of the current (this) node. |
+| `attrs` | `Mapping[str, Any] \| None` | | The attributes to be added to the target node. The node is routed by `segments` related to the current node. |

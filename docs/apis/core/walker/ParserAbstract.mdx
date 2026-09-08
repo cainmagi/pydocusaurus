@@ -1,0 +1,171 @@
+---
+id: ParserAbstract
+title: ParserAbstract
+sidebar_label: ParserAbstract
+slug: /apis/core/walker/ParserAbstract
+description: The abstract class of a module parser.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isAbstract={true} source="core.walker.ParserAbstract" />
+
+```python
+ParserAbstract()
+```
+
+This is an abstract class requiring further implementation.
+
+The abstract class of a module parser.
+
+The parser is called when a member is detected in the module structure.
+
+## Arguments
+
+Initialization function is not specified.
+
+## Abstract methods
+
+### <IconObjType type="method"/> `parse_class`
+
+```python
+self.parse_class(obj: DocClass)
+```
+
+Parse a member object when it is a class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocClass` | <InlineIcon icon={vsiCheckIcon}/> | The class information to be parsed. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_dataclass`
+
+```python
+self.parse_dataclass(obj: DocDataClass)
+```
+
+Parse a member object when it is a data class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocDataClass` | <InlineIcon icon={vsiCheckIcon}/> | The data class information to be parsed. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_enum`
+
+```python
+self.parse_enum(obj: DocEnum)
+```
+
+Parse a member object when it is an enum class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocEnum` | <InlineIcon icon={vsiCheckIcon}/> | The enum class information to be parsed. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_function`
+
+```python
+self.parse_function(obj: DocFunction)
+```
+
+Parse a member object when it is a function.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | The function information to be parsed. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_module`
+
+```python
+self.parse_module(obj: DocModule)
+```
+
+Parse a member object when it is a module.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocModule` | <InlineIcon icon={vsiCheckIcon}/> | The module information to be parsed. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_protocol`
+
+```python
+self.parse_protocol(obj: DocProtocol)
+```
+
+Parse a member object when it is a protocol class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocProtocol` | <InlineIcon icon={vsiCheckIcon}/> | The protocol information to be parsed. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_typealias`
+
+```python
+self.parse_typealias(obj: DocTypeAlias)
+```
+
+Parse a member object when it is a type alias.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocTypeAlias` | <InlineIcon icon={vsiCheckIcon}/> | The alias information to be parsed. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_typeddict`
+
+```python
+self.parse_typeddict(obj: DocTypedDict)
+```
+
+Parse a member object when it is a typed dictionary class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocTypedDict` | <InlineIcon icon={vsiCheckIcon}/> | The typed dictionary information to be parsed. |
+
+## Methods
+
+### <IconObjType type="method"/> `parse`
+
+```python
+self.parse(obj: Any)
+```
+
+Parse a member.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The member touched during the module walk. It will be parsed according to the member data type. For example, a function will be parsed by `parse_function(obj)`. |

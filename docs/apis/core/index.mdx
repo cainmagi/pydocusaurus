@@ -1,0 +1,38 @@
+---
+id: index
+title: core
+sidebar_label: core
+slug: /apis/core
+description: The core functionalities used to analyze the Python codes and docstrings.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="package" source="core" />
+
+The core functionalities used to analyze the Python codes and docstrings.
+
+## Modules
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="module" hasText={true} text="inspectors"/>](./inspectors/index.mdx) | The functionalities related to inspecting and analyzing objects. |
+| [<IconObjType type="module" hasText={true} text="analyzer"/>](./analyzer/index.mdx) | The functionalities related to Markdown text analysis. |
+| [<IconObjType type="module" hasText={true} text="attree"/>](./attree/index.mdx) | Build an attribute tree that reconstructs the structure of a package. |
+| [<IconObjType type="module" hasText={true} text="texts"/>](./texts/index.mdx) | The MDX rendering of documentation units. |
+| [<IconObjType type="module" hasText={true} text="functions"/>](./functions/index.mdx) | The documentation extraction of functions and methods. |
+| [<IconObjType type="module" hasText={true} text="ops"/>](./ops/index.mdx) | The documentation extraction of class operators. |
+| [<IconObjType type="module" hasText={true} text="classes"/>](./classes/index.mdx) | The documentation extraction of class objects. |
+| [<IconObjType type="module" hasText={true} text="datacls"/>](./datacls/index.mdx) | The documentation extraction of data class objects and PyDantic models. |
+| [<IconObjType type="module" hasText={true} text="enums"/>](./enums/index.mdx) | The documentation extraction of enum class objects. |
+| [<IconObjType type="module" hasText={true} text="typeddicts"/>](./typeddicts/index.mdx) | The documentation extraction of typed dictionaries. |
+| [<IconObjType type="module" hasText={true} text="protocols"/>](./protocols/index.mdx) | The documentation extraction of protocol classes. |
+| [<IconObjType type="module" hasText={true} text="typealiases"/>](./typealiases/index.mdx) | The documentation extraction of type aliases. |
+| [<IconObjType type="module" hasText={true} text="modules"/>](./modules/index.mdx) | The documentation extraction of modules and packages. |
+| [<IconObjType type="module" hasText={true} text="walker"/>](./walker/index.mdx) | The inspector and analyzer that walks through and processes the nested package and module members. |
+
+## Aliases
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="PackageWalker"/>](./walker/PackageWalker.mdx) | The package iterative walker. |

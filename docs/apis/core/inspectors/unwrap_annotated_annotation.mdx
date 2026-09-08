@@ -1,0 +1,34 @@
+---
+id: unwrap_annotated_annotation
+title: unwrap_annotated_annotation
+sidebar_label: unwrap_annotated_annotation
+slug: /apis/core/inspectors/unwrap_annotated_annotation
+description: Given an annotation, remove the `Annotated[...]` wrapper recursively
+  if it appears.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.unwrap_annotated_annotation" />
+
+```python
+v_1: Any = unwrap_annotated_annotation(anno: Any)
+```
+
+Given an annotation, remove the `Annotated[...]` wrapper recursively if it appears.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `anno` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The annotation to be processed. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Any` | The annotation where the `Annotated[...]` is unwrapped. |

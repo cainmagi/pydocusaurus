@@ -1,0 +1,35 @@
+---
+id: get_field_default
+title: get_field_default
+sidebar_label: get_field_default
+slug: /apis/core/inspectors/get_field_default
+description: Format the given value as a string that can be used as the default field
+  of a field (`DocField`).
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_field_default" />
+
+```python
+v_1: str = get_field_default(val_default: Any, val_default_factory: Any)
+```
+
+Format the given value as a string that can be used as the default field of a field (`DocField`).
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `val_default` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The candidate of the default value. It will be preferred if existing. |
+| `val_default_factory` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The candidate of the default factory. If the default value does not exist, will attempt to format the default value from it. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | <p>The value that can be filled as the default value of a field.</p><p>If it is empty, the field does not have the default configuration.</p> |

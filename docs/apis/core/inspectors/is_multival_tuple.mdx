@@ -1,0 +1,39 @@
+---
+id: is_multival_tuple
+title: is_multival_tuple
+sidebar_label: is_multival_tuple
+slug: /apis/core/inspectors/is_multival_tuple
+description: Check whether the given annotation is a multi-variable tuple such as.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.is_multival_tuple" />
+
+```python
+v_1: bool = is_multival_tuple(anno: Any)
+```
+
+Check whether the given annotation is a multi-variable tuple such as
+
+```python
+tuple[int, str]
+```
+
+Note that similar cases such as `tuple[int]` and `tuple[int, ...]` will be excluded.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `anno` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The annotation to be checked. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | A flag. It is `True` when the given annotation is a multi-variable tuple. |

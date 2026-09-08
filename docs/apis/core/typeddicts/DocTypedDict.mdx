@@ -1,0 +1,119 @@
+---
+id: DocTypedDict
+title: DocTypedDict
+sidebar_label: DocTypedDict
+slug: /apis/core/typeddicts/DocTypedDict
+description: The docstring and basic information of a class.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.typeddicts.DocTypedDict" />
+
+```python
+DocTypedDict(
+    type: Literal["typeddict"] = "typeddict",
+    name: str,
+    descr: str,
+    dict_items: list[DocTypedDictItem] = [],
+    slang: str = "",
+    lineno: int = 0
+)
+```
+
+The docstring and basic information of a class.
+
+This serializable data type contains the parsed docstrings of the class body, the initialization function, the properties, the methods, and the overloaded operators.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["typeddict"]` | | The identifier of this documentation item. |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the class. |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The description body of the class. |
+| `dict_items` | `list[DocTypedDictItem]` | | The key-val items of the typed dictionary. |
+| `slang` | `str` | | The internal code identifying this function. It needs to be specified when the function is a vanilla function (`f_type` is `"function"`) to provide the identification of the source code. |
+| `lineno` | `int` | | The line number where the typed dictionary is defined. If the number is unknown, this value will be `0`. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+Render as Markdown text.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the typed dictionary. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `table_keywords`
+
+```python
+v_1: str = self.table_keywords(
+    renderer: ProtocolComponent,
+    has_type: bool = True,
+    has_required: bool = True,
+    has_doc: bool = True,
+)
+```
+
+Format the keywords as a table.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+| `has_type` | `bool` | | A flag. If specified, will display the keyword-value type. |
+| `has_required` | `bool` | | A flag. If specified, will display whether the keyword-value is required. |
+| `has_doc` | `bool` | | A flag. If specified, will display the docstring of the keyword-value. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown table of the keywords. |
+
+## Properties
+
+### <IconObjType type="param"/> `is_private`
+
+```python
+is_private: bool = self.is_private
+```
+
+A flag specifying whether the type is private.
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `str_v2`
+
+```python
+str_v2: str = self.str_v2
+```
+
+Render as V2 string.
+
+The v2 string is in the following format:
+
+```python
+ret: type = DictName(key1: type1, key2: type2, ...)
+```
+
+Note that the v2 string is longer than the default string for `TypedDict`.

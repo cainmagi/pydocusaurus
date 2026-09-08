@@ -1,0 +1,31 @@
+---
+id: AbstractAttrs
+title: AbstractAttrs
+sidebar_label: AbstractAttrs
+slug: /apis/core/classes/AbstractAttrs
+description: The temporary abstract attributes of a class.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+
+<APITopBar type="class" isDataClass={true} source="core.classes.AbstractAttrs" />
+
+```python
+AbstractAttrs(
+    properties: list[property | cached_property] = [],
+    methods: list[function | classmethod | staticmethod] = [],
+    operators: dict[str, function] = dict(...)
+)
+```
+
+The temporary abstract attributes of a class.
+
+This collection will be available when a temporary class profile is abstract.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `properties` | `list[property \| cached_property]` | | All abstract properties of this class. |
+| `methods` | `list[function \| classmethod \| staticmethod]` | | All abstract instance/class/static methods of this class. |
+| `operators` | `dict[str, function]` | | All overloaded abstract operators of this class. |

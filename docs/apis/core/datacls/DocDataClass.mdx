@@ -1,0 +1,123 @@
+---
+id: DocDataClass
+title: DocDataClass
+sidebar_label: DocDataClass
+slug: /apis/core/datacls/DocDataClass
+description: The docstring and basic information of a data model/class.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.datacls.DocDataClass" />
+
+```python
+DocDataClass(
+    name: str,
+    descr: str,
+    init_func: DocFunction = _default_init(),
+    init_func_specified: bool = True,
+    methods: list[DocFunction] = [],
+    properties: list[DocProp] = [],
+    operators: list[DocOpTemplate] = [],
+    abstract_attrs: DocClassAbstractAttrs | None = None,
+    slang: str = "",
+    lineno: int = 0,
+    type: Literal["dataclass"] = "dataclass",
+    fields: list[DocField] = []
+)
+```
+
+The docstring and basic information of a data model/class.
+
+This serializable data type contains the parsed docstrings of the data class/model. It is a specialized class. When rendering the documentation, the initialization function is replaced by the field details.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the class. |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The description body of the class. |
+| `init_func` | `DocFunction` | | The initialization function of the class. |
+| `init_func_specified` | `bool` | | A flag. When it is on, it means that the initialization function has been defined by user. |
+| `methods` | `list[DocFunction]` | | The list of methods of this class. |
+| `properties` | `list[DocProp]` | | The list of properties of this class. |
+| `operators` | `list[DocOpTemplate]` | | The list of operators of this class. |
+| `abstract_attrs` | `DocClassAbstractAttrs \| None` | | Additional abstract attributes. Will present only when the class is abstract. For the protocols, this value will be always `None`. |
+| `slang` | `str` | | The internal code identifying this class. |
+| `lineno` | `int` | | The line number where the class is defined. If the number is unknown, this value will be `0`. |
+| `type` | `Literal["dataclass"]` | | The identifier of this documentation item. |
+| `fields` | `list[DocField]` | | The data fields of the data class/model. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+Render as Markdown text.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the data class. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `table_fields`
+
+```python
+v_1: str = self.table_fields(
+    renderer: ProtocolComponent,
+    has_type: bool = True,
+    has_required: bool = True,
+    has_default: bool = False,
+    has_doc: bool = True,
+)
+```
+
+Format the fields as a table.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+| `has_type` | `bool` | | A flag. If specified, will display the field type. |
+| `has_required` | `bool` | | A flag. If specified, will display whether the field is required. |
+| `has_default` | `bool` | | A flag. If specified, will display the default value of the field. |
+| `has_doc` | `bool` | | A flag. If specified, will display the docstring of the field. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown table of the fields. |
+
+## Properties
+
+### <IconObjType type="param"/> `str_v2`
+
+```python
+str_v2: str = self.str_v2
+```
+
+Render as V2 string.
+
+The v2 string is in the following format:
+
+```python
+ClassName(field1: type1, field2: type2 = default2, ...)
+```
+
+which is more compact than the default string.

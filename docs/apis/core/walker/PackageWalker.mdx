@@ -1,0 +1,163 @@
+---
+id: PackageWalker
+title: PackageWalker
+sidebar_label: PackageWalker
+slug: /apis/core/walker/PackageWalker
+description: The package iterative walker.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" source="core.walker.PackageWalker" />
+
+```python
+PackageWalker()
+```
+
+The package iterative walker.
+
+Specifying a package, this walker will go through the package structure, touch each member and nested module, and analyze the docstring as structured texts.
+
+By providing a customized parser, users can determine how to process the extracted information.
+
+## Arguments
+
+Initialization function is not specified.
+
+## Methods
+
+### <IconObjType type="method"/> `get_member_type`
+
+```python
+v_1: Literal[
+    "module",
+    "class",
+    "dataclass",
+    "enum",
+    "typeddict",
+    "protocol",
+    "function",
+    "others",
+] = PackageWalker.get_member_type(member: Any)
+```
+
+Detect the type (class) of a member.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `member` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The member to be detected. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Literal["module", "class", "dataclass", "enum", "typeddict", "protocol", "function", "others"]` | The detected type code of the object. This value can be "others" when the member type is unknown. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `iter_module_members`
+
+```python
+(
+    v_1: (
+        DocModule
+        | DocClass
+        | DocDataClass
+        | DocEnum
+        | DocTypedDict
+        | DocTypeAlias
+        | DocProtocol
+        | DocFunction
+    ),
+    v_2: bool,
+) in PackageWalker.iter_module_members(module: ModuleType)
+```
+
+Iterate direct members of a module/package.
+
+Note that this method will not deeply iterate the nested members.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | The module to be iterated. |
+
+#### Yields
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocModule \| DocClass \| DocDataClass \| DocEnum \| DocTypedDict \| DocTypeAlias \| DocProtocol \| DocFunction` | The extracted structured member information. |
+| `v_2` | `bool` | A flag specifying whether the current member is imported/exported alias. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_module_member`
+
+```python
+v_1: (
+    DocModule
+    | DocClass
+    | DocDataClass
+    | DocEnum
+    | DocTypedDict
+    | DocProtocol
+    | DocFunction
+    | None
+) = PackageWalker.parse_module_member(
+    value: Any,
+    value_type: (
+        Literal[
+            "module",
+            "class",
+            "dataclass",
+            "enum",
+            "typeddict",
+            "protocol",
+            "function",
+            "others",
+        ]
+        | None
+    ),
+)
+```
+
+Parse the module member as structured texts.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `value` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The member value to be parsed. |
+| `value_type` | `Literal["module", "class", "dataclass", "enum", "typeddict", "protocol", "function", "others"] \| None` | <InlineIcon icon={vsiCheckIcon}/> | The type code of the value. This type code is provided by `get_member_type(...)` but does not include `"typealias"`. The type aliases are not parsed by this method. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocModule \| DocClass \| DocDataClass \| DocEnum \| DocTypedDict \| DocProtocol \| DocFunction \| None` | The structred information parsed from `value`. When the value type is unknown, will return `None`. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `walk_package`
+
+```python
+self.walk_package(root_pkg: str | ModuleType, handler: ParserAbstract)
+```
+
+Walk through a package.
+
+This method will start from the root of a package, iterate nested members, and call the parser for each touched member.
+
+Users can customizing the processing by providing the implementation of `handler` (the information parser).
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `root_pkg` | `str \| ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | The name or the module object of a package. |
+| `handler` | `ParserAbstract` | <InlineIcon icon={vsiCheckIcon}/> | The parser that will be called on each nested member of the package. |

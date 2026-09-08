@@ -1,0 +1,497 @@
+---
+id: get-started
+sidebar_label: Get Started
+title: Get started with Python docstrings
+description: An introduction to the docstring styles of this package.
+slug: /usages/get-started
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import DarkButton from "@site/src/components/DarkButton";
+
+import IconExternalLink from "@theme/Icon/ExternalLink";
+import {epGuide} from "@site/src/components/icons/EpGuide";
+
+pyDocusaurus is designed for VS Code developers and Markdown docstring style. Basically, this package follows the following principles:
+
+- **No type hints in the docstring**: Users can add optional type annotations in the docstring, but such annotations are only used as falling-back options. The type annotations are essentially based on [Python's typing system<IconExternalLink/>][link-typing].
+
+- **VS Code compatibility**: pyDocusaurus does not follow the [PEP 287<IconExternalLink/>][pep-287] docstring rules because it was designed for rst-style texts. Instead, we adopt the VS Code style. This tutorial will start by introducing the basics of writing such docstrings.
+
+- **Half-and-half analysis**: Currently, pyDocusaurus uses both the source code [AST analysis<IconExternalLink/>][link-ast] and run-time inspections to extract type annotations and docstrings. Users need to ensure that the package to be converted is runnable with pyDocusaurus.
+
+:::info
+It means that pyDocusaurus requires that:
+
+1. Your package can work in `Python>=3.14` run time.
+2. Your package has source codes and docstrings, not just compiled `.pyc` files.
+3. Your package is not written in C (such as the `.pyd` files).
+
+Currently, pyDocusaurus has not been tested on `.pyi` files. It is recommended that the docstrings should be written together with the source codes.
+:::
+
+## 1. Write docstrings for modules
+
+pyDocusaurus reads the following package/module docstring:
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+````python showLineNumbers title="example_module.py"
+# -*- coding: UTF-8 -*-
+"""
+Module Title
+============
+
+Author
+------
+My name
+myemail@gmail.com
+
+License
+-------
+MIT License
+
+Description
+-----------
+Markdown description text.
+
+Support **multi-line** and complicated formats.
+
+```sh
+example-command
+```
+"""
+
+import a_module
+
+...
+````
+
+:::tip
+
+pyDocusaurus uses section titles, such as "Auhtor" and "License", to detect fields. The order of sections can be switched.
+
+:::
+
+</TabItem>
+
+<TabItem value="page" label="Converted">
+
+The docstring will be converted into a data strcuture [`DocModule`](../../apis/core/modules/DocModule.mdx), where the key fields are:
+
+|       Field        | Value                                                                                                                                            |
+| :----------------: | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+|       `name`       | example_module                                                                                                                                   |
+|  `metadata.title`  | Module Title                                                                                                                                     |
+| `metadata.author`  | <p>My name</p><p>myemail@gmail.com</p>                                                                                                           |
+| `metadata.license` | MIT License                                                                                                                                      |
+|  `metadata.descr`  | <p>Markdown description text.</p><p>Support <b>multi-line</b> and complicated formats.</p><pre><code className="sh">example-command</code></pre> |
+
+where `name` and `metadata.descr` will be used for rendering the module page. An example of the rendered module page can be found here:
+
+<p>
+  {
+    <DarkButton to="/docs/apis/core/modules" icon={epGuide}>
+      core.modules
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+## 2. Write docstrings for functions
+
+pyDocusaurus reads the following function/method docstring:
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+```python showLineNumbers
+def example_func(arg1: str, arg2: int = 0) -> float:
+    """An example function.
+
+    Arguments
+    ---------
+    arg1: `str`
+        The first argument.
+
+    arg2: `int`
+        The second argument.
+
+    Returns
+    -------
+    #1: `float`
+        The returned value.
+    """
+    raise NotImplementedError
+```
+
+Basically, a function's docstring contains three parts: a description, arguments, and return values. If any arguments appear in the signature but are not mentioned in the docstring, pyDocusaurus can sense such ignorance and report a warning. If a function has no arguments or no return values (the return value is `None`), the corresponding docstring section can be skipped.
+
+:::tip
+
+pyDocusaurus uses section titles, "Arguments" and "Returns", to divide the original docstring into different parts. The order of sections can be switched.
+
+:::
+
+:::tip
+
+The section titles can be named as:
+
+- Arguments, Argument, Parameters, Parameters
+
+- Returns, Return, Results, Result
+
+:::
+
+</TabItem>
+
+<TabItem value="page" label="Converted">
+
+The docstring will be converted into a data strcuture [`DocFunction`](../../apis/core/functions/DocFunction.mdx), where the key fields are:
+
+|  Field   | Value                |
+| :------: | :------------------- |
+|  `name`  | example_func         |
+| `descr`  | An example function. |
+|  `args`  | `list[DocArgument]`  |
+| `retval` | `list[DocArgument]`  |
+
+where the `args` and `retval` are lists of [`DocArgument`](../../apis/core/functions/DocArgument.mdx), for example, the key fields of `args[0]` is:
+
+|   Field   | Value               |
+| :-------: | :------------------ |
+|  `name`   | arg1                |
+|  `type`   | `str`               |
+| `default` |                     |
+|   `doc`   | The first argument. |
+
+and the `retval[0]` is
+
+| Field  | Value               |
+| :----: | :------------------ |
+| `name` | \#1                 |
+| `type` | `float`             |
+| `doc`  | The returned value. |
+
+An example of the rendered function page can be found here:
+
+<p>
+  {
+    <DarkButton
+      to="/docs/apis/core/functions/parse_argument_docs"
+      icon={epGuide}
+    >
+      core.functions.parse_argument_docs
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+### 2.1. Write docstrings of an iterator
+
+If users intend to write an iterator function, it is important to let the function explicitly `yield ...`, for exmaple:
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+```python showLineNumbers
+def example_iterator_func(
+    arg1: str, arg2: int
+) -> Iterator[tuple[str, str, Iterator[tuple[str]]]]:
+    """An example function iteratively return items.
+
+    Arguments
+    ---------
+    arg1: `str`
+        The first argument.
+
+    arg2: `int`
+        The second argument.
+
+    Yields
+    ------
+    #1: `str`
+        The first iterator item.
+
+    #2: `str`
+        The second iterator item.
+
+    #3: `Iterator[tuple[str]]`
+        The third iterator item a nested iterator.
+    """
+    yield NotImplemented
+    raise NotImplementedError
+```
+
+:::tip
+
+In this case, users need to maintain that
+
+1. `yield` is explicitly used.
+2. The returned value is annotated as `Iterator`, `Generator`, or their async versions.
+3. In the docstring, use `Yields` as the section title instead of the `Returns` section.
+
+:::
+
+</TabItem>
+
+<TabItem value="page" label="Converted">
+
+The docstring will be converted into a data strcuture [`DocFunction`](../../apis/core/functions/DocFunction.mdx), where the `retval` field is a list of [`DocArgument`](../../apis/core/functions/DocArgument.mdx). For example, the key fields of `retval[0]` is:
+
+| Field  | Value                    |
+| :----: | :----------------------- |
+| `name` | \#1                      |
+| `type` | `str`                    |
+| `doc`  | The first iterator item. |
+
+An example of the rendered iterator function page can be found here:
+
+<p>
+  {
+    <DarkButton
+      to="/docs/apis/core/inspectors/get_members_defined_in_class"
+      icon={epGuide}
+    >
+      core.inspectors.get_members_defined_in_class
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+## 3. Write docstrings for classes
+
+pyDocusaurus reads the following class docstring:
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+```python showLineNumbers
+class ExampleClass:
+    """An example class which is a mixture of methods, properties, and operators."""
+
+    def __init__(self, key: str, val: int = 10) -> None:
+        """Initialization.
+
+        Arguments
+        ---------
+        key: `str`
+            The first key to be configured.
+
+        val: `int`
+            The first value of the given key.
+        """
+        raise NotImplementedError
+
+    @property
+    def prop(self) -> int:
+        """A vanilla property with annotation."""
+        raise NotImplementedError
+
+    def method(self, arg: int, /, arg_any: Any, *, arg_key: str = "test") -> str:
+        """A vanilla instance method.
+
+        Arguments
+        ---------
+        arg: `int`
+            The input argument that is positional-only.
+
+        arg_any: `Any`
+            The input argument without specified type.
+
+        arg_key: `str`
+            The input argument that is keyword-only.
+
+        Returns
+        -------
+        #1: `str`
+            The returned value.
+        """
+        raise NotImplementedError
+```
+
+Overall, the top-level class docstring will be interpretedd as a multi-line Markdown documentdescribingf the clasn. The other rules are:
+
+1. The function and operator docstrings follow the previously mentioned function style. For methods and class methods, the first argument `self`/`cls` is skipped in the docstring.
+
+2. The initialization method will be parsed as the class arguments.
+
+3. The docstring of a property or cached property is interpreted as a multi-line Markdown document. If a property implements its `setter` or `deleter`, only the docstring of the `getter` will be read.
+
+</TabItem>
+
+<TabItem value="page" label="Converted">
+
+The docstring will be converted into a data strcuture [`DocClass`](../../apis/core/classes/DocClass.mdx), where the key fields are:
+
+|    Field     | Value                                                                      |
+| :----------: | :------------------------------------------------------------------------- |
+|    `name`    | ExampleClass                                                               |
+|   `descr`    | An example class which is a mixture of methods, properties, and operators. |
+| `init_func`  | `DocFunction`                                                              |
+|  `methods`   | `list[DocFunction]`                                                        |
+| `properties` | `list[DocProp]`                                                            |
+| `operators`  | `list[DocFunction]`                                                        |
+
+Here, the example class only contains one method, one property, and no operators (`__init__` is not counted as an operator). The contents of those functions follow the same rules as when extracting a vanilla function. Therefore, we only explain the details of `properties[0]`:
+
+|  Field  | Value                               |
+| :-----: | :---------------------------------- |
+| `name`  | prop                                |
+| `descr` | A vanilla property with annotation. |
+| `type`  | `int`                               |
+
+An example of the rendered class page can be found here:
+
+<p>
+  {
+    <DarkButton to="/docs/apis/renderer/components/Components" icon={epGuide}>
+      renderer.components.Components
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+## 4. Write docstrings for fields
+
+In [PEP 224<IconExternalLink/>][pep-224], the author proposed a standard for the attribute docstring, but was rejected by the committee. However, this proposal has effectively become the solution for VS Code to supplement regular docstrings. pyDocusaurus will read such docstrings from the source codes directly. Here is an example of annotating a [PyDantic<IconExternalLink/>][link-pydantic] model:
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+```python showLineNumbers
+class ExampleModel(BaseModel):
+    """An example PyDantic model that is used for testing the docstring extraction.
+
+    The initialization function are synthesized from the field definitions.
+    """
+
+    val_1: int
+    """The most plain field that is required."""
+
+    val_2: str = ""
+    """An optional field with a default value."""
+
+    val_3: int | str = Field(default="")
+    """A union field with the default value specified by the `Field` creator."""
+
+    val_4: list[str] = Field(default_factory=list)
+    """A list field with a default value specified by the factory function."""
+
+    val_5: Annotated[list[str], Field(default_factory=list)]
+    """A list field with the default value specified by the annotation."""
+```
+
+Although PyDantic provides the [Field.description<IconExternalLink/>](https://pydantic.dev/docs/validation/latest/api/pydantic/fields/#pydantic.fields.FieldInfo.description) attribute for writing docstrings, we do not adopt this runtime solution because such docstrings cannot be detected by static type checkers. In comparison, the “attribute-docstring” style is preferred here because VS Code can detect it.
+
+</TabItem>
+
+<TabItem value="page" label="Converted">
+
+The docstring will be converted into a data strcuture [`DocDataClass`](../../apis/core/datacls/DocDataClass.mdx), where the key fields are:
+
+|  Field   | Value                                                                                                                                                             |
+| :------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  `name`  | ExampleModel                                                                                                                                                      |
+| `descr`  | <p>An example PyDantic model that is used for testing the docstring extraction.</p><p>The initialization function are synthesized from the field definitions.</p> |
+| `fields` | `list[DocField]`                                                                                                                                                  |
+
+Note that the `DocDataClass` is a subclass of [`DocClass`](../../apis/core/classes/DocClass.mdx). Therefore, the other fields such as `methods` and `properties` work in the same way when extracting the docstring information.
+
+In this example, the PyDantic model is interpreted as a dataclass. The initialization function will not be detected, and the class arguments will be replaced by the "section of fields". The detected fields are a list of [`DocField`](../../apis/core/datacls/DocField.mdx). An example of the exported fields are as follows:
+
+|  Field  |     Type     | Description                                                            |
+| :-----: | :----------: | :--------------------------------------------------------------------- |
+| `val_1` |    `int`     | The most plain field that is required.                                 |
+| `val_2` |    `str`     | An optional field with a default value.                                |
+| `val_3` | `int \| str` | A union field with the default value specified by the `Field` creator. |
+| `val_4` | `list[str]`  | A list field with a default value specified by the factory function.   |
+| `val_5` | `list[str]`  | A list field with the default value specified by the annotation.       |
+
+An example of the rendered dataclass page can be found here:
+
+<p>
+  {
+    <DarkButton to="/docs/apis/renderer/page/RendererPage" icon={epGuide}>
+      renderer.page.RendererPage
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+## 5. Write docstrings for types
+
+[PEP 224<IconExternalLink/>][pep-224] also applies to the type aliases and variables. Currently, pyDocusaurus implements the docstring detection for the type aliase definitions.
+
+:::warning
+In other words, currently, the docstring of the global variables are not supported yet.
+:::
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+Suppose that we have such a module:
+
+```python showLineNumbers title="example_aliases.py"
+CustomType: TypeAlias = int | str
+"""docstring for CustomType"""
+
+type SpecifiedList = list[str]
+"""docstring for SpecifiedList"""
+```
+
+Here, the example module contains two aliases defined in [different ways<IconExternalLink/>][link-typealias]. pyDocusaurus can detect both cases.
+
+</TabItem>
+
+<TabItem value="page" label="Converted">
+
+The docstring will be converted into a data strcuture [`DocTypeAlias`](../../apis/core/typealiases/DocTypeAlias.mdx). For example, the key fields of the first detected alias are:
+
+|    Field     | Value                                |
+| :----------: | :----------------------------------- |
+|    `name`    | CustomType                           |
+|   `descr`    | docstring for CustomType             |
+| `definition` | `CustomType: TypeAlias = int \| str` |
+
+An example of the type alias can be found here:
+
+<p>
+  {
+    <DarkButton
+      href="https://cainmagi.github.io/dash-file-cache/docs/apis/caches/typehints/Deferred"
+      icon={epGuide}
+    >
+      dfc.caches.typehints.Deferred
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+[link-typing]: https://docs.python.org/3.14/library/typing.html
+[link-typealias]: https://docs.python.org/3.14/library/typing.html#type-aliases
+[link-ast]: https://docs.python.org/3/library/ast.html
+[link-pydantic]: https://pydantic.dev/docs/
+[pep-287]: https://peps.python.org/pep-0287/
+[pep-224]: https://peps.python.org/pep-0224/

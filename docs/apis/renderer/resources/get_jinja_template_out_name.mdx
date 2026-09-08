@@ -1,0 +1,34 @@
+---
+id: get_jinja_template_out_name
+title: get_jinja_template_out_name
+sidebar_label: get_jinja_template_out_name
+slug: /apis/renderer/resources/get_jinja_template_out_name
+description: Get the destination name of the file rendered from a jinja2 template
+  file.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.resources.get_jinja_template_out_name" />
+
+```python
+v_1: str = get_jinja_template_out_name(file_name: str)
+```
+
+Get the destination name of the file rendered from a jinja2 template file.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `file_name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The jinja2 template file name. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The name of the destination file. |

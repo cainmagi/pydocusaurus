@@ -1,0 +1,154 @@
+---
+id: DocTypeAlias
+title: DocTypeAlias
+sidebar_label: DocTypeAlias
+slug: /apis/core/typealiases/DocTypeAlias
+description: The docstring of a typed alias.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.typealiases.DocTypeAlias" />
+
+```python
+DocTypeAlias(
+    type: Literal["alias"] = "alias",
+    name: str,
+    definition: str,
+    descr: str = "",
+    slang: str = "",
+    lineno: int = 0
+)
+```
+
+The docstring of a typed alias.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["alias"]` | | The identifier of this documentation item. |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the dict item. |
+| `definition` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The full declaration of the type alias. It is usually an assignment code. |
+| `descr` | `str` | | The docstring of the dict item, it is defined in codes. |
+| `slang` | `str` | | The internal code identifying this type alias. |
+| `lineno` | `int` | | The line number where the alias is defined. If the number is unknown, this value will be `0`. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+Render as Markdown text.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the type alias. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `is_node_anno_assign_expr`
+
+```python
+v_1: str | None = DocTypeAlias.is_node_anno_assign_expr(node: AnnAssign)
+```
+
+Check whether an `ast.Node` containing an annotated assignment expression is a type alias definition.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node` | `AnnAssign` | <InlineIcon icon={vsiCheckIcon}/> | An `ast` node that is possibly a type alias expression. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str \| None` | The type alias name if is valid. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `is_node_assign_expr`
+
+```python
+v_1: str | None = DocTypeAlias.is_node_assign_expr(node: Assign)
+```
+
+Check whether an `ast.Node` containing an assignment expression is a type alias definition.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node` | `Assign` | <InlineIcon icon={vsiCheckIcon}/> | An `ast` node that is possibly a type alias expression. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str \| None` | The type alias name if is valid. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `is_node_type_alias_expr`
+
+```python
+v_1: str | None = DocTypeAlias.is_node_type_alias_expr(node: TypeAlias)
+```
+
+Check whether an `ast.Node` containing a type alias expression is a type alias definition.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node` | `TypeAlias` | <InlineIcon icon={vsiCheckIcon}/> | An `ast` node that is possibly a type alias expression. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str \| None` | The type alias name if is valid. |
+
+## Properties
+
+### <IconObjType type="param"/> `is_private`
+
+```python
+is_private: bool = self.is_private
+```
+
+A flag specifying whether the type is private.
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `str_v2`
+
+```python
+str_v2: str = self.str_v2
+```
+
+Render as V2 string.
+
+The v2 string is in the following format:
+
+```python
+type Alias = TypeA | TypeB
+```
+
+Note that the v2 string is the same as the definition in the source codes.
+It is also the same as the default plain string.

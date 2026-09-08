@@ -1,0 +1,36 @@
+---
+id: get_obj_slang
+title: get_obj_slang
+sidebar_label: get_obj_slang
+slug: /apis/core/inspectors/get_obj_slang
+description: Get the full slang of a function/class/variable in a module.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_obj_slang" />
+
+```python
+v_1: str = get_obj_slang(obj: Any, skip_root_module: bool = True)
+```
+
+Get the full slang of a function/class/variable in a module.
+
+> [!warning] Note that the efficiency of this method is low when the inspected object is not a function/class. When inspecting all members in a module, it is better using `get_member_slangs(...)`.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The object to be inspected. |
+| `skip_root_module` | `bool` | | A flag. If specified, will skip the root module in the slang. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | <p>The slang string of the inspected object.</p><p>If the slang refers to the root of the package, return <code>"."</code>.</p><p>If the slang cannot be analyzed, return an empty string.</p> |

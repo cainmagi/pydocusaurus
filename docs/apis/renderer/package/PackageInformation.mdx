@@ -1,0 +1,140 @@
+---
+id: PackageInformation
+title: PackageInformation
+sidebar_label: PackageInformation
+slug: /apis/renderer/package/PackageInformation
+description: The basic information of a package.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="renderer.package.PackageInformation" />
+
+```python
+PackageInformation(
+    user: str | None = None,
+    package_name: str | None = None,
+    sidebar: list[str | dict[str, Any]] | None = None,
+    source_uris: dict[str, dict[str, str]] | None = None,
+    source_versions: dict[str, str] | None = None
+)
+```
+
+The basic information of a package. All fields are optional and can be inferred from the solved results.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `user` | `str \| None` | | The user name of the repository owner. It needs to be the GitHub user name. |
+| `package_name` | `str \| None` | | The name of the package rendered as the documentation. If not specified, will infer the name automatically. |
+| `sidebar` | `list[str \| dict[str, Any]] \| None` | | The rendered sidebar data of the API documentation. If not specified, will infer this sidebar structure automatically. |
+| `source_uris` | `dict[str, dict[str, str]] \| None` | | The list of source URIs. It is used for providing the links to the source codes. If not specified, will infer these URIs automatically. |
+| `source_versions` | `dict[str, str] \| None` | | A mapping from the version names to the version identifiers. The version names are used as the keys of `source_uris`, and the version identifiers are used for locating the version links. If not spcified, will infer this mapping from the `source_uris`. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_vardict`
+
+```python
+v_1: dict[str, Any] = self.as_vardict()
+```
+
+Dump the information as a variable dictionary.
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `dict[str, Any]` | The variable dictionary to be used in resource rendering. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `set_pkg_info`
+
+```python
+v_1: Self = self.set_pkg_info(pkg: ModuleType)
+```
+
+Set the `package_name` if it is not specified.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `pkg` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | The package providing the name. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | This data model. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `set_sidebar`
+
+```python
+v_1: Self = self.set_sidebar(pkg_renderer: PackageRenderer)
+```
+
+Set the `sidebar` if it is not specified.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `pkg_renderer` | `PackageRenderer` | <InlineIcon icon={vsiCheckIcon}/> | The package renderer providing the sidebar. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | This data model. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `set_source_uris`
+
+```python
+v_1: Self = self.set_source_uris(pkg_renderer: PackageRenderer, version: str | None = None)
+```
+
+Set the `source_uris` if it is not specified.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `pkg_renderer` | `PackageRenderer` | <InlineIcon icon={vsiCheckIcon}/> | The package renderer providing the uris. |
+| `version` | `str \| None` | | The version text provided by the package. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | This data model. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `set_source_versions`
+
+```python
+v_1: Self = self.set_source_versions(versions: Mapping[str, str] | None = None)
+```
+
+Set the `source_versions` if it is not specified.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `versions` | `Mapping[str, str] \| None` | | The version mapping from version names to the version identifiers. If not specified, will use the keys of `source_uris` to infer this value. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | This data model. |

@@ -1,0 +1,35 @@
+---
+id: as_pypi_name
+title: as_pypi_name
+sidebar_label: as_pypi_name
+slug: /apis/renderer/resources/as_pypi_name
+description: Convert the package name as a PyPI name.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.resources.as_pypi_name" />
+
+```python
+v_1: str = as_pypi_name(value: Any)
+```
+
+Convert the package name as a PyPI name.
+
+This is a customized Jinja2 template filter.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `value` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The value to be filtered. It supposes to be a `str`. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The normalized name. The space and underline symbols will be converted to the connection dash. |

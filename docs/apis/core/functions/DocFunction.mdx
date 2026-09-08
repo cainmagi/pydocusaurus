@@ -1,0 +1,99 @@
+---
+id: DocFunction
+title: DocFunction
+sidebar_label: DocFunction
+slug: /apis/core/functions/DocFunction
+description: The docstring and basic information of a function.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.functions.DocFunction" />
+
+```python
+DocFunction(
+    type: Literal["function"] = "function",
+    name: str,
+    descr: str,
+    args: list[DocArgument] = [],
+    retval: list[DocArgument] = [],
+    is_yield: bool = False,
+    f_type: FunctionType = FunctionType.FUNCTION,
+    prefix: str = "",
+    slang: str = "",
+    lineno: int = 0,
+    overloads: list[DocFunctionOverload] = []
+)
+```
+
+The docstring and basic information of a function.
+
+This serializable data type contains the signature of a function, and the corresponding docstring of function body, arguments, and results.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["function"]` | | The identifier of this documentation item. |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the function. |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The description body of the function. |
+| `args` | `list[DocArgument]` | | The list of input arguments of the function. |
+| `retval` | `list[DocArgument]` | | The list of returned values of the function. |
+| `is_yield` | `bool` | | A flag. If it is `True`, the function returns an iterator. |
+| `f_type` | `FunctionType` | | The type of the function. |
+| `prefix` | `str` | | An optional prefix. If specified, will add it before the function name in the v2 signature. |
+| `slang` | `str` | | The internal code identifying this function. It needs to be specified when the function is a vanilla function (`f_type` is `"function"`) to provide the identification of the source code. |
+| `lineno` | `int` | | The line number where the function is defined. If the number is unknown, this value will be `0`. |
+| `overloads` | `list[DocFunctionOverload]` | | The overloads of this function. If existing, will override the default docstrings. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+Render as Markdown text.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the function. |
+
+## Properties
+
+### <IconObjType type="param"/> `is_private`
+
+```python
+is_private: bool = self.is_private
+```
+
+A flag specifying whether the function is private.
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `str_v2`
+
+```python
+str_v2: str = self.str_v2
+```
+
+Render as V2 string.
+
+The v2 string is in the following format:
+
+```python
+ret: type = name(arg1: type1, arg2: type2 = default2, ...)
+```
+
+which is more compact than the default string.

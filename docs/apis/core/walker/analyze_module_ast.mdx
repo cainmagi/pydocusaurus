@@ -1,0 +1,34 @@
+---
+id: analyze_module_ast
+title: analyze_module_ast
+sidebar_label: analyze_module_ast
+slug: /apis/core/walker/analyze_module_ast
+description: Analyze the coding structure (AST) of a module, and return the entity
+  information detected in the code.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.walker.analyze_module_ast" />
+
+```python
+v_1: dict[str, tuple[int, bool]] = analyze_module_ast(module: ModuleType)
+```
+
+Analyze the coding structure (AST) of a module, and return the entity information detected in the code.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | The module to be analyzed. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `dict[str, tuple[int, bool]]` | <p>The mapping of <code>name -> (lineno, is_alias)</code>.</p><p>The <code>name</code> is the entity name detected in the module.</p><p>An entity can be a class, function, variable, and imported aliases such as - class Foo - def bar - baz = ... - import x as y - from .sub import name - from external import name</p><p><code>lineno</code> is the line number where the entity is specified in the code.</p><p><code>is_alias</code> is a flag showing whether the entity is an alias. When it is <code>True</code>, it means that the name is imported/re-exported, but not defined directly in this module.</p> |

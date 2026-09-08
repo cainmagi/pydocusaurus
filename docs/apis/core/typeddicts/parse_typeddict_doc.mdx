@@ -1,0 +1,33 @@
+---
+id: parse_typeddict_doc
+title: parse_typeddict_doc
+sidebar_label: parse_typeddict_doc
+slug: /apis/core/typeddicts/parse_typeddict_doc
+description: Parse the docstring of a typed dictionary class.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.typeddicts.parse_typeddict_doc" />
+
+```python
+v_1: DocTypedDict = parse_typeddict_doc(cls: type[Any])
+```
+
+Parse the docstring of a typed dictionary class.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | A class object to be parsed. It needs to be a typed dictionary. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocTypedDict` | The parsed docstring of the typed dictionary class. |

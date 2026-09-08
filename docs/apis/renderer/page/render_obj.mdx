@@ -1,0 +1,33 @@
+---
+id: render_obj
+title: render_obj
+sidebar_label: render_obj
+slug: /apis/renderer/page/render_obj
+description: Render an arbitrary object as a documentation page.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.page.render_obj" />
+
+```python
+v_1: RendererPage | None = render_obj(obj: Any)
+```
+
+Render an arbitrary object as a documentation page.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | <p>The object to be rendered, it can be a class, function, or a module.</p><p>If this argument is a method, the method will be interpreted as a function.</p> |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `RendererPage \| None` | The rendered page object. Will be `None` if the given obj cannot be rendered as a documentation page. |

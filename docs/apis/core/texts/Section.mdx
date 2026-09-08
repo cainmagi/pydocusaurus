@@ -1,0 +1,67 @@
+---
+id: Section
+title: Section
+sidebar_label: Section
+slug: /apis/core/texts/Section
+description: Document section extracted from a Markdown string.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.texts.Section" />
+
+```python
+Section(title: str, level: int = 0, content: list[str] = [])
+```
+
+Document section extracted from a Markdown string.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `title` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The text of the title |
+| `level` | `int` | | The level number of the title. |
+| `content` | `list[str]` | | The line-by-line content in the section. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text()
+```
+
+Render as Markdown text.
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the section. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `from_md_text`
+
+```python
+v_1: list[Self] = Section.from_md_text(md_text: str | None)
+```
+
+Parse Markdown docstring as a list of sections.
+
+Each section starts with a title.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `md_text` | `str \| None` | <InlineIcon icon={vsiCheckIcon}/> | The text to be parsed. It is ususually a docstring. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `list[Self]` | A list of sections. Each section starts with a title. The content are preserved as a sequence of lines. If the section does not have a title, its title level will be 0. |

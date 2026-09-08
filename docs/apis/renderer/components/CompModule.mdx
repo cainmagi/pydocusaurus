@@ -1,0 +1,29 @@
+---
+id: CompModule
+title: CompModule
+sidebar_label: CompModule
+slug: /apis/renderer/components/CompModule
+description: The MDX component module to be rendered.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="renderer.components.CompModule" />
+
+```python
+CompModule(
+    module: str, default: str = "", named: set[str | tuple[str, str]] = set(...)
+)
+```
+
+The MDX component module to be rendered. Call `str(...)` to render this object as an MDX code line.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The full typescript module of the component. |
+| `default` | `str` | | The default export of the module. If not specified, will not export the default value. |
+| `named` | `set[str \| tuple[str, str]]` | | <p>The named export of the module. If not specified, will not export any names.</p><pre><code>If the element is a tuple, it means `(export_name, as_name)` during the import.</code></pre> |

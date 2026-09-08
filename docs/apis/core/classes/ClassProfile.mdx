@@ -1,0 +1,57 @@
+---
+id: ClassProfile
+title: ClassProfile
+sidebar_label: ClassProfile
+slug: /apis/core/classes/ClassProfile
+description: A temporary profile extracted from the class.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.classes.ClassProfile" />
+
+```python
+ClassProfile(
+    properties: list[property | cached_property] = [],
+    methods: list[function | classmethod | staticmethod] = [],
+    operators: dict[str, function] = dict(...),
+    abstract_attrs: AbstractAttrs | None = None
+)
+```
+
+A temporary profile extracted from the class.
+
+This profile is used only to aggregate a class's attributes. The information will be persisted by the following docstring conversion.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `properties` | `list[property \| cached_property]` | | All properties of this class. |
+| `methods` | `list[function \| classmethod \| staticmethod]` | | All instance/class/static methods of this class. |
+| `operators` | `dict[str, function]` | | All overloaded operators of this class. |
+| `abstract_attrs` | `AbstractAttrs \| None` | | Optional abstract attributes. It is `None` when the class is not abstract. |
+
+## Methods
+
+### <IconObjType type="method"/> `from_class`
+
+```python
+v_1: Self = ClassProfile.from_class(base_cls: type[Any])
+```
+
+Get the profile of a class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `base_cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | The class where the profile will be analyzed. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | The analyzed class profile. |

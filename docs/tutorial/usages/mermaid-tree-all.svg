@@ -1,0 +1,46 @@
+<svg id="graph-101" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; max-width: 100%; touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" role="graphics-document document" aria-roledescription="treeView" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" viewBox="0 0 837.8 661.8">
+  <g id="viewport-20260908060521680" class="svg-pan-zoom_viewport" transform="matrix(2.98334, 0, 0, 2.98334, 29.853815, -10.485744)" style="">
+    <style>#graph-101{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#graph-101 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#graph-101 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#graph-101 .error-icon{fill:#552222;}#graph-101 .error-text{fill:#552222;stroke:#552222;}#graph-101 .edge-thickness-normal{stroke-width:1px;}#graph-101 .edge-thickness-thick{stroke-width:3.5px;}#graph-101 .edge-pattern-solid{stroke-dasharray:0;}#graph-101 .edge-thickness-invisible{stroke-width:0;fill:none;}#graph-101 .edge-pattern-dashed{stroke-dasharray:3;}#graph-101 .edge-pattern-dotted{stroke-dasharray:2;}#graph-101 .marker{fill:#333333;stroke:#333333;}#graph-101 .marker.cross{stroke:#333333;}#graph-101 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#graph-101 p{margin:0;}#graph-101 .treeView-node-label{font-size:16px;fill:black;white-space:pre;}#graph-101 .treeView-node-dir{font-weight:bold;}#graph-101 .treeView-node-line{stroke:black;}#graph-101 .treeView-node-icon{color:#546e7a;}#graph-101 .treeView-node-description{font-size:16px;fill:#6a9955;font-style:italic;white-space:pre;}#graph-101 .treeView-highlight-bg{fill:rgba(255, 193, 7, 0.15);stroke:#ffc107;stroke-width:1;}#graph-101 .node .neo-node{stroke:#9370DB;}#graph-101 [data-look="neo"].node rect,#graph-101 [data-look="neo"].cluster rect,#graph-101 [data-look="neo"].node polygon{stroke:#9370DB;filter:drop-shadow(1px 2px 2px rgba(185, 185, 185, 1));}#graph-101 [data-look="neo"].swimlane.cluster rect{filter:none;}#graph-101 [data-look="neo"].node path{stroke:#9370DB;stroke-width:1px;}#graph-101 [data-look="neo"].node .outer-path{filter:drop-shadow(1px 2px 2px rgba(185, 185, 185, 1));}#graph-101 [data-look="neo"].node .neo-line path{stroke:#9370DB;filter:none;}#graph-101 [data-look="neo"].node circle{stroke:#9370DB;filter:drop-shadow(1px 2px 2px rgba(185, 185, 185, 1));}#graph-101 [data-look="neo"].node circle .state-start{fill:#000000;}#graph-101 [data-look="neo"].icon-shape .icon{fill:#9370DB;filter:drop-shadow(1px 2px 2px rgba(185, 185, 185, 1));}#graph-101 [data-look="neo"].icon-shape .icon-neo path{stroke:#9370DB;filter:drop-shadow(1px 2px 2px rgba(185, 185, 185, 1));}#graph-101 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+    <g></g>
+    <g class="tree-view">
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label treeView-node-dir" x="5" y="14.5" style="white-space: pre;">/</text>
+      </g>
+      <line x1="-10" y1="14.5" x2="0" y2="14.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label treeView-node-dir" x="20" y="43.5" style="white-space: pre;">project</text>
+      </g>
+      <line x1="5" y1="43.5" x2="15" y2="43.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <rect x="30" y="59" width="240.8125" height="27" rx="3" class="treeView-highlight-bg"></rect>
+        <text dominant-baseline="middle" class="treeView-node-label treeView-node-dir highlight" x="35" y="72.5" style="white-space: pre;">my_package</text>
+        <text dominant-baseline="middle" class="treeView-node-description" x="159.46875" y="72.5" style="white-space: pre;">main package</text>
+      </g>
+      <line x1="20" y1="72.5" x2="30" y2="72.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label" x="35" y="101.5" style="white-space: pre;">pyproject.toml</text>
+        <text dominant-baseline="middle" class="treeView-node-description" x="159.46875" y="101.5" style="white-space: pre;">configuration</text>
+      </g>
+      <line x1="20" y1="101.5" x2="30" y2="101.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label" x="35" y="130.5" style="white-space: pre;">setup.py</text>
+        <text dominant-baseline="middle" class="treeView-node-description" x="159.46875" y="130.5" style="white-space: pre;">placeholder</text>
+      </g>
+      <line x1="20" y1="130.5" x2="30" y2="130.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label" x="35" y="159.5" style="white-space: pre;">...</text>
+      </g>
+      <line x1="20" y1="159.5" x2="30" y2="159.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label" x="35" y="188.5" style="white-space: pre;">LICENSE.md</text>
+      </g>
+      <line x1="20" y1="188.5" x2="30" y2="188.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label" x="35" y="217.5" style="white-space: pre;">README.md</text>
+      </g>
+      <line x1="20" y1="217.5" x2="30" y2="217.5" stroke-width="1" class="treeView-node-line"></line>
+      <line x1="20" y1="58" x2="20" y2="218" stroke-width="1" class="treeView-node-line"></line>
+      <line x1="5" y1="29" x2="5" y2="44" stroke-width="1" class="treeView-node-line"></line>
+    </g>
+  </g>
+</svg>

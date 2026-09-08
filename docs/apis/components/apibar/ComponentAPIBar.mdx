@@ -1,0 +1,47 @@
+---
+id: ComponentAPIBar
+title: ComponentAPIBar
+sidebar_label: ComponentAPIBar
+slug: /apis/components/apibar/ComponentAPIBar
+description: The renderer of the top API bar.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="components.apibar.ComponentAPIBar" />
+
+```python
+ComponentAPIBar(
+    name: str = "APITopBar",
+    type: Literal["func", "class", "module", "package", "type"],
+    slang: str = "",
+    is_data_class: bool = False,
+    is_enum: bool = False,
+    is_ctx: bool = False,
+    is_decorator: bool = False,
+    is_mixin: bool = False,
+    is_component: bool = False,
+    is_private: bool = False,
+    is_abstract: bool = False
+)
+```
+
+The renderer of the top API bar.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | | The name of the top bar. |
+| `type` | `Literal["func", "class", "module", "package", "type"]` | <InlineIcon icon={vsiCheckIcon}/> | The type of the API. It is usually the first icon. |
+| `slang` | `str` | | The unique code used for identifying the top bar. It is usually the full route-name of the object to be described. |
+| `is_data_class` | `bool` | | A flag. If specified, will render the dataclass icon. |
+| `is_enum` | `bool` | | A flag. If specified, will render the enum icon. |
+| `is_ctx` | `bool` | | A flag. If specified, will render the context icon. |
+| `is_decorator` | `bool` | | A flag. If specified, will render the decorator icon. |
+| `is_mixin` | `bool` | | A flag. If specified, will render the mixin icon. |
+| `is_component` | `bool` | | A flag. If specified, will render the component icon. |
+| `is_private` | `bool` | | A flag. If specified, will render the private icon. |
+| `is_abstract` | `bool` | | A flag. If specified, will render the abstract icon. |

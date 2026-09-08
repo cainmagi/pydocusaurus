@@ -1,0 +1,67 @@
+---
+id: URIHolder
+title: URIHolder
+sidebar_label: URIHolder
+slug: /apis/renderer/package/URIHolder
+description: A temporary storage used for managing URIs.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" source="renderer.package.URIHolder" />
+
+```python
+URIHolder()
+```
+
+A temporary storage used for managing URIs.
+
+## Arguments
+
+No argument is needed.
+
+## Methods
+
+### <IconObjType type="method"/> `add`
+
+```python
+self.add(page: RendererPage)
+```
+
+Add a slang to the URI storage.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `page` | `RendererPage` | <InlineIcon icon={vsiCheckIcon}/> | A page providing the slang and URI. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `render`
+
+```python
+v_1: dict[str, str] = self.render()
+```
+
+Render the data as the URI list.
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `dict[str, str]` | A mapping from `slang` to the document file `uri`. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `update`
+
+```python
+self.update()
+```
+
+Refresh the URI list, and update the `is_package` flags.
+
+This method is used to compensate the information of the undetected package members.

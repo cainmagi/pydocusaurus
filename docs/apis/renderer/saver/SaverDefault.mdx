@@ -1,0 +1,76 @@
+---
+id: SaverDefault
+title: SaverDefault
+sidebar_label: SaverDefault
+slug: /apis/renderer/saver/SaverDefault
+description: The default implementation of the file saver.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isAbstract={true} source="renderer.saver.SaverDefault" />
+
+```python
+SaverDefault()
+```
+
+This is an abstract class requiring further implementation.
+
+The default implementation of the file saver. It can be overriden if special customization is required.
+
+## Arguments
+
+Initialization function is not specified.
+
+## Methods
+
+### <IconObjType type="method"/> `save_bytes`
+
+```python
+self.save_bytes(file_path: str | PathLike[str], data: bytes)
+```
+
+Save the binary data.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `file_path` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | The path to the output file. |
+| `data` | `bytes` | <InlineIcon icon={vsiCheckIcon}/> | The byte data to be saved. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `save_data`
+
+```python
+self.save_data(file_path: str | PathLike[str], data: Any)
+```
+
+Save the structured data (such as json).
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `file_path` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | The path to the output file. |
+| `data` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The structured data to be saved. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `save_text`
+
+```python
+self.save_text(file_path: str | PathLike[str], data: str)
+```
+
+Save the text file.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `file_path` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | The path to the output file. |
+| `data` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The text data to be saved. |

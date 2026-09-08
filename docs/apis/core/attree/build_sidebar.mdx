@@ -1,0 +1,25 @@
+---
+id: build_sidebar
+title: build_sidebar
+sidebar_label: build_sidebar
+slug: /apis/core/attree/build_sidebar
+description: Create an empty sidebar tree.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+
+<APITopBar type="func" source="core.attree.build_sidebar" />
+
+```python
+v_1: ModuleAttributeTree[str | dict[str, Any]] = build_sidebar()
+```
+
+Create an empty sidebar tree.
+
+## Arguments
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `ModuleAttributeTree[str \| dict[str, Any]]` | An attribute tree with a customized serialization method for rendering the sidebar of the documentation. The returned tree is empty. |

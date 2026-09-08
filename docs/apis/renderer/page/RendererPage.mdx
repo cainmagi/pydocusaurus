@@ -1,0 +1,94 @@
+---
+id: RendererPage
+title: RendererPage
+sidebar_label: RendererPage
+slug: /apis/renderer/page/RendererPage
+description: The renderer of the an API page.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="renderer.page.RendererPage" />
+
+```python
+RendererPage(
+    data: DocModule | DocFunction | DocClass | DocDataClass | DocEnum | DocTypedDict | DocProtocol | DocTypeAlias
+)
+```
+
+The renderer of the an API page.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `data` | `DocModule \| DocFunction \| DocClass \| DocDataClass \| DocEnum \| DocTypedDict \| DocProtocol \| DocTypeAlias` | <InlineIcon icon={vsiCheckIcon}/> | The data used for rendering the page. |
+
+## Methods
+
+### <IconObjType type="method"/> `render`
+
+```python
+v_1: str = self.render()
+```
+
+Render the page as an MDX file.
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The rendered page text in the MDX format. |
+
+## Properties
+
+### <IconObjType type="param"/> `file_path`
+
+```python
+file_path: str = self.file_path
+```
+
+Get the path of the output file where the page conent supposes to be
+saved.
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `id`
+
+```python
+id: str = self.id
+```
+
+Get the ID of this page.
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `metadata`
+
+```python
+metadata: dict[str, str] = self.metadata
+```
+
+The YAML heading containing the docusaurus metadata.
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `short_descr`
+
+```python
+short_descr: str = self.short_descr
+```
+
+The short description of the data extracted from the first sentence.
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `slug`
+
+```python
+slug: str = self.slug
+```
+
+The documentation address slug.

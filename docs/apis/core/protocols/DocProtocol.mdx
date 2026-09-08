@@ -1,0 +1,71 @@
+---
+id: DocProtocol
+title: DocProtocol
+sidebar_label: DocProtocol
+slug: /apis/core/protocols/DocProtocol
+description: The docstring and basic information of a protocol (typing class).
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.protocols.DocProtocol" />
+
+```python
+DocProtocol(
+    name: str,
+    descr: str,
+    init_func: DocFunction = _default_init(),
+    init_func_specified: bool = True,
+    methods: list[DocFunction] = [],
+    properties: list[DocProp] = [],
+    operators: list[DocOpTemplate] = [],
+    abstract_attrs: DocClassAbstractAttrs | None = None,
+    slang: str = "",
+    lineno: int = 0,
+    type: Literal["protocol"] = "protocol"
+)
+```
+
+The docstring and basic information of a protocol (typing class).
+
+The protocol is a specialized abstract class. However, it does not provide functionalities in run time but only used during the type checking. The serialized information is rendered differenly compared to regular classes.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the class. |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The description body of the class. |
+| `init_func` | `DocFunction` | | The initialization function of the class. |
+| `init_func_specified` | `bool` | | A flag. When it is on, it means that the initialization function has been defined by user. |
+| `methods` | `list[DocFunction]` | | The list of methods of this class. |
+| `properties` | `list[DocProp]` | | The list of properties of this class. |
+| `operators` | `list[DocOpTemplate]` | | The list of operators of this class. |
+| `abstract_attrs` | `DocClassAbstractAttrs \| None` | | Additional abstract attributes. Will present only when the class is abstract. For the protocols, this value will be always `None`. |
+| `slang` | `str` | | The internal code identifying this class. |
+| `lineno` | `int` | | The line number where the class is defined. If the number is unknown, this value will be `0`. |
+| `type` | `Literal["protocol"]` | | The identifier of this documentation item. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+Render as Markdown text.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the protocol class. |

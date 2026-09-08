@@ -1,0 +1,30 @@
+---
+id: index
+title: renderer
+sidebar_label: renderer
+slug: /apis/renderer
+description: The centralized renderer used to produce the Markdown format of the documentation.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="package" source="renderer" />
+
+The centralized renderer used to produce the Markdown format of the documentation. Some test.
+
+## Modules
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="module" hasText={true} text="components"/>](./components/index.mdx) | The implementation of the component synthesizer. |
+| [<IconObjType type="module" hasText={true} text="saver"/>](./saver/index.mdx) | The saver used for dumping output files. |
+| [<IconObjType type="module" hasText={true} text="resources"/>](./resources/index.mdx) | Rendering the resource files into the documentation. |
+| [<IconObjType type="module" hasText={true} text="page"/>](./page/index.mdx) | The synthesis of an API documentation page. |
+| [<IconObjType type="module" hasText={true} text="package"/>](./package/index.mdx) | Walkthrough a python package, and render the package docstrings as the mdx-formatted API documentation. |
+
+## Aliases
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="render_obj"/>](./page/render_obj.mdx) | Render an arbitrary object as a documentation page. |
+| [<IconObjType type="func" hasText={true} text="render_package_as_mdx"/>](./package/render_package_as_mdx.mdx) | Render a package as MDX documentation files. |

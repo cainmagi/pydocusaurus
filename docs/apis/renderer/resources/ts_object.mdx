@@ -1,0 +1,37 @@
+---
+id: ts_object
+title: ts_object
+sidebar_label: ts_object
+slug: /apis/renderer/resources/ts_object
+description: Dump a value as json, and put it in a typescript object.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.resources.ts_object" />
+
+```python
+v_1: str = ts_object(value: Any, indent: int = 2, base_indent: int = 0)
+```
+
+Dump a value as json, and put it in a typescript object.
+
+This is a customized Jinja2 template filter.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `value` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The value to be filtered. |
+| `indent` | `int` | | The indent of the dumped json. |
+| `base_indent` | `int` | | The indent of the current place. This value needs to be configured when the object is to be put at a value with an existing indent. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The rendered multi-line typescript object data. |

@@ -1,0 +1,176 @@
+---
+id: PackageRenderer
+title: PackageRenderer
+sidebar_label: PackageRenderer
+slug: /apis/renderer/package/PackageRenderer
+description: The module parser implemented for rendering documentation pages.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isAbstract={true} source="renderer.package.PackageRenderer" />
+
+```python
+PackageRenderer(out_dir: str | PathLike[str], saver: SaverAbstract)
+```
+
+This is an abstract class requiring further implementation.
+
+The module parser implemented for rendering documentation pages.
+
+This renderer will be called on each package member and save the parsed information as a documentation page file.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `out_dir` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | The output directory where the documentation is saved. |
+| `saver` | `SaverAbstract` | <InlineIcon icon={vsiCheckIcon}/> | The saver used for dumping the files. |
+
+## Methods
+
+### <IconObjType type="method"/> `parse_class`
+
+```python
+self.parse_class(obj: DocClass)
+```
+
+Render a member object when it is a class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocClass` | <InlineIcon icon={vsiCheckIcon}/> | The class information to be rendered and saved. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_dataclass`
+
+```python
+self.parse_dataclass(obj: DocDataClass)
+```
+
+Render a member object when it is a data class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocDataClass` | <InlineIcon icon={vsiCheckIcon}/> | The data class information to be rendered and saved. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_enum`
+
+```python
+self.parse_enum(obj: DocEnum)
+```
+
+Render a member object when it is an enum class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocEnum` | <InlineIcon icon={vsiCheckIcon}/> | The enum information to be rendered and saved. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_function`
+
+```python
+self.parse_function(obj: DocFunction)
+```
+
+Render a member object when it is a function.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | The function information to be rendered and saved. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_module`
+
+```python
+self.parse_module(obj: DocModule)
+```
+
+Render a member object when it is a module.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocModule` | <InlineIcon icon={vsiCheckIcon}/> | The module information to be rendered and saved. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_protocol`
+
+```python
+self.parse_protocol(obj: DocProtocol)
+```
+
+Render a member object when it is a protocol class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocProtocol` | <InlineIcon icon={vsiCheckIcon}/> | The protocol class information to be rendered and saved. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_typealias`
+
+```python
+self.parse_typealias(obj: DocTypeAlias)
+```
+
+Render a member object when it is a type alias.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocTypeAlias` | <InlineIcon icon={vsiCheckIcon}/> | The alias information to be rendered and saved. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_typeddict`
+
+```python
+self.parse_typeddict(obj: DocTypedDict)
+```
+
+Render a member object when it is a typed dictionary.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocTypedDict` | <InlineIcon icon={vsiCheckIcon}/> | The typed dictionary information to be rendered and saved. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `save_page`
+
+```python
+self.save_page(page: RendererPage)
+```
+
+Save the documentation page.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `page` | `RendererPage` | <InlineIcon icon={vsiCheckIcon}/> | The page to be rendered and saved. |

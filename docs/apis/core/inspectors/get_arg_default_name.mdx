@@ -1,0 +1,34 @@
+---
+id: get_arg_default_name
+title: get_arg_default_name
+sidebar_label: get_arg_default_name
+slug: /apis/core/inspectors/get_arg_default_name
+description: Format the given value as a string that can be used as the default field
+  of a function argument (`DocFunction`).
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_arg_default_name" />
+
+```python
+v_1: str = get_arg_default_name(val: Any)
+```
+
+Format the given value as a string that can be used as the default field of a function argument (`DocFunction`).
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `val` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The value to be checked. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | <p>The value that can be filled as the default value of a function argument.</p><p>If it is empty, the argument does not have the default configuration.</p> |

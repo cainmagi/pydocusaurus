@@ -1,0 +1,33 @@
+---
+id: DocModuleProp
+title: DocModuleProp
+sidebar_label: DocModuleProp
+slug: /apis/core/modules/DocModuleProp
+description: The docstring and basic information of a module property.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.modules.DocModuleProp" />
+
+```python
+DocModuleProp(
+    name: str,
+    descr: str = "",
+    type: Literal["package", "module", "class", "func", "type"] = "package",
+    slang: str = ""
+)
+```
+
+The docstring and basic information of a module property.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the module property. |
+| `descr` | `str` | | The description body, i.e., the docstring of the module property. |
+| `type` | `Literal["package", "module", "class", "func", "type"]` | | The type of the module property. |
+| `slang` | `str` | | The internal code identifying this property. |

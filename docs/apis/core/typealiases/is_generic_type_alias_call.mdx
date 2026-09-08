@@ -1,0 +1,36 @@
+---
+id: is_generic_type_alias_call
+title: is_generic_type_alias_call
+sidebar_label: is_generic_type_alias_call
+slug: /apis/core/typealiases/is_generic_type_alias_call
+description: Check whether an `ast.Node` is specified by a function call of `TypeVar`
+  and `ParamSpec`.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.typealiases.is_generic_type_alias_call" />
+
+```python
+v_1: TypeGuard[Call] = is_generic_type_alias_call(value: AST)
+```
+
+Check whether an `ast.Node` is specified by a function call of `TypeVar` and `ParamSpec`.
+
+This method is used for excluding the generic types defined in a module.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `value` | `AST` | <InlineIcon icon={vsiCheckIcon}/> | The `ast` node to be checked. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `TypeGuard[Call]` | A flag. It is `True` if RHS is a `TypeVar`/`ParamSpec`/etc. call. |

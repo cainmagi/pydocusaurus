@@ -1,0 +1,37 @@
+---
+id: get_members_defined_in_class
+title: get_members_defined_in_class
+sidebar_label: get_members_defined_in_class
+slug: /apis/core/inspectors/get_members_defined_in_class
+description: Get all members (attributes) defined in a class.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_members_defined_in_class" />
+
+```python
+(v_1: str, v_2: Any) in get_members_defined_in_class(cls: type[Any], exclude_private: bool = True)
+```
+
+Get all members (attributes) defined in a class.
+
+Different from `inspect.getmembers`, this method will exclude the attributes defined in the base class.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | The class to be inspected. |
+| `exclude_private` | `bool` | | A flag. If specified, will not return the attributes that starts with the "\_" prefix. |
+
+### Yields
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The name of the member. |
+| `v_2` | `Any` | The attribute value of the member. |

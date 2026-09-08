@@ -1,0 +1,83 @@
+---
+id: ModuleAttributeTree
+title: ModuleAttributeTree
+sidebar_label: ModuleAttributeTree
+slug: /apis/core/attree/ModuleAttributeTree
+description: The attribute tree of a module/package.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" source="core.attree.ModuleAttributeTree" />
+
+```python
+ModuleAttributeTree(
+    walk_method: Callable[[str, dict[str, Any], list[T]], T], root_name: str = "."
+)
+```
+
+The attribute tree of a module/package.
+
+This tree reconstructs the member structure of a full package. It can be converted to a serialized dictionary/list.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `walk_method` | `Callable[[str, dict[str, Any], list[T]], T]` | <InlineIcon icon={vsiCheckIcon}/> | <p>A method used to serialize tree nodes. The input arguments are:</p><ol><li>The partial name of the node.</li><li>The attributes of the current node.</li><li>The serialized members of the current node.</li></ol><p>The method will returns a serialized object representing the current node.</p> |
+| `root_name` | `str` | | The name of the root node. |
+
+## Methods
+
+### <IconObjType type="method"/> `add`
+
+```python
+self.add(node_full_name: str, node_attrs: Mapping[str, Any] | None = None)
+```
+
+Add a node to the attribute tree.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node_full_name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The full name like `"package.module.member"`. |
+| `node_attrs` | `Mapping[str, Any] \| None` | | An optional dictionary of attributes attached to the current added node. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `serialize`
+
+```python
+v_1: T = self.serialize()
+```
+
+Serialize the entire tree starting from root.
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `T` | The serialized object of the root node, including all nested members. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `serialize_unpacked`
+
+```python
+v_1: list[T] = self.serialize_unpacked()
+```
+
+Serialize the entire tree starting from root, with the root node unpacked.
+
+Different from `self.serialize()`, this method will treat the root node as a leaf node without members, and put all members of the root as siblings. Therefore, the returned value is always a list.
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `list[T]` | The list of serialized nodes. |

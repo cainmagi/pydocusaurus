@@ -1,0 +1,30 @@
+---
+id: index
+title: functions
+sidebar_label: functions
+slug: /apis/core/functions
+description: The documentation extraction of functions and methods.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.functions" />
+
+The documentation extraction of functions and methods.
+
+## Classes
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="ParameterKind"/>](./ParameterKind.mdx) | Replica of the `inspect._ParameterKind`. |
+| [<IconObjType type="class" hasText={true} text="FunctionType"/>](./FunctionType.mdx) | The type of a callable object (function). |
+| [<IconObjType type="class" hasText={true} text="DocArgument"/>](./DocArgument.mdx) | The docstring of a function/method argument. |
+| [<IconObjType type="class" hasText={true} text="DocFunction"/>](./DocFunction.mdx) | The docstring and basic information of a function. |
+
+## Functions
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="parse_argument_docs"/>](./parse_argument_docs.mdx) | (Private) Parse the docstring related to function arguments. |
+| [<IconObjType type="func" hasText={true} text="parse_return_docs"/>](./parse_return_docs.mdx) | (Private) Parse the docstring related to function returned values. |
+| [<IconObjType type="func" hasText={true} text="parse_func_docs"/>](./parse_func_docs.mdx) | Parse the docstring of a function. |

@@ -1,0 +1,37 @@
+---
+id: index
+title: inspectors
+sidebar_label: inspectors
+slug: /apis/core/inspectors
+description: The functionalities related to inspecting and analyzing objects.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.inspectors" />
+
+The functionalities related to inspecting and analyzing objects.
+
+## Functions
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="get_mro"/>](./get_mro.mdx) | Get the mro of a class. |
+| [<IconObjType type="func" hasText={true} text="get_obj_slang"/>](./get_obj_slang.mdx) | Get the full slang of a function/class/variable in a module. |
+| [<IconObjType type="func" hasText={true} text="is_user_defined_method"/>](./is_user_defined_method.mdx) | Check whether a member is defined in a class. |
+| [<IconObjType type="func" hasText={true} text="get_members_defined_in_class"/>](./get_members_defined_in_class.mdx) | Get all members (attributes) defined in a class. |
+| [<IconObjType type="func" hasText={true} text="get_members_defined_in_enum"/>](./get_members_defined_in_enum.mdx) | Get all members (attributes) defined in an enum class. |
+| [<IconObjType type="func" hasText={true} text="get_field_docstrings"/>](./get_field_docstrings.mdx) | Capture the docstrings of each assignment item in a class by its source code. |
+| [<IconObjType type="func" hasText={true} text="get_arg_default_name"/>](./get_arg_default_name.mdx) | Format the given value as a string that can be used as the default field of a function argument (`DocFunction`). |
+| [<IconObjType type="func" hasText={true} text="get_lambda_source"/>](./get_lambda_source.mdx) | Get the source definition of a lambda function expression. |
+| [<IconObjType type="func" hasText={true} text="get_func_signature"/>](./get_func_signature.mdx) | Attempt to get the signature of a potential function. |
+| [<IconObjType type="func" hasText={true} text="get_field_default"/>](./get_field_default.mdx) | Format the given value as a string that can be used as the default field of a field (`DocField`). |
+| [<IconObjType type="func" hasText={true} text="is_multival_tuple"/>](./is_multival_tuple.mdx) | Check whether the given annotation is a multi-variable tuple such as. |
+| [<IconObjType type="func" hasText={true} text="is_member_abstract"/>](./is_member_abstract.mdx) | Check whether a value is an abstract member of a class. |
+| [<IconObjType type="func" hasText={true} text="is_func_yield"/>](./is_func_yield.mdx) | Check whether the given object is a function returning an iterator. |
+| [<IconObjType type="func" hasText={true} text="unwrap_annotated_annotation"/>](./unwrap_annotated_annotation.mdx) | Given an annotation, remove the `Annotated[...]` wrapper recursively if it appears. |
+| [<IconObjType type="func" hasText={true} text="unpack_annotation"/>](./unpack_annotation.mdx) | Unpack the annotation wrapper. |
+| [<IconObjType type="func" hasText={true} text="strip_annotation_name"/>](./strip_annotation_name.mdx) | Convert an annotation to string, and strip its name by removing the module prefix. |
+| [<IconObjType type="func" hasText={true} text="get_short_descr"/>](./get_short_descr.mdx) | Get the short description from the long description. |
+| [<IconObjType type="func" hasText={true} text="get_slug"/>](./get_slug.mdx) | Get the URL slug from the slang prototype. |
+| [<IconObjType type="func" hasText={true} text="relative_url_path"/>](./relative_url_path.mdx) | Solve the relative path. |

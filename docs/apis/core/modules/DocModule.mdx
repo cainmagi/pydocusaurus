@@ -1,0 +1,148 @@
+---
+id: DocModule
+title: DocModule
+sidebar_label: DocModule
+slug: /apis/core/modules/DocModule
+description: The docstring of a module.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.modules.DocModule" />
+
+```python
+DocModule(
+    type: Literal["module"] = "module",
+    name: str,
+    metadata: DocModuleMetadata = DocModuleMetadata(...),
+    is_package: bool = False,
+    slang: str = "",
+    modules: list[DocModuleProp] = [],
+    classes: list[DocModuleProp] = [],
+    funcs: list[DocModuleProp] = [],
+    types: list[DocModuleProp] = [],
+    aliases: list[DocModuleProp] = []
+)
+```
+
+The docstring of a module.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["module"]` | | The identifier of this documentation item. |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the module. |
+| `metadata` | `DocModuleMetadata` | | The metadata of the module. This metadata body is extracted from the top docstring. |
+| `is_package` | `bool` | | A flag marking whether the module is a package. |
+| `slang` | `str` | | The internal code identifying this module. |
+| `modules` | `list[DocModuleProp]` | | All submodules belongling to this module. In this case, the current module should be a package. |
+| `classes` | `list[DocModuleProp]` | | All classes defined in this module. |
+| `funcs` | `list[DocModuleProp]` | | All functions defined in this module. |
+| `types` | `list[DocModuleProp]` | | The types (type alias, typed dict, and protocol) defined in this module. |
+| `aliases` | `list[DocModuleProp]` | | The items imported from the other modules/packages. |
+
+## Methods
+
+### <IconObjType type="method"/> `add_member`
+
+```python
+self.add_member(
+    member: (
+        DocModule
+        | DocClass
+        | DocDataClass
+        | DocEnum
+        | DocTypedDict
+        | DocProtocol
+        | DocTypeAlias
+        | DocFunction
+    ),
+    is_alias: bool,
+)
+```
+
+Add a member to this module.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `member` | `(DocModule \| DocClass \| DocDataClass \| DocEnum \| DocTypedDict \| DocProtocol \| DocTypeAlias \| DocFunction)` | <InlineIcon icon={vsiCheckIcon}/> | The member to be added to this module. |
+| `is_alias` | `bool` | <InlineIcon icon={vsiCheckIcon}/> | A flag specifying whether the member added to this module is an alias. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+Render as Markdown text.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the module. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `table_members`
+
+```python
+v_1: str = self.table_members(
+    renderer: ProtocolComponent,
+    members: Sequence[DocModuleProp],
+    has_relink: bool = True,
+    has_doc: bool = True,
+)
+```
+
+Format the module properties as a table.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+| `members` | `Sequence[DocModuleProp]` | <InlineIcon icon={vsiCheckIcon}/> | The list of members to be displayed in the table. |
+| `has_relink` | `bool` | | A flag. If specified, will render the first (name) column as relative links. |
+| `has_doc` | `bool` | | A flag. If specified, will display the docstring of the keyword-value. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown table of the keywords. |
+
+## Properties
+
+### <IconObjType type="param"/> `descr`
+
+```python
+descr: str = self.descr
+```
+
+The docstring of the module, it is defined at the beginning of the file.
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `str_v2`
+
+```python
+str_v2: str = self.str_v2
+```
+
+Render as V2 string.
+
+The V2 string of a module is the same as the default string.

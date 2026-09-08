@@ -1,0 +1,39 @@
+---
+id: render_resource_tree
+title: render_resource_tree
+sidebar_label: render_resource_tree
+slug: /apis/renderer/resources/render_resource_tree
+description: Render the resource tree of a package.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.resources.render_resource_tree" />
+
+```python
+render_resource_tree(
+    out_dir: str | PathLike[str],
+    variables: dict,
+    package: str = "pydocusaurus",
+    resource_root: str = "resources",
+    saver: SaverAbstract | None = None,
+)
+```
+
+Render the resource tree of a package.
+
+Recursively load a resource folder inside a package. Render Jinja2 templates and copy non-template files to `out_dir` while preserving folder structure.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `out_dir` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | The directory where the resource files will be dumped. |
+| `variables` | `dict` | <InlineIcon icon={vsiCheckIcon}/> | A mapping from names to the variables that the Jinja2 templates will use to render files. |
+| `package` | `str` | | The name of the package containing the resources. |
+| `resource_root` | `str` | | A relative path inside the package specifying the root of the resource folder. For example, "resources/ts". |
+| `saver` | `SaverAbstract \| None` | | The saver used for dumping the output files. If not specified, will use the default file saver. |

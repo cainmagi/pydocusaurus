@@ -1,0 +1,99 @@
+---
+id: Components
+title: Components
+sidebar_label: Components
+slug: /apis/renderer/components/Components
+description: The collection of components.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" source="renderer.components.Components" />
+
+```python
+Components()
+```
+
+The collection of components. This centralized component renderer will provide the components with proper memory.
+
+## Arguments
+
+No argument is needed.
+
+## Methods
+
+### <IconObjType type="method"/> `get_headers`
+
+```python
+v_1: str = self.get_headers()
+```
+
+Format components as headers during the page rendering.
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The header texts containing multiple import lines of the MDX components. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `icon_obj`
+
+```python
+v_1: str = self.icon_obj(
+    type: Literal[
+        "method", "op", "param", "package", "module", "class", "func", "type"
+    ],
+    text: str = "",
+)
+```
+
+The protocol of the subtitle icon.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["method", "op", "param", "package", "module", "class", "func", "type"]` | <InlineIcon icon={vsiCheckIcon}/> | The name determining the icon. |
+| `text` | `str` | | An optional text after the icon. If it is empty, will only display the icon. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The MDX code of the icon-text. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `inline_icon`
+
+```python
+v_1: str = self.inline_icon(icon: Literal["check"])
+```
+
+The protocol of special single icon.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `icon` | `Literal["check"]` | <InlineIcon icon={vsiCheckIcon}/> | The name determining the icon. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The MDX code of the icon. |
+
+## Properties
+
+### <IconObjType type="param"/> `apibar`
+
+```python
+apibar: type[ComponentAPIBar] = self.apibar
+```
+
+The API top bar component. It is an MDX API bar synthesizer.

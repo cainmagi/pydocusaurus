@@ -1,0 +1,37 @@
+---
+id: santize_doc_cell
+title: santize_doc_cell
+sidebar_label: santize_doc_cell
+slug: /apis/core/texts/santize_doc_cell
+description: Sanitize the cell text by.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.texts.santize_doc_cell" />
+
+```python
+v_1: str = santize_doc_cell(text: str)
+```
+
+Sanitize the cell text by
+
+1. Replace `|` with `\|`.
+
+These changes are used to render MDX formats for inline texts.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `text` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The input cell text. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The sanitized text. |

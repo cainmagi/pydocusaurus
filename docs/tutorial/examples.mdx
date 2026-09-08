@@ -1,0 +1,243 @@
+---
+id: examples
+sidebar_label: Examples
+title: Example Scripts and Usages
+description: Several example scripts showing the extended usages of pyDocusaurus.
+slug: /tutorial/examples
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import DarkButton from "@site/src/components/DarkButton";
+
+import IconExternalLink from "@theme/Icon/ExternalLink";
+import mdiLanguagePython from "@iconify-icons/mdi/language-python";
+
+import {demoURL} from "@site/src/envs/variables";
+
+Here, we show several examples of extended usages.
+
+## 1. Plain conversion
+
+Nothing special, just like the examples shown in the introduction. This script can be found in
+
+<p>
+  <DarkButton to={demoURL("convert.py")} icon={mdiLanguagePython}>
+    {"convert.py"}
+  </DarkButton>
+</p>
+
+<Tabs
+  groupId="doc-exscripts"
+  defaultValue="clis"
+  values={[
+    { label: 'CLIs', value: 'clis', },
+    { label: 'Python', value: 'python', },
+  ]
+}>
+
+<TabItem value="clis">
+
+```sh
+python -m pydocusaurus render-doc pydocusaurus -o ./docs-pydocusaurus -u cainmagi
+```
+
+Certainly, in the project folder, users can run
+
+```sh
+cd pydocusaurus
+python -m examples.convert
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python showLineNumbers title="convert.py"
+from pydocusaurus import render_package_as_mdx
+import pydocusaurus
+
+if __name__ == "__main__":
+    render_package_as_mdx(
+        pydocusaurus, out_dir="./docs-pydocusaurus", package_info="cainmagi"
+    )
+```
+
+</TabItem>
+
+</Tabs>
+
+## 2. Customized saver
+
+Users can customize the behavior of saving the documents. The following scripts let all documentation files aggregated as a single [YAML<IconExternalLink/>][link-yaml] file. This script can be found in
+
+<p>
+  <DarkButton to={demoURL("convert.py")} icon={mdiLanguagePython}>
+    {"custom_saver.py"}
+  </DarkButton>
+</p>
+
+<Tabs
+  groupId="doc-exscripts"
+  defaultValue="clis"
+  values={[
+    { label: 'CLIs', value: 'clis', },
+    { label: 'Python', value: 'python', },
+  ]
+}>
+
+<TabItem value="clis">
+
+In the project folder, run
+
+```sh
+cd pydocusaurus
+python -m examples.custom_saver
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python showLineNumbers title="custom_saver.py"
+import os
+import json
+
+from typing import Any
+
+import yaml
+
+import pydocusaurus
+
+__all__ = ("render",)
+
+
+class SaverSingleFile(pydocusaurus.renderer.package.SaverAbstract):
+    """The saver that dumps all documentation files in a single file."""
+
+    def __init__(self) -> None:
+        """Initialization."""
+        super().__init__()
+        self.data: dict[str, str] = dict()
+
+    def dump_yaml(self, out_path: str) -> None:
+        """Dump the cached documentation files as a single YAML data file.
+
+        Arguments
+        ---------
+        out_path: `str`
+            The path will the document is saved. It is a YAML file.
+        """
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        with open(out_path, "w", encoding="utf-8") as fobj:
+            yaml.safe_dump(self.data, fobj, indent=2)
+
+    def save_bytes(self, file_path: str | os.PathLike[str], data: bytes) -> None:
+        """Save the binary data.
+
+        Arguments
+        ---------
+        file_path: `str | PathLike[str]`
+            The path to the output file.
+
+        data: `bytes`
+            The byte data to be saved.
+        """
+        self.data[str(file_path).strip()] = data.decode("utf-8")
+
+    def save_text(self, file_path: str | os.PathLike[str], data: str) -> None:
+        """Save the text file.
+
+        Arguments
+        ---------
+        file_path: `str | PathLike[str]`
+            The path to the output file.
+
+        data: `str`
+            The text data to be saved.
+        """
+        self.data[str(file_path).strip()] = data
+
+    def save_data(self, file_path: str | os.PathLike[str], data: Any) -> None:
+        """Save the structured data (such as json).
+
+        Arguments
+        ---------
+        file_path: `str | PathLike[str]`
+            The path to the output file.
+
+        data: `Any`
+            The structured data to be saved.
+        """
+        self.data[str(file_path).strip()] = json.dumps(data, indent=2)
+
+
+def render() -> None:
+    """Render the documentation of pydocusaurus."""
+    cur_dir = os.path.dirname(__file__)
+    out_dir = os.path.join(cur_dir, "docs-{0}".format(pydocusaurus.__name__))
+    saver = SaverSingleFile()
+    pydocusaurus.render_package_as_mdx(pydocusaurus, out_dir=out_dir, saver=saver)
+    saver.dump_yaml(os.path.join(cur_dir, "docs-pydocusaurus-single.yml"))
+
+
+if __name__ == "__main__":
+    render()
+```
+
+</TabItem>
+
+</Tabs>
+
+## 3. Show the page of one entity
+
+During debugging, we may need to know the performance of the rendered page for a specific entity. The following example shows how to print the page without converting the whole package.
+
+This script can be found in
+
+<p>
+  <DarkButton to={demoURL("single_obj.py")} icon={mdiLanguagePython}>
+    {"single_obj.py"}
+  </DarkButton>
+</p>
+
+<Tabs
+  groupId="doc-exscripts"
+  defaultValue="clis"
+  values={[
+    { label: 'CLIs', value: 'clis', },
+    { label: 'Python', value: 'python', },
+  ]
+}>
+
+<TabItem value="clis">
+
+In the project folder, run
+
+```sh
+cd pydocusaurus
+python -m examples.single_obj
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python showLineNumbers title="single_obj.py"
+import pydocusaurus
+
+if __name__ == "__main__":
+    print("Producing the documentation page: {0}".format(doc.slug))
+    doc = pydocusaurus.render_obj(pydocusaurus.components.comprotocol.ProtocolComponent)
+    if doc is None:
+        print("Fail to produce the documentation page.")
+        return
+    print("")
+    print(doc.render())
+```
+
+</TabItem>
+
+</Tabs>
+
+[link-yaml]: https://pyyaml.org/wiki/PyYAMLDocumentation

@@ -1,0 +1,35 @@
+---
+id: is_runtime_root
+title: is_runtime_root
+sidebar_label: is_runtime_root
+slug: /apis/core/typealiases/is_runtime_root
+description: Check whether an `ast.Node` is specified by a known run-time root.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.typealiases.is_runtime_root" />
+
+```python
+v_1: TypeGuard[Name] = is_runtime_root(node: AST)
+```
+
+Check whether an `ast.Node` is specified by a known run-time root.
+
+This method is used for excluding global variables defined by `getitem` method such as `os.environ[...]`.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node` | `AST` | <InlineIcon icon={vsiCheckIcon}/> | The `ast` node to be checked. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `TypeGuard[Name]` | A flag. It is `True` if it is provided by `os`, `sys`, and some other global modules. |

@@ -1,0 +1,35 @@
+---
+id: get_short_descr
+title: get_short_descr
+sidebar_label: get_short_descr
+slug: /apis/core/inspectors/get_short_descr
+description: Get the short description from the long description.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_short_descr" />
+
+```python
+v_1: str = get_short_descr(descr: str)
+```
+
+Get the short description from the long description.
+
+Extract the first sentence from the given text.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The long description that may contain multiple sentences. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The first sentence extracted from the given text. |

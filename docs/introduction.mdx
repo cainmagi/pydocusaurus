@@ -1,0 +1,146 @@
+---
+id: introduction
+title: Introduction
+description: The introduction of pyDocusaurus. pyDocusaurus is designed for automatically converting Python docstrings into a modern Docusaurus-powered documentation site.
+slug: /
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import IconExternalLink from "@theme/Icon/ExternalLink";
+
+import octClock16 from "@iconify-icons/octicon/clock-16";
+import octLaw16 from "@iconify-icons/octicon/law-16";
+import octRepoForked16 from "@iconify-icons/octicon/repo-forked-16";
+import octShareAndroid16 from "@iconify-icons/octicon/share-android-16";
+import octiconShield16 from "@iconify-icons/octicon/shield-16";
+
+import {rawURL, repoURL, demoURL} from "@site/src/envs/variables";
+import DarkButton from "@site/src/components/DarkButton";
+
+This package is inspired by Sphinx, which is usually thought of as the "official" solution for auto-generated Python documentation. According to Sphinx's documentation, the automatic generation can be described as:
+
+> <p>Generate API documentation for Python, C++ and other software domains, manually or automatically from docstrings, ensuring your code documentation stays up-to-date with minimal effort.</p>
+> <cite><p align="right">——Sphinx</p></cite>
+
+Overall, this package offers similar functionalities to [Sphinx<IconExternalLink/>][link-sphinx]. It goes through the docstrings in the whole package and reorganizes them as an automatically generated API document. However, **pyDocusaurus is not an extension of Sphinx**, because
+
+1. Sphinx is old. It was designed in an era when typing or type hints were not part of the Python standard library (STL). Therefore, Sphinx needs to infer the types from the docstrings. In modern Python code, this feature is redundant.
+
+2. Sphinx is essentially proposed for reStructuredText (rst). Certainly, it supports Markdown with specific extensions. However, the Markdown features, especially those related to variable types, are not well integrated with the automatically generated API documents. Users may still suffer a lot of rst code in the generated document.
+
+3. Limited by the old-school template, Sphinx does not produce a "modern" website.
+
+Essentially, this package will produce a "patch" for a Docusaurus project. Like Sphinx, **pyDocusaurus will go through the whole package and convert the docstring into a Docusaurus-compatible API document**, while requiring minimal modifications when integrating the auto-generated document with an existing Docusaurus project (e.g., an existing tutorial site).
+
+## Usage
+
+<Tabs
+  defaultValue="clis"
+  values={[
+    { label: 'CLIs', value: 'clis', },
+    { label: 'Python', value: 'python', },
+  ]
+}>
+
+<TabItem value="clis">
+
+Run the following simple one-liner command to convert an existing package to a documentation.
+
+```sh
+python -m pydocusaurus render-doc <package-name> -o <out-dir> -u <user-name>
+```
+
+Check more details by using the help functionalities:
+
+```sh
+python -m pydocusaurus render-doc --help
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+Run the following script to convert an existing package to a documentation.
+
+```python showLineNumbers title="convert_docs.py"
+from pydocusaurus import render_package_as_mdx
+import any_package
+
+if __name__ == "__main__":
+    render_package_as_mdx(
+        any_package, out_dir="./docs-output", package_info="yourname"
+    )
+```
+
+The output documentation files will be saved in `./docs-output`. Here, the `package_info` is configured as the user name. For example, it supposes to be the GitHub user name if you are planning to put your documentation on GitHub.
+
+</TabItem>
+
+</Tabs>
+
+## Acknowledgements
+
+- [facebook/Docusaurus<IconExternalLink/>][git-docusaurus]: Easy to maintain open source documentation websites.
+
+## Related materials
+
+Changelog:
+
+<p>
+  {
+    <DarkButton href={repoURL("blob/main/Changelog.md")} icon={octClock16}>
+      Changelog
+    </DarkButton>
+  }
+</p>
+
+License of this project:
+
+<p>
+  {
+    <DarkButton href={repoURL("blob/main/LICENSE")} icon={octLaw16}>
+      MIT License
+    </DarkButton>
+  }
+</p>
+
+Guidelines for the contributions:
+
+<p>
+  {
+    <DarkButton
+      href={repoURL("blob/main/CONTRIBUTING.md")}
+      icon={octRepoForked16}
+    >
+      Contributing
+    </DarkButton>
+  }
+</p>
+
+Contributor covenant code of conduct:
+
+<p>
+  {
+    <DarkButton
+      href={repoURL("blob/main/CODE_OF_CONDUCT.md")}
+      icon={octShareAndroid16}
+    >
+      Code of conduct
+    </DarkButton>
+  }
+</p>
+
+Security policy:
+
+<p>
+  {
+    <DarkButton href={repoURL("blob/main/SECURITY.md")} icon={octiconShield16}>
+      Security
+    </DarkButton>
+  }
+</p>
+
+[git-docusaurus]: https://github.com/facebook/docusaurus
+[link-sphinx]: https://www.sphinx-doc.org/en/master/

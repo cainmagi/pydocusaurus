@@ -1,0 +1,69 @@
+---
+id: DocProp
+title: DocProp
+sidebar_label: DocProp
+slug: /apis/core/classes/DocProp
+description: The docstring and basic information of a class property.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.classes.DocProp" />
+
+```python
+DocProp(name: str, descr: str, type: str)
+```
+
+The docstring and basic information of a class property.
+
+A class property can be defined by `@property` or `@functools.cached_property`.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the property. |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The description body of the property. |
+| `type` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The type of the property. It is usually the typehint (annotation). |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+Render as Markdown text.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the class property. |
+
+## Properties
+
+### <IconObjType type="param"/> `str_v2`
+
+```python
+str_v2: str = self.str_v2
+```
+
+Render as V2 string.
+
+The v2 string is in the following format:
+
+```python
+prop_name: type = self.prop_name
+```
+
+which is more compact than the default string.

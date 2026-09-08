@@ -1,0 +1,33 @@
+---
+id: is_jinja_template
+title: is_jinja_template
+sidebar_label: is_jinja_template
+slug: /apis/renderer/resources/is_jinja_template
+description: Check whether the file is a jinja2 template.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.resources.is_jinja_template" />
+
+```python
+v_1: bool = is_jinja_template(file_name: str)
+```
+
+Check whether the file is a jinja2 template.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `file_name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The file name to be checked. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | A flag. It is `True` if the file is flagged as a jinja2 template. |

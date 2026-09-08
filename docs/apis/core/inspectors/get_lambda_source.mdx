@@ -1,0 +1,33 @@
+---
+id: get_lambda_source
+title: get_lambda_source
+sidebar_label: get_lambda_source
+slug: /apis/core/inspectors/get_lambda_source
+description: Get the source definition of a lambda function expression.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_lambda_source" />
+
+```python
+v_1: str = get_lambda_source(func: Any)
+```
+
+Get the source definition of a lambda function expression.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `func` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | A function object that is potentially a lambda function. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The expression. Will return `None` if the given `func` is not a lambda function. |

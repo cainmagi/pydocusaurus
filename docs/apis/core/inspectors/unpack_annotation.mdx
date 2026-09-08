@@ -1,0 +1,37 @@
+---
+id: unpack_annotation
+title: unpack_annotation
+sidebar_label: unpack_annotation
+slug: /apis/core/inspectors/unpack_annotation
+description: Unpack the annotation wrapper.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.unpack_annotation" />
+
+```python
+(v_1: tuple[Any, ...], v_2: bool, v_3: bool) = unpack_annotation(anno: Any)
+```
+
+Unpack the annotation wrapper.
+
+This method is mainly used for extracting the arguments in the wrapped returned annotation such as `Generator[]`, `Iterator[]`, and `tuple[]`.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `anno` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The annotation to be analyzed. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `tuple[Any, ...]` | A list of extracted arguments in the annotation. If the given annotation only has one argument, will be `(anno,)`. |
+| `v_2` | `bool` | A flag showing whether the annotation should be interpreted as async output. |
+| `v_3` | `bool` | A flag showing whether the annotation should be interpreted as yielding values. |

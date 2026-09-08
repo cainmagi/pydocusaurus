@@ -1,0 +1,34 @@
+---
+id: is_single_paragraph
+title: is_single_paragraph
+sidebar_label: is_single_paragraph
+slug: /apis/core/analyzer/is_single_paragraph
+description: Check whether the Markdown text only contains a single paragraph.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.analyzer.is_single_paragraph" />
+
+```python
+v_1: bool = is_single_paragraph(md: MarkdownIt, text: str)
+```
+
+Check whether the Markdown text only contains a single paragraph.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `md` | `MarkdownIt` | <InlineIcon icon={vsiCheckIcon}/> | The markdown-it parser. |
+| `text` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The text to be analyzed. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | A flag. If it is `True`, the given `text` only contains one Markdown paragraph. |

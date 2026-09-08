@@ -1,0 +1,34 @@
+---
+id: relative_url_path
+title: relative_url_path
+sidebar_label: relative_url_path
+slug: /apis/core/inspectors/relative_url_path
+description: Solve the relative path.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.relative_url_path" />
+
+```python
+v_1: str = relative_url_path(path_from: str, path_to: str)
+```
+
+Solve the relative path.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `path_from` | `str` | <InlineIcon icon={vsiCheckIcon}/> | An anchor path. The final path is solved starting from this path. |
+| `path_to` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The target path. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The relative path from `path_from` to `to_ppath_toath`, always using forward slashes for URL compatibility. |

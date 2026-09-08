@@ -1,0 +1,43 @@
+---
+id: parse_argument_docs
+title: parse_argument_docs
+sidebar_label: parse_argument_docs
+slug: /apis/core/functions/parse_argument_docs
+description: (Private) Parse the docstring related to function arguments.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" isPrivate={true} source="core.functions.parse_argument_docs" />
+
+```python
+v_1: list[DocArgument] = parse_argument_docs(
+    func: Any,
+    docstring: Sequence[str],
+    func_name: str | None = None,
+    warn_supp: bool = False,
+)
+```
+
+(Private) Parse the docstring related to function arguments.
+
+It is a part of `parse_func_docs(...)`. Calling this function direclty is not recommended.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `func` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | A function object to be parsed. It can be a vanilla function or a method. |
+| `docstring` | `Sequence[str]` | <InlineIcon icon={vsiCheckIcon}/> | The line-by-line docstring of all arguments. This value should be provided by an analyzed `Section` object. |
+| `func_name` | `str \| None` | | The function name displayed in messages. If not specified, will automatically infer it. |
+| `warn_supp` | `bool` | | A flag. If specified, will not display warning messages. It is used for excluding special/private functions. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `list[DocArgument]` | A list of parsed docstrings of all input arguments. |

@@ -1,0 +1,35 @@
+---
+id: is_func_yield
+title: is_func_yield
+sidebar_label: is_func_yield
+slug: /apis/core/inspectors/is_func_yield
+description: Check whether the given object is a function returning an iterator.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.is_func_yield" />
+
+```python
+v_1: bool = is_func_yield(func: Any)
+```
+
+Check whether the given object is a function returning an iterator.
+
+Will check the real-time implementation first. If not detected, will check the annotation.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `func` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The function candidate object to be checked. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | A flag that will be `True` if the function returns the generator/iterator. |

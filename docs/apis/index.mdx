@@ -1,0 +1,35 @@
+---
+id: index
+title: Overview of APIs
+sidebar_label: Overview
+slug: /apis/
+description: Inspired by Sphinx, this tool is designed for generating the Docusaurus
+  documentation project from Python docstrings.
+---
+
+import SvgAPIGraph from "../api-graph.svg";
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="package" source="." />
+
+Inspired by Sphinx, this tool is designed for generating the Docusaurus documentation project from Python docstrings.
+
+<p><SvgAPIGraph className="themed-mermaid-svg" width="100%"/></p>
+
+## Modules
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="module" hasText={true} text="version"/>](./version/index.mdx) | The version of this project. |
+| [<IconObjType type="package" hasText={true} text="components"/>](./components/index.mdx) | The components used for building the documentations. |
+| [<IconObjType type="package" hasText={true} text="core"/>](./core/index.mdx) | The core functionalities used to analyze the Python codes and docstrings. |
+| [<IconObjType type="package" hasText={true} text="renderer"/>](./renderer/index.mdx) | The centralized renderer used to produce the Markdown format of the documentation. |
+
+## Aliases
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="module" hasText={true} text="walker"/>](./core/walker/index.mdx) | The inspector and analyzer that walks through and processes the nested package and module members. |
+| [<IconObjType type="func" hasText={true} text="render_obj"/>](./renderer/page/render_obj.mdx) | Render an arbitrary object as a documentation page. |
+| [<IconObjType type="func" hasText={true} text="render_package_as_mdx"/>](./renderer/package/render_package_as_mdx.mdx) | Render a package as MDX documentation files. |
