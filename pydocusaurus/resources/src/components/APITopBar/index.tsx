@@ -7,6 +7,7 @@ import vsiSymbolParameter from "@iconify-icons/codicon/symbol-parameter";
 import vsiSymbolOperator from "@iconify-icons/codicon/symbol-operator";
 import vsiSymbolMethod from "@iconify-icons/codicon/symbol-method";
 import vsiSymbolField from "@iconify-icons/codicon/symbol-field";
+import vsiSymbolEnum from '@iconify-icons/codicon/symbol-enum';
 import vsiExtensions from "@iconify-icons/codicon/extensions";
 import vsiTerminalIcon from "@iconify-icons/codicon/terminal";
 import mdiAlphaTBoxOutline from "@iconify-icons/mdi/alpha-t-box-outline";
@@ -39,6 +40,7 @@ export type IconObjTypeProps = {
     | "method"
     | "ctx"
     | "dataclass"
+    | "enum"
     | "deco"
     | "desc"
     | "abc"
@@ -293,6 +295,27 @@ export const IconObjType = ({
           }
         />
       );
+    case "enum":
+      return (
+        <InlineIcon
+          icon={vsiSymbolEnum}
+          vspace={vspace}
+          text={
+            hasText
+              ? text ||
+                translate(
+                  {
+                    id: "components.apitopbar.icon.enum",
+                    description:
+                      "The text displayed for the APITopBar icon: Enum.",
+                    message: "Enum",
+                  },
+                  {}
+                )
+              : undefined
+          }
+        />
+      );
     case "deco":
       return (
         <InlineIcon
@@ -533,6 +556,7 @@ export type APITopBarProps = {
   isAbstract?: boolean;
   isContext?: boolean;
   isDataClass?: boolean;
+  isEnum?: boolean;
   isDecorator?: boolean;
   isDescriptor?: boolean;
   isException?: boolean;
@@ -573,6 +597,12 @@ const APITopBar = (props: APITopBarProps): React.JSX.Element => {
         <>
           <Splitter />
           <IconObjType type={"dataclass"} hasText={true} />
+        </>
+      )}
+      {props.isEnum && (
+        <>
+          <Splitter />
+          <IconObjType type={"enum"} hasText={true} />
         </>
       )}
       {props.isDecorator && (

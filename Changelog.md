@@ -20,6 +20,7 @@
 6. Fix: Remove the unwanted namespace pacakges in the package member list.
 7. Fix: Add two missing names in the `__all__` list of submodules.
 8. Fix: Add missing docstring of `core.modules.DocModuleMetadata.from_long_descr`.
+9. Fix: Add the missing icon of the `isEnum` case.
 
 #### :floppy_disk: Change
 
