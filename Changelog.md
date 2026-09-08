@@ -21,6 +21,7 @@
 7. Fix: Add two missing names in the `__all__` list of submodules.
 8. Fix: Add missing docstring of `core.modules.DocModuleMetadata.from_long_descr`.
 9. Fix: Add the missing icon of the `isEnum` case.
+10. Fix: Correct the test package to match the namespace skipping rules (see Fix 6 of this update).
 
 #### :floppy_disk: Change
 

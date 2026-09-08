@@ -18,8 +18,11 @@ Description
 An example module containing different members.
 """
 
+import os
+import sys
 import enum
 import types
+import importlib.util
 
 import dataclasses
 
@@ -39,25 +42,23 @@ __all__ = (
     "example_func",
 )
 
-exampleModule = types.ModuleType(
-    "tests.modules.example.exampleModule",
-    doc=("""
-        exampleModule
-        =============
 
-        Author
-        ------
-        Yuchen Jin (cainmagi)
-        cainmagi@gmail.com
+def _load_module(module_name: str) -> types.ModuleType:
+    """(Private) load a local module."""
+    cur_folder = os.path.dirname(__file__)
+    spec = importlib.util.spec_from_file_location(
+        "tests.modules.example.{0}".format(module_name),
+        os.path.join(cur_folder, "{0}.py".format(module_name)),
+    )
+    assert spec is not None
+    assert spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    sys.modules["tests.modules.example.{0}".format(module_name)] = module
+    return module
 
-        License
-        -------
-        MIT License
 
-        Description
-        -----------
-        Example Docstring"""),
-)
+exampleModule = _load_module("example_submodule")
 
 type CustomType = int | str
 """An example type alias."""

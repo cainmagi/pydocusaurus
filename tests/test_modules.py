@@ -65,7 +65,7 @@ def test_module_vanilla() -> None:
     # modules
     item = doc.modules[0]
     log.info("Test item: {0}.{1}".format(doc.name, item.name))
-    assert item.name == "exampleModule"
+    assert item.name == "example_submodule"
     assert item.type == "module"
     assert item.descr == "Example Docstring."
 
