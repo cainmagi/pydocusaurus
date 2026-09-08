@@ -18,3 +18,4 @@
 #### :floppy_disk?: Change
 
 1. Update the security policy link.
+2. Adjust some highlight codes.

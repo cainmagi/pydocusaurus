@@ -161,9 +161,11 @@ Suppose that you need to update a new version of the documents. You may need to:
        "license",
      ],
 
+     // highlight-start
      apis: [
        // Copy your new sidebar here.
      ]
+     // highlight-end
    }
    ```
 
@@ -175,12 +177,14 @@ Suppose that you need to update a new version of the documents. You may need to:
      sourceVersion: {
        "main": string;
        "v1.0.0": string;
+       // highlight-next-line
        "v2.0.0": string;  // Added
        [key: string]: any;
      }
      sourceURIs: {
        "main": {[key: string]: string};
        "v1.0.0": {[key: string]: string};
+       // highlight-next-line
        "v2.0.0": {[key: string]: string};  // Added
        [key: string]: any;
      }
@@ -193,12 +197,15 @@ Suppose that you need to update a new version of the documents. You may need to:
      sourceVersion: {
        "main": "main",
        "v1.0.0": "v1.0.0",
+       // highlight-next-line
        "v2.0.0": "v2.0.0",  // the value is the branch/tag name.
      },
      sourceURIs: {
+       // highlight-start
        "v2.0.0": {
          // Put your newly generated sourceURIs.main body here.
        }
+       // highlight-end
        "v1.0.0": {
          ".": "./__init__.py",
          ...
