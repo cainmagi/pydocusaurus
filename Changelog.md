@@ -9,6 +9,7 @@
 #### :wrench: Fix
 
 1. Fix: Remove unwanted generated files.
+2. Fix: Fall back to typescript v6 for fixing the loading issue.
 
 ### 1.0.0 @ 09/08/2026
 
