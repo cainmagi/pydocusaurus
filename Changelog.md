@@ -4,6 +4,12 @@
 
 ## CHANGELOG
 
+### 1.0.0 @ 09/17/2026
+
+#### :wrench: Fix
+
+1. Fix: Remove unwanted generated files.
+
 ### 1.0.0 @ 09/08/2026
 
 #### :mega: New
