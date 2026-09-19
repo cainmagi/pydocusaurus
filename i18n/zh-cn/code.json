@@ -509,5 +509,25 @@
   "theme.docs.DocCard.categoryDescription.plurals": {
     "message": "{count} 个项目",
     "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
+  "versions.table.dep": {
+    "message": "核心依赖",
+    "description": "Table item: dependency number."
+  },
+  "index.feat.python.python.link": {
+    "message": "https://docs.python.org/zh-cn/3.14/index.html",
+    "description": "The link to the Python documentation."
+  },
+  "index.feat.python.docu.link": {
+    "message": "https://docusaurus.io/zh-CN/",
+    "description": "The link to the Docusaurus documentation."
+  },
+  "index.feat.docu.sphinx.link": {
+    "message": "https://www.sphinx-doc.org/zh-cn/master/",
+    "description": "The link to the Sphinx documentation."
+  },
+  "index.feat.docu.docu.link": {
+    "message": "https://docusaurus.io/zh-CN/",
+    "description": "The link to the Docusaurus documentation."
   }
 }

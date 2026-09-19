@@ -30,7 +30,11 @@ const FeatureList: FeatureItem[] = [
           values={{
             python: (
               <Link
-                href="https://docs.python.org/3/index.html"
+                href={translate({
+                  id: "index.feat.python.python.link",
+                  description: "The link to the Python documentation.",
+                  message: "https://docs.python.org/3/index.html",
+                })}
                 aria-label="Python"
               >
                 Python
@@ -38,7 +42,14 @@ const FeatureList: FeatureItem[] = [
               </Link>
             ),
             docusaurus: (
-              <Link href="https://docusaurus.io/" aria-label="docusaurus">
+              <Link
+                href={translate({
+                  id: "index.feat.python.docu.link",
+                  description: "The link to the Docusaurus documentation.",
+                  message: "https://docusaurus.io/",
+                })}
+                aria-label="docusaurus"
+              >
                 Docusaurus
                 <IconExternalLink />
               </Link>
@@ -106,7 +117,11 @@ const FeatureList: FeatureItem[] = [
           values={{
             sphinx: (
               <Link
-                href="https://www.sphinx-doc.org/en/master/"
+                href={translate({
+                  id: "index.feat.docu.sphinx.link",
+                  description: "The link to the Sphinx documentation.",
+                  message: "https://www.sphinx-doc.org/en/master/",
+                })}
                 aria-label="Sphinx"
               >
                 Sphinx
@@ -114,7 +129,14 @@ const FeatureList: FeatureItem[] = [
               </Link>
             ),
             docu: (
-              <Link href="https://docusaurus.io/" aria-label="docusaurus">
+              <Link
+                href={translate({
+                  id: "index.feat.docu.docu.link",
+                  description: "The link to the Docusaurus documentation.",
+                  message: "https://docusaurus.io/",
+                })}
+                aria-label="docusaurus"
+              >
                 Docusaurus
                 <IconExternalLink />
               </Link>

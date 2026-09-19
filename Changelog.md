@@ -9,6 +9,7 @@
 #### :mega: New
 
 1. Add the Chinese version of the documentation.
+2. Support more translations of the main information.
 
 #### :floppy_disk?: Change
 
