@@ -1,0 +1,116 @@
+---
+id: useful-regex
+sidebar_label: Useful Regex
+title: Useful Regular Expressions
+description: An introduction to several useful regular expressions when writing the translations of the documentation.
+slug: /usages/useful-regex
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import DarkButton from "@site/src/components/DarkButton";
+
+import IconExternalLink from "@theme/Icon/ExternalLink";
+import mdiLanguageTypescriptIcon from "@iconify-icons/mdi/language-typescript";
+
+import SvgMermaidTreeAll from "./mermaid-tree-all.svg";
+import SvgMermaidTreeOut from "./mermaid-tree-out.svg";
+
+Currently, we do not support automatic translations in pyDocusaurus. Therefore, users must translate the program-generated documentation, as they would for a manually written site.
+
+To reduce the effort, this article explains how to start a new translation and quickly replace texts with regular expressions.
+
+:::info
+
+This article is written for those who want to write their documentation translations.
+
+If you do not intend to do this, you do not need to review this article.
+
+:::
+
+## 1. Start a new translation
+
+Run the following command to update the currently used translations. Any new features not included in the previous translations will be added automatically.
+
+```sh
+yarn write-translations --locale zh-cn --messagePrefix "(ZH-CN) "
+```
+
+When the translation is created for the first time, run the following commands to copy the current documents:
+
+```sh
+mkdir -p i18n/zh-cn/docusaurus-plugin-content-docs/current
+cp -r docs/. i18n/zh-cn/docusaurus-plugin-content-docs/current
+```
+
+Run the following command to start a local development server for a specific language:
+
+```sh
+yarn start --host $(hostname -I) --port 3000 --locale zh-cn
+```
+
+Update the headings by using the command like the following one:
+
+```sh
+yarn write-heading-ids . i18n/zh-cn/docusaurus-plugin-content-docs/current --syntax mdx-comment --overwrite
+```
+
+:::danger
+
+Note that this command can be used only when a translation is newly drafted because
+it should be only applied to English document.
+
+If new documents are appended and this command needs to be run again, remove the `--overwrite` flag
+to let the command only take effects on the section title without IDs.
+
+:::
+
+## 2. Useful regular expressions
+
+The program-generated documentation contains a lot of repeated titles and table headers. VS Code allows users to search and replace texts with in a specific folder. In this article, we will use "writing the Chinese translation" as an example, and show some useful regular expressions for replacing texts.
+
+First, users need to limit the scope of **"files to include"** by:
+
+```txt
+./docs/i18n/zh-cn/docusaurus-plugin-content-docs/current/apis
+```
+
+Then, users can replace all texts with the following rules, with the regular expressions **disabled**.
+
+| <center>Text to search</center> | <center>Replaced text</center> |
+| :------------------------------ | :----------------------------- |
+| `## Modules {/* #modules` | `## 模块 {/* #modules` |
+| `## Classes {/* #classes` | `## 类 {/* #classes` |
+| `## Functions {/* #functions` | `## 函数 {/* #functions` |
+| `## Aliases {/* #aliases` | `## 别名 {/* #aliases` |
+| `## Requires {/* #requires` | `## 输入 {/* #requires` |
+| `## Returns {/* #returns` | `## 输出 {/* #returns` |
+| `## Yields {/* #yields` | `## 迭代 {/* #yields` |
+| `## Methods {/* #methods` | `## 方法 {/* #methods` |
+| `## Arguments {/* #arguments` | `## 参数 {/* #arguments` |
+| `## Fields {/* #fields` | `## 字段 {/* #fields` |
+| `## Enums {/* #enums` | `## 枚举成员 {/* #enums` |
+| `## Properties {/* #properties` | `## 属性 {/* #properties` |
+| `## Operators {/* #operators` | `## 运算符 {/* #operators` |
+| `## Protocol methods {/* #protocol-methods` | `## 协议方法 {/* #protocol-methods` |
+| `## Protocol properties {/* #protocol-properties` | `## 协议属性 {/* #protocol-properties` |
+| `## Protocol operators {/* #protocol-operators` | `## 协议运算符 {/* #protocol-operators` |
+| `## Abstract methods {/* #abstract-methods` | `## 抽象方法 {/* #abstract-methods` |
+| `## Abstract properties {/* #abstract-properties` | `## 抽象属性 {/* #abstract-properties` |
+| `## Abstract operators {/* #abstract-operators` | `## 抽象运算符 {/* #abstract-operators` |
+| `Initialization function is not specified.` | `该类未指定初始化方法。` |
+| `No argument is needed.` | `该类的初始化无需参数。` |
+
+The following texts need to be replaced with the regular expression **enabled**.
+
+| <center>Regex to search</center> | <center>Replaced expression</center> |
+| :------------------------------ | :----------------------------- |
+| `{/\* #iconobjtype-type[^-]*-` | `{/* #-` |
+| <code>{"\\\|(\s+)Member(\s+)\\\|(\s+)<center>Description</center>(\s+)\\\|"}</code> | <code>{`\|$1成员$2\|$3<center>说明</center>$4\|`}</code> |
+| <code>{"\\\|(\s+)Name(\s+)\\\|(\s+)<center>Description</center>(\s+)\\\|"}</code> | <code>{`\|$1参数$2\|$3<center>说明</center>$4\|`}</code> |
+| <code>{"\\\|(\s+)Name(\s+)\\\|(\s+)Type(\s+)\\\|(\s+)<center>Description</center>(\s+)\\\|"}</code> | <code>{`\|$1参数$2\|$3类型$4\|$5<center>说明</center>$6\|`}</code> |
+| <code>{"\\\|(\s+)Name(\s+)\\\|(\s+)Type(\s+)\\\|(\s+)Required(\s+)\\\|(\s+)<center>Description</center>(\s+)\\\|"}</code> | <code>{`\|$1参数$2\|$3类型$4\|$5必选$6\|$7<center>说明</center>$8\|`}</code> |
+| <code>{"\\\|(\s+)Name(\s+)\\\|(\s+)Type(\s+)\\\|(\s+)Value(\s+)\\\|"}</code> | <code>{`\|$1成员$2\|$3类型$4\|$5值$6\|`}</code> |
+
+[link-docuver]: https://docusaurus.io/docs/versioning

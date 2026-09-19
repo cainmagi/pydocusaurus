@@ -34,6 +34,7 @@ const sidebars: SidebarsConfig = {
         "tutorial/usages/get-started",
         "tutorial/usages/special-types",
         "tutorial/usages/rendering",
+        "tutorial/usages/useful-regex",
       ],
     },
     "tutorial/examples",

@@ -10,6 +10,7 @@
 
 1. Add the Chinese version of the documentation.
 2. Support more translations of the main information.
+3. Add a new article: `/usages/useful-regex`.
 
 #### :floppy_disk?: Change
 
