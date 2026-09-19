@@ -176,9 +176,9 @@ cp -rf ./output_docs/* /path/to/my-website
      ...
      sourceVersion: {
        "main": string;
-       "v1.0.0": string;
+       "1.0.0": string;
        // highlight-next-line
-       "v2.0.0": string;  // 增加这一行
+       "2.0.0": string;  // 增加这一行
        [key: string]: any;
      }
      sourceURIs: {
@@ -196,9 +196,9 @@ cp -rf ./output_docs/* /path/to/my-website
      rawURL: "...",
      sourceVersion: {
        "main": "main",
-       "v1.0.0": "v1.0.0",
+       "1.0.0": "v1.0.0",
        // highlight-next-line
-       "v2.0.0": "v2.0.0",  // 这一行的值是 GitHub 上分支/tag的名字。
+       "2.0.0": "v2.0.0",  // 这一行的值是 GitHub 上分支/tag的名字，也是sourceURIs所用的名字。
      },
      sourceURIs: {
        // highlight-start

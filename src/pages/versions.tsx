@@ -25,7 +25,7 @@ import {
 
 import Translate from "@docusaurus/Translate";
 
-import {releaseURL} from "../envs/variables";
+import {DependencyTag, releaseURL} from "../envs/variables";
 
 const docsPluginId = undefined; // Default docs plugin instance
 
@@ -102,6 +102,14 @@ function Version() {
                       Release
                     </Translate>
                   </th>
+                  <th>
+                    <Translate
+                      id="versions.table.dep"
+                      description="Table item: dependency number."
+                    >
+                      Core dependency
+                    </Translate>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -116,6 +124,9 @@ function Version() {
                     <Link href={releaseURL(latestVersion.label || "main")}>
                       <InlineIcon icon={octTag16} />
                     </Link>
+                  </td>
+                  <td align="center">
+                    <DependencyTag ver={latestVersion.label} />
                   </td>
                 </tr>
               </tbody>
@@ -171,6 +182,14 @@ function Version() {
                       Release
                     </Translate>
                   </th>
+                  <th>
+                    <Translate
+                      id="versions.table.dep"
+                      description="Table item: dependency number."
+                    >
+                      Core dependency
+                    </Translate>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -186,6 +205,9 @@ function Version() {
                       <Link href={releaseURL(version.label || "main")}>
                         <InlineIcon icon={octTag16} />
                       </Link>
+                    </td>
+                    <td align="center">
+                      <DependencyTag ver={version.label} />
                     </td>
                   </tr>
                 ))}

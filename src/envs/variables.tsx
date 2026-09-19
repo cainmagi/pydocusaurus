@@ -6,9 +6,11 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 import {useDocsVersion} from "@docusaurus/plugin-content-docs/client";
+import IconExternalLink from "@theme/Icon/ExternalLink";
 
 import InlineIcon from "../components/InlineIcon";
 import mdiDot from "@iconify-icons/mdi/dot";
+import {biSlashLg} from "../components/icons/BiSlashLg";
 
 const docsPluginId = undefined; // Default docs plugin instance
 
@@ -16,24 +18,33 @@ interface EnvVariables {
   repoURL: string;
   rawURL: string;
   sourceVersion: {
-    "main": string;
-    "v1.0.0": string;
-    [key: string]: any; 
-  }
+    "1.0.0": string;
+    main: string;
+    [key: string]: any;
+  };
+  dependencyVersion: {
+    "1.0.0": string;
+    main: string;
+    [key: string]: any;
+  };
   sourceURIs: {
-    "main": {[key: string]: string};
     "v1.0.0": {[key: string]: string};
-    [key: string]: any; 
-  }
-  [key: string]: any; 
+    main: {[key: string]: string};
+    [key: string]: any;
+  };
+  [key: string]: any;
 }
 
 const variables: EnvVariables = {
   repoURL: "https://github.com/cainmagi/pydocusaurus",
   rawURL: "https://raw.githubusercontent.com/cainmagi/pydocusaurus",
   sourceVersion: {
-    "main": "main",
-    "v1.0.0": "v1.0.0",
+    "1.0.0": "v1.0.0",
+    main: "main",
+  },
+  dependencyVersion: {
+    "1.0.0": "3.10.2",
+    main: "3.10.2",
   },
   sourceURIs: {
     "v1.0.0": {
@@ -150,7 +161,7 @@ const variables: EnvVariables = {
       "renderer.saver.SaverAbstract": "renderer/saver.py#L30",
       "renderer.saver.SaverDefault": "renderer/saver.py#L76"
     },
-    "main": {
+    main: {
       ".": "./__init__.py",
       "components": "components/__init__.py",
       "components.apibar": "components/apibar.py",
@@ -275,6 +286,27 @@ const useCurrentSourceVersion = (): string => {
   );
 };
 
+export type DependencyTagProps = {
+  ver: string;
+};
+
+export const DependencyTag = ({
+  ver = "main",
+}: DependencyTagProps): React.JSX.Element => {
+  const _ver = ver?.toLowerCase() === "next" ? "main" : ver;
+  const versionDeps = variables.dependencyVersion[_ver];
+  return versionDeps ? (
+    <Link
+      href={`https://github.com/facebook/docusaurus/tree/v${versionDeps}`}
+    >
+      <code>{`Docusaurus@${versionDeps}`}</code>
+      <IconExternalLink />
+    </Link>
+  ) : (
+    <InlineIcon icon={biSlashLg} />
+  );
+};
+
 export const rawURL = (url: string): string => {
   return variables.rawURL + "/" + url;
 };
@@ -284,7 +316,7 @@ export const repoURL = (url: string | undefined = undefined): string => {
 };
 
 export const releaseURL = (ver: string | undefined = undefined): string => {
-  const _ver = ver?.toLowerCase() === "next" ? "main" : (ver || "");
+  const _ver = ver?.toLowerCase() === "next" ? "main" : ver || "";
   const version = variables.sourceVersion[_ver] || useCurrentSourceVersion();
   if (version === "main" || _ver === "main") {
     return variables.repoURL + "/releases/latest";
@@ -332,7 +364,10 @@ export type SourceLinkProps = {
   children: React.ReactNode;
 };
 
-export const SourceLink = ({url, children}: SourceLinkProps): React.JSX.Element => {
+export const SourceLink = ({
+  url,
+  children,
+}: SourceLinkProps): React.JSX.Element => {
   return (
     <Link to={sourceURL(url)} className="noline">
       {children}

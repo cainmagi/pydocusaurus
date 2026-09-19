@@ -14,6 +14,7 @@
 
 1. Fix: Adjust basic configurations (styles and sidebars) of the documentation.
 2. Fix: Correct typos in the existing documentation.
+3. Fix: Correct the version tracking in `env/variables.tsx`, and support the dependency version.
 
 ### 1.0.0 @ 09/17/2026
 
