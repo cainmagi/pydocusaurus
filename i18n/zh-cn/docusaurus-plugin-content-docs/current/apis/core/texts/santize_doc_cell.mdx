@@ -1,0 +1,37 @@
+---
+id: santize_doc_cell
+title: santize_doc_cell
+sidebar_label: santize_doc_cell
+slug: /apis/core/texts/santize_doc_cell
+description: 清理单元格文本。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.texts.santize_doc_cell" />
+
+```python
+v_1: str = santize_doc_cell(text: str)
+```
+
+清理单元格文本，包括以下步骤：
+
+1. 将 `|` 替换为 `\|`。
+
+这些修改用于渲染行内文本的 MDX 格式。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `text` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 输入的单元格文本。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 清理后的文本。 |

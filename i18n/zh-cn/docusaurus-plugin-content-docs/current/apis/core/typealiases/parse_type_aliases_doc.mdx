@@ -1,0 +1,33 @@
+---
+id: parse_type_aliases_doc
+title: parse_type_aliases_doc
+sidebar_label: parse_type_aliases_doc
+slug: /apis/core/typealiases/parse_type_aliases_doc
+description: 搜索某个模块，解析所有直接定义于其中的、类型别名的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.typealiases.parse_type_aliases_doc" />
+
+```python
+v_1: list[DocTypeAlias] = parse_type_aliases_doc(obj: Any)
+```
+
+搜索某个模块，解析所有直接定义于其中的、类型别名的 docstring。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 用来搜索类型别名的位置，待搜索的类型别名是该对象的成员属性（attribute）。绝大多数情况下，所搜索的对象应该是一个模块。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `list[DocTypeAlias]` | 从类型别名解析的 docstring。注意这些结果纯然由源代码中推测而来。是以这些结果还不能确保一定是类型别名，还需要进行额外的运行时检测来确保置信度。 |

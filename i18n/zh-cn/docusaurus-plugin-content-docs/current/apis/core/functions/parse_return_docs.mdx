@@ -1,0 +1,49 @@
+---
+id: parse_return_docs
+title: parse_return_docs
+sidebar_label: parse_return_docs
+slug: /apis/core/functions/parse_return_docs
+description: （私有）解析与函数返回值相关的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" isPrivate={true} source="core.functions.parse_return_docs" />
+
+```python
+v_1: list[DocArgument] = parse_return_docs(
+    func: Any,
+    docstring: Sequence[str],
+    func_name: str | None = None,
+    warn_supp: bool = False,
+)
+```
+
+:::danger
+
+这是一个私有函数，用户不应该自行调用。
+
+:::
+
+解析与函数返回值相关的 docstring。
+
+该函数是`parse_func_docs(...)`的一部分。故此，不建议直接调用该函数。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `func` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待解析的函数对象。可以是普通函数或方法。 |
+| `docstring` | `Sequence[str]` | <InlineIcon icon={vsiCheckIcon}/> | 所有返回值按行保存的 docstring。该值来源于解析出的`Section`对象。 |
+| `func_name` | `str \| None` | | 用来在信息中展示的函数名称。如果未设置，会自动推断该名称。 |
+| `warn_supp` | `bool` | | 布尔标记。如果设置了，则不会在解析过程中报出任何警告信息，这是为了排除对某些特殊/私有函数的报告。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `list[DocArgument]` | 从所有返回值中解析后的 docstring 列表。 |

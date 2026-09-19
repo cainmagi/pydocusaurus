@@ -1,0 +1,35 @@
+---
+id: get_short_descr
+title: get_short_descr
+sidebar_label: get_short_descr
+slug: /apis/core/inspectors/get_short_descr
+description: 从长的描述文字中提取短的描述文字。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_short_descr" />
+
+```python
+v_1: str = get_short_descr(descr: str)
+```
+
+从长的描述文字中提取短的描述文字。
+
+即是说，从给定的文字中提取出第一句话。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 一段长的描述文字，可能包含多个句子。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从给定文字中提取到的第一句。 |

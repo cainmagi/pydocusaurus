@@ -1,0 +1,33 @@
+---
+id: get_func_signature
+title: get_func_signature
+sidebar_label: get_func_signature
+slug: /apis/core/inspectors/get_func_signature
+description: 尝试从一个可能是函数的候选对象提取函数签名。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_func_signature" />
+
+```python
+v_1: Signature = get_func_signature(func_candidate: Any)
+```
+
+尝试从一个可能是函数的候选对象提取函数签名。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `func_candidate` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 一个可调用的对象、且可以期望从中提取到函数签名。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Signature` | <p>如果<code>func_candidate</code>已经是函数，直接获取它的签名对象。</p><p>否则，试图先获取其等价的可调用函数（例如类的初始化方法），再从中提取签名。</p> |

@@ -1,0 +1,39 @@
+---
+id: is_multival_tuple
+title: is_multival_tuple
+sidebar_label: is_multival_tuple
+slug: /apis/core/inspectors/is_multival_tuple
+description: "检查给定的类型标注是否是一个定长多值元组，其形式类似如下情形：`tuple[int, str]`。"
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.is_multival_tuple" />
+
+```python
+v_1: bool = is_multival_tuple(anno: Any)
+```
+
+检查给定的类型标注是否是一个定长多值元组，其形式类似如下情形：
+
+```python
+tuple[int, str]
+```
+
+注意，形如`tuple[int]`和`tuple[int, ...]`的混淆情形将会被排除。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `anno` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待检查的类型标注。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | 布尔标记。如果给定的标注是一个定长多值元组，则返回`True`。 |

@@ -1,0 +1,35 @@
+---
+id: is_possibly_type_expression
+title: is_possibly_type_expression
+sidebar_label: is_possibly_type_expression
+slug: /apis/core/typealiases/is_possibly_type_expression
+description: 启发式地检查当前语句是否有可能是类型表达式。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.typealiases.is_possibly_type_expression" />
+
+```python
+v_1: bool = is_possibly_type_expression(node: AST)
+```
+
+启发式地检查当前语句是否有可能是类型表达式。
+
+值得注意的是，即使该方法返回真值，也不能确保所给定的`node`必然是一个类型别名语句。还需要进行额外的运行时检查来确保结果的置信度。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node` | `AST` | <InlineIcon icon={vsiCheckIcon}/> | 待检查的`ast`节点。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | 布尔标记。如果节点右手侧可以视作类型表达式，而非变量赋值语句，则返回`True`。 |

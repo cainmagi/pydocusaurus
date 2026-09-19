@@ -1,0 +1,37 @@
+---
+id: get_members_defined_in_class
+title: get_members_defined_in_class
+sidebar_label: get_members_defined_in_class
+slug: /apis/core/inspectors/get_members_defined_in_class
+description: 获得类中定义的全部成员（attributes）。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_members_defined_in_class" />
+
+```python
+(v_1: str, v_2: Any) in get_members_defined_in_class(cls: type[Any], exclude_private: bool = True)
+```
+
+获得类中定义的全部成员（attributes）。
+
+不同于`inspect.getmembers`，该方法会排除掉那些定义在基类中的成员和属性。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | 待检测的类。 |
+| `exclude_private` | `bool` | | 布尔标记。如果设置了，就会忽略掉那些由前缀"\_"开头的成员。 |
+
+### 迭代 {/* #yields */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 成员的名称。 |
+| `v_2` | `Any` | 成员的值。 |

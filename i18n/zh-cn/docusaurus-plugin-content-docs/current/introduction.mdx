@@ -1,0 +1,146 @@
+---
+id: introduction
+title: 简介
+description: 简要介绍 pyDocusaurus。pyDocusaurus 旨在将 Python 文档字符串 (docstring) 自动转换为基于 Docusaurusis 构建的现代文档站点。
+slug: /
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import IconExternalLink from "@theme/Icon/ExternalLink";
+
+import octClock16 from "@iconify-icons/octicon/clock-16";
+import octLaw16 from "@iconify-icons/octicon/law-16";
+import octRepoForked16 from "@iconify-icons/octicon/repo-forked-16";
+import octShareAndroid16 from "@iconify-icons/octicon/share-android-16";
+import octiconShield16 from "@iconify-icons/octicon/shield-16";
+
+import {rawURL, repoURL, demoURL} from "@site/src/envs/variables";
+import DarkButton from "@site/src/components/DarkButton";
+
+本模块包启发自 Sphinx。通常将 Sphinx 视为用来自动生成 Python 文档的“官方”解决方案。根据 Sphinx 的文档，其“自动生成”功能大致可以视为：
+
+> <p>为Python、C++和其他软件域手动或从docstrings自动生成生成API文档，轻松让您的代码文档保持最新。</p>
+> <cite><p align="right">——Sphinx</p></cite>
+
+大体上，该模块包提供了类似[Sphinx<IconExternalLink/>][link-sphinx]的功能。通过完整遍历某个指定的模块包，其中的内容将重新组织成自动生成的 API 文档。不过，**不可以将 pyDocusaurus 看作 Sphinx 的扩展**，这是由于：
+
+1. Sphinx 垂垂老矣。它诞生于 Python 标准库还不支持类型标记、提示的年代。是以，Sphinx 需要从文档字符串 (docstring) 本身来推断参数类型。在现代的 Python 代码中，这一功能已然多余。
+
+2. Sphinx 主要是为 reStructuredText (rst) 格式设计的。诚然，它也可以通过某些扩展插件来支持 Markdown。然而，某些 Markdown 特性，特别是与变量类型相关的部分，并没有整合到自动生成的 API 文档中。它的用户还是需要在生成的文档中与大量的 rst 代码斗智斗勇。
+
+3. 由于积攒了许多老旧的模板，Sphinx 不适用于构建“现代”网站。
+
+基本上，本模块包产出的是 Docusaurus 项目的补丁。与 Sphinx 相似的一点是，**pyDocusaurus 将穷尽整个指定的模块包，并将其中的 docstring 转化为与 Docusaurus 兼容的 API 文档。** 要将所生成的文档整合到某个已经存在的 Docusaurus 项目中（例如一个教程网站），只需要做一些微小的修改。
+
+## 用法示范 {/* #usage */}
+
+<Tabs
+  defaultValue="clis"
+  values={[
+    { label: '命令行', value: 'clis', },
+    { label: 'Python', value: 'python', },
+  ]
+}>
+
+<TabItem value="clis">
+
+运行以下单行命令，就可以将一个已经存在的模块包转换成文档项目。
+
+```sh
+python -m pydocusaurus render-doc <package-name> -o <out-dir> -u <user-name>
+```
+
+要了解更多细节，请善用“帮助”功能：
+
+```sh
+python -m pydocusaurus render-doc --help
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+运行以下脚本，就可以将一个已经存在的模块包转换成文档项目。
+
+```python showLineNumbers title="convert_docs.py"
+from pydocusaurus import render_package_as_mdx
+import any_package
+
+if __name__ == "__main__":
+    render_package_as_mdx(
+        any_package, out_dir="./docs-output", package_info="yourname"
+    )
+```
+
+所生成的文件将保存于`./docs-output`之中。此处的`package_info`可以设为用户名。例如，如果用户需要将文档托管到 GitHub 上，那么此处就应该使用 GitHub 的用户名。
+
+</TabItem>
+
+</Tabs>
+
+## 鸣谢 {/* #acknowledgements */}
+
+- [facebook/Docusaurus<IconExternalLink/>][git-docusaurus]: 轻松维护开源文档站点。
+
+## 相关材料 {/* #related-materials */}
+
+更新手记：
+
+<p>
+  {
+    <DarkButton href={repoURL("blob/main/Changelog.md")} icon={octClock16}>
+      更新手记
+    </DarkButton>
+  }
+</p>
+
+本项目的许可证：
+
+<p>
+  {
+    <DarkButton href={repoURL("blob/main/LICENSE")} icon={octLaw16}>
+      MIT协议
+    </DarkButton>
+  }
+</p>
+
+合作与贡献指南：
+
+<p>
+  {
+    <DarkButton
+      href={repoURL("blob/main/CONTRIBUTING.md")}
+      icon={octRepoForked16}
+    >
+      贡献本项目
+    </DarkButton>
+  }
+</p>
+
+贡献者利用规约：
+
+<p>
+  {
+    <DarkButton
+      href={repoURL("blob/main/CODE_OF_CONDUCT.md")}
+      icon={octShareAndroid16}
+    >
+      利用规约
+    </DarkButton>
+  }
+</p>
+
+漏洞防治与安全策略：
+
+<p>
+  {
+    <DarkButton href={repoURL("security/policy")} icon={octiconShield16}>
+      安全策略
+    </DarkButton>
+  }
+</p>
+
+[git-docusaurus]: https://github.com/facebook/docusaurus
+[link-sphinx]: https://www.sphinx-doc.org/en/master/

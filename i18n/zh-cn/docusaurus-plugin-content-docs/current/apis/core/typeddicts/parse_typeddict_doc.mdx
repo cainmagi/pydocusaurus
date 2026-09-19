@@ -1,0 +1,33 @@
+---
+id: parse_typeddict_doc
+title: parse_typeddict_doc
+sidebar_label: parse_typeddict_doc
+slug: /apis/core/typeddicts/parse_typeddict_doc
+description: 解析类型提示字典的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.typeddicts.parse_typeddict_doc" />
+
+```python
+v_1: DocTypedDict = parse_typeddict_doc(cls: type[Any])
+```
+
+解析类型提示字典的 docstring。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | 待解析的类，该类需要是一个类型提示字典。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocTypedDict` | 从类型提示字典中解析后的 docstring。 |

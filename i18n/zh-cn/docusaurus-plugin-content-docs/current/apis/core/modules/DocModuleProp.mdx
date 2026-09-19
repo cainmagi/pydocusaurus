@@ -1,0 +1,37 @@
+---
+id: DocModuleProp
+title: DocModuleProp
+sidebar_label: DocModuleProp
+slug: /apis/core/modules/DocModuleProp
+description: 针对模块的成员的 docstring 和基本信息生成的摘要。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.modules.DocModuleProp" />
+
+```python
+DocModuleProp(
+    name: str,
+    descr: str = "",
+    type: Literal["package", "module", "class", "func", "type"] = "package",
+    slang: str = ""
+)
+```
+
+针对模块的成员的 docstring 和基本信息生成的摘要。
+
+## 字段 {/* #fields */}
+
+<div className="long-type-table">
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 模块成员的名称。 |
+| `descr` | `str` | | 模块成员的描述文字，亦即，该成员的 docstring。 |
+| `type` | `Literal["package", "module", "class", "func", "type"]` | | 模块成员的类别。 |
+| `slang` | `str` | | 模块成员的内部识别码。 |
+
+</div>

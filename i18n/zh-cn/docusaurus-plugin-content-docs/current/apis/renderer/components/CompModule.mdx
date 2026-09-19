@@ -1,0 +1,29 @@
+---
+id: CompModule
+title: CompModule
+sidebar_label: CompModule
+slug: /apis/renderer/components/CompModule
+description: 待渲染的 MDX 组件模块。调用`str(...)`，以将此对象渲染成 MDX 代码行。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="renderer.components.CompModule" />
+
+```python
+CompModule(
+    module: str, default: str = "", named: set[str | tuple[str, str]] = set(...)
+)
+```
+
+待渲染的 MDX 组件模块。调用`str(...)`，以将此对象渲染成 MDX 代码行。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 该模块的完整 typescript 导入源。 |
+| `default` | `str` | | 为模块的默认导出所取的名字。如果未指定，则不会导出默认值。 |
+| `named` | `set[str \| tuple[str, str]]` | | <p>模块的具名导出。如果未指定，则不会导出任何具名对象。</p><p>如果元素为元组，则其为<code>(export_name, as_name)</code>，即（导出名字，导入时转写的名字）。</p> |

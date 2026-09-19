@@ -1,0 +1,53 @@
+---
+id: FunctionType
+title: FunctionType
+sidebar_label: FunctionType
+slug: /apis/core/functions/FunctionType
+description: 可调用对象（函数）的类型。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isEnum={true} source="core.functions.FunctionType" />
+
+```python
+FunctionType.CLASSMETHOD = "classmethod"
+FunctionType.STATICMETHOD = "staticmethod"
+FunctionType.METHOD = "method"
+FunctionType.FUNCTION = "function"
+```
+
+可调用对象（函数）的类型。
+
+## 枚举成员 {/* #enums */}
+
+| 成员 | 类型 | 值 |
+| :-----: | :-----: | :-----: |
+| `CLASSMETHOD` | `str` | `"classmethod"` |
+| `STATICMETHOD` | `str` | `"staticmethod"` |
+| `METHOD` | `str` | `"method"` |
+| `FUNCTION` | `str` | `"function"` |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `get_method_validator` {/* #-get_method_validator */}
+
+```python
+v_1: Callable[[Any], Self | None] = FunctionType.get_method_validator(base_cls: type[Any] | None)
+```
+
+针对某个特定的类，获取用于验证其方法类型的验证器。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `base_cls` | `type[Any] \| None` | <InlineIcon icon={vsiCheckIcon}/> | 用来生成参数的基准类。该基准类用来限定函数类型检查的作用域，以确认其是否为该类的方法。如果未提供，则只会检查待测对象是否是普通函数。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Callable[[Any], Self \| None]` | 用来验证给定对象的函数类型的验证器。如果待测对象不可调用、或并非函数，则验证器返回`None`。 |

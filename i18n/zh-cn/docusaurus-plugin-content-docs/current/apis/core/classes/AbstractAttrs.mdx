@@ -1,0 +1,31 @@
+---
+id: AbstractAttrs
+title: AbstractAttrs
+sidebar_label: AbstractAttrs
+slug: /apis/core/classes/AbstractAttrs
+description: 该实例用于临时存放类的抽象成员。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+
+<APITopBar type="class" isDataClass={true} source="core.classes.AbstractAttrs" />
+
+```python
+AbstractAttrs(
+    properties: list[property | cached_property] = [],
+    methods: list[function | classmethod | staticmethod] = [],
+    operators: dict[str, function] = dict(...)
+)
+```
+
+该实例用于临时存放类的抽象成员。
+
+当临时类摘要附带抽象类属性时，该集合将会启用。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `properties` | `list[property \| cached_property]` | | 用来保存类的所有抽象属性。 |
+| `methods` | `list[function \| classmethod \| staticmethod]` | | 用来保存类的所有抽象方法，包括实例、类、和静态方法。 |
+| `operators` | `dict[str, function]` | | 用来保存类的所有抽象运算符重载。 |

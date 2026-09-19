@@ -1,0 +1,35 @@
+---
+id: is_main_module
+title: is_main_module
+sidebar_label: is_main_module
+slug: /apis/core/walker/is_main_module
+description: 检查某个模块是否是一个`__main__`模块。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.walker.is_main_module" />
+
+```python
+v_1: bool = is_main_module(module: ModuleType)
+```
+
+检查某个模块是否是一个`__main__`模块。
+
+`__main__`模块是一个模块包的命令行入口。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | 待检查的模块。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | 布尔标记。如果`module`是`__main__`模块，返回`True`。 |

@@ -1,0 +1,37 @@
+---
+id: get_members_defined_in_enum
+title: get_members_defined_in_enum
+sidebar_label: get_members_defined_in_enum
+slug: /apis/core/inspectors/get_members_defined_in_enum
+description: 获得枚举类型中定义的全部成员（attributes）。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_members_defined_in_enum" />
+
+```python
+(v_1: str, v_2: Any) in get_members_defined_in_enum(cls: type[Any], exclude_private: bool = True)
+```
+
+获得枚举类型中定义的全部成员（attributes）。
+
+`inspect.getmembers`无法正确处理`enum.Enum`。该方法提供了针对枚举类型的备选项，允许从其中提取方法和属性。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | 待检测的类。 |
+| `exclude_private` | `bool` | | 布尔标记。如果设置了，就会忽略掉那些由前缀"\_"开头的成员。 |
+
+### 迭代 {/* #yields */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 成员的名称。 |
+| `v_2` | `Any` | 成员的值。 |

@@ -1,0 +1,26 @@
+---
+id: index
+title: datacls
+sidebar_label: datacls
+slug: /apis/core/datacls
+description: 针对数据类对象、及 PyDantic 模型实现的文档内容提取。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.datacls" />
+
+针对数据类对象、及 PyDantic 模型实现的文档内容提取。
+
+## 类 {/* #classes */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="DocField"/>](./DocField.mdx) | 数据类/模型中，某个字段的 docstring。 |
+| [<IconObjType type="class" hasText={true} text="DocDataClass"/>](./DocDataClass.mdx) | 数据类/模型的 docstring 和其他基本信息。 |
+
+## 函数 {/* #functions */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="parse_dataclass_docs"/>](./parse_dataclass_docs.mdx) | 解析数据类/模型的 docstring。 |

@@ -1,0 +1,25 @@
+---
+id: build_sidebar
+title: build_sidebar
+sidebar_label: build_sidebar
+slug: /apis/core/attree/build_sidebar
+description: 创建一棵空的侧边栏树。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+
+<APITopBar type="func" source="core.attree.build_sidebar" />
+
+```python
+v_1: ModuleAttributeTree[str | dict[str, Any]] = build_sidebar()
+```
+
+创建一棵空的侧边栏树。
+
+## 参数 {/* #arguments */}
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `ModuleAttributeTree[str \| dict[str, Any]]` | 用来渲染文档侧边栏的成员属性树，其中配置了定制过的序列化方法。此处返回的树是空的。 |

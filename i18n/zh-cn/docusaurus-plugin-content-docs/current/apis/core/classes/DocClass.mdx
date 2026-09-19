@@ -1,0 +1,49 @@
+---
+id: DocClass
+title: DocClass
+sidebar_label: DocClass
+slug: /apis/core/classes/DocClass
+description: 类的 docstring 和其他基本信息。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.classes.DocClass" />
+
+```python
+DocClass(
+    name: str,
+    descr: str,
+    init_func: DocFunction = _default_init(),
+    init_func_specified: bool = True,
+    methods: list[DocFunction] = [],
+    properties: list[DocProp] = [],
+    operators: list[DocOpTemplate] = [],
+    abstract_attrs: DocClassAbstractAttrs | None = None,
+    slang: str = "",
+    lineno: int = 0,
+    type: Literal["class"] = "class"
+)
+```
+
+类的 docstring 和其他基本信息。
+
+该数据类型可序列化。包含了从类的本体、初始化方法、参数、方法、和运算符重载中解析 docstring 得到的结果。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类的名称。 |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类的描述文字。 |
+| `init_func` | `DocFunction` | | 类的初始化方法。 |
+| `init_func_specified` | `bool` | | 布尔标记。如果该值被设置，则表明该类有着由用户定义的初始化方法。 |
+| `methods` | `list[DocFunction]` | | 类的所有方法列表。 |
+| `properties` | `list[DocProp]` | | 类的所有属性列表。 |
+| `operators` | `list[DocOpTemplate]` | | 类的所有运算符列表。 |
+| `abstract_attrs` | `DocClassAbstractAttrs \| None` | | 额外的抽象成员。只在该类为抽象类的情形下存在。对于协议类型，该值将永远为`None`。 |
+| `slang` | `str` | | 该类的内部识别码。 |
+| `lineno` | `int` | | 定义了该类的代码所在的行号。如果该行号无法确认，则设为`0`。 |
+| `type` | `Literal["class"]` | | 作为文档成员的类型标识符。 |

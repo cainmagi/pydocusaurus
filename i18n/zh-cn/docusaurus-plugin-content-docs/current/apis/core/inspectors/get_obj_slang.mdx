@@ -1,0 +1,40 @@
+---
+id: get_obj_slang
+title: get_obj_slang
+sidebar_label: get_obj_slang
+slug: /apis/core/inspectors/get_obj_slang
+description: 获得函数/类/变量在模块中的完整识别码。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_obj_slang" />
+
+```python
+v_1: str = get_obj_slang(obj: Any, skip_root_module: bool = True)
+```
+
+获得函数/类/变量在模块中的完整识别码。
+
+:::warning
+
+需要指出的是，如果待测的对象不是函数/类，则该方法的效率会明显下降。
+
+:::
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待检测的对象。 |
+| `skip_root_module` | `bool` | | 布尔标记。如果设置了，会从返回的识别码中，去除代表根模块的部分。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | <p>待测对象对应的识别码。</p><p>对于模块包的根模块，其识别码返回为<code>"."</code>。</p><p>若无法分析到识别码，返回空字符串。</p> |

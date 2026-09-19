@@ -1,0 +1,67 @@
+---
+id: Section
+title: Section
+sidebar_label: Section
+slug: /apis/core/texts/Section
+description: 从 Markdown 字符串中提取出的文档章节。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.texts.Section" />
+
+```python
+Section(title: str, level: int = 0, content: list[str] = [])
+```
+
+从 Markdown 字符串中提取出的文档章节。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `title` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 标题文本。 |
+| `level` | `int` | | 标题的等级数字。 |
+| `content` | `list[str]` | | 章节的正文内容，按行保存。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text()
+```
+
+渲染为 Markdown 文字。
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从章节渲染的 Markdown 文本。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `from_md_text` {/* #-from_md_text */}
+
+```python
+v_1: list[Self] = Section.from_md_text(md_text: str | None)
+```
+
+将 Markdown docstring 提取成章节列表。
+
+每个章节都以它的标题作为起始标志。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `md_text` | `str \| None` | <InlineIcon icon={vsiCheckIcon}/> | 待解析的文字。通常是 docstring。 |
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `list[Self]` | 章节列表。每个章节都以其标题开头。内容按行保存为列表。如果某个章节缺少标题文字，则其标题等级设为0。 |

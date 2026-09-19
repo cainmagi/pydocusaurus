@@ -1,0 +1,28 @@
+---
+id: DocTypedDictItem
+title: DocTypedDictItem
+sidebar_label: DocTypedDictItem
+slug: /apis/core/typeddicts/DocTypedDictItem
+description: 类型提示字典成员的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.typeddicts.DocTypedDictItem" />
+
+```python
+DocTypedDictItem(name: str, type: str, optional: bool = False, descr: str = "")
+```
+
+类型提示字典成员的 docstring。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类型提示字典成员的名称。 |
+| `type` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类型提示字典成员的值类型。该类型通常是该值的类型提示（标注）。 |
+| `optional` | `bool` | | 布尔标记，用来提示该字典成员是否是可选的。一个可选成员可以由`NotRequired`类型提示，或是由`total=False`构造的子类来设置。 |
+| `descr` | `str` | | 类型提示字典成员的 docstring，从源代码的定义中获取。 |

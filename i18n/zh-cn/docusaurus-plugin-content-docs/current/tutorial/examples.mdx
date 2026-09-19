@@ -1,0 +1,243 @@
+---
+id: examples
+sidebar_label: 范例
+title: 范例脚本及用法
+description: 一些用来展示 pyDocusaurus 延伸用法的范例脚本。
+slug: /tutorial/examples
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import DarkButton from "@site/src/components/DarkButton";
+
+import IconExternalLink from "@theme/Icon/ExternalLink";
+import mdiLanguagePython from "@iconify-icons/mdi/language-python";
+
+import {demoURL} from "@site/src/envs/variables";
+
+此处展示几个延伸用法的例子。
+
+## 1. 常规转换 {/* #1-plain-conversion */}
+
+和简介中的例子别无二致，该脚本的详情请参考：
+
+<p>
+  <DarkButton to={demoURL("convert.py")} icon={mdiLanguagePython}>
+    {"convert.py"}
+  </DarkButton>
+</p>
+
+<Tabs
+  groupId="doc-exscripts"
+  defaultValue="clis"
+  values={[
+    { label: '命令行', value: 'clis', },
+    { label: 'Python', value: 'python', },
+  ]
+}>
+
+<TabItem value="clis">
+
+```sh
+python -m pydocusaurus render-doc pydocusaurus -o ./docs-pydocusaurus -u cainmagi
+```
+
+当然了，在项目目录中，用户可以运行
+
+```sh
+cd pydocusaurus
+python -m examples.convert
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python showLineNumbers title="convert.py"
+from pydocusaurus import render_package_as_mdx
+import pydocusaurus
+
+if __name__ == "__main__":
+    render_package_as_mdx(
+        pydocusaurus, out_dir="./docs-pydocusaurus", package_info="cainmagi"
+    )
+```
+
+</TabItem>
+
+</Tabs>
+
+## 2. 定制保存过程 {/* #2-customized-saver */}
+
+用户可以定制文档存储时的行为。以下脚本将所有待保存的文档文件截留、并合并成一个单独的[YAML<IconExternalLink/>][link-yaml]文件。该脚本的详情请参考：
+
+<p>
+  <DarkButton to={demoURL("convert.py")} icon={mdiLanguagePython}>
+    {"custom_saver.py"}
+  </DarkButton>
+</p>
+
+<Tabs
+  groupId="doc-exscripts"
+  defaultValue="clis"
+  values={[
+    { label: '命令行', value: 'clis', },
+    { label: 'Python', value: 'python', },
+  ]
+}>
+
+<TabItem value="clis">
+
+在项目目录中，运行
+
+```sh
+cd pydocusaurus
+python -m examples.custom_saver
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python showLineNumbers title="custom_saver.py"
+import os
+import json
+
+from typing import Any
+
+import yaml
+
+import pydocusaurus
+
+__all__ = ("render",)
+
+
+class SaverSingleFile(pydocusaurus.renderer.package.SaverAbstract):
+    """该保存器将会令所有的文档文件转存到一个单文件中。"""
+
+    def __init__(self) -> None:
+        """初始化。"""
+        super().__init__()
+        self.data: dict[str, str] = dict()
+
+    def dump_yaml(self, out_path: str) -> None:
+        """将缓存中的文档文件转存到一个单独的YAML数据文件中。
+
+        Arguments
+        ---------
+        out_path: `str`
+            YAML文件保存到的路径。
+        """
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        with open(out_path, "w", encoding="utf-8") as fobj:
+            yaml.safe_dump(self.data, fobj, indent=2)
+
+    def save_bytes(self, file_path: str | os.PathLike[str], data: bytes) -> None:
+        """保存二进制文件。
+
+        Arguments
+        ---------
+        file_path: `str | PathLike[str]`
+            文件保存到的路径。
+
+        data: `bytes`
+            要保存的二进制数据。
+        """
+        self.data[str(file_path).strip()] = data.decode("utf-8")
+
+    def save_text(self, file_path: str | os.PathLike[str], data: str) -> None:
+        """保存文本文件。
+
+        Arguments
+        ---------
+        file_path: `str | PathLike[str]`
+            文件保存到的路径。
+
+        data: `str`
+            要保存的文本。
+        """
+        self.data[str(file_path).strip()] = data
+
+    def save_data(self, file_path: str | os.PathLike[str], data: Any) -> None:
+        """保存结构化数据文件（例如json）。
+
+        Arguments
+        ---------
+        file_path: `str | PathLike[str]`
+            文件保存到的路径。
+
+        data: `Any`
+            要保存的结构化数据。
+        """
+        self.data[str(file_path).strip()] = json.dumps(data, indent=2)
+
+
+def render() -> None:
+    """渲染 pydocusaurus 文档。"""
+    cur_dir = os.path.dirname(__file__)
+    out_dir = os.path.join(cur_dir, "docs-{0}".format(pydocusaurus.__name__))
+    saver = SaverSingleFile()
+    pydocusaurus.render_package_as_mdx(pydocusaurus, out_dir=out_dir, saver=saver)
+    saver.dump_yaml(os.path.join(cur_dir, "docs-pydocusaurus-single.yml"))
+
+
+if __name__ == "__main__":
+    render()
+```
+
+</TabItem>
+
+</Tabs>
+
+## 3. 展示某个实体对应的页面 {/* #3-show-the-page-of-one-entity */}
+
+在调试阶段，可能需要针对某个特定的实体，预览其将要渲染的页面内容。以下例子展示了如何只显示某一页面的内容、同时避免将整个模块包转换为文档。
+
+该脚本的内容可以参考：
+
+<p>
+  <DarkButton to={demoURL("single_obj.py")} icon={mdiLanguagePython}>
+    {"single_obj.py"}
+  </DarkButton>
+</p>
+
+<Tabs
+  groupId="doc-exscripts"
+  defaultValue="clis"
+  values={[
+    { label: '命令行', value: 'clis', },
+    { label: 'Python', value: 'python', },
+  ]
+}>
+
+<TabItem value="clis">
+
+在项目目录中，运行
+
+```sh
+cd pydocusaurus
+python -m examples.single_obj
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python showLineNumbers title="single_obj.py"
+import pydocusaurus
+
+if __name__ == "__main__":
+    print("输出文档页面： {0}".format(doc.slug))
+    doc = pydocusaurus.render_obj(pydocusaurus.components.comprotocol.ProtocolComponent)
+    if doc is None:
+        print("输出文档页面失败。")
+        return
+    print("")
+    print(doc.render())
+```
+
+</TabItem>
+
+</Tabs>
+
+[link-yaml]: https://pyyaml.org/wiki/PyYAMLDocumentation

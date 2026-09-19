@@ -1,0 +1,119 @@
+---
+id: DocTypedDict
+title: DocTypedDict
+sidebar_label: DocTypedDict
+slug: /apis/core/typeddicts/DocTypedDict
+description: 类型提示字典的 docstring 和其他基本信息。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.typeddicts.DocTypedDict" />
+
+```python
+DocTypedDict(
+    type: Literal["typeddict"] = "typeddict",
+    name: str,
+    descr: str,
+    dict_items: list[DocTypedDictItem] = [],
+    slang: str = "",
+    lineno: int = 0
+)
+```
+
+类型提示字典的 docstring 和其他基本信息。
+
+一个类型提示字典不应该包含用户定义的方法、参数、抑或是运算符。因此，该可序列化数据类型只会包含字典签名。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["typeddict"]` | | 作为文档成员的类型标识符。 |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类型提示字典的名称。 |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类型提示字典的描述文字。 |
+| `dict_items` | `list[DocTypedDictItem]` | | 类型提示字典的键值对签名。 |
+| `slang` | `str` | | 该类型提示字典的内部识别码。 |
+| `lineno` | `int` | | 定义了该类型提示字典的代码所在的行号。如果该行号无法确认，则设为`0`。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+渲染为 Markdown 文字。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从类型提示字典渲染的 Markdown 文本。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `table_keywords` {/* #-table_keywords */}
+
+```python
+v_1: str = self.table_keywords(
+    renderer: ProtocolComponent,
+    has_type: bool = True,
+    has_required: bool = True,
+    has_doc: bool = True,
+)
+```
+
+将类型提示字典的键值对成员签名格式化为表格。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+| `has_type` | `bool` | | 布尔标记。如果设置了，就会显示键值对成员值的类型。 |
+| `has_required` | `bool` | | 布尔标记。如果设置了，就会显示键值对成员是否为必选。 |
+| `has_doc` | `bool` | | 布尔标记。如果设置了，就会显示键值对成员的 docstring 文本。 |
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 包含了各键值对成员详情的 Markdown 表格。 |
+
+## 属性 {/* #properties */}
+
+### <IconObjType type="param"/> `is_private` {/* #-is_private */}
+
+```python
+is_private: bool = self.is_private
+```
+
+用来检查该类型提示字典是否私有的布尔标记。
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `str_v2` {/* #-str_v2 */}
+
+```python
+str_v2: str = self.str_v2
+```
+
+渲染 V2 字符串。
+
+所谓 v2 字符串可以描述为以下格式：
+
+```python
+DictName(key1: type1, key2: type2, ...)
+```
+
+需要注意的是，此处的v2字符串比`TypedDict`所渲染的默认字符串格式要长。

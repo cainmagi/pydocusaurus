@@ -1,0 +1,34 @@
+---
+id: is_direct_member
+title: is_direct_member
+sidebar_label: is_direct_member
+slug: /apis/core/walker/is_direct_member
+description: 检查值是否是某个模块/模块包的直接成员。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.walker.is_direct_member" />
+
+```python
+v_1: bool = is_direct_member(value: Any, module: ModuleType)
+```
+
+检查值是否是某个模块/模块包的直接成员。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `value` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待检查的值。可以是模块/模块包，甚至只是一个普通的值。 |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | 待搜索的模块/模块包，其中可能存在`value`。该搜索过程相对于这一给定的模块。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | 布尔标记。当且仅当`value`是`module`的直接成员，返回`True`。`value`可以是定义在其中、或是从别的地方导入而来的。 |

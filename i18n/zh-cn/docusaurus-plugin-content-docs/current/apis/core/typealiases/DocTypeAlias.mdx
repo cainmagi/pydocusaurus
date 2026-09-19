@@ -1,0 +1,153 @@
+---
+id: DocTypeAlias
+title: DocTypeAlias
+sidebar_label: DocTypeAlias
+slug: /apis/core/typealiases/DocTypeAlias
+description: 类型别名的 docstring。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.typealiases.DocTypeAlias" />
+
+```python
+DocTypeAlias(
+    type: Literal["alias"] = "alias",
+    name: str,
+    definition: str,
+    descr: str = "",
+    slang: str = "",
+    lineno: int = 0
+)
+```
+
+类型别名的 docstring。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["alias"]` | | 作为文档成员的类型标识符。 |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类型别名的名称。 |
+| `definition` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类型别名的完整声明。它通常是一段赋值语句。 |
+| `descr` | `str` | | 类型别名的描述文字，通常定义在代码中。 |
+| `slang` | `str` | | 该类型别名的内部识别码。 |
+| `lineno` | `int` | | 定义了该类型别名的代码所在的行号。如果该行号无法确认，则设为`0`。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+渲染为 Markdown 文字。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从类型别名渲染的 Markdown 文本。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `is_node_anno_assign_expr` {/* #-is_node_anno_assign_expr */}
+
+```python
+v_1: str | None = DocTypeAlias.is_node_anno_assign_expr(node: AnnAssign)
+```
+
+检查某个包含了赋值语句的`ast.Node`中是否为带有类型注释的类型别名定义。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node` | `AnnAssign` | <InlineIcon icon={vsiCheckIcon}/> | `ast`节点，有可能是定义了类型别名的表达式。 |
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str \| None` | 在找到类型别名的情况下，返回其名称。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `is_node_assign_expr` {/* #-is_node_assign_expr */}
+
+```python
+v_1: str | None = DocTypeAlias.is_node_assign_expr(node: Assign)
+```
+
+检查某个包含了赋值语句的`ast.Node`中是否为类型别名定义。
+
+#### 输入 {/* #requires-2 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node` | `Assign` | <InlineIcon icon={vsiCheckIcon}/> | `ast`节点，有可能是定义了类型别名的表达式。 |
+
+#### 输出 {/* #returns-2 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str \| None` | 在找到类型别名的情况下，返回其名称。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `is_node_type_alias_expr` {/* #-is_node_type_alias_expr */}
+
+```python
+v_1: str | None = DocTypeAlias.is_node_type_alias_expr(node: TypeAlias)
+```
+
+检查某个包含了赋值语句和类型别名表达式的`ast.Node`中是否为类型别名定义。
+
+#### 输入 {/* #requires-3 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node` | `TypeAlias` | <InlineIcon icon={vsiCheckIcon}/> | `ast`节点，有可能是定义了类型别名的表达式。 |
+
+#### 输出 {/* #returns-3 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str \| None` | 在找到类型别名的情况下，返回其名称。 |
+
+## 属性 {/* #properties */}
+
+### <IconObjType type="param"/> `is_private` {/* #-is_private */}
+
+```python
+is_private: bool = self.is_private
+```
+
+用来检查该类型别名是否私有的布尔标记。
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `str_v2` {/* #-str_v2 */}
+
+```python
+str_v2: str = self.str_v2
+```
+
+渲染 V2 字符串。
+
+所谓 v2 字符串可以描述为以下格式：
+
+```python
+type Alias = TypeA | TypeB
+```
+
+注意，此处的v2字符串和类型别名在源代码中的定义式完全一致。且同样与默认的字符串完全一致。

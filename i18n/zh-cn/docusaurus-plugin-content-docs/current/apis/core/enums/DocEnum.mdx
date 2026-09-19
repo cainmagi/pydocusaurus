@@ -1,0 +1,119 @@
+---
+id: DocEnum
+title: DocEnum
+sidebar_label: DocEnum
+slug: /apis/core/enums/DocEnum
+description: 枚举类型的 docstring 和其他基本信息。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.enums.DocEnum" />
+
+```python
+DocEnum(
+    name: str,
+    descr: str,
+    init_func: DocFunction = _default_init(),
+    init_func_specified: bool = True,
+    methods: list[DocFunction] = [],
+    properties: list[DocProp] = [],
+    operators: list[DocOpTemplate] = [],
+    abstract_attrs: DocClassAbstractAttrs | None = None,
+    slang: str = "",
+    lineno: int = 0,
+    type: Literal["enum"] = "enum",
+    enum_items: list[DocEnumItem] = []
+)
+```
+
+枚举类型的 docstring 和其他基本信息。
+
+该数据类型可序列化。包含了从枚举类型中解析 docstring 得到的结果。它可以视为一个特殊处理后的类文档。渲染成文档时，其初始化方法相关的内容会替换成枚举类型成员的详情。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类的名称。 |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类的描述文字。 |
+| `init_func` | `DocFunction` | | 类的初始化方法。 |
+| `init_func_specified` | `bool` | | 布尔标记。如果该值被设置，则表明该类有着由用户定义的初始化方法。 |
+| `methods` | `list[DocFunction]` | | 类的所有方法列表。 |
+| `properties` | `list[DocProp]` | | 类的所有属性列表。 |
+| `operators` | `list[DocOpTemplate]` | | 类的所有运算符列表。 |
+| `abstract_attrs` | `DocClassAbstractAttrs \| None` | | 额外的抽象成员。只在该类为抽象类的情形下存在。对于协议类型，该值将永远为`None`。 |
+| `slang` | `str` | | 该类的内部识别码。 |
+| `lineno` | `int` | | 定义了该类的代码所在的行号。如果该行号无法确认，则设为`0`。 |
+| `type` | `Literal["enum"]` | | 作为文档成员的类型标识符。 |
+| `enum_items` | `list[DocEnumItem]` | | 作为枚举类型的成员列表。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+渲染为 Markdown 文字。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从枚举类型渲染的 Markdown 文本。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `table_enums` {/* #-table_enums */}
+
+```python
+v_1: str = self.table_enums(
+    has_type: bool = True, has_value: bool = True, has_doc: bool = False
+)
+```
+
+将枚举类型成员格式化为表格。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `has_type` | `bool` | | 布尔标记。如果设置了，就会显示枚举成员值的类型。 |
+| `has_value` | `bool` | | 布尔标记。如果设置了，就会显示枚举成员值。 |
+| `has_doc` | `bool` | | 布尔标记。如果设置了，就会显示枚举成员的 docstring 文本。 |
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 包含了各枚举类型成员详情的 Markdown 表格。 |
+
+## 属性 {/* #properties */}
+
+### <IconObjType type="param"/> `str_v2` {/* #-str_v2 */}
+
+```python
+str_v2: str = self.str_v2
+```
+
+渲染 V2 字符串。
+
+所谓 v2 字符串可以描述为以下格式：
+
+```python
+ClassName.ITEM1 = value1
+ClassName.ITEM2 = value2
+...
+```
+
+相比默认的字符串格式更加紧凑。

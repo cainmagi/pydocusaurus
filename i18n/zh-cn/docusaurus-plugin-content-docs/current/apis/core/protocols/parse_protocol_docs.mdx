@@ -1,0 +1,33 @@
+---
+id: parse_protocol_docs
+title: parse_protocol_docs
+sidebar_label: parse_protocol_docs
+slug: /apis/core/protocols/parse_protocol_docs
+description: 解析协议类型的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.protocols.parse_protocol_docs" />
+
+```python
+v_1: DocProtocol = parse_protocol_docs(cls: type[Any])
+```
+
+解析协议类型的 docstring。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | 待解析的类。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocProtocol` | 从协议类型中解析后的 docstring。 |

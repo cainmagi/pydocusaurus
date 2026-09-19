@@ -1,0 +1,33 @@
+---
+id: parse_dataclass_docs
+title: parse_dataclass_docs
+sidebar_label: parse_dataclass_docs
+slug: /apis/core/datacls/parse_dataclass_docs
+description: 解析数据类/模型的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.datacls.parse_dataclass_docs" />
+
+```python
+v_1: DocDataClass = parse_dataclass_docs(cls: type[Any])
+```
+
+解析数据类/模型的 docstring。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | 待解析的类。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocDataClass` | 从数据类/模型中解析后的 docstring。 |

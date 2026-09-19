@@ -1,0 +1,27 @@
+---
+id: index
+title: modules
+sidebar_label: modules
+slug: /apis/core/modules
+description: 针对模块和模块包实现的文档内容提取。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.modules" />
+
+针对模块和模块包实现的文档内容提取。
+
+## 类 {/* #classes */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="DocModuleProp"/>](./DocModuleProp.mdx) | 针对模块的成员的 docstring 和基本信息生成的摘要。 |
+| [<IconObjType type="class" hasText={true} text="DocModuleMetadata"/>](./DocModuleMetadata.mdx) | 模块的元数据。提取自模块顶部的 docstring。 |
+| [<IconObjType type="class" hasText={true} text="DocModule"/>](./DocModule.mdx) | 模块的 docstring。 |
+
+## 函数 {/* #functions */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="parse_module_doc"/>](./parse_module_doc.mdx) | 解析模块或模块包的 docstring。 |

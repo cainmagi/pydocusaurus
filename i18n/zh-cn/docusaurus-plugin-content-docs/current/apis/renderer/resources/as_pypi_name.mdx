@@ -1,0 +1,39 @@
+---
+id: as_pypi_name
+title: as_pypi_name
+sidebar_label: as_pypi_name
+slug: /apis/renderer/resources/as_pypi_name
+description: 将模块包的名字转换成 PyPI 风格的项目名。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.resources.as_pypi_name" />
+
+```python
+v_1: str = as_pypi_name(value: Any)
+```
+
+将模块包的名字转换成 PyPI 风格的项目名。
+
+:::info
+
+这是一个定制的 Jinja2 模板过滤器。
+
+:::
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `value` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待过滤的值。它应当是`str`。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 标准化后的名称。其中空格和下划线会被转换成连接符。 |

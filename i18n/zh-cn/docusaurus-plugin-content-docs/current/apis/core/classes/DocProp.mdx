@@ -1,0 +1,69 @@
+---
+id: DocProp
+title: DocProp
+sidebar_label: DocProp
+slug: /apis/core/classes/DocProp
+description: 类属性的 docstring 和其他基本信息。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.classes.DocProp" />
+
+```python
+DocProp(name: str, descr: str, type: str)
+```
+
+类属性的 docstring 和其他基本信息。
+
+类属性可以由`@property`或者`@functools.cached_property`定义。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 属性的名字。 |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 属性的描述文字。 |
+| `type` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 属性的类型。该值通常是该属性的类型提示（标注）。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+渲染成 Markdown 文字。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从类的属性中渲染的 Markdown 文本。 |
+
+## 属性 {/* #properties */}
+
+### <IconObjType type="param"/> `str_v2` {/* #-str_v2 */}
+
+```python
+str_v2: str = self.str_v2
+```
+
+渲染 V2 字符串。
+
+所谓 v2 字符串可以描述为以下格式：
+
+```python
+prop_name: type = self.prop_name
+```
+
+相比默认的字符串格式更加紧凑。

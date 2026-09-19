@@ -6,6 +6,10 @@
 
 ### 1.0.1 @ 09/17/2026
 
+#### :mega: New
+
+1. Add the Chinese version of the documentation.
+
 #### :floppy_disk?: Change
 
 1. Fix: Adjust basic configurations (styles and sidebars) of the documentation.

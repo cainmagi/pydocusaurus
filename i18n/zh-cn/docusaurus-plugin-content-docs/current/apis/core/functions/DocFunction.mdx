@@ -1,0 +1,99 @@
+---
+id: DocFunction
+title: DocFunction
+sidebar_label: DocFunction
+slug: /apis/core/functions/DocFunction
+description: 函数的 docstring 和其他基本信息。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.functions.DocFunction" />
+
+```python
+DocFunction(
+    type: Literal["function"] = "function",
+    name: str,
+    descr: str,
+    args: list[DocArgument] = [],
+    retval: list[DocArgument] = [],
+    is_yield: bool = False,
+    f_type: FunctionType = FunctionType.FUNCTION,
+    prefix: str = "",
+    slang: str = "",
+    lineno: int = 0,
+    overloads: list[DocFunctionOverload] = []
+)
+```
+
+函数的 docstring 和其他基本信息。
+
+该数据类型可序列化。包含了函数的签名信息，以及对应的函数体、各参数、以及各返回值的 docstring。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["function"]` | | 作为文档成员的类型标识符。 |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 函数的名称。 |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 函数的描述文字。 |
+| `args` | `list[DocArgument]` | | 函数的输入参数列表。 |
+| `retval` | `list[DocArgument]` | | 函数的返回值列表。 |
+| `is_yield` | `bool` | | 布尔标记。如果为`True`，则该函数返回的是迭代器。 |
+| `f_type` | `FunctionType` | | 作为函数的类型。 |
+| `prefix` | `str` | | 可选前缀。如果设置过，则会在v2签名的函数名称前加上该前缀。 |
+| `slang` | `str` | | 该函数的内部识别码。如果该函数是普通函数（`f_type`是`"function"`），则必须设置该值，以溯源该函数的源代码链接。 |
+| `lineno` | `int` | | 定义了该函数的代码所在的行号。如果该行号无法确认，则设为`0`。 |
+| `overloads` | `list[DocFunctionOverload]` | | 该函数的所有重载。如果设置过，则会使用其中的内容取代该函数默认的 docstring。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+渲染为 Markdown 文字。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从函数渲染的 Markdown 文本。 |
+
+## 属性 {/* #properties */}
+
+### <IconObjType type="param"/> `is_private` {/* #-is_private */}
+
+```python
+is_private: bool = self.is_private
+```
+
+用来检查该函数是否是私有函数的布尔标记。
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `str_v2` {/* #-str_v2 */}
+
+```python
+str_v2: str = self.str_v2
+```
+
+渲染 V2 字符串。
+
+所谓 v2 字符串可以描述为以下格式：
+
+```python
+ret: type = name(arg1: type1, arg2: type2 = default2, ...)
+```
+
+相比默认的字符串格式更加紧凑。

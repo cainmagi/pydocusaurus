@@ -1,0 +1,27 @@
+---
+id: index
+title: package
+sidebar_label: package
+slug: /apis/renderer/package
+description: 穷尽遍历一个 Python 包，将其中的 docstring 渲染成一系列 MDX 格式的 API 文档。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="renderer.package" />
+
+穷尽遍历一个 Python 包，将其中的 docstring 渲染成一系列 MDX 格式的 API 文档。
+
+## 类 {/* #classes */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="PackageInformation"/>](./PackageInformation.mdx) | 模块包的基本信息。 |
+| [<IconObjType type="class" hasText={true} text="URIHolder"/>](./URIHolder.mdx) | 用来管理 URI （统一资源标识符）的临时缓存。 |
+| [<IconObjType type="class" hasText={true} text="PackageRenderer"/>](./PackageRenderer.mdx) | 用来渲染文档页面的模块处理器。 |
+
+## 函数 {/* #functions */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="render_package_as_mdx"/>](./render_package_as_mdx.mdx) | 将模块包渲染成一系列 MDX 文件。 |

@@ -1,0 +1,35 @@
+---
+id: is_generic_type_alias_call
+title: is_generic_type_alias_call
+sidebar_label: is_generic_type_alias_call
+slug: /apis/core/typealiases/is_generic_type_alias_call
+description: 检查某个`ast.Node`是否定义于`TypeVar`或是`ParamSpec`的调用。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.typealiases.is_generic_type_alias_call" />
+
+```python
+v_1: TypeGuard[Call] = is_generic_type_alias_call(value: AST)
+```
+
+检查某个`ast.Node`是否定义于`TypeVar`或是`ParamSpec`的调用。
+
+该方法用来在模块中搜索类型别名的时候，排除掉那些定义泛型的语句。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `value` | `AST` | <InlineIcon icon={vsiCheckIcon}/> | 待检查的`ast`节点。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `TypeGuard[Call]` | 布尔标记。如果节点右手侧可以视作`TypeVar`/`ParamSpec`/等用来定义泛型的调用，则返回`True`。 |

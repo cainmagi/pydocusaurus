@@ -1,0 +1,33 @@
+---
+id: is_jinja_template
+title: is_jinja_template
+sidebar_label: is_jinja_template
+slug: /apis/renderer/resources/is_jinja_template
+description: 检查某个文件名是否对应为 Jinja2 模板。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.resources.is_jinja_template" />
+
+```python
+v_1: bool = is_jinja_template(file_name: str)
+```
+
+检查某个文件名是否对应为 Jinja2 模板。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `file_name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 待检查的文件名。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | 布尔标记。如果文件标记为 Jinja2 模板，则返回`True`。 |

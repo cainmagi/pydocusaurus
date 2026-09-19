@@ -1,0 +1,34 @@
+---
+id: parse_prop_docs
+title: parse_prop_docs
+sidebar_label: parse_prop_docs
+slug: /apis/core/classes/parse_prop_docs
+description: 解析类属性的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.classes.parse_prop_docs" />
+
+```python
+v_1: DocProp = parse_prop_docs(prop: property | cached_property, parent_name: str = "")
+```
+
+解析类属性的 docstring。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `prop` | `property \| cached_property` | <InlineIcon icon={vsiCheckIcon}/> | 待解析的（有/无缓存的）类属性。 |
+| `parent_name` | `str` | | 所在类的名称。该值只用于展示日志信息。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocProp` | 从类属性中解析后的 docstring。 |

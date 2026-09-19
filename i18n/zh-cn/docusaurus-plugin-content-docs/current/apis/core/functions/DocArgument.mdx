@@ -1,0 +1,51 @@
+---
+id: DocArgument
+title: DocArgument
+sidebar_label: DocArgument
+slug: /apis/core/functions/DocArgument
+description: 函数/方法参数的 docstring。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.functions.DocArgument" />
+
+```python
+DocArgument(
+    name: str,
+    type: str,
+    p_type: ParameterKind = ParameterKind.POSITIONAL_OR_KEYWORD,
+    default: str = "",
+    doc: list[str] = []
+)
+```
+
+函数/方法参数的 docstring。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 参数名称。 |
+| `type` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 参数的类型。该值通常是该参数的类型提示（标注）。 |
+| `p_type` | `ParameterKind` | | 作为函数参数的类型，参见`inspect._ParameterKind`. |
+| `default` | `str` | | 参数默认值的格式化结果。 |
+| `doc` | `list[str]` | | 参数的 docstring (按行保存)。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `format_doc` {/* #-format_doc */}
+
+```python
+v_1: str = self.format_doc()
+```
+
+格式化 docstring。
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 当前参数的 docstring。 |

@@ -1,0 +1,53 @@
+---
+id: special-types
+sidebar_label: 特殊类型
+title: 特殊类型及对应页面列表
+description: 针对目前所支持的，所有针对 docstring 配置有特殊格式的类型的综览。
+slug: /usages/special-types
+---
+
+import IconExternalLink from "@theme/Icon/ExternalLink";
+
+以下是目前支持的数据类型。不同类型的数据将会按照类型、渲染成具有对应样式的文档页面。速览以下范例页面，将能帮助读者快速了解 pyDocusaurus 如何运作。
+
+:::tip
+
+本站点的所有 API 文档均生成自 pyDocusaurus。以下列表展示了各种 Python 数据类型对应的文档页面代表性范例。其内容展示了当前版本的实际运行效果。
+
+:::
+
+## 1. 模块 {/* #1-modules */}
+
+|   类型    |                  pyDocusaurus 数据                   | <center>对应页面渲染范例</center>                   |
+| :-------: | :--------------------------------------------------: | :-------------------------------------------------- |
+| `package` | [`DocModule`](../../apis/core/modules/DocModule.mdx) | [`core`](../../apis/core/index.mdx)                 |
+| `module`  | [`DocModule`](../../apis/core/modules/DocModule.mdx) | [`core.modules`](../../apis/core/modules/index.mdx) |
+
+## 2. 函数和属性 {/* #2-functions-and-properties */}
+
+|         类型          |                     pyDocusaurus 数据                      | <center>对应页面渲染范例</center>                                                                                                                       |
+| :-------------------: | :--------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|      `function`       | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`parse_argument_docs`](../../apis/core/functions/parse_argument_docs.mdx)                                                                              |
+| `function` （迭代器） | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`get_members_defined_in_class`](../../apis/core/inspectors/get_members_defined_in_class.mdx)                                                           |
+|       `method`        | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`Components.get_headers`](../../apis/renderer/components/Components.mdx#-get_headers)                                                                  |
+|     `classmethod`     | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`ClassProfile.from_class`](../../apis/core/classes/ClassProfile.mdx#-from_class)                                                                       |
+|    `staticmethod`     | [`DocFunction`](../../apis/core/functions/DocFunction.mdx) | [`PackageWalker.get_member_type`](../../apis/core/walker/PackageWalker.mdx#-get_member_type)                                                            |
+|      `property`       |      [`DocProp`](../../apis/core/classes/DocProp.mdx)      | [`Components.apibar`](../../apis/renderer/components/Components.mdx#-apibar)                                                                            |
+|      `operator`       |  [`DocOpTemplate`](../../apis/core/ops/DocOpTemplate.mdx)  | [`dfc.caches.lrudict.LRUDict.__getitem__`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/lrudict/LRUDict#-__getitem__) |
+
+## 3. 类 {/* #3-classes */}
+
+|                  类型                   |                     pyDocusaurus 数据                      | <center>对应页面渲染范例</center>                                                                                                                                                                                      |
+| :-------------------------------------: | :--------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                 `class`                 |     [`DocClass`](../../apis/core/classes/DocClass.mdx)     | <ul><li>[`Components`](../../apis/renderer/components/Components.mdx)</li><li>[`dfc.caches.lrudict.LRUDict`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/lrudict/LRUDict)</li></ul> |
+|                `abc.ABC`                |     [`DocClass`](../../apis/core/classes/DocClass.mdx)     | [`SaverAbstract`](../../apis/renderer/saver/SaverAbstract.mdx)                                                                                                                                                         |
+| `dataclass`<br/>或`pydantic.BaseModel` | [`DocDataClass`](../../apis/core/datacls/DocDataClass.mdx) | <ul><li>[`ClassProfile`](../../apis/core/classes/ClassProfile.mdx)</li><li>[`RendererPage`](../../apis/renderer/page/RendererPage.mdx)</li></ul>                                                                       |
+|                 `enum`                  |       [`DocEnum`](../../apis/core/enums/DocEnum.mdx)       | [`FunctionType`](../../apis/core/functions/FunctionType.mdx)                                                                                                                                                           |
+
+## 4. 类型 {/* #4-types */}
+
+|    类型     |                       pyDocusaurus 数据                        | <center>对应页面渲染范例</center>                                                                                                                |
+| :---------: | :------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `typealias` | [`DocTypeAlias`](../../apis/core/typealiases/DocTypeAlias.mdx) | [`dfc.caches.typehints.Deferred`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/typehints/Deferred)             |
+| `typedict`  | [`DocTypedDict`](../../apis/core/typeddicts/DocTypedDict.mdx)  | [`dfc.caches.typehints.CachedFileInfo`<IconExternalLink/>](https://cainmagi.github.io/dash-file-cache/docs/apis/caches/typehints/CachedFileInfo) |
+| `protocol`  |   [`DocProtocol`](../../apis/core/protocols/DocProtocol.mdx)   | [`ProtocolComponent`](../../apis/components/comprotocol/ProtocolComponent.mdx)                                                                   |

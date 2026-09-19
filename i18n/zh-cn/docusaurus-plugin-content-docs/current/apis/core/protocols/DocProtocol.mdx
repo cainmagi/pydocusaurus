@@ -1,0 +1,71 @@
+---
+id: DocProtocol
+title: DocProtocol
+sidebar_label: DocProtocol
+slug: /apis/core/protocols/DocProtocol
+description: 协议类型（用于类型提示）的 docstring 和其他基本信息。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.protocols.DocProtocol" />
+
+```python
+DocProtocol(
+    name: str,
+    descr: str,
+    init_func: DocFunction = _default_init(),
+    init_func_specified: bool = True,
+    methods: list[DocFunction] = [],
+    properties: list[DocProp] = [],
+    operators: list[DocOpTemplate] = [],
+    abstract_attrs: DocClassAbstractAttrs | None = None,
+    slang: str = "",
+    lineno: int = 0,
+    type: Literal["protocol"] = "protocol"
+)
+```
+
+协议类型（用于类型提示）的 docstring 和其他基本信息。
+
+协议类型是一种特殊的抽象类型。不过，它的使用场景并非运行时，而仅仅用在类型检查阶段。与常规类不同，它序列化后的信息也呈现出不同的渲染效果。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类的名称。 |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 类的描述文字。 |
+| `init_func` | `DocFunction` | | 类的初始化方法。 |
+| `init_func_specified` | `bool` | | 布尔标记。如果该值被设置，则表明该类有着由用户定义的初始化方法。 |
+| `methods` | `list[DocFunction]` | | 类的所有方法列表。 |
+| `properties` | `list[DocProp]` | | 类的所有属性列表。 |
+| `operators` | `list[DocOpTemplate]` | | 类的所有运算符列表。 |
+| `abstract_attrs` | `DocClassAbstractAttrs \| None` | | 额外的抽象成员。只在该类为抽象类的情形下存在。对于协议类型，该值将永远为`None`。 |
+| `slang` | `str` | | 该类的内部识别码。 |
+| `lineno` | `int` | | 定义了该类的代码所在的行号。如果该行号无法确认，则设为`0`。 |
+| `type` | `Literal["protocol"]` | | 作为文档成员的类型标识符。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+渲染为 Markdown 文字。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从协议渲染的 Markdown 文本。 |

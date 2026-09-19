@@ -1,0 +1,35 @@
+---
+id: is_runtime_root
+title: is_runtime_root
+sidebar_label: is_runtime_root
+slug: /apis/core/typealiases/is_runtime_root
+description: 检查某个`ast.Node`是否定义于某个已知的运行时根模块。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.typealiases.is_runtime_root" />
+
+```python
+v_1: TypeGuard[Name] = is_runtime_root(node: AST)
+```
+
+检查某个`ast.Node`是否定义于某个已知的运行时根模块。
+
+该方法用来在模块中搜索类型别名的时候，排除掉那些使用`getitem`定义的全局变量，例如`os.environ[...]`。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node` | `AST` | <InlineIcon icon={vsiCheckIcon}/> | 待检查的`ast`节点。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `TypeGuard[Name]` | 布尔标记。如果节点来源于`os`, `sys`或是其他全局模块，则返回`True`。 |

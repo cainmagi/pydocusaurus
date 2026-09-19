@@ -1,0 +1,38 @@
+---
+id: index
+title: core
+sidebar_label: core
+slug: /apis/core
+description: 用来分析 Python 代码和文档字符串 (docstring) 的核心功能。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="package" source="core" />
+
+用来分析 Python 代码和文档字符串 (docstring) 的核心功能。
+
+## 模块 {/* #modules */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="module" hasText={true} text="inspectors"/>](./inspectors/index.mdx) | 用来检测和分析对象的功能。 |
+| [<IconObjType type="module" hasText={true} text="analyzer"/>](./analyzer/index.mdx) | 与 Markdown 文字分析相关的功能。 |
+| [<IconObjType type="module" hasText={true} text="attree"/>](./attree/index.mdx) | 定义了成员属性树的构造过程，该树用来重建模块包结构。 |
+| [<IconObjType type="module" hasText={true} text="texts"/>](./texts/index.mdx) | 用于实现文档单元的 MDX 渲染。 |
+| [<IconObjType type="module" hasText={true} text="functions"/>](./functions/index.mdx) | 针对函数和方法实现的文档内容提取。 |
+| [<IconObjType type="module" hasText={true} text="ops"/>](./ops/index.mdx) | 针对类的运算符实现的文档内容提取。 |
+| [<IconObjType type="module" hasText={true} text="classes"/>](./classes/index.mdx) | 针对类对象实现的文档内容提取。 |
+| [<IconObjType type="module" hasText={true} text="datacls"/>](./datacls/index.mdx) | 针对数据类对象、及 PyDantic 模型实现的文档内容提取。 |
+| [<IconObjType type="module" hasText={true} text="enums"/>](./enums/index.mdx) | 针对枚举类型对象实现的文档内容提取。 |
+| [<IconObjType type="module" hasText={true} text="typeddicts"/>](./typeddicts/index.mdx) | 针对类型提示字典实现的文档内容提取。 |
+| [<IconObjType type="module" hasText={true} text="protocols"/>](./protocols/index.mdx) | 针对协议类型的运算符实现的文档内容提取。 |
+| [<IconObjType type="module" hasText={true} text="typealiases"/>](./typealiases/index.mdx) | 针对类型别名实现的文档内容提取。 |
+| [<IconObjType type="module" hasText={true} text="modules"/>](./modules/index.mdx) | 针对模块和模块包实现的文档内容提取。 |
+| [<IconObjType type="module" hasText={true} text="walker"/>](./walker/index.mdx) | 定义了用来穷尽遍历“嵌套模块包和模块成员”的检测和分析器。 |
+
+## 别名 {/* #aliases */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="PackageWalker"/>](./walker/PackageWalker.mdx) | 用来迭代遍历模块包的遍历器。 |

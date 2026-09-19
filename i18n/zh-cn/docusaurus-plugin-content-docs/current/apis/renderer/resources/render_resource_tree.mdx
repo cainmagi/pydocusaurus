@@ -1,0 +1,39 @@
+---
+id: render_resource_tree
+title: render_resource_tree
+sidebar_label: render_resource_tree
+slug: /apis/renderer/resources/render_resource_tree
+description: 渲染某个模块包的资源树。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.resources.render_resource_tree" />
+
+```python
+render_resource_tree(
+    out_dir: str | PathLike[str],
+    variables: dict,
+    package: str = "pydocusaurus",
+    resource_root: str = "resources",
+    saver: SaverAbstract | None = None,
+)
+```
+
+渲染某个模块包的资源树。
+
+将递归地加载模块包中的资源文件夹。其中 Jinja2 模板文件将渲染为输出文件，非模板的普通文件则原样复制，按照资源文件夹的结构原样重构到`out_dir`中。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `out_dir` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | 资源文件夹将要导出的目录路径。 |
+| `variables` | `dict` | <InlineIcon icon={vsiCheckIcon}/> | 从变量名称到变量值的映射。该字典将传入 Jinja2 模板中，以用来参数化渲染文件。 |
+| `package` | `str` | | 包含资源的模块包名称。 |
+| `resource_root` | `str` | | 模块包内部的资源文件夹、相对于模块包的根目录的路径。例如，可能是"resources/ts"。 |
+| `saver` | `SaverAbstract \| None` | | 用来导出输出文件的保存器。若未指定，则会使用默认的保存器。 |
