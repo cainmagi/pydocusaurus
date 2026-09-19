@@ -21,7 +21,13 @@ v_1: list[DocArgument] = parse_argument_docs(
 )
 ```
 
-(Private) Parse the docstring related to function arguments.
+:::danger
+
+This is a private function that should not be called by users.
+
+:::
+
+Parse the docstring related to function arguments.
 
 It is a part of `parse_func_docs(...)`. Calling this function direclty is not recommended.
 

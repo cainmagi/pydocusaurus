@@ -18,7 +18,11 @@ v_1: str = get_obj_slang(obj: Any, skip_root_module: bool = True)
 
 Get the full slang of a function/class/variable in a module.
 
-> [!warning] Note that the efficiency of this method is low when the inspected object is not a function/class. When inspecting all members in a module, it is better using `get_member_slangs(...)`.
+:::warning
+
+Note that the efficiency of this method is low when the inspected object is not a function/class.
+
+:::
 
 ## Arguments
 

@@ -68,10 +68,14 @@ Add a member to this module.
 
 #### Requires
 
+<div className="long-type-table">
+
 | Name | Type | Required | <center>Description</center> |
 | :-----: | :-----: | :-----: | :------ |
 | `member` | `(DocModule \| DocClass \| DocDataClass \| DocEnum \| DocTypedDict \| DocProtocol \| DocTypeAlias \| DocFunction)` | <InlineIcon icon={vsiCheckIcon}/> | The member to be added to this module. |
 | `is_alias` | `bool` | <InlineIcon icon={vsiCheckIcon}/> | A flag specifying whether the member added to this module is an alias. |
+
+</div>
 
 ______________________________________________________________________
 
@@ -117,13 +121,13 @@ Format the module properties as a table.
 | `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
 | `members` | `Sequence[DocModuleProp]` | <InlineIcon icon={vsiCheckIcon}/> | The list of members to be displayed in the table. |
 | `has_relink` | `bool` | | A flag. If specified, will render the first (name) column as relative links. |
-| `has_doc` | `bool` | | A flag. If specified, will display the docstring of the keyword-value. |
+| `has_doc` | `bool` | | A flag. If specified, will display the docstring of the members. |
 
 #### Returns
 
 | Name | Type | <center>Description</center> |
 | :-----: | :-----: | :------ |
-| `v_1` | `str` | The Markdown table of the keywords. |
+| `v_1` | `str` | The Markdown table of the members. |
 
 ## Properties
 

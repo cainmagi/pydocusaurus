@@ -26,10 +26,14 @@ This tree reconstructs the member structure of a full package. It can be convert
 
 ### Requires
 
+<div className="long-type-table">
+
 | Name | Type | Required | <center>Description</center> |
 | :-----: | :-----: | :-----: | :------ |
 | `walk_method` | `Callable[[str, dict[str, Any], list[T]], T]` | <InlineIcon icon={vsiCheckIcon}/> | <p>A method used to serialize tree nodes. The input arguments are:</p><ol><li>The partial name of the node.</li><li>The attributes of the current node.</li><li>The serialized members of the current node.</li></ol><p>The method will returns a serialized object representing the current node.</p> |
 | `root_name` | `str` | | The name of the root node. |
+
+</div>
 
 ## Methods
 

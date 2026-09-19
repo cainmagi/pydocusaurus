@@ -104,7 +104,7 @@ cp -rf ./output_docs/* /path/to/my-website
 
 Then, you can modify:
 
-- `docusaurus.config.ts`: site metadata, themes, plugins
+- `docusaurus.config.ts`: site metadata, themes, plugins.
 
 - `sidebars.ts`: pyDocusaurus already generates a complete API sidebar. You need to customize the other parts such as the tutorial document sidebar.
 
@@ -121,7 +121,7 @@ You may also need to customize the index page of your documentation site. An exa
   }
 </p>
 
-## 4. Update existing documentation site.
+## 4. Update existing documentation site
 
 In this case, you should not **directly copy (overwrite) all files** into your site because you may need to preserve your previous API documents.
 
@@ -133,7 +133,7 @@ Suppose that you need to update a new version of the documents. You may need to:
    yarn docusaurus docs:version 1.0.0
    ```
 
-2. Use `pydocusaurus` to render the output documents.
+2. Use pyDocusaurus to render the output documents.
 
 3. Remove the entire `./docs/apis` folder because the current API documents are delegated to pyDocusaurus now.
 

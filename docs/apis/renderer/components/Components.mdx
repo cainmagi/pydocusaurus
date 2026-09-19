@@ -51,14 +51,18 @@ v_1: str = self.icon_obj(
 )
 ```
 
-The protocol of the subtitle icon.
+The implemented protocol of the subtitle icon.
 
 #### Requires
+
+<div className="long-type-table">
 
 | Name | Type | Required | <center>Description</center> |
 | :-----: | :-----: | :-----: | :------ |
 | `type` | `Literal["method", "op", "param", "package", "module", "class", "func", "type"]` | <InlineIcon icon={vsiCheckIcon}/> | The name determining the icon. |
 | `text` | `str` | | An optional text after the icon. If it is empty, will only display the icon. |
+
+</div>
 
 #### Returns
 
@@ -74,7 +78,7 @@ ______________________________________________________________________
 v_1: str = self.inline_icon(icon: Literal["check"])
 ```
 
-The protocol of special single icon.
+The implemented protocol of special single icon.
 
 #### Requires
 

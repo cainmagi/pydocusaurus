@@ -26,4 +26,4 @@ The MDX component module to be rendered. Call `str(...)` to render this object a
 | :-----: | :-----: | :-----: | :------ |
 | `module` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The full typescript module of the component. |
 | `default` | `str` | | The default export of the module. If not specified, will not export the default value. |
-| `named` | `set[str \| tuple[str, str]]` | | <p>The named export of the module. If not specified, will not export any names.</p><pre><code>If the element is a tuple, it means `(export_name, as_name)` during the import.</code></pre> |
+| `named` | `set[str \| tuple[str, str]]` | | <p>The named export of the module. If not specified, will not export any names.</p><p>If the element is a tuple, it means <code>(export_name, as_name)</code> during the import.</p> |

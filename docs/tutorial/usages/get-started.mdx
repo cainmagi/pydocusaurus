@@ -82,7 +82,7 @@ pyDocusaurus uses section titles, such as "Auhtor" and "License", to detect fiel
 
 The docstring will be converted into a data strcuture [`DocModule`](../../apis/core/modules/DocModule.mdx), where the key fields are:
 
-|       Field        | Value                                                                                                                                            |
+|       Field        | <center>Value</center>                                                                                                                           |
 | :----------------: | :----------------------------------------------------------------------------------------------------------------------------------------------- |
 |       `name`       | example_module                                                                                                                                   |
 |  `metadata.title`  | Module Title                                                                                                                                     |
@@ -155,29 +155,29 @@ The section titles can be named as:
 
 The docstring will be converted into a data strcuture [`DocFunction`](../../apis/core/functions/DocFunction.mdx), where the key fields are:
 
-|  Field   | Value                |
-| :------: | :------------------- |
-|  `name`  | example_func         |
-| `descr`  | An example function. |
-|  `args`  | `list[DocArgument]`  |
-| `retval` | `list[DocArgument]`  |
+|  Field   | <center>Value</center> |
+| :------: | :--------------------- |
+|  `name`  | example_func           |
+| `descr`  | An example function.   |
+|  `args`  | `list[DocArgument]`    |
+| `retval` | `list[DocArgument]`    |
 
 where the `args` and `retval` are lists of [`DocArgument`](../../apis/core/functions/DocArgument.mdx), for example, the key fields of `args[0]` is:
 
-|   Field   | Value               |
-| :-------: | :------------------ |
-|  `name`   | arg1                |
-|  `type`   | `str`               |
-| `default` |                     |
-|   `doc`   | The first argument. |
+|   Field   | <center>Value</center> |
+| :-------: | :--------------------- |
+|  `name`   | arg1                   |
+|  `type`   | `str`                  |
+| `default` |                        |
+|   `doc`   | The first argument.    |
 
 and the `retval[0]` is
 
-| Field  | Value               |
-| :----: | :------------------ |
-| `name` | \#1                 |
-| `type` | `float`             |
-| `doc`  | The returned value. |
+| Field  | <center>Value</center> |
+| :----: | :--------------------- |
+| `name` | \#1                    |
+| `type` | `float`                |
+| `doc`  | The returned value.    |
 
 An example of the rendered function page can be found here:
 
@@ -248,7 +248,7 @@ In this case, users need to maintain that
 
 The docstring will be converted into a data strcuture [`DocFunction`](../../apis/core/functions/DocFunction.mdx), where the `retval` field is a list of [`DocArgument`](../../apis/core/functions/DocArgument.mdx). For example, the key fields of `retval[0]` is:
 
-| Field  | Value                    |
+| Field  | <center>Value</center>   |
 | :----: | :----------------------- |
 | `name` | \#1                      |
 | `type` | `str`                    |
@@ -322,7 +322,7 @@ class ExampleClass:
         raise NotImplementedError
 ```
 
-Overall, the top-level class docstring will be interpretedd as a multi-line Markdown documentdescribingf the clasn. The other rules are:
+Overall, the top-level class docstring will be interpretedd as a multi-line Markdown document describing the class. The other rules are:
 
 1. The function and operator docstrings follow the previously mentioned function style. For methods and class methods, the first argument `self`/`cls` is skipped in the docstring.
 
@@ -336,7 +336,7 @@ Overall, the top-level class docstring will be interpretedd as a multi-line Mark
 
 The docstring will be converted into a data strcuture [`DocClass`](../../apis/core/classes/DocClass.mdx), where the key fields are:
 
-|    Field     | Value                                                                      |
+|    Field     | <center>Value</center>                                                     |
 | :----------: | :------------------------------------------------------------------------- |
 |    `name`    | ExampleClass                                                               |
 |   `descr`    | An example class which is a mixture of methods, properties, and operators. |
@@ -347,7 +347,7 @@ The docstring will be converted into a data strcuture [`DocClass`](../../apis/co
 
 Here, the example class only contains one method, one property, and no operators (`__init__` is not counted as an operator). The contents of those functions follow the same rules as when extracting a vanilla function. Therefore, we only explain the details of `properties[0]`:
 
-|  Field  | Value                               |
+|  Field  | <center>Value</center>              |
 | :-----: | :---------------------------------- |
 | `name`  | prop                                |
 | `descr` | A vanilla property with annotation. |
@@ -405,17 +405,17 @@ Although PyDantic provides the [Field.description<IconExternalLink/>](https://py
 
 The docstring will be converted into a data strcuture [`DocDataClass`](../../apis/core/datacls/DocDataClass.mdx), where the key fields are:
 
-|  Field   | Value                                                                                                                                                             |
+|  Field   | <center>Value</center>                                                                                                                                            |
 | :------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |  `name`  | ExampleModel                                                                                                                                                      |
 | `descr`  | <p>An example PyDantic model that is used for testing the docstring extraction.</p><p>The initialization function are synthesized from the field definitions.</p> |
 | `fields` | `list[DocField]`                                                                                                                                                  |
 
-Note that the `DocDataClass` is a subclass of [`DocClass`](../../apis/core/classes/DocClass.mdx). Therefore, the other fields such as `methods` and `properties` work in the same way when extracting the docstring information.
+Note that the `DocDataClass` and [`DocClass`](../../apis/core/classes/DocClass.mdx) are subclasses of the same prototype class. Therefore, the other fields such as `methods` and `properties` work in the same way when extracting the docstring information.
 
 In this example, the PyDantic model is interpreted as a dataclass. The initialization function will not be detected, and the class arguments will be replaced by the "section of fields". The detected fields are a list of [`DocField`](../../apis/core/datacls/DocField.mdx). An example of the exported fields are as follows:
 
-|  Field  |     Type     | Description                                                            |
+|  Field  |     Type     | <center>Description</center>                                           |
 | :-----: | :----------: | :--------------------------------------------------------------------- |
 | `val_1` |    `int`     | The most plain field that is required.                                 |
 | `val_2` |    `str`     | An optional field with a default value.                                |
@@ -466,7 +466,7 @@ Here, the example module contains two aliases defined in [different ways<IconExt
 
 The docstring will be converted into a data strcuture [`DocTypeAlias`](../../apis/core/typealiases/DocTypeAlias.mdx). For example, the key fields of the first detected alias are:
 
-|    Field     | Value                                |
+|    Field     | <center>Value</center>               |
 | :----------: | :----------------------------------- |
 |    `name`    | CustomType                           |
 |   `descr`    | docstring for CustomType             |

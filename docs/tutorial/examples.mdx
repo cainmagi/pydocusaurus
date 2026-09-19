@@ -126,7 +126,7 @@ class SaverSingleFile(pydocusaurus.renderer.package.SaverAbstract):
         Arguments
         ---------
         out_path: `str`
-            The path will the document is saved. It is a YAML file.
+            The path where the document is saved. It is a YAML file.
         """
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         with open(out_path, "w", encoding="utf-8") as fobj:
