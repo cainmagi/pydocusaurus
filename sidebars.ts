@@ -82,6 +82,7 @@ const sidebars: SidebarsConfig = {
         {
           "type": "category",
           "label": "components",
+          "key": "renderer_components",
           "collapsed": true,
           "link": {
             "type": "doc",

@@ -4,6 +4,12 @@
 
 ## CHANGELOG
 
+### 1.0.1 @ 09/17/2026
+
+#### :floppy_disk?: Change
+
+1. Fix: Adjust basic configurations (styles and sidebars) of the documentation.
+
 ### 1.0.0 @ 09/17/2026
 
 #### :wrench: Fix
