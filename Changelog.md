@@ -21,6 +21,7 @@
 2. Fix: Correct typos in the existing documentation.
 3. Fix: Correct the version tracking in `env/variables.tsx`, and support the dependency version.
 4. Fix: Correct bugs caused by the version tracking.
+5. Fix: Add the missing component import of the adjusted `AbstractAttrs` page.
 
 #### :floppy_disk: Change
 
