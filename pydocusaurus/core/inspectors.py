@@ -160,8 +160,7 @@ def get_obj_slang(obj: Any, skip_root_module: bool = True) -> str:
 
     > [!warning]
     > Note that the efficiency of this method is low when the inspected object is not
-    a function/class. When inspecting all members in a module, it is better using
-    `get_member_slangs(...)`.
+    a function/class.
 
     Arguments
     ---------
@@ -421,7 +420,7 @@ class _FieldDocstringFetcher:
         doc = cst.value
         if not isinstance(doc, str):
             return None
-        return doc
+        return inspect.cleandoc(doc)
 
     def get_single_docstrings(self, model_cls: type[Any]) -> dict[str, str | None]:
         """Get the docstring of a single class. This method will not backtrack the
@@ -519,7 +518,7 @@ def get_field_docstrings(
 
 def get_arg_default_name(val: Any) -> str:
     """Format the given value as a string that can be used as the default field of a
-    function argument (`DocFunction`).
+    function argument (`DocArgument`).
 
     Arguments
     ---------
@@ -737,7 +736,7 @@ def is_member_abstract(attr: Any) -> bool:
 def is_func_yield(func: Any) -> bool:
     """Check whether the given object is a function returning an iterator.
 
-    Will check the real-time implementation first. If not detected, will check the
+    Will check the run-time implementation first. If not detected, will check the
     annotation.
 
     Arguments
@@ -906,7 +905,7 @@ def relative_url_path(path_from: str, path_to: str) -> str:
     Returns
     -------
     #1: `str`
-        The relative path from `path_from` to `to_ppath_toath`, always using forward
+        The relative path from `path_from` to `path_to`, always using forward
         slashes for URL compatibility.
     """
     path_from = path_from.replace("\\", "/")

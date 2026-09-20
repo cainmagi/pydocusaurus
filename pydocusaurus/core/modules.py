@@ -280,12 +280,12 @@ class DocModule(BaseModel):
             links.
 
         has_doc: `bool`
-            A flag. If specified, will display the docstring of the keyword-value.
+            A flag. If specified, will display the docstring of the members.
 
         Returns
         -------
         #1: `str`
-            The Markdown table of the keywords.
+            The Markdown table of the members.
         """
         cols: list[str] = ["Member"] + (["Description"] if has_doc else [])
         idx_doc: int | None = (

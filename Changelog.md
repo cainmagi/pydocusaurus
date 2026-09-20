@@ -4,6 +4,12 @@
 
 ## CHANGELOG
 
+### 1.0.1 @ 09/19/2026
+
+#### :wrench: Fix
+
+1. Fix: Correct typos in the docstrings.
+
 ### 1.0.0 @ 09/08/2026
 
 #### :mega: New

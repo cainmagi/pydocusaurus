@@ -63,28 +63,27 @@ class DocTypedDictItem(BaseModel):
 
 
 class DocTypedDict(BaseModel):
-    """The docstring and basic information of a class.
+    """The docstring and basic information of a typed dictionary.
 
-    This serializable data type contains the parsed docstrings of the class body, the
-    initialization function, the properties, the methods, and the overloaded operators.
+    A typed dictionary is supposed not to have user-defined methods, properties, or
+    operators. Therefore, this serializable data type will only specify the dictionary
+    signature.
     """
 
     type: Literal["typeddict"] = "typeddict"
     """The identifier of this documentation item."""
 
     name: str = Field(min_length=1)
-    """The name of the class."""
+    """The name of the typed dictionary."""
 
     descr: str
-    """The description body of the class."""
+    """The description body of the typed dictionary."""
 
     dict_items: list[DocTypedDictItem] = Field(default_factory=list)
     """The key-val items of the typed dictionary."""
 
     slang: str = ""
-    """The internal code identifying this function. It needs to be specified when the
-    function is a vanilla function (`f_type` is `"function"`) to provide the
-    identification of the source code."""
+    """The internal code identifying this typed dictionary."""
 
     lineno: int = 0
     """The line number where the typed dictionary is defined. If the number is unknown,
@@ -102,7 +101,7 @@ class DocTypedDict(BaseModel):
 
         The v2 string is in the following format:
         ```python
-        ret: type = DictName(key1: type1, key2: type2, ...)
+        DictName(key1: type1, key2: type2, ...)
         ```
 
         Note that the v2 string is longer than the default string for `TypedDict`.

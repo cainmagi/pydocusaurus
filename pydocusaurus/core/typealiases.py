@@ -55,13 +55,13 @@ class DocTypeAlias(BaseModel):
     """The identifier of this documentation item."""
 
     name: str = Field(min_length=1)
-    """The name of the dict item."""
+    """The name of the type alias."""
 
     definition: str
     """The full declaration of the type alias. It is usually an assignment code."""
 
     descr: str = ""
-    """The docstring of the dict item, it is defined in codes."""
+    """The docstring of the type alias, it is defined in codes."""
 
     slang: str = ""
     """The internal code identifying this type alias."""
@@ -336,7 +336,7 @@ def _get_docstring_after(
         return None
     value = next_node.value
     if isinstance(value.value, str):
-        return value.value
+        return inspect.cleandoc(value.value)
     return None
 
 

@@ -66,7 +66,7 @@ class Section(BaseModel):
     """Document section extracted from a Markdown string."""
 
     title: str
-    """The text of the title"""
+    """The text of the title."""
 
     level: int = Field(default=0, ge=0, le=6)
     """The level number of the title."""

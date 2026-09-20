@@ -105,7 +105,7 @@ class Components:
         ],
         text: str = "",
     ) -> str:
-        """The protocol of the subtitle icon.
+        """The implemented protocol of the subtitle icon.
 
         Arguments
         ---------
@@ -132,7 +132,7 @@ class Components:
         )
 
     def inline_icon(self, icon: Literal["check"]) -> str:
-        """The protocol of special single icon.
+        """The implemented protocol of special single icon.
 
         Arguments
         ---------

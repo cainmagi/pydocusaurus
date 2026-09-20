@@ -16,7 +16,6 @@ MIT License
 Description
 -----------
 The centralized renderer used to produce the Markdown format of the documentation.
-Some test.
 """
 
 from pkgutil import extend_path

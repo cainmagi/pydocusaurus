@@ -148,7 +148,7 @@ def render_obj(obj: Any) -> RendererPage | None:
     Returns
     -------
     #1: `RendererPage | None`
-        The rendered page object. Will be `None` if the given obj cannot be rendered
+        The rendered page object. Will be `None` if the given `obj` cannot be rendered
         as a documentation page.
     """
     otype = _walker.PackageWalker.get_member_type(obj)

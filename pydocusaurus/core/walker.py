@@ -77,12 +77,13 @@ def analyze_module_ast(module: ModuleType) -> dict[str, tuple[int, bool]]:
         The `name` is the entity name detected in the module.
 
         An entity can be a class, function, variable, and imported aliases such as
-            - class Foo
-            - def bar
-            - baz = ...
-            - import x as y
-            - from .sub import name
-            - from external import name
+
+        - class Foo
+        - def bar
+        - baz = ...
+        - import x as y
+        - from .sub import name
+        - from external import name
 
         `lineno` is the line number where the entity is specified in the code.
 

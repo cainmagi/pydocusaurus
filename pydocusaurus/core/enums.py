@@ -79,7 +79,9 @@ class DocEnum(_classes._DocClassPrototype):
 
         The v2 string is in the following format:
         ```python
-        ClassName(field1: type1, field2: type2 = default2, ...)
+        ClassName.ITEM1 = value1
+        ClassName.ITEM2 = value2
+        ...
         ```
         which is more compact than the default string.
         """
@@ -110,7 +112,7 @@ class DocEnum(_classes._DocClassPrototype):
         has_value: bool = True,
         has_doc: bool = False,
     ) -> str:
-        """Format the fields as a table.
+        """Format the enum items as a table.
 
         Arguments
         ---------
