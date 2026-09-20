@@ -185,6 +185,20 @@ class ClassProfile:
         member: Any,
         method_validator: Callable[[Any], _funcs.FunctionType | None],
     ) -> None:
+        """(Private) Add a member to the current profile.
+
+        Arguments
+        ---------
+        name: `str`
+            The name of the member to be added.
+
+        member: `Any`
+            The object of the member to be added.
+
+        method_validator: `(Any) -> FunctionType | None`
+            A validator that checks whether a function is a method if it is a
+            function.
+        """
         if self._add_property(member):
             return
         if self._add_method(member, allow_func=False):

@@ -13,6 +13,7 @@
 3. Fix: Correct the resource configurations that may cause page building bugs.
 4. Fix: Correct the bug of the version solution in the typescript.
 5. Fix: Fully correct the behavior of parsed abstract class. Previously, the results will not detect the parent abstract members if they are still not implemented. Now, the MRO list will be searched.
+6. Fix: Add the missing docstring of `core.classes.ClassProfile._add_member`.
 
 ### 1.0.0 @ 09/08/2026
 
