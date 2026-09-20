@@ -18,12 +18,14 @@ interface EnvVariables {
   repoURL: string;
   rawURL: string;
   sourceVersion: {
-    "1.0.0": string;
+    "1.1.x": string;
+    "1.0.1": string;
     main: string;
     [key: string]: any;
   };
   dependencyVersion: {
-    "1.0.0": string;
+    "1.1.x": string;
+    "1.0.1": string;
     main: string;
     [key: string]: any;
   };
@@ -39,11 +41,13 @@ const variables: EnvVariables = {
   repoURL: "https://github.com/cainmagi/pydocusaurus",
   rawURL: "https://raw.githubusercontent.com/cainmagi/pydocusaurus",
   sourceVersion: {
-    "1.0.0": "v1.0.0",
+    "1.1.x": "main",
+    "1.0.1": "v1.0.0",
     main: "main",
   },
   dependencyVersion: {
-    "1.0.0": "3.10.2",
+    "1.1.x": "3.10.2",
+    "1.0.1": "3.10.2",
     main: "3.10.2",
   },
   sourceURIs: {
@@ -280,9 +284,9 @@ const variables: EnvVariables = {
 
 const useCurrentSourceVersion = (): string => {
   const versionHook = useDocsVersion();
-  const versionLabel = versionHook?.label;
+  const versionName = versionHook?.version;
   return (
-    variables.sourceVersion[versionLabel] || variables.sourceVersion["main"]
+    variables.sourceVersion[versionName] || variables.sourceVersion["main"]
   );
 };
 
@@ -293,12 +297,10 @@ export type DependencyTagProps = {
 export const DependencyTag = ({
   ver = "main",
 }: DependencyTagProps): React.JSX.Element => {
-  const _ver = ver?.toLowerCase() === "next" ? "main" : ver;
+  const _ver = ver?.toLowerCase() === "current" ? "main" : ver;
   const versionDeps = variables.dependencyVersion[_ver];
   return versionDeps ? (
-    <Link
-      href={`https://github.com/facebook/docusaurus/tree/v${versionDeps}`}
-    >
+    <Link href={`https://github.com/facebook/docusaurus/tree/v${versionDeps}`}>
       <code>{`Docusaurus@${versionDeps}`}</code>
       <IconExternalLink />
     </Link>
@@ -316,8 +318,8 @@ export const repoURL = (url: string | undefined = undefined): string => {
 };
 
 export const releaseURL = (ver: string | undefined = undefined): string => {
-  const _ver = ver?.toLowerCase() === "next" ? "main" : ver || "";
-  const version = variables.sourceVersion[_ver] || useCurrentSourceVersion();
+  const _ver = ver?.toLowerCase() === "current" ? "main" : ver || "";
+  const version = variables.sourceVersion[_ver] || "main";
   if (version === "main" || _ver === "main") {
     return variables.repoURL + "/releases/latest";
   }

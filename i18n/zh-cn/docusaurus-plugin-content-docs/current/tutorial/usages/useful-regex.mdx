@@ -37,6 +37,19 @@ import SvgMermaidTreeOut from "./mermaid-tree-out.svg";
 yarn write-translations --locale zh-cn --messagePrefix "(ZH-CN) "
 ```
 
+:::danger
+
+你可能会在`i18n/zh-cn/docusaurus-plugin-content-docs/current.json`发现以下的建议翻译条目。然而，你需要删掉这一条并保持其“非翻译”的状态，这是因为这条翻译会重载掉在`docusaurus.config.ts`手动设置的`docs.versions.current.label`。
+
+```json
+"version.label": {
+  "message": "(ZH-CN) 预览版",
+  "description": "The label for version current"
+}
+```
+
+:::
+
 在首次撰写翻译的时候，还需要透过以下命令复制当前文档：
 
 ```sh
@@ -64,7 +77,7 @@ yarn write-heading-ids . i18n/zh-cn/docusaurus-plugin-content-docs/current --syn
 
 :::
 
-## 2. Useful regular expressions
+## 2. 有用的正则表达式
 
 程序是生成的文档包含了大量的重复标题、以及重复的表格标题行。VS Code 允许用户指定某个目录，并只在该目录中搜索和批量替换文字。本文将会以“撰写中文文档”为例，展示了在替换文字的时候，可以用到的一些正则表达式。
 

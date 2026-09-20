@@ -121,12 +121,12 @@ function Version() {
                     </Link>
                   </td>
                   <td align="center">
-                    <Link href={releaseURL(latestVersion.label || "main")}>
+                    <Link href={releaseURL(latestVersion.name || "main")}>
                       <InlineIcon icon={octTag16} />
                     </Link>
                   </td>
                   <td align="center">
-                    <DependencyTag ver={latestVersion.label} />
+                    <DependencyTag ver={latestVersion.name} />
                   </td>
                 </tr>
               </tbody>
@@ -202,12 +202,12 @@ function Version() {
                       </Link>
                     </td>
                     <td align="center">
-                      <Link href={releaseURL(version.label || "main")}>
+                      <Link href={releaseURL(version.name || "main")}>
                         <InlineIcon icon={octTag16} />
                       </Link>
                     </td>
                     <td align="center">
-                      <DependencyTag ver={version.label} />
+                      <DependencyTag ver={version.name} />
                     </td>
                   </tr>
                 ))}
@@ -216,7 +216,7 @@ function Version() {
           </div>
         )}
 
-        {currentVersion !== latestVersion && (
+        {currentVersion && currentVersion !== latestVersion && (
           <div className="margin-bottom--lg">
             <h3 id="latest">
               <Translate

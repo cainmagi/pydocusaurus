@@ -37,6 +37,19 @@ Run the following command to update the currently used translations. Any new fea
 yarn write-translations --locale zh-cn --messagePrefix "(ZH-CN) "
 ```
 
+:::danger
+
+You may find the following suggested translation in `i18n/zh-cn/docusaurus-plugin-content-docs/current.json`. However, you should delete this item and leave it untranslated because this translation will override the manually configured `docs.versions.current.label` in your `docusaurus.config.ts`.
+
+```json
+"version.label": {
+  "message": "(ZH-CN) 预览版",
+  "description": "The label for version current"
+}
+```
+
+:::
+
 When the translation is created for the first time, run the following commands to copy the current documents:
 
 ```sh
