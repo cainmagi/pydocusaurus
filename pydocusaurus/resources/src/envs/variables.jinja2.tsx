@@ -44,9 +44,9 @@ const variables: EnvVariables = {
 {% raw -%}
 const useCurrentSourceVersion = (): string => {
   const versionHook = useDocsVersion();
-  const versionLabel = versionHook?.label;
+  const versionName = versionHook?.version;
   return (
-    variables.sourceVersion[versionLabel] || variables.sourceVersion["main"]
+    variables.sourceVersion[versionName] || variables.sourceVersion["main"]
   );
 };
 
@@ -59,8 +59,8 @@ export const repoURL = (url: string | undefined = undefined): string => {
 };
 
 export const releaseURL = (ver: string | undefined = undefined): string => {
-  const _ver = ver?.toLowerCase() === "next" ? "main" : (ver || "");
-  const version = variables.sourceVersion[_ver] || useCurrentSourceVersion();
+  const _ver = ver?.toLowerCase() === "current" ? "main" : ver || "";
+  const version = variables.sourceVersion[_ver] || "main";
   if (version === "main" || _ver === "main") {
     return variables.repoURL + "/releases/latest";
   }
@@ -109,7 +109,10 @@ export type SourceLinkProps = {
   children: React.ReactNode;
 };
 
-export const SourceLink = ({url, children}: SourceLinkProps): React.JSX.Element => {
+export const SourceLink = ({
+  url,
+  children,
+}: SourceLinkProps): React.JSX.Element => {
   return (
     <Link to={sourceURL(url)} className="noline">
       {children}

@@ -186,6 +186,16 @@ const config: Config = {
           className: "code-block-error-line",
           line: "This will error",
         },
+        {
+          className: "code-block-diff-add-line",
+          line: "diff-add-next-line",
+          block: {start: "diff-add-start", end: "diff-add-end"},
+        },
+        {
+          className: "code-block-diff-remove-line",
+          line: "diff-remove-next-line",
+          block: {start: "diff-remove-start", end: "diff-remove-end"},
+        },
       ],
     },
     docs: {

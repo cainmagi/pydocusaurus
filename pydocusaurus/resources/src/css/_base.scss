@@ -114,7 +114,10 @@ table {
   tbody {
     th,
     td {
-      p:last-child {
+      p:last-child,
+      ul:last-child,
+      ol:last-child,
+      pre:last-child {
         margin-bottom: 0;
       }
     }

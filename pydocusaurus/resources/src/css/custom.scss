@@ -83,3 +83,39 @@
     padding-left: var(--ifm-pre-padding) !important;
   }
 }
+
+/**
+ * SVG styles
+ */
+.themed-mermaid-svg {
+  .node {
+    stroke: black;
+    fill: white;
+    & text {
+      stroke: none;
+      fill: black;
+    }
+  }
+  .edge {
+    & path {
+      stroke: black;
+      :root[data-theme="dark"] & {
+        stroke: white !important;
+      }
+    }
+    & .arrow {
+      fill: black;
+      stroke: black;
+      :root[data-theme="dark"] & {
+        fill: white !important;
+        stroke: white !important;
+      }
+    }
+  }
+  :root[data-theme="dark"] & .treeView-node-label {
+    fill: white !important;
+  }
+  :root[data-theme="dark"] & .treeView-node-line {
+    stroke: white !important;
+  }
+}

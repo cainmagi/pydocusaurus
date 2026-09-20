@@ -10,6 +10,7 @@
 
 1. Fix: Correct typos in the docstrings.
 2. Fix: Remove incorrectly configured project classifiers.
+3. Fix: Correct the resource configurations that may cause page building bugs.
 
 ### 1.0.0 @ 09/08/2026
 
