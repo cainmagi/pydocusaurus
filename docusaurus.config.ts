@@ -48,6 +48,16 @@ const config: Config = {
     locales: ["en", "zh-cn"],
   },
 
+  headTags: [
+    {
+      tagName: "meta",
+      attributes: {
+        name: "msvalidate.01",
+        content: "DC7DC347E6ADF4A5E6CF8FA785DD58E8",
+      },
+    },
+  ],
+
   presets: [
     [
       "classic",
@@ -81,10 +91,7 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: "img/social-card.webp",
-    metadata: [
-      {name: "og:site_name", content: "pyDocusaurus"},
-      {name: "msvalidate.01", content: "DC7DC347E6ADF4A5E6CF8FA785DD58E8"},
-    ],
+    metadata: [{name: "og:site_name", content: "pyDocusaurus"}],
     colorMode: {
       respectPrefersColorScheme: true,
     },
