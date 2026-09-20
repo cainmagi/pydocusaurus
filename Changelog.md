@@ -15,6 +15,10 @@
 5. Fix: Fully correct the behavior of parsed abstract class. Previously, the results will not detect the parent abstract members if they are still not implemented. Now, the MRO list will be searched.
 6. Fix: Add the missing docstring of `core.classes.ClassProfile._add_member`.
 
+#### :floppy_disk: Change
+
+1. Update the project information in the security policy.
+
 ### 1.0.0 @ 09/08/2026
 
 #### :mega: New
