@@ -12,6 +12,7 @@
 2. Support more translations of the main information.
 3. Add a new article: `/usages/useful-regex`.
 4. Create an unreleased next document version `1.1.x`.
+5. Add the Google Analytics tag.
 
 #### :floppy_disk?: Change
 

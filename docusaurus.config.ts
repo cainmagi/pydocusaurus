@@ -67,10 +67,10 @@ const config: Config = {
           //   },
           // },
         },
-        // gtag: {
-        //   trackingID: "G-3802252EHF",
-        //   anonymizeIP: true,
-        // },
+        gtag: {
+          trackingID: "G-X429TNSQZ0",
+          anonymizeIP: true,
+        },
         theme: {
           customCss: "./src/css/custom.scss",
         },
