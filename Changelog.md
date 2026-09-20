@@ -4,7 +4,7 @@
 
 ## CHANGELOG
 
-### 1.0.1 @ 09/19/2026
+### 1.0.1 @ 09/20/2026
 
 #### :mega: New
 
@@ -14,12 +14,16 @@
 4. Create an unreleased next document version `1.1.x`.
 5. Add the Google Analytics tag.
 
-#### :floppy_disk?: Change
+#### :wrench: Fix
 
 1. Fix: Adjust basic configurations (styles and sidebars) of the documentation.
 2. Fix: Correct typos in the existing documentation.
 3. Fix: Correct the version tracking in `env/variables.tsx`, and support the dependency version.
 4. Fix: Correct bugs caused by the version tracking.
+
+#### :floppy_disk: Change
+
+1. Align the code sources (links) with the newest version.
 
 ### 1.0.0 @ 09/17/2026
 
@@ -42,7 +46,7 @@
 3. Fix: Refine the titles and displays of some pages.
 4. Fix: Correct the key of a metadata.
 
-#### :floppy_disk?: Change
+#### :floppy_disk: Change
 
 1. Update the security policy link.
 2. Adjust some highlight codes.
