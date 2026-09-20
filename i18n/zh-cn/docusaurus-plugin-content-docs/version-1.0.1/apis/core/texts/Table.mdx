@@ -1,0 +1,75 @@
+---
+id: Table
+title: Table
+sidebar_label: Table
+slug: /apis/core/texts/Table
+description: 用来呈现参数信息的 Markdown 表格。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.texts.Table" />
+
+```python
+Table(
+    n_rows: int,
+    n_cols: int,
+    cells: dict[tuple[int, int], str] = dict(...),
+    col_styles: dict[int, Literal["l", "c", "r", "n"]] = dict(...)
+)
+```
+
+用来呈现参数信息的 Markdown 表格。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `n_rows` | `int` | <InlineIcon icon={vsiCheckIcon}/> | 表格行数。第一行用作表头。 |
+| `n_cols` | `int` | <InlineIcon icon={vsiCheckIcon}/> | 表格列数。 |
+| `cells` | `dict[tuple[int, int], str]` | | 按照 `{(index_row, index_col): text}` 格式保存的单元格文本。 |
+| `col_styles` | `dict[int, Literal["l", "c", "r", "n"]]` | | 各列对应的样式。可用标记为：(l) 左对齐, (c): 居中, (r): 右对齐, (n): 无样式。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text()
+```
+
+渲染为 Markdown 文字。
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从表格渲染的 Markdown 文本。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `render_cell` {/* #-render_cell */}
+
+```python
+v_1: str = self.render_cell(md: MarkdownIt, text: str)
+```
+
+安全地渲染单元格文字。
+
+若该文字为单个段落，则按原样渲染。否则，就将其渲染成HTML代码。
+If the text is a single pargraph, render it as it is. Otherwise, render it as HTML codes.
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `md` | `MarkdownIt` | <InlineIcon icon={vsiCheckIcon}/> | markdown-it 解析器。 |
+| `text` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 单元格文字。 |
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 渲染后的单元格文字。 |

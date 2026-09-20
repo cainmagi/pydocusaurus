@@ -1,0 +1,33 @@
+---
+id: get_slug
+title: get_slug
+sidebar_label: get_slug
+slug: /apis/core/inspectors/get_slug
+description: Get the URL slug from the slang prototype.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_slug" />
+
+```python
+v_1: str = get_slug(slang: str)
+```
+
+Get the URL slug from the slang prototype.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `slang` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The slang in the endpoint format, for example: "package.module.class". |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The absolute URL of a page. |

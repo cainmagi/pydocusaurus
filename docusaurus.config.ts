@@ -59,10 +59,11 @@ const config: Config = {
           editUrl: "https://github.com/cainmagi/pydocusaurus/edit/docs/",
           editLocalizedFiles: true,
           // versions
-          lastVersion: "current",
+          includeCurrentVersion: false,
+          // lastVersion: "current",
           // versions: {
           //   current: {
-          //     label: "0.1.0",
+          //     label: "1.1.x",
           //   },
           // },
         },

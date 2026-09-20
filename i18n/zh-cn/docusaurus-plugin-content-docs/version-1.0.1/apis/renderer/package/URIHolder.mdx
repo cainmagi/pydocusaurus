@@ -1,0 +1,67 @@
+---
+id: URIHolder
+title: URIHolder
+sidebar_label: URIHolder
+slug: /apis/renderer/package/URIHolder
+description: 用来管理 URI （统一资源标识符）的临时缓存。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" source="renderer.package.URIHolder" />
+
+```python
+URIHolder()
+```
+
+用来管理 URI （统一资源标识符）的临时缓存。
+
+## 参数 {/* #arguments */}
+
+该类的初始化无需参数。
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `add` {/* #-add */}
+
+```python
+self.add(page: RendererPage)
+```
+
+将页面的内部识别码添加到该 URI 缓存中。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `page` | `RendererPage` | <InlineIcon icon={vsiCheckIcon}/> | 用来提供内部识别码和 URI 的页面。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `render` {/* #-render */}
+
+```python
+v_1: dict[str, str] = self.render()
+```
+
+将数据渲染为 URI 列表。
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `dict[str, str]` | 从`slang`到指向文档文件`uri`的映射。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `update` {/* #-update */}
+
+```python
+self.update()
+```
+
+刷新 URI 列表，并更新其中的`is_package`布尔标记。
+
+该方法用来补充一些来自“未被探测到的模块包成员”的信息。

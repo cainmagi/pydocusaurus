@@ -1,0 +1,53 @@
+---
+id: FunctionType
+title: FunctionType
+sidebar_label: FunctionType
+slug: /apis/core/functions/FunctionType
+description: The type of a callable object (function).
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isEnum={true} source="core.functions.FunctionType" />
+
+```python
+FunctionType.CLASSMETHOD = "classmethod"
+FunctionType.STATICMETHOD = "staticmethod"
+FunctionType.METHOD = "method"
+FunctionType.FUNCTION = "function"
+```
+
+The type of a callable object (function).
+
+## Enums
+
+| Name | Type | Value |
+| :-----: | :-----: | :-----: |
+| `CLASSMETHOD` | `str` | `"classmethod"` |
+| `STATICMETHOD` | `str` | `"staticmethod"` |
+| `METHOD` | `str` | `"method"` |
+| `FUNCTION` | `str` | `"function"` |
+
+## Methods
+
+### <IconObjType type="method"/> `get_method_validator`
+
+```python
+v_1: Callable[[Any], Self | None] = FunctionType.get_method_validator(base_cls: type[Any] | None)
+```
+
+Get the method type validator for a specific class.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `base_cls` | `type[Any] \| None` | <InlineIcon icon={vsiCheckIcon}/> | The base class use for producing the parameter. This base class needs to be used when the function is viewed as method candidates which are checked under a class scope. If not provided, this validator will only verify whether an object is a function. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Callable[[Any], Self \| None]` | A function validating the function type of the given object. If it is not callable or not a function, return `None`. |

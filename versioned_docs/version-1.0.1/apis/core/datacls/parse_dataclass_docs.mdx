@@ -1,0 +1,33 @@
+---
+id: parse_dataclass_docs
+title: parse_dataclass_docs
+sidebar_label: parse_dataclass_docs
+slug: /apis/core/datacls/parse_dataclass_docs
+description: Parse the docstring of a data model/class.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.datacls.parse_dataclass_docs" />
+
+```python
+v_1: DocDataClass = parse_dataclass_docs(cls: type[Any])
+```
+
+Parse the docstring of a data model/class.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | A class object to be parsed. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocDataClass` | The parsed docstring of the data model/class. |

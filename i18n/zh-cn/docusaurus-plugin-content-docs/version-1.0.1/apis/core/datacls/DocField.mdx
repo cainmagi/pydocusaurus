@@ -1,0 +1,37 @@
+---
+id: DocField
+title: DocField
+sidebar_label: DocField
+slug: /apis/core/datacls/DocField
+description: 数据类/模型中，某个字段的 docstring 。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.datacls.DocField" />
+
+```python
+DocField(
+    name: str,
+    type: str,
+    default: str = "",
+    init_skipped: bool = False,
+    descr: str = "",
+    doc: str = ""
+)
+```
+
+数据类/模型中，某个字段的 docstring。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 字段的名称。 |
+| `type` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 字段的类型。该值通常是该字段的类型提示（标注）。 |
+| `default` | `str` | | 字段默认值的格式化结果。 |
+| `init_skipped` | `bool` | | 布尔标记。如果设置了，该字段将被标记为不会出现在初始化中。 |
+| `descr` | `str` | | 字段的 docstring 文字，只能从源码中提取。 |
+| `doc` | `str` | | 字段额外的动态/运行时 docstring。在渲染文档时，不会用到它。 |

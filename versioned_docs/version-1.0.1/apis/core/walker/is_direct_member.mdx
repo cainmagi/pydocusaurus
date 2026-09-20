@@ -1,0 +1,34 @@
+---
+id: is_direct_member
+title: is_direct_member
+sidebar_label: is_direct_member
+slug: /apis/core/walker/is_direct_member
+description: Check whether a value is a direct member of another module/package.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.walker.is_direct_member" />
+
+```python
+v_1: bool = is_direct_member(value: Any, module: ModuleType)
+```
+
+Check whether a value is a direct member of another module/package.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `value` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The value to be checked. It can be a module/package or just a plain value. |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | The module/package where `value` potentially exists. The detection is related to this module. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | A flag. It is `True` only if `value` is a direct member defined or imported in `module`. |

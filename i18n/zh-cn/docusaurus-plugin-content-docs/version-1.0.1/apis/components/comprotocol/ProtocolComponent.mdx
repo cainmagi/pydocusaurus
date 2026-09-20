@@ -1,0 +1,87 @@
+---
+id: ProtocolComponent
+title: ProtocolComponent
+sidebar_label: ProtocolComponent
+slug: /apis/components/comprotocol/ProtocolComponent
+description: 用来提供组件的协议。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="type" source="components.comprotocol.ProtocolComponent" />
+
+```python
+ProtocolComponent(*args: Any, **kwargs: Any)
+```
+
+用来提供组件的协议。该协议的实现为`renderer.components`。
+
+## 参数 {/* #arguments */}
+
+该类未指定初始化方法。
+
+## 协议方法 {/* #protocol-methods */}
+
+### <IconObjType type="method"/> `icon_obj` {/* #-icon_obj */}
+
+```python
+v_1: str = self.icon_obj(
+    type: Literal[
+        "method", "op", "param", "package", "module", "class", "func", "type"
+    ],
+    text: str = "",
+)
+```
+
+有关子标题图标的协议。
+
+#### 输入 {/* #requires */}
+
+<div className="long-type-table">
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["method", "op", "param", "package", "module", "class", "func", "type"]` | <InlineIcon icon={vsiCheckIcon}/> | 该类型名称用来决定图标。 |
+| `text` | `str` | | 跟随在图标后面的可选文字。如果留空，则只会显示图标。 |
+
+</div>
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 图标–文字的 MDX 代码。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `inline_icon` {/* #-inline_icon */}
+
+```python
+v_1: str = self.inline_icon(icon: Literal["check"])
+```
+
+有关特殊图标的协议。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `icon` | `Literal["check"]` | <InlineIcon icon={vsiCheckIcon}/> | 该类型名称用来决定图标。 |
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 图标的 MDX 代码。 |
+
+## 协议属性 {/* #protocol-properties */}
+
+### <IconObjType type="param"/> `apibar` {/* #-apibar */}
+
+```python
+apibar: type[ComponentAPIBar] = self.apibar
+```
+
+顶部 API 导航条的协议。返回值是一个 PyDantic 模型类型。

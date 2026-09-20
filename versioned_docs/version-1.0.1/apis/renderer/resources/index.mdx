@@ -1,0 +1,25 @@
+---
+id: index
+title: resources
+sidebar_label: resources
+slug: /apis/renderer/resources
+description: Rendering the resource files into the documentation.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="renderer.resources" />
+
+Rendering the resource files into the documentation.
+
+This module manages the files in the resource folder. These files are not a part of the codes but provide the templates and the files to be rendered as typescripts in the exported documentation.
+
+## Functions
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="is_jinja_template"/>](./is_jinja_template.mdx) | Check whether the file is a jinja2 template. |
+| [<IconObjType type="func" hasText={true} text="get_jinja_template_out_name"/>](./get_jinja_template_out_name.mdx) | Get the destination name of the file rendered from a jinja2 template file. |
+| [<IconObjType type="func" hasText={true} text="ts_object"/>](./ts_object.mdx) | Dump a value as json, and put it in a typescript object. |
+| [<IconObjType type="func" hasText={true} text="as_pypi_name"/>](./as_pypi_name.mdx) | Convert the package name as a PyPI name. |
+| [<IconObjType type="func" hasText={true} text="render_resource_tree"/>](./render_resource_tree.mdx) | Render the resource tree of a package. |

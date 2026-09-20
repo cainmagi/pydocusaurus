@@ -1,0 +1,33 @@
+---
+id: get_jinja_template_out_name
+title: get_jinja_template_out_name
+sidebar_label: get_jinja_template_out_name
+slug: /apis/renderer/resources/get_jinja_template_out_name
+description: 获得 Jinja2 模板文件在渲染后对应的目标文件名。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.resources.get_jinja_template_out_name" />
+
+```python
+v_1: str = get_jinja_template_out_name(file_name: str)
+```
+
+获得 Jinja2 模板文件在渲染后对应的目标文件名。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `file_name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | Jinja2 模板文件名。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 对应的目标文件名。 |

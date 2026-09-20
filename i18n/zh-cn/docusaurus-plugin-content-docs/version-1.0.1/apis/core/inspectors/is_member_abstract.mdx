@@ -1,0 +1,33 @@
+---
+id: is_member_abstract
+title: is_member_abstract
+sidebar_label: is_member_abstract
+slug: /apis/core/inspectors/is_member_abstract
+description: 检查值是否是类的抽象成员。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.is_member_abstract" />
+
+```python
+v_1: bool = is_member_abstract(attr: Any)
+```
+
+检查值是否是类的抽象成员。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `attr` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 类的成员 (attribute)。可以是值、方法、属性、或者运算符。注意，该值需要由检测方法`inspect.getmembers_static(...)`提供。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | 如果该成员受到了`@abstractmethod`的装饰，返回`True`。如果该值不是方法（例如是变量），直接返回`False`。 |

@@ -1,0 +1,37 @@
+---
+id: index
+title: inspectors
+sidebar_label: inspectors
+slug: /apis/core/inspectors
+description: 用来检测和分析对象的功能。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.inspectors" />
+
+用来检测和分析对象的功能。
+
+## 函数 {/* #functions */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="get_mro"/>](./get_mro.mdx) | 获取类的方法解析顺序（MRO）。 |
+| [<IconObjType type="func" hasText={true} text="get_obj_slang"/>](./get_obj_slang.mdx) | 获得函数/类/变量在模块中的完整识别码。 |
+| [<IconObjType type="func" hasText={true} text="is_user_defined_method"/>](./is_user_defined_method.mdx) | 检查某个成员是否定义在某类中。 |
+| [<IconObjType type="func" hasText={true} text="get_members_defined_in_class"/>](./get_members_defined_in_class.mdx) | 获得类中定义的全部成员（attributes）。 |
+| [<IconObjType type="func" hasText={true} text="get_members_defined_in_enum"/>](./get_members_defined_in_enum.mdx) | 获得枚举类型中定义的全部成员（attributes）。 |
+| [<IconObjType type="func" hasText={true} text="get_field_docstrings"/>](./get_field_docstrings.mdx) | 从类的源代码中，捕获每个赋值语句后接的 docstring。 |
+| [<IconObjType type="func" hasText={true} text="get_arg_default_name"/>](./get_arg_default_name.mdx) | 将给定的值格式化为可以填充为函数参数(`DocArgument`)默认值字段的字符串。 |
+| [<IconObjType type="func" hasText={true} text="get_lambda_source"/>](./get_lambda_source.mdx) | 获得 lambda 表达式对应的源代码定义。 |
+| [<IconObjType type="func" hasText={true} text="get_func_signature"/>](./get_func_signature.mdx) | 尝试从一个可能是函数的候选对象提取函数签名。 |
+| [<IconObjType type="func" hasText={true} text="get_field_default"/>](./get_field_default.mdx) | 将给定的值格式化为可以填充为字段(`DocField`)默认值字段的字符串。 |
+| [<IconObjType type="func" hasText={true} text="is_multival_tuple"/>](./is_multival_tuple.mdx) | 检查给定的类型标注是否是一个定长多值元组，其形式类似如下情形：`tuple[int, str]`。 |
+| [<IconObjType type="func" hasText={true} text="is_member_abstract"/>](./is_member_abstract.mdx) | 检查值是否是类的抽象成员。 |
+| [<IconObjType type="func" hasText={true} text="is_func_yield"/>](./is_func_yield.mdx) | 检查给定的对象是否是一个返回迭代器的函数。 |
+| [<IconObjType type="func" hasText={true} text="unwrap_annotated_annotation"/>](./unwrap_annotated_annotation.mdx) | 给定类型标注，如果其中包含`Annotated[...]`封装，则递归地移除掉。 |
+| [<IconObjType type="func" hasText={true} text="unpack_annotation"/>](./unpack_annotation.mdx) | 解开类型标注的封装。 |
+| [<IconObjType type="func" hasText={true} text="strip_annotation_name"/>](./strip_annotation_name.mdx) | 将类型标注转换为字符串。如果结果中包含模块前缀，则去除掉这类前缀。 |
+| [<IconObjType type="func" hasText={true} text="get_short_descr"/>](./get_short_descr.mdx) | 从长的描述文字中提取短的描述文字。 |
+| [<IconObjType type="func" hasText={true} text="get_slug"/>](./get_slug.mdx) | 从识别码原型中，获取URL短链接。 |
+| [<IconObjType type="func" hasText={true} text="relative_url_path"/>](./relative_url_path.mdx) | 求解相对路径。 |

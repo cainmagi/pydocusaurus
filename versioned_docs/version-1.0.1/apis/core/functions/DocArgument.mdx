@@ -1,0 +1,51 @@
+---
+id: DocArgument
+title: DocArgument
+sidebar_label: DocArgument
+slug: /apis/core/functions/DocArgument
+description: The docstring of a function/method argument.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.functions.DocArgument" />
+
+```python
+DocArgument(
+    name: str,
+    type: str,
+    p_type: ParameterKind = ParameterKind.POSITIONAL_OR_KEYWORD,
+    default: str = "",
+    doc: list[str] = []
+)
+```
+
+The docstring of a function/method argument.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the argument. |
+| `type` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The type of the argument. It is usually the typehint (annotation). |
+| `p_type` | `ParameterKind` | | The argument/parameter type, see `inspect._ParameterKind`. |
+| `default` | `str` | | The formatted default value of the argument. |
+| `doc` | `list[str]` | | The docstring (line-by-line) of the argument. |
+
+## Methods
+
+### <IconObjType type="method"/> `format_doc`
+
+```python
+v_1: str = self.format_doc()
+```
+
+Format the docstring.
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The docstring of the current argument. |

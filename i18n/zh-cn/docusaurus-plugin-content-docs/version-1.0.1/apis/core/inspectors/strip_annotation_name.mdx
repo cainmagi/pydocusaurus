@@ -1,0 +1,33 @@
+---
+id: strip_annotation_name
+title: strip_annotation_name
+sidebar_label: strip_annotation_name
+slug: /apis/core/inspectors/strip_annotation_name
+description: 将类型标注转换为字符串。如果结果中包含模块前缀，则去除掉这类前缀。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.strip_annotation_name" />
+
+```python
+v_1: str = strip_annotation_name(anno: Any)
+```
+
+将类型标注转换为字符串。如果结果中包含模块前缀，则去除掉这类前缀。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `anno` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 类型标注对象或字符串。如果是字符串，则需要从类型标注对象转换而来。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 给定类型标注的修订版字符串。 |

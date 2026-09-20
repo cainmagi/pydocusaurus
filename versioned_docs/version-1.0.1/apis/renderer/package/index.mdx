@@ -1,0 +1,28 @@
+---
+id: index
+title: package
+sidebar_label: package
+slug: /apis/renderer/package
+description: Walkthrough a python package, and render the package docstrings as the
+  mdx-formatted API documentation.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="renderer.package" />
+
+Walkthrough a python package, and render the package docstrings as the mdx-formatted API documentation.
+
+## Classes
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="PackageInformation"/>](./PackageInformation.mdx) | The basic information of a package. |
+| [<IconObjType type="class" hasText={true} text="URIHolder"/>](./URIHolder.mdx) | A temporary storage used for managing URIs. |
+| [<IconObjType type="class" hasText={true} text="PackageRenderer"/>](./PackageRenderer.mdx) | The module parser implemented for rendering documentation pages. |
+
+## Functions
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="render_package_as_mdx"/>](./render_package_as_mdx.mdx) | Render a package as MDX documentation files. |

@@ -1,0 +1,74 @@
+---
+id: SaverDefault
+title: SaverDefault
+sidebar_label: SaverDefault
+slug: /apis/renderer/saver/SaverDefault
+description: 文件保存器的默认实现。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" source="renderer.saver.SaverDefault" />
+
+```python
+SaverDefault()
+```
+
+文件保存器的默认实现。如有必要，可以透过追加一些特殊定制来重载该保存器。
+
+## 参数 {/* #arguments */}
+
+该类未指定初始化方法。
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `save_bytes` {/* #-save_bytes */}
+
+```python
+self.save_bytes(file_path: str | PathLike[str], data: bytes)
+```
+
+保存二进制文件。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `file_path` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | 指向输出文件的路径。 |
+| `data` | `bytes` | <InlineIcon icon={vsiCheckIcon}/> | 待保存的二进制数据。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `save_data` {/* #-save_data */}
+
+```python
+self.save_data(file_path: str | PathLike[str], data: Any)
+```
+
+保存结构化数据（例如 json）。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `file_path` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | 指向输出文件的路径。 |
+| `data` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待保存的结构化数据。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `save_text` {/* #-save_text */}
+
+```python
+self.save_text(file_path: str | PathLike[str], data: str)
+```
+
+保存文字文件。
+
+#### 输入 {/* #requires-2 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `file_path` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | 指向输出文件的路径。 |
+| `data` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 待保存的文字数据。 |

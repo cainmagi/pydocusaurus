@@ -1,0 +1,33 @@
+---
+id: parse_enum_docs
+title: parse_enum_docs
+sidebar_label: parse_enum_docs
+slug: /apis/core/enums/parse_enum_docs
+description: Parse the docstring of an enum class.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.enums.parse_enum_docs" />
+
+```python
+v_1: DocEnum = parse_enum_docs(cls: type[Any])
+```
+
+Parse the docstring of an enum class.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | A class object to be parsed. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocEnum` | The parsed docstring of the enum class. |

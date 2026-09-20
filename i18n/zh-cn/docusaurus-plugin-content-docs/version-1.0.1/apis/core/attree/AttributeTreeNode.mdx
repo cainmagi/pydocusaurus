@@ -1,0 +1,48 @@
+---
+id: AttributeTreeNode
+title: AttributeTreeNode
+sidebar_label: AttributeTreeNode
+slug: /apis/core/attree/AttributeTreeNode
+description: 成员属性 (attribute) 树中的节点。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.attree.AttributeTreeNode" />
+
+```python
+AttributeTreeNode(
+    name: str,
+    attrs: dict[str, Any] = dict(...),
+    children: dict[str, AttributeTreeNode] = dict(...)
+)
+```
+
+成员属性 (attribute) 树中的节点。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 当前节点的部分名称。 |
+| `attrs` | `dict[str, Any]` | | 当前节点的额外成员属性。 |
+| `children` | `dict[str, AttributeTreeNode]` | | 当前节点的子成员/子节点。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `add` {/* #-add */}
+
+```python
+self.add(segments: Sequence[str], attrs: Mapping[str, Any] | None = None)
+```
+
+按照名称段，递归地将成员属性添加到树中。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `segments` | `Sequence[str]` | <InlineIcon icon={vsiCheckIcon}/> | 一条名称段构成的序列。每段代表路由中一个节点的部分名称。如果提供了空列表，亦即`[]`，就会将信息更新在当前（这个）节点中。 |
+| `attrs` | `Mapping[str, Any] \| None` | | 要添加到目标节点的成员属性。对应的目标节点、则通过将`segments`路由到当前节点来获取。 |

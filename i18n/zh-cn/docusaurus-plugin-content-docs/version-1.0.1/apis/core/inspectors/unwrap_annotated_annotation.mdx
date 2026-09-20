@@ -1,0 +1,33 @@
+---
+id: unwrap_annotated_annotation
+title: unwrap_annotated_annotation
+sidebar_label: unwrap_annotated_annotation
+slug: /apis/core/inspectors/unwrap_annotated_annotation
+description: 给定类型标注，如果其中包含`Annotated[...]`封装，则递归地移除掉。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.unwrap_annotated_annotation" />
+
+```python
+v_1: Any = unwrap_annotated_annotation(anno: Any)
+```
+
+给定类型标注，如果其中包含`Annotated[...]`封装，则递归地移除掉。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `anno` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待处理的类型标注。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Any` | 处理后的类型标注，其中`Annotated[...]`被解开。 |

@@ -1,0 +1,33 @@
+---
+id: parse_module_doc
+title: parse_module_doc
+sidebar_label: parse_module_doc
+slug: /apis/core/modules/parse_module_doc
+description: 解析模块或模块包的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.modules.parse_module_doc" />
+
+```python
+v_1: DocModule = parse_module_doc(module: ModuleType)
+```
+
+解析模块或模块包的 docstring。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | 待解析的模块/模块包。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocModule` | 从模块解析后的 docstring。需要注意的是，该方法本身不会解析模块的成员。使用模块遍历器 (walker) 和该方法返回值的`add_member()`方法，可以完成对模块信息的封闭。 |

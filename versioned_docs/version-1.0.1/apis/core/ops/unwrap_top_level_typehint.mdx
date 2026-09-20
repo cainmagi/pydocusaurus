@@ -1,0 +1,33 @@
+---
+id: unwrap_top_level_typehint
+title: unwrap_top_level_typehint
+sidebar_label: unwrap_top_level_typehint
+slug: /apis/core/ops/unwrap_top_level_typehint
+description: Unwrap the top-level bracket of a typehint (annotation).
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.ops.unwrap_top_level_typehint" />
+
+```python
+v_1: list[str] = unwrap_top_level_typehint(anno: str)
+```
+
+Unwrap the top-level bracket of a typehint (annotation).
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `anno` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The string representation of an annotation such as `colletions.abc.Generator[int, None, None]` |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `list[str]` | A list of the top-level children of the given annotation. |

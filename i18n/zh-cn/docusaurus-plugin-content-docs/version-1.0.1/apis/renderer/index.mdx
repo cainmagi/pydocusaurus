@@ -1,0 +1,30 @@
+---
+id: index
+title: renderer
+sidebar_label: renderer
+slug: /apis/renderer
+description: The centralized renderer used to produce the Markdown format of the documentation.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="package" source="renderer" />
+
+集中化的渲染器，用于生成可用于文档中 Markdown 格式文字。
+
+## 模块 {/* #modules */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="module" hasText={true} text="components"/>](./components/index.mdx) | 组件合成器的实现。 |
+| [<IconObjType type="module" hasText={true} text="saver"/>](./saver/index.mdx) | 定义了用来导出输出文件的保存器。 |
+| [<IconObjType type="module" hasText={true} text="resources"/>](./resources/index.mdx) | 将一系列资源文件渲染到文档项目中。 |
+| [<IconObjType type="module" hasText={true} text="page"/>](./page/index.mdx) | 有关合成 API 文档页面的功能。 |
+| [<IconObjType type="module" hasText={true} text="package"/>](./package/index.mdx) | 穷尽遍历一个 Python 包，将其中的 docstring 渲染成一系列 MDX 格式的 API 文档。 |
+
+## 别名 {/* #aliases */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="render_obj"/>](./page/render_obj.mdx) | 将一个任意的对象渲染成文档页面。 |
+| [<IconObjType type="func" hasText={true} text="render_package_as_mdx"/>](./package/render_package_as_mdx.mdx) | 将模块包渲染成一系列 MDX 文件。 |

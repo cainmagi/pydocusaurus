@@ -1,0 +1,34 @@
+---
+id: get_field_docstrings
+title: get_field_docstrings
+sidebar_label: get_field_docstrings
+slug: /apis/core/inspectors/get_field_docstrings
+description: 从类的源代码中，捕获每个赋值语句后接的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_field_docstrings" />
+
+```python
+v_1: dict[str, str | None] = get_field_docstrings(model_cls: type[Any], include_dyn_assign: bool = False)
+```
+
+从类的源代码中，捕获每个赋值语句后接的 docstring。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `model_cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | 待分析的类。 |
+| `include_dyn_assign` | `bool` | | <p>默认情形下，该方法只会探测以下形式语句后的 docstring：</p><pre><code className="language-python">name: type = value</code></pre><p>如果该标记启用，则也会探测以下形式语句后的 docstring：</p><pre><code className="language-python">name = value</code></pre> |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `dict[str, str \| None]` | 各字段的 docstring。如果某个关键字对应的值是`None`，则表明对应的字段没有配置 docstring。 |

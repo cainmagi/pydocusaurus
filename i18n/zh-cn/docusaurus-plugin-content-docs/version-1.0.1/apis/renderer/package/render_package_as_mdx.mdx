@@ -1,0 +1,35 @@
+---
+id: render_package_as_mdx
+title: render_package_as_mdx
+sidebar_label: render_package_as_mdx
+slug: /apis/renderer/package/render_package_as_mdx
+description: 将模块包渲染成一系列 MDX 文件。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.package.render_package_as_mdx" />
+
+```python
+render_package_as_mdx(
+    package: str | ModuleType,
+    out_dir: str | PathLike[str],
+    saver: SaverAbstract | None = None,
+    package_info: str | PackageInformation | None = None,
+)
+```
+
+将模块包渲染成一系列 MDX 文件。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `package` | `str \| ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | 待渲染模块包的名称或模块对象。 |
+| `out_dir` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | 用来保存输出文档的目录路径。 |
+| `saver` | `SaverAbstract \| None` | | 用来导出输出文件的保存器。如果需要定制文件保存的过程，可以重载该插件。如果未指定，则使用默认的保存器。 |
+| `package_info` | `str \| PackageInformation \| None` | | 模块包信息。如果该值为`str`，则传入参数会解释为作者的用户名。如果该值并未指定、或只是部分指定，则会尝试从解析得到的结果中获取缺失的模块包信息。 |

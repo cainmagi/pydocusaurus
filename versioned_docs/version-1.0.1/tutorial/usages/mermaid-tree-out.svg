@@ -1,0 +1,64 @@
+<svg id="graph-375" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; max-width: 100%; touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" role="graphics-document document" aria-roledescription="treeView" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" viewBox="0 0 527.5 396.1">
+  <g id="viewport-20260908063145962" class="svg-pan-zoom_viewport" transform="matrix(1.2825, 0, 0, 1.2825, 12.820858, -4.568546)" style="">
+    <style>#graph-375{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#graph-375 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#graph-375 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#graph-375 .error-icon{fill:#552222;}#graph-375 .error-text{fill:#552222;stroke:#552222;}#graph-375 .edge-thickness-normal{stroke-width:1px;}#graph-375 .edge-thickness-thick{stroke-width:3.5px;}#graph-375 .edge-pattern-solid{stroke-dasharray:0;}#graph-375 .edge-thickness-invisible{stroke-width:0;fill:none;}#graph-375 .edge-pattern-dashed{stroke-dasharray:3;}#graph-375 .edge-pattern-dotted{stroke-dasharray:2;}#graph-375 .marker{fill:#333333;stroke:#333333;}#graph-375 .marker.cross{stroke:#333333;}#graph-375 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#graph-375 p{margin:0;}#graph-375 .treeView-node-label{font-size:16px;fill:black;white-space:pre;}#graph-375 .treeView-node-dir{font-weight:bold;}#graph-375 .treeView-node-line{stroke:black;}#graph-375 .treeView-node-icon{color:#546e7a;}#graph-375 .treeView-node-description{font-size:16px;fill:#6a9955;font-style:italic;white-space:pre;}#graph-375 .treeView-highlight-bg{fill:rgba(255, 193, 7, 0.15);stroke:#ffc107;stroke-width:1;}#graph-375 .node .neo-node{stroke:#9370DB;}#graph-375 [data-look="neo"].node rect,#graph-375 [data-look="neo"].cluster rect,#graph-375 [data-look="neo"].node polygon{stroke:#9370DB;filter:drop-shadow(1px 2px 2px rgba(185, 185, 185, 1));}#graph-375 [data-look="neo"].swimlane.cluster rect{filter:none;}#graph-375 [data-look="neo"].node path{stroke:#9370DB;stroke-width:1px;}#graph-375 [data-look="neo"].node .outer-path{filter:drop-shadow(1px 2px 2px rgba(185, 185, 185, 1));}#graph-375 [data-look="neo"].node .neo-line path{stroke:#9370DB;filter:none;}#graph-375 [data-look="neo"].node circle{stroke:#9370DB;filter:drop-shadow(1px 2px 2px rgba(185, 185, 185, 1));}#graph-375 [data-look="neo"].node circle .state-start{fill:#000000;}#graph-375 [data-look="neo"].icon-shape .icon{fill:#9370DB;filter:drop-shadow(1px 2px 2px rgba(185, 185, 185, 1));}#graph-375 [data-look="neo"].icon-shape .icon-neo path{stroke:#9370DB;filter:drop-shadow(1px 2px 2px rgba(185, 185, 185, 1));}#graph-375 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+    <g></g>
+    <g class="tree-view">
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label treeView-node-dir" x="5" y="14.5" style="white-space: pre;">/</text>
+      </g>
+      <line x1="-10" y1="14.5" x2="0" y2="14.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label treeView-node-dir" x="20" y="43.5" style="white-space: pre;">project</text>
+      </g>
+      <line x1="5" y1="43.5" x2="15" y2="43.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label" x="35" y="72.5" style="white-space: pre;">...</text>
+      </g>
+      <line x1="20" y1="72.5" x2="30" y2="72.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label treeView-node-dir" x="35" y="101.5" style="white-space: pre;">output_docs</text>
+        <text dominant-baseline="middle" class="treeView-node-description" x="213.5625" y="101.5" style="white-space: pre;">output documents</text>
+      </g>
+      <line x1="20" y1="101.5" x2="30" y2="101.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label treeView-node-dir" x="50" y="130.5" style="white-space: pre;">docs</text>
+      </g>
+      <line x1="35" y1="130.5" x2="45" y2="130.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <rect x="60" y="146" width="321.3125" height="27" rx="3" class="treeView-highlight-bg"></rect>
+        <text dominant-baseline="middle" class="treeView-node-label treeView-node-dir highlight" x="65" y="159.5" style="white-space: pre;">apis</text>
+        <text dominant-baseline="middle" class="treeView-node-description" x="213.5625" y="159.5" style="white-space: pre;">generated docs</text>
+      </g>
+      <line x1="50" y1="159.5" x2="60" y2="159.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label" x="65" y="188.5" style="white-space: pre;">...</text>
+      </g>
+      <line x1="50" y1="188.5" x2="60" y2="188.5" stroke-width="1" class="treeView-node-line"></line>
+      <line x1="50" y1="145" x2="50" y2="189" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label treeView-node-dir" x="50" y="217.5" style="white-space: pre;">src</text>
+        <text dominant-baseline="middle" class="treeView-node-description" x="213.5625" y="217.5" style="white-space: pre;">pyDocusaurus plugins</text>
+      </g>
+      <line x1="35" y1="217.5" x2="45" y2="217.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <rect x="45" y="233" width="346.3125" height="27" rx="3" class="treeView-highlight-bg"></rect>
+        <text dominant-baseline="middle" class="treeView-node-label highlight" x="50" y="246.5" style="white-space: pre;">docusaurus.config.ts</text>
+        <text dominant-baseline="middle" class="treeView-node-description" x="213.5625" y="246.5" style="white-space: pre;">modified configs</text>
+      </g>
+      <line x1="35" y1="246.5" x2="45" y2="246.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <rect x="45" y="262" width="356.3125" height="27" rx="3" class="treeView-highlight-bg"></rect>
+        <text dominant-baseline="middle" class="treeView-node-label highlight" x="50" y="275.5" style="white-space: pre;">sidebars.ts</text>
+        <text dominant-baseline="middle" class="treeView-node-description" x="213.5625" y="275.5" style="white-space: pre;">modified sidebars</text>
+      </g>
+      <line x1="35" y1="275.5" x2="45" y2="275.5" stroke-width="1" class="treeView-node-line"></line>
+      <g>
+        <text dominant-baseline="middle" class="treeView-node-label" x="50" y="304.5" style="white-space: pre;">...</text>
+      </g>
+      <line x1="35" y1="304.5" x2="45" y2="304.5" stroke-width="1" class="treeView-node-line"></line>
+      <line x1="35" y1="116" x2="35" y2="305" stroke-width="1" class="treeView-node-line"></line>
+      <line x1="20" y1="58" x2="20" y2="102" stroke-width="1" class="treeView-node-line"></line>
+      <line x1="5" y1="29" x2="5" y2="44" stroke-width="1" class="treeView-node-line"></line>
+    </g>
+  </g>
+</svg>

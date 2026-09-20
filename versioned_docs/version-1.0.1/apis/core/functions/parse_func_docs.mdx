@@ -1,0 +1,34 @@
+---
+id: parse_func_docs
+title: parse_func_docs
+sidebar_label: parse_func_docs
+slug: /apis/core/functions/parse_func_docs
+description: Parse the docstring of a function.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.functions.parse_func_docs" />
+
+```python
+v_1: DocFunction = parse_func_docs(func: Any, base_cls: type[Any] | None = None)
+```
+
+Parse the docstring of a function.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `func` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | A function object to be parsed. It can be a vanilla function or a method. |
+| `base_cls` | `type[Any] \| None` | | An optional base class. If provided, will check whether `func` is a member and a method of the given `base_cls`. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocFunction` | The parsed docstring of the function/method. |

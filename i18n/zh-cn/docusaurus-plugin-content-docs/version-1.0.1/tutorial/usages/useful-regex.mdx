@@ -1,0 +1,127 @@
+---
+id: useful-regex
+sidebar_label: 正则表达式
+title: 有用的正则表达式
+description: 简要介绍了几个有用的正则表达式，以帮助撰写文档的翻译。
+slug: /usages/useful-regex
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import DarkButton from "@site/src/components/DarkButton";
+
+import IconExternalLink from "@theme/Icon/ExternalLink";
+import mdiLanguageTypescriptIcon from "@iconify-icons/mdi/language-typescript";
+
+import SvgMermaidTreeAll from "./mermaid-tree-all.svg";
+import SvgMermaidTreeOut from "./mermaid-tree-out.svg";
+
+目前，我们还不支持在 pyDocusaurus 实现自动翻译功能。因此，用户需要像为那些手写的文档一样，为程序生成的文档撰写翻译。
+
+为了降低工作量，这片文章介绍了如何开始新的翻译，以及如何透过正则表达式来快速替换掉一些文字。
+
+:::info
+
+本文面向的是需要为自己的文档撰写翻译的读者。
+
+如果你不打算这样做，那么你可以跳过本文。
+
+:::
+
+## 1. 开始新的翻译
+
+运行以下命令，以更新当前的翻译内容。如果之前已经存在翻译，正文又有新的内容时，新的（空白）翻译条目会自动添加到已有的翻译中。
+
+```sh
+yarn write-translations --locale zh-cn --messagePrefix "(ZH-CN) "
+```
+
+:::danger
+
+你可能会在`i18n/zh-cn/docusaurus-plugin-content-docs/current.json`发现以下的建议翻译条目。然而，你需要删掉这一条并保持其“非翻译”的状态，这是因为这条翻译会重载掉在`docusaurus.config.ts`手动设置的`docs.versions.current.label`。
+
+```json
+"version.label": {
+  "message": "(ZH-CN) 预览版",
+  "description": "The label for version current"
+}
+```
+
+:::
+
+在首次撰写翻译的时候，还需要透过以下命令复制当前文档：
+
+```sh
+mkdir -p i18n/zh-cn/docusaurus-plugin-content-docs/current
+cp -r docs/. i18n/zh-cn/docusaurus-plugin-content-docs/current
+```
+
+运行以下命令，可以启动一个局域网内的开发服务器，且待测试网站的语言将设为指定语言：
+
+```sh
+yarn start --host $(hostname -I) --port 3000 --locale zh-cn
+```
+
+透过以下命令，可以更新标题的链接。
+
+```sh
+yarn write-heading-ids . i18n/zh-cn/docusaurus-plugin-content-docs/current --syntax mdx-comment --overwrite
+```
+
+:::danger
+
+注意，以上命令只应该在撰写新翻译的时候调用，因为标题链接的生成只能依赖于英语文档。
+
+如果追加了新的文档，且该命令需要重新执行，可以删去`--overwrite`选项，这会令以上命令只在哪些没有 ID 的章节标题起效。
+
+:::
+
+## 2. 有用的正则表达式
+
+程序是生成的文档包含了大量的重复标题、以及重复的表格标题行。VS Code 允许用户指定某个目录，并只在该目录中搜索和批量替换文字。本文将会以“撰写中文文档”为例，展示了在替换文字的时候，可以用到的一些正则表达式。
+
+首先，用户需要限定**"files to include"**的作用域：
+
+```txt
+./docs/i18n/zh-cn/docusaurus-plugin-content-docs/current/apis
+```
+
+其后，用户可以透过以下命令，替换掉所有相关文字。**注意此时不需要开启正则表达式**。
+
+| <center>待搜索文字</center> | <center>替换文字</center> |
+| :------------------------------ | :----------------------------- |
+| `## Modules {/* #modules` | `## 模块 {/* #modules` |
+| `## Classes {/* #classes` | `## 类 {/* #classes` |
+| `## Functions {/* #functions` | `## 函数 {/* #functions` |
+| `## Aliases {/* #aliases` | `## 别名 {/* #aliases` |
+| `## Requires {/* #requires` | `## 输入 {/* #requires` |
+| `## Returns {/* #returns` | `## 输出 {/* #returns` |
+| `## Yields {/* #yields` | `## 迭代 {/* #yields` |
+| `## Methods {/* #methods` | `## 方法 {/* #methods` |
+| `## Arguments {/* #arguments` | `## 参数 {/* #arguments` |
+| `## Fields {/* #fields` | `## 字段 {/* #fields` |
+| `## Enums {/* #enums` | `## 枚举成员 {/* #enums` |
+| `## Properties {/* #properties` | `## 属性 {/* #properties` |
+| `## Operators {/* #operators` | `## 运算符 {/* #operators` |
+| `## Protocol methods {/* #protocol-methods` | `## 协议方法 {/* #protocol-methods` |
+| `## Protocol properties {/* #protocol-properties` | `## 协议属性 {/* #protocol-properties` |
+| `## Protocol operators {/* #protocol-operators` | `## 协议运算符 {/* #protocol-operators` |
+| `## Abstract methods {/* #abstract-methods` | `## 抽象方法 {/* #abstract-methods` |
+| `## Abstract properties {/* #abstract-properties` | `## 抽象属性 {/* #abstract-properties` |
+| `## Abstract operators {/* #abstract-operators` | `## 抽象运算符 {/* #abstract-operators` |
+| `Initialization function is not specified.` | `该类未指定初始化方法。` |
+| `No argument is needed.` | `该类的初始化无需参数。` |
+
+还可以透过以下命令，替换掉所有相关文字。**注意此时正则表达式开启**。
+
+| <center>待搜索表达式</center> | <center>Replaced expression</center> |
+| :------------------------------ | :----------------------------- |
+| `{/\* #iconobjtype-type[^-]*-` | `{/* #-` |
+| <code>{"\\\|(\s+)Member(\s+)\\\|(\s+)<center>Description</center>(\s+)\\\|"}</code> | <code>{`\|$1成员$2\|$3<center>说明</center>$4\|`}</code> |
+| <code>{"\\\|(\s+)Name(\s+)\\\|(\s+)<center>Description</center>(\s+)\\\|"}</code> | <code>{`\|$1参数$2\|$3<center>说明</center>$4\|`}</code> |
+| <code>{"\\\|(\s+)Name(\s+)\\\|(\s+)Type(\s+)\\\|(\s+)<center>Description</center>(\s+)\\\|"}</code> | <code>{`\|$1参数$2\|$3类型$4\|$5<center>说明</center>$6\|`}</code> |
+| <code>{"\\\|(\s+)Name(\s+)\\\|(\s+)Type(\s+)\\\|(\s+)Required(\s+)\\\|(\s+)<center>Description</center>(\s+)\\\|"}</code> | <code>{`\|$1参数$2\|$3类型$4\|$5必选$6\|$7<center>说明</center>$8\|`}</code> |
+| <code>{"\\\|(\s+)Name(\s+)\\\|(\s+)Type(\s+)\\\|(\s+)Value(\s+)\\\|"}</code> | <code>{`\|$1成员$2\|$3类型$4\|$5值$6\|`}</code> |
+
+[link-docuver]: https://docusaurus.io/docs/versioning

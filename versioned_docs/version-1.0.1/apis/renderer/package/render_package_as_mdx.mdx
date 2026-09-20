@@ -1,0 +1,35 @@
+---
+id: render_package_as_mdx
+title: render_package_as_mdx
+sidebar_label: render_package_as_mdx
+slug: /apis/renderer/package/render_package_as_mdx
+description: Render a package as MDX documentation files.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.package.render_package_as_mdx" />
+
+```python
+render_package_as_mdx(
+    package: str | ModuleType,
+    out_dir: str | PathLike[str],
+    saver: SaverAbstract | None = None,
+    package_info: str | PackageInformation | None = None,
+)
+```
+
+Render a package as MDX documentation files.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `package` | `str \| ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | The name or the module object of a package. |
+| `out_dir` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | The output directory where the documentation is saved. |
+| `saver` | `SaverAbstract \| None` | | The saver used for dumping the ouput files. It can be overriden if the file saving needs to be customized. If not specified, will use the default saver. |
+| `package_info` | `str \| PackageInformation \| None` | | The package information. If `str` is provided, it will be viewed as the author name. If this value is not specified or partially specified, will attempt to retrive the package information from the parsed results. |

@@ -1,0 +1,497 @@
+---
+id: get-started
+sidebar_label: 上手与启程
+title: 从 Python docstring 上手并启程
+description: 针对本模块包采用的文档字符串格式，所进行的简要介绍。
+slug: /usages/get-started
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import DarkButton from "@site/src/components/DarkButton";
+
+import IconExternalLink from "@theme/Icon/ExternalLink";
+import {epGuide} from "@site/src/components/icons/EpGuide";
+
+pyDocusaurus 主要面向使用 VS Code 的开发者，同时采用了 Markdown 格式的 docstring 风格。基本上，本模块包遵循以下原则：
+
+- **不需要在 docstring 里标记类型**: 用户可以将类型提示作为可选内容写在 docstring 中，但这些 docstring 中的类型提示，仅仅作为原生类型提示不全时的备选项。文档对类型的解析主要还是来自[Python的类型提示系统<IconExternalLink/>][link-typing].
+
+- **VS Code 兼容性**: pyDocusaurus 不遵守 [PEP 287<IconExternalLink/>][pep-287] docstring 规则，这是因为该规则是为 rst 风格的文字设计的。取而代之的是，我们采纳了 VS Code 的风格。本教程将会从如何撰写这种 docstring开始介绍。
+
+- **“对半式”的解析**: 目前，pyDocusaurus 同时使用了针对源代码的 [AST 分析<IconExternalLink/>][link-ast]和运行时检查、来抓取类型提示和 docstring。用户需要确保待分析、转换的模块包，可以与 pyDocusaurus 同时运行。
+
+:::info
+这意味着 pyDocusaurus 需要：
+
+1. 你的待分析模块包可以在 `Python>=3.14` 运行时工作
+2. 你的待分析模块包同时包含了源代码和 docstring，而非预翻译后的字节码`.pyc`文件。
+3. 你的待分析模块包不是用 C 写就的（以 `.pyd` 文件为例）。
+
+就目前而言，pyDocusaurus 还没有在`.pyi`文件上测试过。因此，还是建议将 docstring 和类型提示（源码）写在一起。
+:::
+
+## 1. 为模块写 docstring {/* #1-write-docstrings-for-modules */}
+
+pyDocusaurus 读取如下所示的模块包/模块 docstring：
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+````python showLineNumbers title="example_module.py"
+# -*- coding: UTF-8 -*-
+"""
+Module Title
+============
+
+Author
+------
+My name
+myemail@gmail.com
+
+License
+-------
+MIT License
+
+Description
+-----------
+Markdown description text.
+
+Support **multi-line** and complicated formats.
+
+```sh
+example-command
+```
+"""
+
+import a_module
+
+...
+````
+
+:::tip
+
+pyDocusaurus 使用章节标题、例如"Auhtor"和"License"、来探测有效域。不同章节之间的顺序可以交换。
+
+:::
+
+</TabItem>
+
+<TabItem value="page" label="转换后">
+
+所用的 docstring 将会转换为一个数据结构 [`DocModule`](../../apis/core/modules/DocModule.mdx), 其中蕴含了以下关键字段：
+
+|        字段        | <center>值</center>                                                                                                                              |
+| :----------------: | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+|       `name`       | example_module                                                                                                                                   |
+|  `metadata.title`  | Module Title                                                                                                                                     |
+| `metadata.author`  | <p>My name</p><p>myemail@gmail.com</p>                                                                                                           |
+| `metadata.license` | MIT License                                                                                                                                      |
+|  `metadata.descr`  | <p>Markdown description text.</p><p>Support <b>multi-line</b> and complicated formats.</p><pre><code className="sh">example-command</code></pre> |
+
+其中`name`和`metadata.descr`将用来渲染模块页面。一个渲染好的模块文档页可以参考如下内容：
+
+<p>
+  {
+    <DarkButton to="/docs/apis/core/modules" icon={epGuide}>
+      core.modules
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+## 2. 为函数写 docstring {/* #2-write-docstrings-for-functions */}
+
+pyDocusaurus 读取如下所示的函数/方法 docstring：
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+```python showLineNumbers
+def example_func(arg1: str, arg2: int = 0) -> float:
+    """An example function.
+
+    Arguments
+    ---------
+    arg1: `str`
+        The first argument.
+
+    arg2: `int`
+        The second argument.
+
+    Returns
+    -------
+    #1: `float`
+        The returned value.
+    """
+    raise NotImplementedError
+```
+
+简而言之，一个函数的 docstring 包含三部分：描述，参数，以及返回值。如果函数的签名中包含某一参数，而该参数又没有在 docstring 中提及，那么 pyDocusaurus 就会检测到这种遗漏并发出警告。如果函数没有参数、或是没有返回值（亦即是说返回值是`None`），则对应的 docstring 章节可以略过。
+
+:::tip
+
+pyDocusaurus 使用形如"Arguments"和"Returns"的章节标题，来将原始的 docstring 划分成不同部分。不同章节之间的顺序可以交换。
+
+:::
+
+:::tip
+
+支持的章节标题有：
+
+- Arguments, Argument, Parameters, Parameters
+
+- Returns, Return, Results, Result
+
+:::
+
+</TabItem>
+
+<TabItem value="page" label="转换后">
+
+所用的 docstring 将会转换为一个数据结构 [`DocFunction`](../../apis/core/functions/DocFunction.mdx), 其中蕴含了以下关键字段：
+
+|   字段   | <center>值</center>  |
+| :------: | :------------------- |
+|  `name`  | example_func         |
+| `descr`  | An example function. |
+|  `args`  | `list[DocArgument]`  |
+| `retval` | `list[DocArgument]`  |
+
+其中`args`和`retval`均是元素为[`DocArgument`](../../apis/core/functions/DocArgument.mdx)的列表。例如，`arg[0]`的关键字段就包含了：
+
+|   字段    | <center>值</center> |
+| :-------: | :------------------ |
+|  `name`   | arg1                |
+|  `type`   | `str`               |
+| `default` |                     |
+|   `doc`   | The first argument. |
+
+而`retval[0]`解析为：
+
+|  字段  | <center>值</center> |
+| :----: | :------------------ |
+| `name` | \#1                 |
+| `type` | `float`             |
+| `doc`  | The returned value. |
+
+一个渲染好的函数文档页可以参考如下内容：
+
+<p>
+  {
+    <DarkButton
+      to="/docs/apis/core/functions/parse_argument_docs"
+      icon={epGuide}
+    >
+      core.functions.parse_argument_docs
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+### 2.1. 为迭代器写 docstring {/* #21-write-docstrings-of-an-iterator */}
+
+如果用户意在写一个迭代器函数，需要特别注意到额是，该函数需要显式地调用`yield ...`，例如：
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+```python showLineNumbers
+def example_iterator_func(
+    arg1: str, arg2: int
+) -> Iterator[tuple[str, str, Iterator[tuple[str]]]]:
+    """An example function iteratively return items.
+
+    Arguments
+    ---------
+    arg1: `str`
+        The first argument.
+
+    arg2: `int`
+        The second argument.
+
+    Yields
+    ------
+    #1: `str`
+        The first iterator item.
+
+    #2: `str`
+        The second iterator item.
+
+    #3: `Iterator[tuple[str]]`
+        The third iterator item a nested iterator.
+    """
+    yield NotImplemented
+    raise NotImplementedError
+```
+
+:::tip
+
+在此情形下，用户需要确保
+
+1. 显示调用了`yield`。
+2. 返回值的类型标注是`Iterator`、`Generator`，或其对应的异步版本。
+3. 在 docstring 中，使用`Yields`、而非`Returns`，来作为返回值的章节标题。
+
+:::
+
+</TabItem>
+
+<TabItem value="page" label="转换后">
+
+所用的 docstring 将会转换为一个数据结构 [`DocFunction`](../../apis/core/functions/DocFunction.mdx), 其中`retval`是元素为[`DocArgument`](../../apis/core/functions/DocArgument.mdx)的列表。例如，`retval[0]`的关键字段就包含了：
+
+|  字段  | <center>值</center>      |
+| :----: | :----------------------- |
+| `name` | \#1                      |
+| `type` | `str`                    |
+| `doc`  | The first iterator item. |
+
+以下页面展示了一个渲染后的迭代器函数的例子：
+
+<p>
+  {
+    <DarkButton
+      to="/docs/apis/core/inspectors/get_members_defined_in_class"
+      icon={epGuide}
+    >
+      core.inspectors.get_members_defined_in_class
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+## 3. 为类写 docstring {/* #3-write-docstrings-for-classes */}
+
+pyDocusaurus 读取如下所示的类 docstring：
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+```python showLineNumbers
+class ExampleClass:
+    """An example class which is a mixture of methods, properties, and operators."""
+
+    def __init__(self, key: str, val: int = 10) -> None:
+        """Initialization.
+
+        Arguments
+        ---------
+        key: `str`
+            The first key to be configured.
+
+        val: `int`
+            The first value of the given key.
+        """
+        raise NotImplementedError
+
+    @property
+    def prop(self) -> int:
+        """A vanilla property with annotation."""
+        raise NotImplementedError
+
+    def method(self, arg: int, /, arg_any: Any, *, arg_key: str = "test") -> str:
+        """A vanilla instance method.
+
+        Arguments
+        ---------
+        arg: `int`
+            The input argument that is positional-only.
+
+        arg_any: `Any`
+            The input argument without specified type.
+
+        arg_key: `str`
+            The input argument that is keyword-only.
+
+        Returns
+        -------
+        #1: `str`
+            The returned value.
+        """
+        raise NotImplementedError
+```
+
+总之，类顶端的 docstring，会被解析成多行的 Markdown 文本，并收录为针对类本身的描述。其他规则包括：
+
+1. 函数和运算符的 docstring 其解析规则和前述的“函数风格”一致。针对（实例）方法和类方法，第一个参数 `self`/`cls` 在 docstring 中应当略去不提。
+
+2. 类的初始化方法将会用来解析类的参数。
+
+3. 属性或缓存属性的 docstring 解析为多行 Markdown 文本。另外，即使属性实现了`setter`或`deleter`方法，其 docstring 也只会从默认的 `getter` 方法中提取。
+
+</TabItem>
+
+<TabItem value="page" label="转换后">
+
+所用的 docstring 将会转换为一个数据结构 [`DocClass`](../../apis/core/classes/DocClass.mdx), 其中蕴含了以下关键字段：
+
+|     字段     | <center>值</center>                                                        |
+| :----------: | :------------------------------------------------------------------------- |
+|    `name`    | ExampleClass                                                               |
+|   `descr`    | An example class which is a mixture of methods, properties, and operators. |
+| `init_func`  | `DocFunction`                                                              |
+|  `methods`   | `list[DocFunction]`                                                        |
+| `properties` | `list[DocProp]`                                                            |
+| `operators`  | `list[DocFunction]`                                                        |
+
+此处的例子中，类仅仅包含一个方法，一个属性，且不包含运算符（`__init__`因为不被视为运算符而除外）。在解析类的成员函数时，采用的解析规则和常规函数时别无二致。因此，在此只展示解析后`properties[0]`的详情：
+
+|  字段   | <center>值</center>                 |
+| :-----: | :---------------------------------- |
+| `name`  | prop                                |
+| `descr` | A vanilla property with annotation. |
+| `type`  | `int`                               |
+
+以下页面展示了一个渲染后的类的例子：
+
+<p>
+  {
+    <DarkButton to="/docs/apis/renderer/components/Components" icon={epGuide}>
+      renderer.components.Components
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+## 4. 为数据类写 docstring {/* #4-write-docstrings-for-fields */}
+
+在[PEP 224<IconExternalLink/>][pep-224]中，有人提出了一个用作“成员 (attribute) 的 docstring”的提案，但被委员会无情拒绝了。然而，该提案现在已经成了 VS Code 用来补充常规 docstring 的一种事实标准。pyDocusaurus 会从源码中直接读取这类 docstring。此处的例子，展示了如何基于该提案的规则，注释[PyDantic<IconExternalLink/>][link-pydantic]模型：
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+```python showLineNumbers
+class ExampleModel(BaseModel):
+    """An example PyDantic model that is used for testing the docstring extraction.
+
+    The initialization function are synthesized from the field definitions.
+    """
+
+    val_1: int
+    """The most plain field that is required."""
+
+    val_2: str = ""
+    """An optional field with a default value."""
+
+    val_3: int | str = Field(default="")
+    """A union field with the default value specified by the `Field` creator."""
+
+    val_4: list[str] = Field(default_factory=list)
+    """A list field with a default value specified by the factory function."""
+[Field.description<IconExternalLink/>](https://pydantic.dev/docs/validation/latest/api/pydantic/fields/#pydantic.fields.FieldInfo.description)
+    val_5: Annotated[list[str], Field(default_factory=list)]
+    """A list field with the default value specified by the annotation."""
+```
+
+尽管 PyDantic 提供了专门用于撰写字段 docstring 的成员[Field.description<IconExternalLink/>](https://pydantic.dev/docs/validation/latest/api/pydantic/fields/#pydantic.fields.FieldInfo.description)，本模块包却并不采纳这种运行时解决方案。因为这类 docstring 无法被静态类型检查器感知到。相比之下，本项目更倾向于上述的“attribute-docstring”风格，因为 VS Code 可以探知到这类注释。
+
+</TabItem>
+
+<TabItem value="page" label="转换后">
+
+所用的 docstring 将会转换为一个数据结构 [`DocDataClass`](../../apis/core/datacls/DocDataClass.mdx), 其中蕴含了以下关键字段：
+
+|   字段   | <center>值</center>                                                                                                                                               |
+| :------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  `name`  | ExampleModel                                                                                                                                                      |
+| `descr`  | <p>An example PyDantic model that is used for testing the docstring extraction.</p><p>The initialization function are synthesized from the field definitions.</p> |
+| `fields` | `list[DocField]`                                                                                                                                                  |
+
+需要指出的是，`DocDataClass`与[`DocClass`](../../apis/core/classes/DocClass.mdx)均是同一原型类的子类。因此，其他诸如`methods`和`properties`的字段，也能像一个常规的类那样正常解析方法、属性，及其他各种要素。
+
+在该例中，PyDantic 解析为一个数据类。这种情况下，会略过对其初始化方法的探知，类的参数列表也会被替换为“解释字段 (field) 的章节”。所探知到的字段构成了一个元素为[`DocField`](../../apis/core/datacls/DocField.mdx)的列表。下面展示了本例中、所导出的字段内容：
+
+|  字段   |     类型     | <center>描述</center>                                                  |
+| :-----: | :----------: | :--------------------------------------------------------------------- |
+| `val_1` |    `int`     | The most plain field that is required.                                 |
+| `val_2` |    `str`     | An optional field with a default value.                                |
+| `val_3` | `int \| str` | A union field with the default value specified by the `Field` creator. |
+| `val_4` | `list[str]`  | A list field with a default value specified by the factory function.   |
+| `val_5` | `list[str]`  | A list field with the default value specified by the annotation.       |
+
+以下页面展示了一个渲染后的数据类的例子：
+
+<p>
+  {
+    <DarkButton to="/docs/apis/renderer/page/RendererPage" icon={epGuide}>
+      renderer.page.RendererPage
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+## 5. 为类型写 docstrings {/* #5-write-docstrings-for-types */}
+
+[PEP 224<IconExternalLink/>][pep-224] 也适用于类型别名和变量的 docstring。目前，pyDocusaurus 针对类型别名的定义，实现了对其 docstring 的探知。
+
+:::warning
+换言之，目前，还不支持对全局变量的 docstring 探知与解析。
+:::
+
+<Tabs groupId="doc-example">
+<TabItem value="doc" label="docstring">
+
+假设存在以下模块：
+
+```python showLineNumbers title="example_aliases.py"
+CustomType: TypeAlias = int | str
+"""docstring for CustomType"""
+
+type SpecifiedList = list[str]
+"""docstring for SpecifiedList"""
+```
+
+此处，这个范例模块中含有两个类型别名，各自使用了[不同的定义方法<IconExternalLink/>][link-typealias]。这两种情形 pyDocusaurus 均能探知到。
+
+</TabItem>
+
+<TabItem value="page" label="转换后">
+
+所用的 docstring 将会转换为一个数据结构 [`DocTypeAlias`](../../apis/core/typealiases/DocTypeAlias.mdx)，其中，上例的第一个类型别名的关键字段探知为：
+
+|     字段     | <center>值</center>                  |
+| :----------: | :----------------------------------- |
+|    `name`    | CustomType                           |
+|   `descr`    | docstring for CustomType             |
+| `definition` | `CustomType: TypeAlias = int \| str` |
+
+以下页面展示了一个渲染后的类型别名的例子：
+
+<p>
+  {
+    <DarkButton
+      href="https://cainmagi.github.io/dash-file-cache/docs/apis/caches/typehints/Deferred"
+      icon={epGuide}
+    >
+      dfc.caches.typehints.Deferred
+    </DarkButton>
+  }
+</p>
+
+</TabItem>
+
+</Tabs>
+
+[link-typing]: https://docs.python.org/zh-cn/3.14/library/typing.html
+[link-typealias]: https://docs.python.org/zh-cn/3.14/library/typing.html#type-aliases
+[link-ast]: https://docs.python.org/zh-cn/3/library/ast.html
+[link-pydantic]: https://pydantic.com.cn/
+[pep-287]: https://peps.python.org/pep-0287/
+[pep-224]: https://peps.python.org/pep-0224/

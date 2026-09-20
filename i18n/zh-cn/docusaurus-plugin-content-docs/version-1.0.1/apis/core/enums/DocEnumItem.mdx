@@ -1,0 +1,28 @@
+---
+id: DocEnumItem
+title: DocEnumItem
+sidebar_label: DocEnumItem
+slug: /apis/core/enums/DocEnumItem
+description: 枚举类型成员的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.enums.DocEnumItem" />
+
+```python
+DocEnumItem(name: str, type: str, value: str = "", descr: str = "")
+```
+
+枚举类型成员的 docstring。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 所属的枚举类型名称。 |
+| `type` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 该枚举类型成员的值类型。该类型通常是该值的类型提示（标注）。 |
+| `value` | `str` | | 枚举成员值的格式化结果。 |
+| `descr` | `str` | | 枚举成员的 docstring 文字，只能从源码中提取。 |

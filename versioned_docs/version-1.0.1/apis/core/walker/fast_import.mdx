@@ -1,0 +1,33 @@
+---
+id: fast_import
+title: fast_import
+sidebar_label: fast_import
+slug: /apis/core/walker/fast_import
+description: Import a package by its name.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.walker.fast_import" />
+
+```python
+v_1: module = fast_import(module: ModuleType | str)
+```
+
+Import a package by its name.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `ModuleType \| str` | <InlineIcon icon={vsiCheckIcon}/> | The package to be imported. It can be an already imported package. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `module` | The imported package. It is the input value if the input value is already imported. |

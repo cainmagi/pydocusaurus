@@ -1,0 +1,34 @@
+---
+id: get_mro
+title: get_mro
+sidebar_label: get_mro
+slug: /apis/core/inspectors/get_mro
+description: Get the mro of a class.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_mro" />
+
+```python
+v_1: list[type[Any]] = get_mro(cls: type[Any], stop_by: Callable[[type[Any]], bool] | None)
+```
+
+Get the mro of a class.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | The class where the MRO will be picked. |
+| `stop_by` | `Callable[[type[Any]], bool] \| None` | <InlineIcon icon={vsiCheckIcon}/> | An optional stop indicator. If this function returns `True`, it means that the class is detected to be a stopper. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `list[type[Any]]` | The MRO list of `cls`. |

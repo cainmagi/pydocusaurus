@@ -1,0 +1,113 @@
+---
+id: DocOpTemplate
+title: DocOpTemplate
+sidebar_label: DocOpTemplate
+slug: /apis/core/ops/DocOpTemplate
+description: 常规运算符的模板。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.ops.DocOpTemplate" />
+
+```python
+DocOpTemplate(
+    name: str,
+    template: str,
+    func: DocFunction,
+    special: Literal["no", "yield"] = "no"
+)
+```
+
+常规运算符的模板。
+
+以运算符`len`为例，其实现可以写作：
+
+```python
+DocOpTemplate(name="len", template="{vr1}: {tr1} = len({va1})")
+```
+
+另一个例子是运算符`getitem`，也可以将其特定成已知类型：
+
+```python
+DocOpTemplate(name="getitem", template="data: DataType = value[key]")
+```
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 运算符的名称（不包括下划线）。 |
+| `template` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 模板内容。使用`"{vr1}"`, `"{tr1}"`, `"{va1}"`, `"{ta1}"`, … 来分别代表返回值和输入参数的变量名、类型。 |
+| `func` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | 从运算符的函数体的 docstring 解析的结果。 |
+| `special` | `Literal["no", "yield"]` | | 针对运算符字符串形式的特殊渲染情形。如果未指定，则会默认使用`template`渲染字符串。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+渲染为 Markdown 文字。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从运算符渲染的 Markdown 文本。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `from_func` {/* #-from_func */}
+
+```python
+v_1: Self = DocOpTemplate.from_func(func: Any, base_cls: type[Any])
+```
+
+从运算符函数构造`DocOpTemplate`。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `func` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 用语构造该运算符模板的方法函数。 |
+| `base_cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | 该运算符定义所在的类。 |
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | 使用给定的运算符方法构造的运算符模板。 |
+
+## 属性 {/* #properties */}
+
+### <IconObjType type="param"/> `str_v2` {/* #-str_v2 */}
+
+```python
+str_v2: str = self.str_v2
+```
+
+渲染 V2 字符串。
+
+所谓 v2 字符串可以描述为以下格式：
+
+```python
+template.format(
+    va1=self.func.args[0].name, a1=self.func.args[0].type,
+    ...
+    vr1=self.func.retval[0].name, r1=self.func.retval[0].type,
+    ...
+)
+```
+
+相比默认的字符串格式更加紧凑。

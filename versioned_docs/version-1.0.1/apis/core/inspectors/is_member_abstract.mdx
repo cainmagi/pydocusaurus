@@ -1,0 +1,33 @@
+---
+id: is_member_abstract
+title: is_member_abstract
+sidebar_label: is_member_abstract
+slug: /apis/core/inspectors/is_member_abstract
+description: Check whether a value is an abstract member of a class.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.is_member_abstract" />
+
+```python
+v_1: bool = is_member_abstract(attr: Any)
+```
+
+Check whether a value is an abstract member of a class.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `attr` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The attribute of a class. It can be a value, method, property, or operator. Note that the attribute needs to be provided by the method `inspect.getmembers_static(...)`. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | If the attribute has been decorated by `@abstractmethod`, returns `True`. If the value is not a method (such as a variable), will return `False`. |

@@ -1,0 +1,27 @@
+---
+id: index
+title: modules
+sidebar_label: modules
+slug: /apis/core/modules
+description: The documentation extraction of modules and packages.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.modules" />
+
+The documentation extraction of modules and packages.
+
+## Classes
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="DocModuleProp"/>](./DocModuleProp.mdx) | The docstring and basic information of a module property. |
+| [<IconObjType type="class" hasText={true} text="DocModuleMetadata"/>](./DocModuleMetadata.mdx) | The module metadata extracted from the top docstring. |
+| [<IconObjType type="class" hasText={true} text="DocModule"/>](./DocModule.mdx) | The docstring of a module. |
+
+## Functions
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="parse_module_doc"/>](./parse_module_doc.mdx) | Parse the docstring of a package or a module. |

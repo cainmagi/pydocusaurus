@@ -1,0 +1,52 @@
+---
+id: DocModuleMetadata
+title: DocModuleMetadata
+sidebar_label: DocModuleMetadata
+slug: /apis/core/modules/DocModuleMetadata
+description: The module metadata extracted from the top docstring.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.modules.DocModuleMetadata" />
+
+```python
+DocModuleMetadata(
+    title: str = "", author: str = "", license: str = "", descr: str = ""
+)
+```
+
+The module metadata extracted from the top docstring.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `title` | `str` | | The module title. |
+| `author` | `str` | | The author section specified in the docstring. |
+| `license` | `str` | | The license section specified in the docstring. |
+| `descr` | `str` | | The description body specified in the docstring. |
+
+## Methods
+
+### <IconObjType type="method"/> `from_long_descr`
+
+```python
+v_1: Self = DocModuleMetadata.from_long_descr(text: str)
+```
+
+Parse the long description texts (many sections) as the metadata.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `text` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The long module docstring text. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | The parsed module metadata. |

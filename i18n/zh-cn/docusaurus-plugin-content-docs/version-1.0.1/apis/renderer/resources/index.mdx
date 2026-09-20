@@ -1,0 +1,25 @@
+---
+id: index
+title: resources
+sidebar_label: resources
+slug: /apis/renderer/resources
+description: 将一系列资源文件渲染到文档项目中。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="renderer.resources" />
+
+将一系列资源文件渲染到文档项目中。
+
+该模块用来维护资源文件夹中的文件。这些资源文件并非源代码的一部分，但作为模板、渲染并提供了一些导出文档中需要用到的 typescript 脚本。
+
+## 函数 {/* #functions */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="is_jinja_template"/>](./is_jinja_template.mdx) | 检查某个文件名是否对应为 Jinja2 模板。 |
+| [<IconObjType type="func" hasText={true} text="get_jinja_template_out_name"/>](./get_jinja_template_out_name.mdx) | 获得 Jinja2 模板文件在渲染后对应的目标文件名。 |
+| [<IconObjType type="func" hasText={true} text="ts_object"/>](./ts_object.mdx) | 将值导出为 json，并将其置入一个 typescript 对象中。 |
+| [<IconObjType type="func" hasText={true} text="as_pypi_name"/>](./as_pypi_name.mdx) | 将模块包的名字转换成 PyPI 风格的项目名。 |
+| [<IconObjType type="func" hasText={true} text="render_resource_tree"/>](./render_resource_tree.mdx) | 渲染某个模块包的资源树。 |

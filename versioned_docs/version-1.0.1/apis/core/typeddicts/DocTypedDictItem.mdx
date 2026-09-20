@@ -1,0 +1,28 @@
+---
+id: DocTypedDictItem
+title: DocTypedDictItem
+sidebar_label: DocTypedDictItem
+slug: /apis/core/typeddicts/DocTypedDictItem
+description: The docstring of a typed dictionary item.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.typeddicts.DocTypedDictItem" />
+
+```python
+DocTypedDictItem(name: str, type: str, optional: bool = False, descr: str = "")
+```
+
+The docstring of a typed dictionary item.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the dict item. |
+| `type` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The type of the dict item. It is usually the typehint (annotation). |
+| `optional` | `bool` | | A flag specifying whether the dict item is optional. It is specified by `NotRequired` annotation or `total=False` subclass. |
+| `descr` | `str` | | The docstring of the dict item, it is defined in codes. |

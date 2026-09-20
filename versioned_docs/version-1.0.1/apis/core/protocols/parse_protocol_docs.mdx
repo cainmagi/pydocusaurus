@@ -1,0 +1,33 @@
+---
+id: parse_protocol_docs
+title: parse_protocol_docs
+sidebar_label: parse_protocol_docs
+slug: /apis/core/protocols/parse_protocol_docs
+description: Parse the docstring of a protocol class.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.protocols.parse_protocol_docs" />
+
+```python
+v_1: DocProtocol = parse_protocol_docs(cls: type[Any])
+```
+
+Parse the docstring of a protocol class.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | A class object to be parsed. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocProtocol` | The parsed docstring of the protocol class. |

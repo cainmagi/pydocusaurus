@@ -1,0 +1,140 @@
+---
+id: PackageInformation
+title: PackageInformation
+sidebar_label: PackageInformation
+slug: /apis/renderer/package/PackageInformation
+description: 模块包的基本信息。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="renderer.package.PackageInformation" />
+
+```python
+PackageInformation(
+    user: str | None = None,
+    package_name: str | None = None,
+    sidebar: list[str | dict[str, Any]] | None = None,
+    source_uris: dict[str, dict[str, str]] | None = None,
+    source_versions: dict[str, str] | None = None
+)
+```
+
+模块包的基本信息。所有的字段都是可选的，且可以从解析到的模块包数据中推断。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `user` | `str \| None` | | 仓库持有者的用户名。通常理解为 GitHub 的用户名。 |
+| `package_name` | `str \| None` | | 在渲染文档时，所用的模块包的（同时也是项目的）名称。如果未指定，会自动推断该名称。 |
+| `sidebar` | `list[str \| dict[str, Any]] \| None` | | 渲染 API 文档时，所用的侧边栏。如果未指定，会自动推断侧边栏结构。 |
+| `source_uris` | `dict[str, dict[str, str]] \| None` | | 源代码URI列表。用来提供指向源代码的链接。如果未指定，会自动推断URI。 |
+| `source_versions` | `dict[str, str] \| None` | | 从版本名称指向版本识别码的映射。版本名称用作字典`source_uris`的键，而版本识别码用来定位版本对应的链接。如果未指定，会自动从`source_uris`中推断出该映射。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_vardict` {/* #-as_vardict */}
+
+```python
+v_1: dict[str, Any] = self.as_vardict()
+```
+
+将数据导出成（渲染模板用的）变量字典。
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `dict[str, Any]` | 在渲染资源的过程中，所用的变量字典。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `set_pkg_info` {/* #-set_pkg_info */}
+
+```python
+v_1: Self = self.set_pkg_info(pkg: ModuleType)
+```
+
+在尚未指定`package_name`情况下设置该值。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `pkg` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | 用来提供名称的模块包。 |
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | 该数据模型本身。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `set_sidebar` {/* #-set_sidebar */}
+
+```python
+v_1: Self = self.set_sidebar(pkg_renderer: PackageRenderer)
+```
+
+在尚未指定`sidebar`情况下设置该值。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `pkg_renderer` | `PackageRenderer` | <InlineIcon icon={vsiCheckIcon}/> | 用来提供侧边栏的模块包。 |
+
+#### 输出 {/* #returns-2 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | 该数据模型本身。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `set_source_uris` {/* #-set_source_uris */}
+
+```python
+v_1: Self = self.set_source_uris(pkg_renderer: PackageRenderer, version: str | None = None)
+```
+
+在尚未指定`source_uris`情况下设置该值。
+
+#### 输入 {/* #requires-2 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `pkg_renderer` | `PackageRenderer` | <InlineIcon icon={vsiCheckIcon}/> | 用来提供 URI 的模块包。 |
+| `version` | `str \| None` | | 模块包提供的版本文字。 |
+
+#### 输出 {/* #returns-3 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | 该数据模型本身。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `set_source_versions` {/* #-set_source_versions */}
+
+```python
+v_1: Self = self.set_source_versions(versions: Mapping[str, str] | None = None)
+```
+
+在尚未指定`source_versions`情况下设置该值。
+
+#### 输入 {/* #requires-3 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `versions` | `Mapping[str, str] \| None` | | 从版本名称指向版本识别码的映射。版本名称用作字典`source_uris`的键，而版本识别码用来定位版本对应的链接。如果未指定，会自动从`source_uris`中推断出该映射。 |
+
+#### 输出 {/* #returns-4 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | 该数据模型本身。 |

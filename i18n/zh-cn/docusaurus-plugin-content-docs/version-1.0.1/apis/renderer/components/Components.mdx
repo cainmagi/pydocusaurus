@@ -1,0 +1,103 @@
+---
+id: Components
+title: Components
+sidebar_label: Components
+slug: /apis/renderer/components/Components
+description: 组件的集合。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" source="renderer.components.Components" />
+
+```python
+Components()
+```
+
+组件的集合。这一集中式的组件渲染器、透过合理维护缓存、提供局部所需的组件。
+
+## 参数 {/* #arguments */}
+
+该类的初始化无需参数。
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `get_headers` {/* #-get_headers */}
+
+```python
+v_1: str = self.get_headers()
+```
+
+在页面渲染时，将组件渲染为页面标头代码。
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 所渲染的标头文字，包含多行导入，每行导入一个 MDX 组件。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `icon_obj` {/* #-icon_obj */}
+
+```python
+v_1: str = self.icon_obj(
+    type: Literal[
+        "method", "op", "param", "package", "module", "class", "func", "type"
+    ],
+    text: str = "",
+)
+```
+
+用来插入子标题图标的协议实现。
+
+#### 输入 {/* #requires */}
+
+<div className="long-type-table">
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["method", "op", "param", "package", "module", "class", "func", "type"]` | <InlineIcon icon={vsiCheckIcon}/> | 该类型名称用来决定图标。 |
+| `text` | `str` | | 跟随在图标后面的可选文字。如果留空，则只会显示图标。 |
+
+</div>
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 图标–文字的 MDX 代码。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `inline_icon` {/* #-inline_icon */}
+
+```python
+v_1: str = self.inline_icon(icon: Literal["check"])
+```
+
+用来插入特殊图标的协议实现。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `icon` | `Literal["check"]` | <InlineIcon icon={vsiCheckIcon}/> | 该类型名称用来决定图标。 |
+
+#### 输出 {/* #returns-2 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 图标的 MDX 代码。 |
+
+## 属性 {/* #properties */}
+
+### <IconObjType type="param"/> `apibar` {/* #-apibar */}
+
+```python
+apibar: type[ComponentAPIBar] = self.apibar
+```
+
+顶部 API 导航条。返回值是一个用来合成 MDX 格式 API 导航条的合成器。

@@ -1,0 +1,33 @@
+---
+id: get_lambda_source
+title: get_lambda_source
+sidebar_label: get_lambda_source
+slug: /apis/core/inspectors/get_lambda_source
+description: 获得 lambda 表达式对应的源代码定义。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_lambda_source" />
+
+```python
+v_1: str = get_lambda_source(func: Any)
+```
+
+获得 lambda 表达式对应的源代码定义。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `func` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 可能是 lambda 表达式的函数对象。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 表达式。如果`func`并非函数，则返回`None`。 |

@@ -1,0 +1,33 @@
+---
+id: parse_type_aliases_doc
+title: parse_type_aliases_doc
+sidebar_label: parse_type_aliases_doc
+slug: /apis/core/typealiases/parse_type_aliases_doc
+description: Parse the docstring of all type aliases defined in a module.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.typealiases.parse_type_aliases_doc" />
+
+```python
+v_1: list[DocTypeAlias] = parse_type_aliases_doc(obj: Any)
+```
+
+Parse the docstring of all type aliases defined in a module.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The place where the attributes will be checked for detecting the type aliases. In most cases, this value should be a module. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `list[DocTypeAlias]` | The parsed docstrings of the type aliases. Note that these results are purely inferred from the codes. The members are not guaranteed to be type aliases. Extra run-time checks need to be done to secure results. |

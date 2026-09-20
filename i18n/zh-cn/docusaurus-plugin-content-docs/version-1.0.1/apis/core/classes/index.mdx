@@ -1,0 +1,29 @@
+---
+id: index
+title: classes
+sidebar_label: classes
+slug: /apis/core/classes
+description: 针对类对象实现的文档内容提取。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.classes" />
+
+针对类对象实现的文档内容提取。
+
+## 类 {/* #classes */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="AbstractAttrs"/>](./AbstractAttrs.mdx) | 该实例用于临时存放类的抽象成员。 |
+| [<IconObjType type="class" hasText={true} text="ClassProfile"/>](./ClassProfile.mdx) | 从类中提取的临时摘要。 |
+| [<IconObjType type="class" hasText={true} text="DocProp"/>](./DocProp.mdx) | 类属性的 docstring 和其他基本信息。 |
+| [<IconObjType type="class" hasText={true} text="DocClass"/>](./DocClass.mdx) | 类的 docstring 和其他基本信息。 |
+
+## 函数 {/* #functions */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="parse_prop_docs"/>](./parse_prop_docs.mdx) | 解析类属性的 docstring。 |
+| [<IconObjType type="func" hasText={true} text="parse_class_docs"/>](./parse_class_docs.mdx) | 解析类的 docstring。 |

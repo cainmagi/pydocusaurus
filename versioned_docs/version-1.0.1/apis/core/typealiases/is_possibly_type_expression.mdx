@@ -1,0 +1,35 @@
+---
+id: is_possibly_type_expression
+title: is_possibly_type_expression
+sidebar_label: is_possibly_type_expression
+slug: /apis/core/typealiases/is_possibly_type_expression
+description: A heuristic checker for detecting the possible type expression.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.typealiases.is_possibly_type_expression" />
+
+```python
+v_1: bool = is_possibly_type_expression(node: AST)
+```
+
+A heuristic checker for detecting the possible type expression.
+
+Note that this method does not guarantee that the given `node` is definitely a type alias. Extra run-time checks need to be performed to secure the results.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node` | `AST` | <InlineIcon icon={vsiCheckIcon}/> | The `ast` node to be checked. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | A flag. It is `True` if node looks like a type expression rather than a variable. |

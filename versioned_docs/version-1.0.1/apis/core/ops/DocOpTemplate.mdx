@@ -1,0 +1,113 @@
+---
+id: DocOpTemplate
+title: DocOpTemplate
+sidebar_label: DocOpTemplate
+slug: /apis/core/ops/DocOpTemplate
+description: The template of the plain operator.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.ops.DocOpTemplate" />
+
+```python
+DocOpTemplate(
+    name: str,
+    template: str,
+    func: DocFunction,
+    special: Literal["no", "yield"] = "no"
+)
+```
+
+The template of the plain operator.
+
+For example, the `len` operator can be implemented by:
+
+```python
+DocOpTemplate(name="len", template="{vr1}: {tr1} = len({va1})")
+```
+
+Another example is the `getitem` operator which can be type-specified:
+
+```python
+DocOpTemplate(name="getitem", template="data: DataType = value[key]")
+```
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the operator (do not include the underlines). |
+| `template` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The template content. Use `"{vr1}"`, `"{tr1}"`, `"{va1}"`, `"{ta1}"`, ... to represent the variables and types in the returned values and arguments, respectively. |
+| `func` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | The function body of the docstring. |
+| `special` | `Literal["no", "yield"]` | | The special case of the string version rendering. If not specified, will use the `template` to render the results. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+Render as Markdown text.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the operator. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `from_func`
+
+```python
+v_1: Self = DocOpTemplate.from_func(func: Any, base_cls: type[Any])
+```
+
+Create the `DocOpTemplate` from an operator function.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `func` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | The method function used for creating this operator template. |
+| `base_cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | The class where the operator is defined. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | The operator template created from the given operator method. |
+
+## Properties
+
+### <IconObjType type="param"/> `str_v2`
+
+```python
+str_v2: str = self.str_v2
+```
+
+Render as V2 string.
+
+The v2 string is in the following format:
+
+```python
+template.format(
+    va1=self.func.args[0].name, a1=self.func.args[0].type,
+    ...
+    vr1=self.func.retval[0].name, r1=self.func.retval[0].type,
+    ...
+)
+```
+
+which is more compact than the default string.

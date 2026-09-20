@@ -1,0 +1,28 @@
+---
+id: DocEnumItem
+title: DocEnumItem
+sidebar_label: DocEnumItem
+slug: /apis/core/enums/DocEnumItem
+description: The docstring of an enum item.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.enums.DocEnumItem" />
+
+```python
+DocEnumItem(name: str, type: str, value: str = "", descr: str = "")
+```
+
+The docstring of an enum item.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the enum item. |
+| `type` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The type of the enum item. It is usually the typehint (annotation). |
+| `value` | `str` | | The formatted value of the enum item. |
+| `descr` | `str` | | The docstring of the enum item, it is defined in codes. |

@@ -1,0 +1,33 @@
+---
+id: get_arg_default_name
+title: get_arg_default_name
+sidebar_label: get_arg_default_name
+slug: /apis/core/inspectors/get_arg_default_name
+description: 将给定的值格式化为可以填充为函数参数(`DocArgument`)默认值字段的字符串。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_arg_default_name" />
+
+```python
+v_1: str = get_arg_default_name(val: Any)
+```
+
+将给定的值格式化为可以填充为函数参数(`DocArgument`)默认值字段的字符串。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `val` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待检测的值。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | <p>可填充于函数参数默认值的字符串值。</p><p>若该值为空，表明对应的参数不存在默认值设置。</p> |

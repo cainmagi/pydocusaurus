@@ -1,0 +1,35 @@
+---
+id: is_main_module
+title: is_main_module
+sidebar_label: is_main_module
+slug: /apis/core/walker/is_main_module
+description: Check whether a module is a `__main__` module.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.walker.is_main_module" />
+
+```python
+v_1: bool = is_main_module(module: ModuleType)
+```
+
+Check whether a module is a `__main__` module.
+
+A `__main__` module is the entrypoint of a package.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | The module to be checked. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | A flag that is `True` if `module` is the `__main__` module. |

@@ -1,0 +1,34 @@
+---
+id: is_direct_nonmodule
+title: is_direct_nonmodule
+sidebar_label: is_direct_nonmodule
+slug: /apis/core/walker/is_direct_nonmodule
+description: Check whether a non-module object is directly defined in a module/package.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.walker.is_direct_nonmodule" />
+
+```python
+v_1: bool = is_direct_nonmodule(obj: Any, module: ModuleType)
+```
+
+Check whether a non-module object is directly defined in a module/package.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | An object to be checked. |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | The module/package where `obj` is potentially defined. The detection is related to this module. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | A flag. If it is `True`, it means the `obj` is directly defined in `module`. |

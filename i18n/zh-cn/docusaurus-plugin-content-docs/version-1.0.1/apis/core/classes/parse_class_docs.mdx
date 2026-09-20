@@ -1,0 +1,33 @@
+---
+id: parse_class_docs
+title: parse_class_docs
+sidebar_label: parse_class_docs
+slug: /apis/core/classes/parse_class_docs
+description: 解析类的 docstring。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.classes.parse_class_docs" />
+
+```python
+v_1: DocClass = parse_class_docs(cls: type[Any])
+```
+
+解析类的 docstring。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | 待解析的类。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocClass` | 从类中解析后的 docstring。 |

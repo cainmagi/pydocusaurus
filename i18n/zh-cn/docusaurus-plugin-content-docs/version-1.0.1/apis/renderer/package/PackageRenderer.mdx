@@ -1,0 +1,174 @@
+---
+id: PackageRenderer
+title: PackageRenderer
+sidebar_label: PackageRenderer
+slug: /apis/renderer/package/PackageRenderer
+description: 用来渲染文档页面的模块处理器。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" source="renderer.package.PackageRenderer" />
+
+```python
+PackageRenderer(out_dir: str | PathLike[str], saver: SaverAbstract)
+```
+
+用来渲染文档页面的模块处理器。
+
+针对每个模块包成员，调用该处理器、以处理其信息，渲染、并保存成对应的文档页面文件。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `out_dir` | `str \| PathLike[str]` | <InlineIcon icon={vsiCheckIcon}/> | 用来保存输出文档的目录。 |
+| `saver` | `SaverAbstract` | <InlineIcon icon={vsiCheckIcon}/> | 用来导出文件的保存器。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `parse_class` {/* #-parse_class */}
+
+```python
+self.parse_class(obj: DocClass)
+```
+
+当成员对象为类时，渲染其文档的实现。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocClass` | <InlineIcon icon={vsiCheckIcon}/> | 待渲染和保存的类信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_dataclass` {/* #-parse_dataclass */}
+
+```python
+self.parse_dataclass(obj: DocDataClass)
+```
+
+当成员对象为数据类时，渲染其文档的实现。
+
+#### 输入 {/* #requires-2 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocDataClass` | <InlineIcon icon={vsiCheckIcon}/> | 待渲染和保存的数据类信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_enum` {/* #-parse_enum */}
+
+```python
+self.parse_enum(obj: DocEnum)
+```
+
+当成员对象为枚举类型时，渲染其文档的实现。
+
+#### 输入 {/* #requires-3 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocEnum` | <InlineIcon icon={vsiCheckIcon}/> | 待渲染和保存的枚举类型信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_function` {/* #-parse_function */}
+
+```python
+self.parse_function(obj: DocFunction)
+```
+
+当成员对象为函数时，渲染其文档的实现。
+
+#### 输入 {/* #requires-4 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | 待渲染和保存的函数信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_module` {/* #-parse_module */}
+
+```python
+self.parse_module(obj: DocModule)
+```
+
+当成员对象为模块时，渲染其文档的实现。
+
+#### 输入 {/* #requires-5 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocModule` | <InlineIcon icon={vsiCheckIcon}/> | 待渲染和保存的模块信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_protocol` {/* #-parse_protocol */}
+
+```python
+self.parse_protocol(obj: DocProtocol)
+```
+
+当成员对象为协议类型时，渲染其文档的实现。
+
+#### 输入 {/* #requires-6 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocProtocol` | <InlineIcon icon={vsiCheckIcon}/> | 待渲染和保存的协议类型信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_typealias` {/* #-parse_typealias */}
+
+```python
+self.parse_typealias(obj: DocTypeAlias)
+```
+
+当成员对象为类型别名时，渲染其文档的实现。
+
+#### 输入 {/* #requires-7 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocTypeAlias` | <InlineIcon icon={vsiCheckIcon}/> | 待渲染和保存的类型别名信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_typeddict` {/* #-parse_typeddict */}
+
+```python
+self.parse_typeddict(obj: DocTypedDict)
+```
+
+当成员对象为类型提示字典时，渲染其文档的实现。
+
+#### 输入 {/* #requires-8 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocTypedDict` | <InlineIcon icon={vsiCheckIcon}/> | 待渲染和保存的类型提示字典信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `save_page` {/* #-save_page */}
+
+```python
+self.save_page(page: RendererPage)
+```
+
+保存文档页面的实现。
+
+#### 输入 {/* #requires-9 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `page` | `RendererPage` | <InlineIcon icon={vsiCheckIcon}/> | 待渲染和保存的页面。 |

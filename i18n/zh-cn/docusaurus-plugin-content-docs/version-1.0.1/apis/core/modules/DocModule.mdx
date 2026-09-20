@@ -1,0 +1,152 @@
+---
+id: DocModule
+title: DocModule
+sidebar_label: DocModule
+slug: /apis/core/modules/DocModule
+description: 模块的 docstring。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.modules.DocModule" />
+
+```python
+DocModule(
+    type: Literal["module"] = "module",
+    name: str,
+    metadata: DocModuleMetadata = DocModuleMetadata(...),
+    is_package: bool = False,
+    slang: str = "",
+    modules: list[DocModuleProp] = [],
+    classes: list[DocModuleProp] = [],
+    funcs: list[DocModuleProp] = [],
+    types: list[DocModuleProp] = [],
+    aliases: list[DocModuleProp] = []
+)
+```
+
+模块的 docstring。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `type` | `Literal["module"]` | | 作为文档成员的类型标识符。 |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 模块的名称。 |
+| `metadata` | `DocModuleMetadata` | | 模块的元数据。提取自模块顶部的 docstring。 |
+| `is_package` | `bool` | | 布尔标记，用于指示该模块是否是模块包。 |
+| `slang` | `str` | | 该模块的内部识别码。 |
+| `modules` | `list[DocModuleProp]` | | 从属于该模块的全部子模块。在此情形下，该模块应当是模块包。 |
+| `classes` | `list[DocModuleProp]` | | 从属于该模块的全部类。 |
+| `funcs` | `list[DocModuleProp]` | | 从属于该模块的全部函数。 |
+| `types` | `list[DocModuleProp]` | | 从属于该模块的全部类型（类型别名、类型提示字典、以及协议类）。 |
+| `aliases` | `list[DocModuleProp]` | | 从其他模块/模块包导入到本模块的成员。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `add_member` {/* #-add_member */}
+
+```python
+self.add_member(
+    member: (
+        DocModule
+        | DocClass
+        | DocDataClass
+        | DocEnum
+        | DocTypedDict
+        | DocProtocol
+        | DocTypeAlias
+        | DocFunction
+    ),
+    is_alias: bool,
+)
+```
+
+向本模块添加一个成员。
+
+#### 输入 {/* #requires */}
+
+<div className="long-type-table">
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `member` | `(DocModule \| DocClass \| DocDataClass \| DocEnum \| DocTypedDict \| DocProtocol \| DocTypeAlias \| DocFunction)` | <InlineIcon icon={vsiCheckIcon}/> | 待添加到该模块中的成员。 |
+| `is_alias` | `bool` | <InlineIcon icon={vsiCheckIcon}/> | 布尔标记。用来指示将要添加到该模块的成员是否是别名。 |
+
+</div>
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+渲染为 Markdown 文字。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从模块渲染的 Markdown 文本。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `table_members` {/* #-table_members */}
+
+```python
+v_1: str = self.table_members(
+    renderer: ProtocolComponent,
+    members: Sequence[DocModuleProp],
+    has_relink: bool = True,
+    has_doc: bool = True,
+)
+```
+
+将模块属性格式化为表格。
+
+#### 输入 {/* #requires-2 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+| `members` | `Sequence[DocModuleProp]` | <InlineIcon icon={vsiCheckIcon}/> | 待展示于表格中的成员列表。 |
+| `has_relink` | `bool` | | 布尔标记。如果设置了，就会将第一列（成员名称）渲染为相对链接。 |
+| `has_doc` | `bool` | | 布尔标记。如果设置了，就会显示成员的 docstring 文本。 |
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 包含了各成员详情的 Markdown 表格。 |
+
+## 属性 {/* #properties */}
+
+### <IconObjType type="param"/> `descr` {/* #-descr */}
+
+```python
+descr: str = self.descr
+```
+
+模块的 docstring，定义在文件的开头。
+
+______________________________________________________________________
+
+### <IconObjType type="param"/> `str_v2` {/* #-str_v2 */}
+
+```python
+str_v2: str = self.str_v2
+```
+
+渲染 V2 字符串。
+
+模块的V2字符串和其默认字符串是一样的。

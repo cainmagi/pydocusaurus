@@ -1,0 +1,110 @@
+{
+  "sidebar.tutorial.category.Usages": {
+    "message": "用法",
+    "description": "The label for category 'Usages' in sidebar 'tutorial'"
+  },
+  "sidebar.tutorial.category.Usages.link.generated-index.title": {
+    "message": "学习使用 pyDocusaurus",
+    "description": "The generated-index page title for category 'Usages' in sidebar 'tutorial'"
+  },
+  "sidebar.tutorial.category.Usages.link.generated-index.description": {
+    "message": "简明教程，了解 pyDocusaurus 的文档字符串格式、以及各种基础用法。",
+    "description": "The generated-index page description for category 'Usages' in sidebar 'tutorial'"
+  },
+  "sidebar.apis.category.renderer": {
+    "message": "renderer",
+    "description": "The label for category 'renderer' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.page": {
+    "message": "page",
+    "description": "The label for category 'page' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.package": {
+    "message": "package",
+    "description": "The label for category 'package' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.renderer_components": {
+    "message": "components",
+    "description": "The label for category 'components' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.resources": {
+    "message": "resources",
+    "description": "The label for category 'resources' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.saver": {
+    "message": "saver",
+    "description": "The label for category 'saver' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.components": {
+    "message": "components",
+    "description": "The label for category 'components' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.apibar": {
+    "message": "apibar",
+    "description": "The label for category 'apibar' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.comprotocol": {
+    "message": "comprotocol",
+    "description": "The label for category 'comprotocol' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.core": {
+    "message": "core",
+    "description": "The label for category 'core' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.walker": {
+    "message": "walker",
+    "description": "The label for category 'walker' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.analyzer": {
+    "message": "analyzer",
+    "description": "The label for category 'analyzer' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.attree": {
+    "message": "attree",
+    "description": "The label for category 'attree' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.classes": {
+    "message": "classes",
+    "description": "The label for category 'classes' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.datacls": {
+    "message": "datacls",
+    "description": "The label for category 'datacls' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.enums": {
+    "message": "enums",
+    "description": "The label for category 'enums' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.functions": {
+    "message": "functions",
+    "description": "The label for category 'functions' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.inspectors": {
+    "message": "inspectors",
+    "description": "The label for category 'inspectors' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.modules": {
+    "message": "modules",
+    "description": "The label for category 'modules' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.ops": {
+    "message": "ops",
+    "description": "The label for category 'ops' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.protocols": {
+    "message": "protocols",
+    "description": "The label for category 'protocols' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.texts": {
+    "message": "texts",
+    "description": "The label for category 'texts' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.typealiases": {
+    "message": "typealiases",
+    "description": "The label for category 'typealiases' in sidebar 'apis'"
+  },
+  "sidebar.apis.category.typeddicts": {
+    "message": "typeddicts",
+    "description": "The label for category 'typeddicts' in sidebar 'apis'"
+  }
+}

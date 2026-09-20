@@ -1,0 +1,57 @@
+---
+id: ClassProfile
+title: ClassProfile
+sidebar_label: ClassProfile
+slug: /apis/core/classes/ClassProfile
+description: 从类中提取的临时摘要。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.classes.ClassProfile" />
+
+```python
+ClassProfile(
+    properties: list[property | cached_property] = [],
+    methods: list[function | classmethod | staticmethod] = [],
+    operators: dict[str, function] = dict(...),
+    abstract_attrs: AbstractAttrs | None = None
+)
+```
+
+从类中提取的临时摘要。
+
+此摘要只用来临时聚合类的各种成员、属性。其存放的信息、将在随后的 docstring 转换中，得以持久化。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `properties` | `list[property \| cached_property]` | | 类的所有属性。 |
+| `methods` | `list[function \| classmethod \| staticmethod]` | | 类的所有实例、类、静态方法。 |
+| `operators` | `dict[str, function]` | | 类的所有运算符重载。 |
+| `abstract_attrs` | `AbstractAttrs \| None` | | 可选的抽象成员。如果所解析的类并非抽象类，则该值为`None`。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `from_class` {/* #-from_class */}
+
+```python
+v_1: Self = ClassProfile.from_class(base_cls: type[Any])
+```
+
+从某个类中提取摘要。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `base_cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | 用来解析摘要的类。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | 解析后的类摘要。 |

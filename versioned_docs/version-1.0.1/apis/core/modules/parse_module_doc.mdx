@@ -1,0 +1,33 @@
+---
+id: parse_module_doc
+title: parse_module_doc
+sidebar_label: parse_module_doc
+slug: /apis/core/modules/parse_module_doc
+description: Parse the docstring of a package or a module.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.modules.parse_module_doc" />
+
+```python
+v_1: DocModule = parse_module_doc(module: ModuleType)
+```
+
+Parse the docstring of a package or a module.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | A package/module object to be parsed. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocModule` | The parsed docstring of the module. Note that the members of the module is not parsed by this method. Use a module walker and the `add_member()` method of the returned value to complete the module information. |

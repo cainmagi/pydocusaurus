@@ -1,0 +1,34 @@
+---
+id: is_user_defined_method
+title: is_user_defined_method
+sidebar_label: is_user_defined_method
+slug: /apis/core/inspectors/is_user_defined_method
+description: Check whether a member is defined in a class.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.is_user_defined_method" />
+
+```python
+v_1: bool = is_user_defined_method(cls: type[Any], method: Any)
+```
+
+Check whether a member is defined in a class.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | The class to be inspected. |
+| `method` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | A method to be checked. It will be marked as `True` is it is detected to be possibly defined in the given class. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `bool` | A flag. If `True`, the method is thought to be a member of `cls`. |

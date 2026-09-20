@@ -1,0 +1,37 @@
+---
+id: DocField
+title: DocField
+sidebar_label: DocField
+slug: /apis/core/datacls/DocField
+description: The docstring of a data model/class field.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.datacls.DocField" />
+
+```python
+DocField(
+    name: str,
+    type: str,
+    default: str = "",
+    init_skipped: bool = False,
+    descr: str = "",
+    doc: str = ""
+)
+```
+
+The docstring of a data model/class field.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The name of the field. |
+| `type` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The type of the field. It is usually the typehint (annotation). |
+| `default` | `str` | | The formatted default value of the field. |
+| `init_skipped` | `bool` | | A flag. If specified, this field should be skipped in the initialization. |
+| `descr` | `str` | | The docstring of the field, it is defined in codes. |
+| `doc` | `str` | | The extra dynamic/run-time docstring of the field. It is not used when rendering the documentation. |

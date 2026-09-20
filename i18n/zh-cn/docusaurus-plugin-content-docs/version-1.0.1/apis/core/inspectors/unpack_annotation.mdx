@@ -1,0 +1,37 @@
+---
+id: unpack_annotation
+title: unpack_annotation
+sidebar_label: unpack_annotation
+slug: /apis/core/inspectors/unpack_annotation
+description: 解开类型标注的封装。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.unpack_annotation" />
+
+```python
+(v_1: tuple[Any, ...], v_2: bool, v_3: bool) = unpack_annotation(anno: Any)
+```
+
+解开类型标注的封装。
+
+该方法主要用来从某些返回值的标注（例如`Generator[]`, `Iterator[]`, 以及 `tuple[]`），提取出内层的部分。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `anno` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待分析的类型标注。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `tuple[Any, ...]` | 从类型标注中提取到的内层标注列表。如果给定的类型标注只对应一个成员，则返回`(anno,)`。 |
+| `v_2` | `bool` | 布尔标记。用来指示所提供的类型标注是否应当视作异步输出。 |
+| `v_3` | `bool` | 布尔标记。用来指示所提供的类型标注是否应当视作迭代器输出的值。 |

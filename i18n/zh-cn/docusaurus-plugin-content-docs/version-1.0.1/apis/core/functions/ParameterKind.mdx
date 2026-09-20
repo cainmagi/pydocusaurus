@@ -1,0 +1,55 @@
+---
+id: ParameterKind
+title: ParameterKind
+sidebar_label: ParameterKind
+slug: /apis/core/functions/ParameterKind
+description: "`inspect._ParameterKind`的复制品。"
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isEnum={true} source="core.functions.ParameterKind" />
+
+```python
+ParameterKind.POSITIONAL_ONLY = "positional-only"
+ParameterKind.POSITIONAL_OR_KEYWORD = "positional or keyword"
+ParameterKind.VAR_POSITIONAL = "variadic positional"
+ParameterKind.KEYWORD_ONLY = "keyword-only"
+ParameterKind.VAR_KEYWORD = "variadic keyword"
+```
+
+`inspect._ParameterKind`的复制品。
+
+## 枚举成员 {/* #enums */}
+
+| 成员 | 类型 | 值 |
+| :-----: | :-----: | :-----: |
+| `POSITIONAL_ONLY` | `str` | `"positional-only"` |
+| `POSITIONAL_OR_KEYWORD` | `str` | `"positional or keyword"` |
+| `VAR_POSITIONAL` | `str` | `"variadic positional"` |
+| `KEYWORD_ONLY` | `str` | `"keyword-only"` |
+| `VAR_KEYWORD` | `str` | `"variadic keyword"` |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `from_param` {/* #-from_param */}
+
+```python
+v_1: ParameterKind = ParameterKind.from_param(param: Parameter)
+```
+
+从所检测的函数参数中，获取其对应的`ParameterKind`枚举类型。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `param` | `Parameter` | <InlineIcon icon={vsiCheckIcon}/> | 从函数中检测到的某个参数。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `ParameterKind` | 参数的类型，等价于`param.kind`。 |

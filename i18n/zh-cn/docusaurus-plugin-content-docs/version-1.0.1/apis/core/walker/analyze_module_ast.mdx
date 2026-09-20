@@ -1,0 +1,33 @@
+---
+id: analyze_module_ast
+title: analyze_module_ast
+sidebar_label: analyze_module_ast
+slug: /apis/core/walker/analyze_module_ast
+description: 分析模块的代码结构 (AST)，并返回从源码中探知到的实体信息。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.walker.analyze_module_ast" />
+
+```python
+v_1: dict[str, tuple[int, bool]] = analyze_module_ast(module: ModuleType)
+```
+
+分析模块的代码结构 (AST)，并返回从源码中探知到的实体信息。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | 待分析的模块。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `dict[str, tuple[int, bool]]` | <p><code>name -> (lineno, is_alias)</code>的映射。</p><p>其中， <code>name</code>指的是从模块探知到的实体名称。</p><p>一个“实体”可以是类、函数、变量、或是从其他模块导入的别名。例如：</p><ul><li>class Foo</li><li>def bar</li><li>baz = ...</li><li>import x as y</li><li>from .sub import name</li><li>from external import name</li></ul><p><code>lineno</code>是实体定义在源代码中的行号。</p><p><code>is_alias</code>用来标记实体是否是别名。当该值为<code>True</code>，这意味着实体的名字经历了导入/再导出的过程，且并非直接定义于该模块。</p> |

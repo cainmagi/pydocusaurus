@@ -1,0 +1,52 @@
+---
+id: DocModuleMetadata
+title: DocModuleMetadata
+sidebar_label: DocModuleMetadata
+slug: /apis/core/modules/DocModuleMetadata
+description: 模块的元数据。提取自模块顶部的 docstring。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.modules.DocModuleMetadata" />
+
+```python
+DocModuleMetadata(
+    title: str = "", author: str = "", license: str = "", descr: str = ""
+)
+```
+
+模块的元数据。提取自模块顶部的 docstring。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `title` | `str` | | 模块标题。 |
+| `author` | `str` | | 在 docstring 中的作者章节。 |
+| `license` | `str` | | 在 docstring 中的协议章节。 |
+| `descr` | `str` | | 在 docstring 中的描述文字。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `from_long_descr` {/* #-from_long_descr */}
+
+```python
+v_1: Self = DocModuleMetadata.from_long_descr(text: str)
+```
+
+将长的描述文字（包含多个正稿）整理为元数据。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `text` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 较长的模块 docstring 文字。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Self` | 解析后的模块元数据。 |

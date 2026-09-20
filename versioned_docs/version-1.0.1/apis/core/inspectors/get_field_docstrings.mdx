@@ -1,0 +1,35 @@
+---
+id: get_field_docstrings
+title: get_field_docstrings
+sidebar_label: get_field_docstrings
+slug: /apis/core/inspectors/get_field_docstrings
+description: Capture the docstrings of each assignment item in a class by its source
+  code.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_field_docstrings" />
+
+```python
+v_1: dict[str, str | None] = get_field_docstrings(model_cls: type[Any], include_dyn_assign: bool = False)
+```
+
+Capture the docstrings of each assignment item in a class by its source code.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `model_cls` | `type[Any]` | <InlineIcon icon={vsiCheckIcon}/> | The class to be analyzed. |
+| `include_dyn_assign` | `bool` | | <p>By default, this method will only detect the docstrings of such items:</p><pre><code className="language-python">name: type = value</code></pre><p>If this flag is enabled, will also detect docstrings of such items:</p><pre><code className="language-python">name = value</code></pre> |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `dict[str, str \| None]` | The docstrings of the fields. If the value of a key is `None`, it means that this field does not have the docstring. |

@@ -1,0 +1,28 @@
+---
+id: index
+title: typealiases
+sidebar_label: typealiases
+slug: /apis/core/typealiases
+description: The documentation extraction of type aliases.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.typealiases" />
+
+The documentation extraction of type aliases.
+
+## Classes
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="DocTypeAlias"/>](./DocTypeAlias.mdx) | The docstring of a typed alias. |
+
+## Functions
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="is_generic_type_alias_call"/>](./is_generic_type_alias_call.mdx) | Check whether an `ast.Node` is specified by a function call of `TypeVar` and `ParamSpec`. |
+| [<IconObjType type="func" hasText={true} text="is_runtime_root"/>](./is_runtime_root.mdx) | Check whether an `ast.Node` is specified by a known run-time root. |
+| [<IconObjType type="func" hasText={true} text="is_possibly_type_expression"/>](./is_possibly_type_expression.mdx) | A heuristic checker for detecting the possible type expression. |
+| [<IconObjType type="func" hasText={true} text="parse_type_aliases_doc"/>](./parse_type_aliases_doc.mdx) | Parse the docstring of all type aliases defined in a module. |

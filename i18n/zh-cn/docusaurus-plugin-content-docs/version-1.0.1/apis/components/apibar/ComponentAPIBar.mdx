@@ -1,0 +1,51 @@
+---
+id: ComponentAPIBar
+title: ComponentAPIBar
+sidebar_label: ComponentAPIBar
+slug: /apis/components/apibar/ComponentAPIBar
+description: 顶部 API 导航条的渲染器。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="components.apibar.ComponentAPIBar" />
+
+```python
+ComponentAPIBar(
+    name: str = "APITopBar",
+    type: Literal["func", "class", "module", "package", "type"],
+    slang: str = "",
+    is_data_class: bool = False,
+    is_enum: bool = False,
+    is_ctx: bool = False,
+    is_decorator: bool = False,
+    is_mixin: bool = False,
+    is_component: bool = False,
+    is_private: bool = False,
+    is_abstract: bool = False
+)
+```
+
+顶部 API 导航条的渲染器。
+
+## 字段 {/* #fields */}
+
+<div className="long-type-table">
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `name` | `str` | | 顶部导航条的组件名称。 |
+| `type` | `Literal["func", "class", "module", "package", "type"]` | <InlineIcon icon={vsiCheckIcon}/> | API 类型。通常决定了第一个图标。 |
+| `slang` | `str` | | 顶部导航条的唯一识别码。通常使用需要描述对象的完整路由名称。 |
+| `is_data_class` | `bool` | | 布尔标记。如果设置了，就会显示“数据类”图标。 |
+| `is_enum` | `bool` | | 布尔标记。如果设置了，就会显示“枚举类型”图标。 |
+| `is_ctx` | `bool` | | 布尔标记。如果设置了，就会显示“上下文”图标。 |
+| `is_decorator` | `bool` | | 布尔标记。如果设置了，就会显示“装饰器”图标。 |
+| `is_mixin` | `bool` | | 布尔标记。如果设置了，就会显示“混合 (mixin)”图标。 |
+| `is_component` | `bool` | | 布尔标记。如果设置了，就会显示“组件”图标。 |
+| `is_private` | `bool` | | 布尔标记。如果设置了，就会显示“私有”图标。 |
+| `is_abstract` | `bool` | | 布尔标记。如果设置了，就会显示“抽象类”图标。 |
+
+</div>

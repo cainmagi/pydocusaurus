@@ -1,0 +1,33 @@
+---
+id: get_func_signature
+title: get_func_signature
+sidebar_label: get_func_signature
+slug: /apis/core/inspectors/get_func_signature
+description: Attempt to get the signature of a potential function.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_func_signature" />
+
+```python
+v_1: Signature = get_func_signature(func_candidate: Any)
+```
+
+Attempt to get the signature of a potential function.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `func_candidate` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | An object that is callable and able to provide a function signature. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Signature` | <p>If the <code>func_candidate</code> is already a function, get its signature directly.</p><p>Otherwise, get its equivalent callable signature (such as init method of a class).</p> |

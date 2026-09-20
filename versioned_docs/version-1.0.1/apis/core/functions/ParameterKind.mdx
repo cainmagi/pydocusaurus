@@ -1,0 +1,55 @@
+---
+id: ParameterKind
+title: ParameterKind
+sidebar_label: ParameterKind
+slug: /apis/core/functions/ParameterKind
+description: Replica of the `inspect._ParameterKind`.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isEnum={true} source="core.functions.ParameterKind" />
+
+```python
+ParameterKind.POSITIONAL_ONLY = "positional-only"
+ParameterKind.POSITIONAL_OR_KEYWORD = "positional or keyword"
+ParameterKind.VAR_POSITIONAL = "variadic positional"
+ParameterKind.KEYWORD_ONLY = "keyword-only"
+ParameterKind.VAR_KEYWORD = "variadic keyword"
+```
+
+Replica of the `inspect._ParameterKind`.
+
+## Enums
+
+| Name | Type | Value |
+| :-----: | :-----: | :-----: |
+| `POSITIONAL_ONLY` | `str` | `"positional-only"` |
+| `POSITIONAL_OR_KEYWORD` | `str` | `"positional or keyword"` |
+| `VAR_POSITIONAL` | `str` | `"variadic positional"` |
+| `KEYWORD_ONLY` | `str` | `"keyword-only"` |
+| `VAR_KEYWORD` | `str` | `"variadic keyword"` |
+
+## Methods
+
+### <IconObjType type="method"/> `from_param`
+
+```python
+v_1: ParameterKind = ParameterKind.from_param(param: Parameter)
+```
+
+Get the `ParameterKind` enum item from the inspected function parameter.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `param` | `Parameter` | <InlineIcon icon={vsiCheckIcon}/> | A parameter inspected from a function. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `ParameterKind` | The parameter type which is eqivalent to `param.kind`. |

@@ -1,0 +1,175 @@
+---
+id: ParserAbstract
+title: ParserAbstract
+sidebar_label: ParserAbstract
+slug: /apis/core/walker/ParserAbstract
+description: 模块处理器的抽象类。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isAbstract={true} source="core.walker.ParserAbstract" />
+
+```python
+ParserAbstract()
+```
+
+:::warning
+
+该抽象类型需要进一步的实现。
+
+:::
+
+模块处理器的抽象类。
+
+每当模块结构中探知到了成员，就会向该成员调用此处理器。
+
+## 参数 {/* #arguments */}
+
+该类未指定初始化方法。
+
+## 抽象方法 {/* #abstract-methods */}
+
+### <IconObjType type="method"/> `parse_class` {/* #-parse_class */}
+
+```python
+self.parse_class(obj: DocClass)
+```
+
+当成员对象为类时，在其上调用的处理过程。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocClass` | <InlineIcon icon={vsiCheckIcon}/> | 待处理的类信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_dataclass` {/* #-parse_dataclass */}
+
+```python
+self.parse_dataclass(obj: DocDataClass)
+```
+
+当成员对象为数据类时，在其上调用的处理过程。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocDataClass` | <InlineIcon icon={vsiCheckIcon}/> | 待处理的数据类信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_enum` {/* #-parse_enum */}
+
+```python
+self.parse_enum(obj: DocEnum)
+```
+
+当成员对象为枚举类型时，在其上调用的处理过程。
+
+#### 输入 {/* #requires-2 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocEnum` | <InlineIcon icon={vsiCheckIcon}/> | 待处理的枚举类型信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_function` {/* #-parse_function */}
+
+```python
+self.parse_function(obj: DocFunction)
+```
+
+当成员对象为函数时，在其上调用的处理过程。
+
+#### 输入 {/* #requires-3 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | 待处理的函数信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_module` {/* #-parse_module */}
+
+```python
+self.parse_module(obj: DocModule)
+```
+
+当成员对象为模块时，在其上调用的处理过程。
+
+#### 输入 {/* #requires-4 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocModule` | <InlineIcon icon={vsiCheckIcon}/> | 待处理的模块信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_protocol` {/* #-parse_protocol */}
+
+```python
+self.parse_protocol(obj: DocProtocol)
+```
+
+当成员对象为协议类型时，在其上调用的处理过程。
+
+#### 输入 {/* #requires-5 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocProtocol` | <InlineIcon icon={vsiCheckIcon}/> | 待处理的协议信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_typealias` {/* #-parse_typealias */}
+
+```python
+self.parse_typealias(obj: DocTypeAlias)
+```
+
+当成员对象为类型别名时，在其上调用的处理过程。
+
+#### 输入 {/* #requires-6 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocTypeAlias` | <InlineIcon icon={vsiCheckIcon}/> | 待处理的类型别名信息。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_typeddict` {/* #-parse_typeddict */}
+
+```python
+self.parse_typeddict(obj: DocTypedDict)
+```
+
+当成员对象为类型提示字典时，在其上调用的处理过程。
+
+#### 输入 {/* #requires-7 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `DocTypedDict` | <InlineIcon icon={vsiCheckIcon}/> | 待处理的类型提示字典信息。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `parse` {/* #-parse */}
+
+```python
+self.parse(obj: Any)
+```
+
+处理一个成员。
+
+#### 输入 {/* #requires-8 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 在遍历模块时访问到的某个成员。将会根据从中探测到的成员数据类型，调用对应的处理方法。例如，如果探测到了函数，就会调用`parse_function(obj)`。 |

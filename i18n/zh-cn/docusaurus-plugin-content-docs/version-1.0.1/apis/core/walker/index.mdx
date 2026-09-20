@@ -1,0 +1,32 @@
+---
+id: index
+title: walker
+sidebar_label: walker
+slug: /apis/core/walker
+description: 定义了用来穷尽遍历“嵌套模块包和模块成员”的检测和分析器。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.walker" />
+
+定义了用来穷尽遍历“嵌套模块包和模块成员”的检测和分析器。在此过程中，会同时分析运行时对象和对应的源代码。
+
+## 类 {/* #classes */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="ParserAbstract"/>](./ParserAbstract.mdx) | 模块处理器的抽象类。 |
+| [<IconObjType type="class" hasText={true} text="PackageWalker"/>](./PackageWalker.mdx) | 用来迭代遍历模块包的遍历器。 |
+
+## 函数 {/* #functions */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="analyze_module_ast"/>](./analyze_module_ast.mdx) | 分析模块的代码结构 (AST)，并返回从源码中探知到的实体信息。 |
+| [<IconObjType type="func" hasText={true} text="get_direct_submodules"/>](./get_direct_submodules.mdx) | 获取直接定义于模块包下的成员子模块/子模块包。 |
+| [<IconObjType type="func" hasText={true} text="is_direct_nonmodule"/>](./is_direct_nonmodule.mdx) | 检查值是否是某个模块/模块包的直接非模块成员。 |
+| [<IconObjType type="func" hasText={true} text="is_direct_module"/>](./is_direct_module.mdx) | 检查模块/模块包是否是另一个模块/模块包的直接成员。 |
+| [<IconObjType type="func" hasText={true} text="is_direct_member"/>](./is_direct_member.mdx) | 检查值是否是某个模块/模块包的直接成员。 |
+| [<IconObjType type="func" hasText={true} text="is_main_module"/>](./is_main_module.mdx) | 检查某个模块是否是一个`__main__`模块。 |
+| [<IconObjType type="func" hasText={true} text="fast_import"/>](./fast_import.mdx) | 按其名字导入模块包。 |

@@ -1,0 +1,33 @@
+---
+id: index
+title: API 总览
+sidebar_label: 总览
+slug: /apis/
+description: 启发自 Sphinx，本工具用来从 Python 文档字符串 (docstring) 生成 Docusaurus 文档站点项目。
+---
+
+import SvgAPIGraph from "../api-graph.svg";
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="package" source="." />
+
+启发自 Sphinx，本工具用来从 Python 文档字符串 (docstring) 生成 Docusaurus 文档站点项目。
+
+<p><SvgAPIGraph className="themed-mermaid-svg" width="100%"/></p>
+
+## 模块 {/* #modules */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="package" hasText={true} text="components"/>](./components/index.mdx) | 定义了用来构建文档的组件。 |
+| [<IconObjType type="package" hasText={true} text="core"/>](./core/index.mdx) | 用来分析 Python 代码和文档字符串 (docstring) 的核心功能。 |
+| [<IconObjType type="package" hasText={true} text="renderer"/>](./renderer/index.mdx) | 集中化的渲染器，用于生成可用于文档中 Markdown 格式文字。 |
+
+## 别名 {/* #aliases */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="module" hasText={true} text="walker"/>](./core/walker/index.mdx) | 定义了用来穷尽遍历“嵌套模块包和模块成员”的检测和分析器。 |
+| [<IconObjType type="func" hasText={true} text="render_obj"/>](./renderer/page/render_obj.mdx) | 将一个任意的对象渲染成文档页面。 |
+| [<IconObjType type="func" hasText={true} text="render_package_as_mdx"/>](./renderer/package/render_package_as_mdx.mdx) | 将模块包渲染成一系列 MDX 文件。 |

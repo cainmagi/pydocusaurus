@@ -1,0 +1,34 @@
+---
+id: strip_annotation_name
+title: strip_annotation_name
+sidebar_label: strip_annotation_name
+slug: /apis/core/inspectors/strip_annotation_name
+description: Convert an annotation to string, and strip its name by removing the module
+  prefix.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.strip_annotation_name" />
+
+```python
+v_1: str = strip_annotation_name(anno: Any)
+```
+
+Convert an annotation to string, and strip its name by removing the module prefix.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `anno` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | An annotation object or string. The string should be converted from the annotation object. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The revised string version of the giving annotation. |

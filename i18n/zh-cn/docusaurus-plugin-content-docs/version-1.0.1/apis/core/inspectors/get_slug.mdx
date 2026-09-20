@@ -1,0 +1,33 @@
+---
+id: get_slug
+title: get_slug
+sidebar_label: get_slug
+slug: /apis/core/inspectors/get_slug
+description: 从识别码原型中，获取URL短链接。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.get_slug" />
+
+```python
+v_1: str = get_slug(slang: str)
+```
+
+从识别码原型中，获取URL短链接。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `slang` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 具备端点(endpoint)格式的识别码，例如： "package.module.class"。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 对应页面的绝对URL。 |

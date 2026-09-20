@@ -1,0 +1,34 @@
+---
+id: relative_url_path
+title: relative_url_path
+sidebar_label: relative_url_path
+slug: /apis/core/inspectors/relative_url_path
+description: 求解相对路径。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.inspectors.relative_url_path" />
+
+```python
+v_1: str = relative_url_path(path_from: str, path_to: str)
+```
+
+求解相对路径。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `path_from` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 锚定路径。最终的相对路径是以该路径作为基点求解出的。 |
+| `path_to` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 目标路径。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从`path_from`指向`path_to`的相对路径，为确保URL兼容性，总是使用正向斜杠。 |

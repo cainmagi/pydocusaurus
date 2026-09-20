@@ -1,0 +1,30 @@
+---
+id: index
+title: functions
+sidebar_label: functions
+slug: /apis/core/functions
+description: 针对函数和方法实现的文档内容提取。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.functions" />
+
+针对函数和方法实现的文档内容提取。
+
+## 类 {/* #classes */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="ParameterKind"/>](./ParameterKind.mdx) | `inspect._ParameterKind`的复制品。 |
+| [<IconObjType type="class" hasText={true} text="FunctionType"/>](./FunctionType.mdx) | 可调用对象（函数）的类型。 |
+| [<IconObjType type="class" hasText={true} text="DocArgument"/>](./DocArgument.mdx) | 函数/方法参数的 docstring。 |
+| [<IconObjType type="class" hasText={true} text="DocFunction"/>](./DocFunction.mdx) | 函数的 docstring 和其他基本信息。 |
+
+## 函数 {/* #functions */}
+
+| 成员 | <center>说明</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="parse_argument_docs"/>](./parse_argument_docs.mdx) | （私有）解析与函数参数相关的 docstring。 |
+| [<IconObjType type="func" hasText={true} text="parse_return_docs"/>](./parse_return_docs.mdx) | （私有）解析与函数返回值相关的 docstring。 |
+| [<IconObjType type="func" hasText={true} text="parse_func_docs"/>](./parse_func_docs.mdx) | 解析函数的 docstring。 |

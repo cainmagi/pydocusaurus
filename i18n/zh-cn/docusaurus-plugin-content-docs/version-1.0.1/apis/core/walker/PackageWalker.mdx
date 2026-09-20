@@ -1,0 +1,179 @@
+---
+id: PackageWalker
+title: PackageWalker
+sidebar_label: PackageWalker
+slug: /apis/core/walker/PackageWalker
+description: 用来迭代遍历模块包的遍历器。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" source="core.walker.PackageWalker" />
+
+```python
+PackageWalker()
+```
+
+用来迭代遍历模块包的遍历器。
+
+通过给定某个模块包，该遍历器能穷尽其结构，访问到每个成员和嵌套模块，并将其中的 docstring 分析为结构化文字。
+
+透过指定一个可定制的处理器，用户可以控制如何处理从模块中提取出的信息。
+
+## 参数 {/* #arguments */}
+
+该类未指定初始化方法。
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `get_member_type` {/* #-get_member_type */}
+
+```python
+v_1: Literal[
+    "module",
+    "class",
+    "dataclass",
+    "enum",
+    "typeddict",
+    "protocol",
+    "function",
+    "others",
+] = PackageWalker.get_member_type(member: Any)
+```
+
+探知某个成员的类型（类）。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `member` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待探知的成员。 |
+
+#### 输出 {/* #returns */}
+
+<div className="long-type-table">
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `Literal["module", "class", "dataclass", "enum", "typeddict", "protocol", "function", "others"]` | 从给定对象探知到的类型识别码。如果成员的类型无法获悉，则该值为"others"。 |
+
+</div>
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `iter_module_members` {/* #-iter_module_members */}
+
+```python
+(
+    v_1: (
+        DocModule
+        | DocClass
+        | DocDataClass
+        | DocEnum
+        | DocTypedDict
+        | DocTypeAlias
+        | DocProtocol
+        | DocFunction
+    ),
+    v_2: bool,
+) in PackageWalker.iter_module_members(module: ModuleType)
+```
+
+遍历模块/模块包的直接成员。
+
+注意，该方法不会深入迭代到那些嵌套子模块中。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | 待遍历的模块。 |
+
+#### 迭代 {/* #yields */}
+
+<div className="long-type-table">
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocModule \| DocClass \| DocDataClass \| DocEnum \| DocTypedDict \| DocTypeAlias \| DocProtocol \| DocFunction` | 所提取出的结构化成员信息。 |
+| `v_2` | `bool` | 布尔标记。用来提示当前成员是否是导入/重导出的别名。 |
+
+</div>
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `parse_module_member` {/* #-parse_module_member */}
+
+```python
+v_1: (
+    DocModule
+    | DocClass
+    | DocDataClass
+    | DocEnum
+    | DocTypedDict
+    | DocProtocol
+    | DocFunction
+    | None
+) = PackageWalker.parse_module_member(
+    value: Any,
+    value_type: (
+        Literal[
+            "module",
+            "class",
+            "dataclass",
+            "enum",
+            "typeddict",
+            "protocol",
+            "function",
+            "others",
+        ]
+        | None
+    ),
+)
+```
+
+将模块成员解析为结构化文字。
+
+#### 输入 {/* #requires-2 */}
+
+<div className="long-type-table">
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `value` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | 待解析的成员值。 |
+| `value_type` | `Literal["module", "class", "dataclass", "enum", "typeddict", "protocol", "function", "others"] \| None` | <InlineIcon icon={vsiCheckIcon}/> | 值的类型识别码。该类型识别码来源于方法`get_member_type(...)`，但其中不包含`"typealias"`的情形。这是因为该方法不用来处理类型别名。 |
+
+</div>
+
+#### 输出 {/* #returns-1 */}
+
+<div className="long-type-table">
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocModule \| DocClass \| DocDataClass \| DocEnum \| DocTypedDict \| DocProtocol \| DocFunction \| None` | 从`value`中解析得来的结构化信息。当值的类型未知时，返回`None`。 |
+
+</div>
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `walk_package` {/* #-walk_package */}
+
+```python
+self.walk_package(root_pkg: str | ModuleType, handler: ParserAbstract)
+```
+
+穷尽遍历指定的模块包。
+
+该方法将会从模块包的根节点开始，遍历到其中所有的嵌套模块，并对所有访问到的成员调用处理器。
+
+用户可以透过提供`handler`（信息处理器）的实现、来定制对访问到信息的处理过程。
+
+#### 输入 {/* #requires-3 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `root_pkg` | `str \| ModuleType` | <InlineIcon icon={vsiCheckIcon}/> | 模块包的名称或其对应的模块对象。 |
+| `handler` | `ParserAbstract` | <InlineIcon icon={vsiCheckIcon}/> | 调用在模块包所有嵌套成员上的处理器。 |

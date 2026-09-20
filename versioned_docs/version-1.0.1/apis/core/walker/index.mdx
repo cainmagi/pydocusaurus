@@ -1,0 +1,33 @@
+---
+id: index
+title: walker
+sidebar_label: walker
+slug: /apis/core/walker
+description: The inspector and analyzer that walks through and processes the nested
+  package and module members.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+
+<APITopBar type="module" source="core.walker" />
+
+The inspector and analyzer that walks through and processes the nested package and module members. Both the run-time object and the corresponding code will be analyzed.
+
+## Classes
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="class" hasText={true} text="ParserAbstract"/>](./ParserAbstract.mdx) | The abstract class of a module parser. |
+| [<IconObjType type="class" hasText={true} text="PackageWalker"/>](./PackageWalker.mdx) | The package iterative walker. |
+
+## Functions
+
+| Member | <center>Description</center> |
+| :-----: | :------ |
+| [<IconObjType type="func" hasText={true} text="analyze_module_ast"/>](./analyze_module_ast.mdx) | Analyze the coding structure (AST) of a module, and return the entity information detected in the code. |
+| [<IconObjType type="func" hasText={true} text="get_direct_submodules"/>](./get_direct_submodules.mdx) | Get the submodules/subpackages directly defined in a package. |
+| [<IconObjType type="func" hasText={true} text="is_direct_nonmodule"/>](./is_direct_nonmodule.mdx) | Check whether a non-module object is directly defined in a module/package. |
+| [<IconObjType type="func" hasText={true} text="is_direct_module"/>](./is_direct_module.mdx) | Check whether a module/package is a direct member of another module/package. |
+| [<IconObjType type="func" hasText={true} text="is_direct_member"/>](./is_direct_member.mdx) | Check whether a value is a direct member of another module/package. |
+| [<IconObjType type="func" hasText={true} text="is_main_module"/>](./is_main_module.mdx) | Check whether a module is a `__main__` module. |
+| [<IconObjType type="func" hasText={true} text="fast_import"/>](./fast_import.mdx) | Import a package by its name. |

@@ -4,13 +4,14 @@
 
 ## CHANGELOG
 
-### 1.0.1 @ 09/17/2026
+### 1.0.1 @ 09/19/2026
 
 #### :mega: New
 
 1. Add the Chinese version of the documentation.
 2. Support more translations of the main information.
 3. Add a new article: `/usages/useful-regex`.
+4. Create an unreleased next document version `1.1.x`.
 
 #### :floppy_disk?: Change
 

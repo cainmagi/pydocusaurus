@@ -1,0 +1,74 @@
+---
+id: Table
+title: Table
+sidebar_label: Table
+slug: /apis/core/texts/Table
+description: The Markdown table used to displaying arguments.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.texts.Table" />
+
+```python
+Table(
+    n_rows: int,
+    n_cols: int,
+    cells: dict[tuple[int, int], str] = dict(...),
+    col_styles: dict[int, Literal["l", "c", "r", "n"]] = dict(...)
+)
+```
+
+The Markdown table used to displaying arguments.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `n_rows` | `int` | <InlineIcon icon={vsiCheckIcon}/> | Number of rows in the table. The first row is the table head. |
+| `n_cols` | `int` | <InlineIcon icon={vsiCheckIcon}/> | Number of columns in the table. |
+| `cells` | `dict[tuple[int, int], str]` | | The cell data in the `{(index_row, index_col): text}` format. |
+| `col_styles` | `dict[int, Literal["l", "c", "r", "n"]]` | | The style of each column. The codes are: (l) left, (c): center, (r): right, (n): not specified. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text()
+```
+
+Render as Markdown text.
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the table. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `render_cell`
+
+```python
+v_1: str = self.render_cell(md: MarkdownIt, text: str)
+```
+
+Safely render the cell text.
+
+If the text is a single pargraph, render it as it is. Otherwise, render it as HTML codes.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `md` | `MarkdownIt` | <InlineIcon icon={vsiCheckIcon}/> | The markdown-it renderer. |
+| `text` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The cell text. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The rendered cell text. |

@@ -1,0 +1,33 @@
+---
+id: fast_import
+title: fast_import
+sidebar_label: fast_import
+slug: /apis/core/walker/fast_import
+description: 按其名字导入模块包。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.walker.fast_import" />
+
+```python
+v_1: module = fast_import(module: ModuleType | str)
+```
+
+按其名字导入模块包。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `module` | `ModuleType \| str` | <InlineIcon icon={vsiCheckIcon}/> | 待导入的模块包。它也可以是已经导入过的模块包。 |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `module` | 所导入的模块包。如果输入值本身就已经是导入过的模块包，则直接返回输入值。 |

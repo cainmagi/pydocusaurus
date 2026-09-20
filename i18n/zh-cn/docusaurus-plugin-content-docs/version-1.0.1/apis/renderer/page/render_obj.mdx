@@ -1,0 +1,33 @@
+---
+id: render_obj
+title: render_obj
+sidebar_label: render_obj
+slug: /apis/renderer/page/render_obj
+description: 将一个任意的对象渲染成文档页面。
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="renderer.page.render_obj" />
+
+```python
+v_1: RendererPage | None = render_obj(obj: Any)
+```
+
+将一个任意的对象渲染成文档页面。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `obj` | `Any` | <InlineIcon icon={vsiCheckIcon}/> | <p>待渲染的对象。可以是类、函数、或模块。</p><p>如果该参数为方法，则输入的方法会被解读成函数。</p> |
+
+### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `RendererPage \| None` | 渲染成的页面对象。如果给定的`obj`无法渲染成文档页面，则返回`None`。 |

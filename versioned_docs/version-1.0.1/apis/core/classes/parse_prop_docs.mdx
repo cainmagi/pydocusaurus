@@ -1,0 +1,34 @@
+---
+id: parse_prop_docs
+title: parse_prop_docs
+sidebar_label: parse_prop_docs
+slug: /apis/core/classes/parse_prop_docs
+description: Parse the docstring of a class property.
+---
+
+import APITopBar from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="func" source="core.classes.parse_prop_docs" />
+
+```python
+v_1: DocProp = parse_prop_docs(prop: property | cached_property, parent_name: str = "")
+```
+
+Parse the docstring of a class property.
+
+## Arguments
+
+### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `prop` | `property \| cached_property` | <InlineIcon icon={vsiCheckIcon}/> | A class property/cached_property to be parsed. |
+| `parent_name` | `str` | | The name of the parent class. This value is only used for displaying logging messages. |
+
+### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `DocProp` | The parsed docstring of the property. |

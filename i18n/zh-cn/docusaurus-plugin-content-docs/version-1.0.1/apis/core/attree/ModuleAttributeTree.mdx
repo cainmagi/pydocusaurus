@@ -1,0 +1,87 @@
+---
+id: ModuleAttributeTree
+title: ModuleAttributeTree
+sidebar_label: ModuleAttributeTree
+slug: /apis/core/attree/ModuleAttributeTree
+description: 模块或模块包的成员属性树。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" source="core.attree.ModuleAttributeTree" />
+
+```python
+ModuleAttributeTree(
+    walk_method: Callable[[str, dict[str, Any], list[T]], T], root_name: str = "."
+)
+```
+
+模块或模块包的成员属性树。
+
+该树重构了一个完整模块包中各级成员的树状结构，并且可以转换成序列化后的字典/列表。
+
+## 参数 {/* #arguments */}
+
+### 输入 {/* #requires */}
+
+<div className="long-type-table">
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `walk_method` | `Callable[[str, dict[str, Any], list[T]], T]` | <InlineIcon icon={vsiCheckIcon}/> | <p>用来序列化树节点的方法。其输入参数为：</p><ol><li>节点的部分名称。</li><li>当前节点的成员属性。</li><li>当前节点所有已经序列化后的子成员。</li></ol><p>该方法将会返回代表当前节点的序列化对象。</p> |
+| `root_name` | `str` | | 根节点的名称。 |
+
+</div>
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `add` {/* #-add */}
+
+```python
+self.add(node_full_name: str, node_attrs: Mapping[str, Any] | None = None)
+```
+
+向成员属性树添加一个节点。
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `node_full_name` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 形如`"package.module.member"`的完整名称。 |
+| `node_attrs` | `Mapping[str, Any] \| None` | | 可选字典，定义了要添加到当前节点的成员属性。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `serialize` {/* #-serialize */}
+
+```python
+v_1: T = self.serialize()
+```
+
+将整棵树从根节点开始完全序列化。
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `T` | 根节点的序列化对象，包含了所有的嵌套成员。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `serialize_unpacked` {/* #-serialize_unpacked */}
+
+```python
+v_1: list[T] = self.serialize_unpacked()
+```
+
+将整棵树从根节点开始完全序列化，但是将根节点解包成包含自身（定义为空节点）的列
+
+不同于`self.serialize()`，该方法将根节点视作一个没有子成员的叶子节点，并将根节点实际的全部子成员视作根节点的同级分支。因此，所返回的结果永远是一个列表。
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `list[T]` | 包含了序列化后节点的列表。 |
