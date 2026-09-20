@@ -14,6 +14,7 @@
 4. Create an unreleased next document version `1.1.x`.
 5. Add the Google Analytics tag.
 6. Add the docs for the newly added property: `AbstractAttrs.is_not_implemented`.
+7. Add the Bing validator.
 
 #### :wrench: Fix
 
