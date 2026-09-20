@@ -28,7 +28,10 @@ from . import typecls
 from .funcs import example_complicated_func
 from .typecls import CustomType
 
+__version__ = "0.5.9"
+
 __all__ = (
+    "__version__",
     "subpackage",
     "classes",
     "funcs",

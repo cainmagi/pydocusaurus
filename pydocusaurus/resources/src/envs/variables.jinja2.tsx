@@ -35,7 +35,7 @@ const variables: EnvVariables = {
   rawURL: "https://raw.githubusercontent.com/{{ user | default("username") | safe }}/{{ package_name | default("pkgname") | safe }}",
   sourceVersion: {
     {%- for key, value in source_versions | default({"main": "main"}) | dictsort %}
-    "{{ key }}": "{{ key }}",
+    "{{ key }}": "{{ value }}",
     {%- endfor %}
   },
   sourceURIs: {{ source_uris | default({}) | ts_object(indent=2, base_indent=2) }},

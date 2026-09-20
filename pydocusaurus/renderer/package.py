@@ -166,7 +166,7 @@ class PackageInformation(BaseModel):
             dict(versions)
             if versions
             else (
-                {key: key for key in self.source_uris.keys()}
+                {key.lstrip().lstrip("v"): key for key in self.source_uris.keys()}
                 if self.source_uris
                 else {"main": "main"}
             )

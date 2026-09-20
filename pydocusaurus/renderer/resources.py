@@ -26,6 +26,7 @@ import os
 import json
 
 from typing import Any
+from collections.abc import Mapping
 
 from importlib.resources import files
 from importlib.resources.abc import Traversable
@@ -142,7 +143,7 @@ def as_pypi_name(value: Any) -> str:
 
 def render_resource_tree(
     out_dir: str | os.PathLike[str],
-    variables: dict,
+    variables: Mapping[str, Any],
     package: str = "pydocusaurus",
     resource_root: str = "resources",
     saver: _saver.SaverAbstract | None = None,
