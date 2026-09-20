@@ -9,6 +9,7 @@
 #### :wrench: Fix
 
 1. Fix: Correct typos in the docstrings.
+2. Fix: Remove incorrectly configured project classifiers.
 
 ### 1.0.0 @ 09/08/2026
 
