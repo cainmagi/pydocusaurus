@@ -115,7 +115,7 @@ yarn write-heading-ids . i18n/zh-cn/docusaurus-plugin-content-docs/current --syn
 
 还可以透过以下命令，替换掉所有相关文字。**注意此时正则表达式开启**。
 
-| <center>待搜索表达式</center> | <center>Replaced expression</center> |
+| <center>待搜索表达式</center> | <center>用于替换的表达式</center> |
 | :------------------------------ | :----------------------------- |
 | `{/\* #iconobjtype-type[^-]*-` | `{/* #-` |
 | <code>{"\\\|(\s+)Member(\s+)\\\|(\s+)<center>Description</center>(\s+)\\\|"}</code> | <code>{`\|$1成员$2\|$3<center>说明</center>$4\|`}</code> |
