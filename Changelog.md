@@ -4,7 +4,7 @@
 
 ## CHANGELOG
 
-### 1.0.1 @ 09/19/2026
+### 1.0.1 @ 09/20/2026
 
 #### :wrench: Fix
 
@@ -12,6 +12,7 @@
 2. Fix: Remove incorrectly configured project classifiers.
 3. Fix: Correct the resource configurations that may cause page building bugs.
 4. Fix: Correct the bug of the version solution in the typescript.
+5. Fix: Fully correct the behavior of parsed abstract class. Previously, the results will not detect the parent abstract members if they are still not implemented. Now, the MRO list will be searched.
 
 ### 1.0.0 @ 09/08/2026
 

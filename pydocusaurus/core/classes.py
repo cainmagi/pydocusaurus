@@ -28,7 +28,7 @@ import logging
 from functools import cached_property
 
 from typing import Any
-from collections.abc import Sequence
+from collections.abc import Sequence, Callable
 from typing_extensions import Self, Literal
 
 from pydantic import BaseModel, Field
@@ -39,6 +39,7 @@ from . import texts as _texts
 from . import functions as _funcs
 from . import ops as _ops
 from .inspectors import (
+    get_mro,
     get_obj_slang,
     get_members_defined_in_class,
     get_members_defined_in_enum,
@@ -109,6 +110,12 @@ class AbstractAttrs:
     operators: dict[str, types.FunctionType] = dataclasses.field(default_factory=dict)
     """All overloaded abstract operators of this class."""
 
+    @property
+    def is_not_implemented(self) -> bool:
+        """A flag. If it is `True`, the abstract class still have the methods that
+        are not implemented."""
+        return bool(self.methods) or bool(self.properties) or bool(self.properties)
+
 
 @dataclasses.dataclass
 class ClassProfile:
@@ -172,6 +179,26 @@ class ClassProfile:
             self.operators[name] = member
         return True
 
+    def _add_member(
+        self,
+        name: str,
+        member: Any,
+        method_validator: Callable[[Any], _funcs.FunctionType | None],
+    ) -> None:
+        if self._add_property(member):
+            return
+        if self._add_method(member, allow_func=False):
+            return
+        f_type = method_validator(member) if inspect.isfunction(member) else None
+        if (
+            name not in ("__init__", "__str__", "__repr__")
+            and f_type is not None
+            and f_type == _funcs.FunctionType.METHOD
+        ):
+            if self._add_op(member, name=name):
+                return
+            self._add_method(member, allow_func=True)
+
     @classmethod
     def from_class(cls: type[Self], base_cls: type[Any]) -> Self:
         """Get the profile of a class.
@@ -180,7 +207,6 @@ class ClassProfile:
         ---------
         base_cls: `type[Any]`
             The class where the profile will be analyzed.
-
 
         Returns
         -------
@@ -200,24 +226,44 @@ class ClassProfile:
             if (isinstance(base_cls, type) and issubclass(base_cls, enum.Enum))
             else get_members_defined_in_class
         )
-        for name, member in get_members(base_cls):
-            if res._add_property(member):
-                continue
-            if res._add_method(member, allow_func=False):
-                continue
-            f_type = (
-                _funcs.FunctionType.get_method_validator(base_cls)(member)
-                if inspect.isfunction(member)
-                else None
+        src_basecls = (
+            getattr(base_cls, "__module__", "").strip().split(".", maxsplit=2)[0]
+        )
+        mro = (
+            get_mro(
+                base_cls,
+                lambda _cls: (_cls is abc.ABC)
+                or (
+                    src_basecls != ""
+                    and getattr(_cls, "__module__", "")
+                    .strip()
+                    .split(".", maxsplit=2)[0]
+                    != src_basecls
+                )
+                or not (
+                    (isinstance(base_cls, type) and issubclass(base_cls, abc.ABC))
+                    or isinstance(base_cls, abc.ABCMeta)
+                ),
             )
-            if (
-                name not in ("__init__", "__str__", "__repr__")
-                and f_type is not None
-                and f_type == _funcs.FunctionType.METHOD
-            ):
-                if res._add_op(member, name=name):
+            if res.abstract_attrs is not None
+            else []
+        )
+        seen_members: set[str] = set()
+        method_validator = _funcs.FunctionType.get_method_validator(base_cls)
+        for name, member in get_members(base_cls):
+            seen_members.add(name)
+            res._add_member(name=name, member=member, method_validator=method_validator)
+        for _cls in mro[1:]:
+            method_validator = _funcs.FunctionType.get_method_validator(_cls)
+            for name, member in get_members(_cls):
+                if name in seen_members:
                     continue
-                res._add_method(member, allow_func=True)
+                seen_members.add(name)
+                if not is_member_abstract(member):
+                    continue
+                res._add_member(
+                    name=name, member=member, method_validator=method_validator
+                )
         return res
 
 
@@ -315,6 +361,12 @@ class DocClassAbstractAttrs(BaseModel):
     operators: list[_ops.DocOpTemplate] = Field(default_factory=list)
     """The list of abstract operators of this class."""
 
+    @property
+    def is_not_implemented(self) -> bool:
+        """A flag. If it is `True`, the abstract class still have the methods that
+        are not implemented."""
+        return bool(self.methods) or bool(self.properties) or bool(self.properties)
+
     def as_md_text(self, renderer: ProtocolComponent) -> str:
         """Render as Markdown text.
 
@@ -391,7 +443,9 @@ class _DocClassPrototype(BaseModel):
     @property
     def is_abstract(self) -> bool:
         """A flag specifying whether the class is abstract."""
-        return self.abstract_attrs is not None
+        return (
+            self.abstract_attrs is not None and self.abstract_attrs.is_not_implemented
+        )
 
     @cached_property
     def is_context(self) -> bool:
