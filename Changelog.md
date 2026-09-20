@@ -24,6 +24,7 @@
 4. Fix: Correct bugs caused by the version tracking.
 5. Fix: Add the missing component import of the adjusted `AbstractAttrs` page.
 6. Fix: Add missing translations of the tutorial documents.
+7. Fix: Correct bad styles in the zh-cn docs.
 
 #### :floppy_disk: Change
 
