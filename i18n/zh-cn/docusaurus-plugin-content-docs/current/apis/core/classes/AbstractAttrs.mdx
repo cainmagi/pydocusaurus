@@ -29,3 +29,13 @@ AbstractAttrs(
 | `properties` | `list[property \| cached_property]` | | 用来保存类的所有抽象属性。 |
 | `methods` | `list[function \| classmethod \| staticmethod]` | | 用来保存类的所有抽象方法，包括实例、类、和静态方法。 |
 | `operators` | `dict[str, function]` | | 用来保存类的所有抽象运算符重载。 |
+
+## 属性 {/* #properties */}
+
+### <IconObjType type="param"/> `is_not_implemented` {/* #-is_not_implemented */}
+
+```python
+is_not_implemented: bool = self.is_not_implemented
+```
+
+布尔标记。如果为`True`，则对应的抽象类型仍然有着没有实现的方法（成员）。

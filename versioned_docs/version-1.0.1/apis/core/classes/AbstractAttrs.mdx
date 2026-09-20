@@ -29,3 +29,14 @@ This collection will be available when a temporary class profile is abstract.
 | `properties` | `list[property \| cached_property]` | | All abstract properties of this class. |
 | `methods` | `list[function \| classmethod \| staticmethod]` | | All abstract instance/class/static methods of this class. |
 | `operators` | `dict[str, function]` | | All overloaded abstract operators of this class. |
+
+## Properties
+
+### <IconObjType type="param"/> `is_not_implemented`
+
+```python
+is_not_implemented: bool = self.is_not_implemented
+```
+
+A flag. If it is `True`, the abstract class still have the methods that
+are not implemented.
