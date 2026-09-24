@@ -4,6 +4,12 @@
 
 ## CHANGELOG
 
+### 1.0.1 @ 09/24/2026
+
+#### :wrench: Fix
+
+1. Fix: Remove the empty blog site from the generated files.
+
 ### 1.0.1 @ 09/20/2026
 
 #### :mega: New

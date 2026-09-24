@@ -77,6 +77,7 @@ const config: Config = {
           //   },
           // },
         },
+        blog: false,
         gtag: {
           trackingID: "G-X429TNSQZ0",
           anonymizeIP: true,
