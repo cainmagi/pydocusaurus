@@ -4,7 +4,7 @@
 
 ## CHANGELOG
 
-### 1.0.2 @ 09/20/2026
+### 1.0.2 @ 09/25/2026
 
 #### :wrench: Fix
 
@@ -13,6 +13,7 @@
 #### :floppy_disk: Change
 
 1. Add a comment to hint the option `blog` in the produced configuration file.
+2. Use the MDX formats when rendering extra information of `abc.ABC` and `typing.Protocol`.
 
 ### 1.0.1 @ 09/20/2026
 

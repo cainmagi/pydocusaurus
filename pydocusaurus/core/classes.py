@@ -535,14 +535,26 @@ class _DocClassPrototype(BaseModel):
             )
         )
 
-    def _as_md_title(self, renderer: ProtocolComponent) -> str:
+    def _as_md_title(
+        self,
+        renderer: ProtocolComponent,
+        extra_descr: str | Sequence[str] | None = None,
+    ) -> str:
         """(Private) Render the Markdown title bar texts, including (1) navbar, (2)
         class signature, (3) description, (4) arguments."""
         texts: list[str] = []
         texts.append(self._topbar(renderer))
         texts.append("```python\n{0}\n```".format(self.str_v2))
         if self.is_abstract:
-            texts.append("This is an abstract class requiring further implementation.")
+            texts.append(
+                ":::warning\n\nThis is an abstract class requiring further "
+                "implementation.\n\n:::"
+            )
+        texts.extend(
+            [extra_descr]
+            if isinstance(extra_descr, str)
+            else (extra_descr if extra_descr else [])
+        )
         if self.descr:
             texts.append(self.descr)
 

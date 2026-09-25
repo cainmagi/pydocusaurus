@@ -59,6 +59,8 @@ const config: Config = {
             "https://github.com/cainmagi/render_example/edit/docs/",
           editLocalizedFiles: true,
         },
+        // Replace blog block with false if the blog is not used.
+        // blog: false,
         blog: {
           showReadingTime: true,
           feedOptions: {

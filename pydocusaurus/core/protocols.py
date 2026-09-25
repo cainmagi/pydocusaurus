@@ -58,7 +58,15 @@ class DocProtocol(_classes._DocClassPrototype):
             The Markdown text rendered from the protocol class.
         """
         texts: list[str] = []
-        texts.append(self._as_md_title(renderer=renderer))
+        texts.append(
+            self._as_md_title(
+                renderer=renderer,
+                extra_descr=[
+                    ":::warning\n\nThis protocol class is only used as type hints and "
+                    "does not implements any instances in run time.\n\n:::"
+                ],
+            )
+        )
         if self.methods:
             texts.append("## Protocol methods")
             for idx, method in enumerate(self.methods):
