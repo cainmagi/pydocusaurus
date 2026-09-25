@@ -4,6 +4,12 @@
 
 ## CHANGELOG
 
+### 1.0.2 @ 09/20/2026
+
+#### :floppy_disk: Change
+
+1. Add a comment to hint the option `blog` in the produced configuration file.
+
 ### 1.0.1 @ 09/20/2026
 
 #### :wrench: Fix
