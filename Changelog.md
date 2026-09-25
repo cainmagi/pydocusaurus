@@ -6,6 +6,10 @@
 
 ### 1.0.2 @ 09/20/2026
 
+#### :wrench: Fix
+
+1. Fix: Add the missing names in `__all__` lists of some sub-modules.
+
 #### :floppy_disk: Change
 
 1. Add a comment to hint the option `blog` in the produced configuration file.

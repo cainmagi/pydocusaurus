@@ -49,6 +49,7 @@ __all__ = (
     "ParameterKind",
     "FunctionType",
     "DocArgument",
+    "DocFunctionOverload",
     "DocFunction",
     "parse_argument_docs",
     "parse_return_docs",

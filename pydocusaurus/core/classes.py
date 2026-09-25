@@ -52,6 +52,7 @@ __all__ = (
     "AbstractAttrs",
     "ClassProfile",
     "DocProp",
+    "DocClassAbstractAttrs",
     "DocClass",
     "parse_prop_docs",
     "parse_class_docs",
