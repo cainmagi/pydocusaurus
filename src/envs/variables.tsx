@@ -19,18 +19,18 @@ interface EnvVariables {
   rawURL: string;
   sourceVersion: {
     "1.1.x": string;
-    "1.0.1": string;
+    "1.0.2": string;
     main: string;
     [key: string]: any;
   };
   dependencyVersion: {
     "1.1.x": string;
-    "1.0.1": string;
+    "1.0.2": string;
     main: string;
     [key: string]: any;
   };
   sourceURIs: {
-    "v1.0.1": {[key: string]: string};
+    "v1.0.2": {[key: string]: string};
     main: {[key: string]: string};
     [key: string]: any;
   };
@@ -42,16 +42,16 @@ const variables: EnvVariables = {
   rawURL: "https://raw.githubusercontent.com/cainmagi/pydocusaurus",
   sourceVersion: {
     "1.1.x": "main",
-    "1.0.1": "v1.0.1",
+    "1.0.2": "v1.0.2",
     main: "main",
   },
   dependencyVersion: {
     "1.1.x": "3.10.2",
-    "1.0.1": "3.10.2",
+    "1.0.2": "3.10.2",
     main: "3.10.2",
   },
   sourceURIs: {
-    "v1.0.1": {
+    "v1.0.2": {
       ".": "./__init__.py",
       "components": "components/__init__.py",
       "components.apibar": "components/apibar.py",
@@ -66,12 +66,13 @@ const variables: EnvVariables = {
       "core.attree.ModuleAttributeTree": "core/attree.py#L70",
       "core.attree.build_sidebar": "core/attree.py#L169",
       "core.classes": "core/classes.py",
-      "core.classes.AbstractAttrs": "core/classes.py#L94",
-      "core.classes.ClassProfile": "core/classes.py#L121",
-      "core.classes.DocClass": "core/classes.py#L631",
-      "core.classes.DocProp": "core/classes.py#L305",
-      "core.classes.parse_class_docs": "core/classes.py#L691",
-      "core.classes.parse_prop_docs": "core/classes.py#L642",
+      "core.classes.AbstractAttrs": "core/classes.py#L95",
+      "core.classes.ClassProfile": "core/classes.py#L122",
+      "core.classes.DocClass": "core/classes.py#L644",
+      "core.classes.DocClassAbstractAttrs": "core/classes.py#L366",
+      "core.classes.DocProp": "core/classes.py#L306",
+      "core.classes.parse_class_docs": "core/classes.py#L704",
+      "core.classes.parse_prop_docs": "core/classes.py#L655",
       "core.datacls": "core/datacls.py",
       "core.datacls.DocDataClass": "core/datacls.py#L70",
       "core.datacls.DocField": "core/datacls.py#L47",
@@ -81,13 +82,14 @@ const variables: EnvVariables = {
       "core.enums.DocEnumItem": "core/enums.py#L46",
       "core.enums.parse_enum_docs": "core/enums.py#L260",
       "core.functions": "core/functions.py",
-      "core.functions.DocArgument": "core/functions.py#L165",
-      "core.functions.DocFunction": "core/functions.py#L711",
-      "core.functions.FunctionType": "core/functions.py#L107",
-      "core.functions.ParameterKind": "core/functions.py#L60",
-      "core.functions.parse_argument_docs": "core/functions.py#L989",
-      "core.functions.parse_func_docs": "core/functions.py#L1293",
-      "core.functions.parse_return_docs": "core/functions.py#L1109",
+      "core.functions.DocArgument": "core/functions.py#L166",
+      "core.functions.DocFunction": "core/functions.py#L712",
+      "core.functions.DocFunctionOverload": "core/functions.py#L215",
+      "core.functions.FunctionType": "core/functions.py#L108",
+      "core.functions.ParameterKind": "core/functions.py#L61",
+      "core.functions.parse_argument_docs": "core/functions.py#L990",
+      "core.functions.parse_func_docs": "core/functions.py#L1294",
+      "core.functions.parse_return_docs": "core/functions.py#L1110",
       "core.inspectors": "core/inspectors.py",
       "core.inspectors.get_arg_default_name": "core/inspectors.py#L519",
       "core.inspectors.get_field_default": "core/inspectors.py#L621",
@@ -118,7 +120,7 @@ const variables: EnvVariables = {
       "core.ops.unwrap_top_level_typehint": "core/ops.py#L37",
       "core.protocols": "core/protocols.py",
       "core.protocols.DocProtocol": "core/protocols.py#L32",
-      "core.protocols.parse_protocol_docs": "core/protocols.py#L83",
+      "core.protocols.parse_protocol_docs": "core/protocols.py#L91",
       "core.texts": "core/texts.py",
       "core.texts.Section": "core/texts.py#L65",
       "core.texts.Table": "core/texts.py#L197",
@@ -165,7 +167,7 @@ const variables: EnvVariables = {
       "renderer.saver.SaverAbstract": "renderer/saver.py#L30",
       "renderer.saver.SaverDefault": "renderer/saver.py#L76"
     },
-    main: {
+    "main": {
       ".": "./__init__.py",
       "components": "components/__init__.py",
       "components.apibar": "components/apibar.py",
@@ -180,12 +182,13 @@ const variables: EnvVariables = {
       "core.attree.ModuleAttributeTree": "core/attree.py#L70",
       "core.attree.build_sidebar": "core/attree.py#L169",
       "core.classes": "core/classes.py",
-      "core.classes.AbstractAttrs": "core/classes.py#L94",
-      "core.classes.ClassProfile": "core/classes.py#L121",
-      "core.classes.DocClass": "core/classes.py#L631",
-      "core.classes.DocProp": "core/classes.py#L305",
-      "core.classes.parse_class_docs": "core/classes.py#L691",
-      "core.classes.parse_prop_docs": "core/classes.py#L642",
+      "core.classes.AbstractAttrs": "core/classes.py#L95",
+      "core.classes.ClassProfile": "core/classes.py#L122",
+      "core.classes.DocClass": "core/classes.py#L644",
+      "core.classes.DocClassAbstractAttrs": "core/classes.py#L366",
+      "core.classes.DocProp": "core/classes.py#L306",
+      "core.classes.parse_class_docs": "core/classes.py#L704",
+      "core.classes.parse_prop_docs": "core/classes.py#L655",
       "core.datacls": "core/datacls.py",
       "core.datacls.DocDataClass": "core/datacls.py#L70",
       "core.datacls.DocField": "core/datacls.py#L47",
@@ -195,13 +198,14 @@ const variables: EnvVariables = {
       "core.enums.DocEnumItem": "core/enums.py#L46",
       "core.enums.parse_enum_docs": "core/enums.py#L260",
       "core.functions": "core/functions.py",
-      "core.functions.DocArgument": "core/functions.py#L165",
-      "core.functions.DocFunction": "core/functions.py#L711",
-      "core.functions.FunctionType": "core/functions.py#L107",
-      "core.functions.ParameterKind": "core/functions.py#L60",
-      "core.functions.parse_argument_docs": "core/functions.py#L989",
-      "core.functions.parse_func_docs": "core/functions.py#L1293",
-      "core.functions.parse_return_docs": "core/functions.py#L1109",
+      "core.functions.DocArgument": "core/functions.py#L166",
+      "core.functions.DocFunction": "core/functions.py#L712",
+      "core.functions.DocFunctionOverload": "core/functions.py#L215",
+      "core.functions.FunctionType": "core/functions.py#L108",
+      "core.functions.ParameterKind": "core/functions.py#L61",
+      "core.functions.parse_argument_docs": "core/functions.py#L990",
+      "core.functions.parse_func_docs": "core/functions.py#L1294",
+      "core.functions.parse_return_docs": "core/functions.py#L1110",
       "core.inspectors": "core/inspectors.py",
       "core.inspectors.get_arg_default_name": "core/inspectors.py#L519",
       "core.inspectors.get_field_default": "core/inspectors.py#L621",
@@ -232,7 +236,7 @@ const variables: EnvVariables = {
       "core.ops.unwrap_top_level_typehint": "core/ops.py#L37",
       "core.protocols": "core/protocols.py",
       "core.protocols.DocProtocol": "core/protocols.py#L32",
-      "core.protocols.parse_protocol_docs": "core/protocols.py#L83",
+      "core.protocols.parse_protocol_docs": "core/protocols.py#L91",
       "core.texts": "core/texts.py",
       "core.texts.Section": "core/texts.py#L65",
       "core.texts.Table": "core/texts.py#L197",

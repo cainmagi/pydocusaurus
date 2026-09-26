@@ -1,0 +1,63 @@
+---
+id: DocClassAbstractAttrs
+title: DocClassAbstractAttrs
+sidebar_label: DocClassAbstractAttrs
+slug: /apis/core/classes/DocClassAbstractAttrs
+description: 类的额外抽象成员属性 (attribute)。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.classes.DocClassAbstractAttrs" />
+
+```python
+DocClassAbstractAttrs(
+    methods: list[DocFunction] = [],
+    properties: list[DocProp] = [],
+    operators: list[DocOpTemplate] = []
+)
+```
+
+类的额外抽象成员属性 (attribute)。如果对应的类并非抽象基类，该集合将会回退为`None`。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `methods` | `list[DocFunction]` | | 该类的抽象方法列表。 |
+| `properties` | `list[DocProp]` | | 该类的抽象属性列表。 |
+| `operators` | `list[DocOpTemplate]` | | 该类的抽象运算符列表。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+渲染为 Markdown 文字。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从该节文字渲染的 Markdown 文本。 |
+
+## 属性 {/* #properties */}
+
+### <IconObjType type="param"/> `is_not_implemented` {/* #-is_not_implemented */}
+
+```python
+is_not_implemented: bool = self.is_not_implemented
+```
+
+布尔标记。如果为`True`，则对应的抽象类型仍然存在没有提供实现的方法（成员）。

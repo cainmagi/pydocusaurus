@@ -1,0 +1,208 @@
+---
+id: DocFunctionOverload
+title: DocFunctionOverload
+sidebar_label: DocFunctionOverload
+slug: /apis/core/functions/DocFunctionOverload
+description: 函数重载的 docstring 和其他基本信息。
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.functions.DocFunctionOverload" />
+
+```python
+DocFunctionOverload(
+    descr: str,
+    args: list[DocArgument] = [],
+    retval: list[DocArgument] = [],
+    is_yield: bool = False
+)
+```
+
+函数重载的 docstring 和其他基本信息。
+
+若该数据存在与某函数中，则其将会在渲染时、覆盖掉函数默认的参数和结果。
+
+## 字段 {/* #fields */}
+
+| 字段 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | 函数的描述文字。 |
+| `args` | `list[DocArgument]` | |函数的输入参数列表。 |
+| `retval` | `list[DocArgument]` | | 函数的返回值列表。 |
+| `is_yield` | `bool` | | 布尔标记。如果为`True`，则该函数返回的是迭代器。 |
+
+## 方法 {/* #methods */}
+
+### <IconObjType type="method"/> `as_md_text` {/* #-as_md_text */}
+
+```python
+v_1: str = self.as_md_text(
+    renderer: ProtocolComponent,
+    has_descr: bool = True,
+    ignore_self: bool = False,
+    title: str = "Arguments",
+    title_level: int = 3,
+)
+```
+
+渲染为 Markdown 文字。
+
+该渲染的内容将只包含定义在该数据模型内的函数重载数据。
+
+#### 输入 {/* #requires */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+| `has_descr` | `bool` | | 布尔标记。如果设置了，则会渲染该函数重载的描述文字。 |
+| `ignore_self` | `bool` | | 布尔标记。如果设置了，会略过参数列表的第一个参数 (`self` 或 `cls`)。若对应的函数是某个类的普通方法或类方法，则需要设置该标记。在此情况下，结果中将不包含第一个参数。 |
+| `title` | `str` | | 重载信息的标题。 |
+| `title_level` | `int` | | 在渲染该重载内容时，所设置的、该重载的标题等级。 |
+
+#### 输出 {/* #returns */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 从函数重载渲染的 Markdown 文本。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `format_args` {/* #-format_args */}
+
+```python
+v_1: tuple[str, ...] = self.format_args(parent: DocFunction, ignore_self: bool = False)
+```
+
+按`name: type = default`的风格格式化参数列表。
+
+该函数修改自`inspect.Signature.format()`.
+
+#### 输入 {/* #requires-1 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `parent` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | 包含了共享于各重载的父数据模型信息。 |
+| `ignore_self` | `bool` | | 布尔标记。如果设置了，会从结果中移除`self`和`cls`参数。 |
+
+#### 输出 {/* #returns-1 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `tuple[str, ...]` | 格式化后的参数列表。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `str_v1` {/* #-str_v1 */}
+
+```python
+v_1: str = self.str_v1(parent: DocFunction)
+```
+
+将函数签名格式化为字符串。
+
+该字符串格式与`black`格式化器风格兼容。
+
+#### 输入 {/* #requires-2 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `parent` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | 包含了共享于各重载的父数据模型信息。 |
+
+#### 输出 {/* #returns-2 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 格式化后的函数重载签名。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `str_v2` {/* #-str_v2 */}
+
+```python
+v_1: str = self.str_v2(parent: DocFunction)
+```
+
+渲染 V2 字符串。
+
+所谓 v2 字符串可以描述为以下格式：
+
+```python
+ret: type = name(arg1: type1, arg2: type2 = default2, ...)
+```
+
+相比默认的字符串格式更加紧凑。
+
+#### 输入 {/* #requires-3 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `parent` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | 包含了共享于各重载的父数据模型信息。 |
+
+#### 输出 {/* #returns-3 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 格式化后的函数重载签名。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `table_args` {/* #-table_args */}
+
+```python
+v_1: str = self.table_args(
+    renderer: ProtocolComponent,
+    ignore_self: bool = False,
+    has_type: bool = True,
+    has_required: bool = True,
+    has_default: bool = False,
+    has_doc: bool = True,
+)
+```
+
+将参数列表渲染为表格。
+
+#### 输入 {/* #requires-4 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | 用来渲染组件的渲染器。 |
+| `ignore_self` | `bool` | | 布尔标记。若对应的函数是某个类的普通方法或类方法，则需要设置该标记。在此情况下，结果中将不包含第一个参数。 |
+| `has_type` | `bool` | | 布尔标记。如果设置了，就会显示函数参数的类型。 |
+| `has_required` | `bool` | | 布尔标记。如果设置了，就会显示函数参数是否为必选。 |
+| `has_default` | `bool` | | 布尔标记。如果设置了，就会显示函数参数的默认值。 |
+| `has_doc` | `bool` | | 布尔标记。如果设置了，就会显示函数参数的 docstring 文本。 |
+
+#### 输出 {/* #returns-4 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 包含了各参数详情的 Markdown 表格。 |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `table_retval` {/* #-table_retval */}
+
+```python
+v_1: str = self.table_retval(
+    is_renamed: bool = True, has_type: bool = True, has_doc: bool = True
+)
+```
+
+将结果列表渲染为表格。
+
+#### 输入 {/* #requires-5 */}
+
+| 参数 | 类型 | 必选 | <center>说明</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `is_renamed` | `bool` | | 布尔标记。如果设置了，就会自动重新将返回值列表中的数字下标名称按 v2 风格格式化。 |
+| `has_type` | `bool` | | 布尔标记。如果设置了，就会显示返回值的类型。 |
+| `has_doc` | `bool` | | 布尔标记。如果设置了，就会显示返回值的 docstring 文本。 |
+
+#### 输出 {/* #returns-5 */}
+
+| 参数 | 类型 | <center>说明</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | 包含了各参数详情的 Markdown 表格。 |

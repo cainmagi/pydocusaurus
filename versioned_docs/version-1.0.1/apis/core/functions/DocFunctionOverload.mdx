@@ -1,0 +1,208 @@
+---
+id: DocFunctionOverload
+title: DocFunctionOverload
+sidebar_label: DocFunctionOverload
+slug: /apis/core/functions/DocFunctionOverload
+description: The docstring and basic information of a function overload.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.functions.DocFunctionOverload" />
+
+```python
+DocFunctionOverload(
+    descr: str,
+    args: list[DocArgument] = [],
+    retval: list[DocArgument] = [],
+    is_yield: bool = False
+)
+```
+
+The docstring and basic information of a function overload.
+
+This data type will override the default argument and result rendering of a function if it exists.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `descr` | `str` | <InlineIcon icon={vsiCheckIcon}/> | The description body of the function. |
+| `args` | `list[DocArgument]` | | The list of input arguments of the function. |
+| `retval` | `list[DocArgument]` | | The list of returned values of the function. |
+| `is_yield` | `bool` | | A flag. If it is `True`, the function returns an iterator. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text(
+    renderer: ProtocolComponent,
+    has_descr: bool = True,
+    ignore_self: bool = False,
+    title: str = "Arguments",
+    title_level: int = 3,
+)
+```
+
+Render as Markdown text.
+
+This overload rendering will only contains the information specified in the overload data model.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+| `has_descr` | `bool` | | A flag. If specified, will add the overload description to the results. |
+| `ignore_self` | `bool` | | A flag. If specified, will ignore the first argument (`self` or `cls`) in the argument list. Needs to be specified when the function is a method/classmethod of a class. In this case, the first argument will be skipped. |
+| `title` | `str` | | The title of the overload information. |
+| `title_level` | `int` | | The level of the title when displaying this overload. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the overload of the function. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `format_args`
+
+```python
+v_1: tuple[str, ...] = self.format_args(parent: DocFunction, ignore_self: bool = False)
+```
+
+Format argument list in the `name: type = default` style.
+
+This method is modified from `inspect.Signature.format()`.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `parent` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | The parent data model containing the shared information. |
+| `ignore_self` | `bool` | | A flag. If specified, will remove `self` and `cls` arguments in methods. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `tuple[str, ...]` | A list of formatted arguments. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `str_v1`
+
+```python
+v_1: str = self.str_v1(parent: DocFunction)
+```
+
+Format the function signature as a string.
+
+The string format is compatible with the black formatter.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `parent` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | The parent data model containing the shared information. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The formatted signature of the overload. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `str_v2`
+
+```python
+v_1: str = self.str_v2(parent: DocFunction)
+```
+
+Render as V2 string.
+
+The v2 string is in the following format:
+
+```python
+ret: type = name(arg1: type1, arg2: type2 = default2, ...)
+```
+
+which is more compact than the default string.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `parent` | `DocFunction` | <InlineIcon icon={vsiCheckIcon}/> | The parent data model containing the shared information. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The formatted signature of the overload. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `table_args`
+
+```python
+v_1: str = self.table_args(
+    renderer: ProtocolComponent,
+    ignore_self: bool = False,
+    has_type: bool = True,
+    has_required: bool = True,
+    has_default: bool = False,
+    has_doc: bool = True,
+)
+```
+
+Format the arguments as a table.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+| `ignore_self` | `bool` | | A flag. Needs to be specified when the function is a method/classmethod of a class. In this case, the first argument will be skipped. |
+| `has_type` | `bool` | | A flag. If specified, will display the argument type. |
+| `has_required` | `bool` | | A flag. If specified, will display whether the argument is required. |
+| `has_default` | `bool` | | A flag. If specified, will display the default value of the argument. |
+| `has_doc` | `bool` | | A flag. If specified, will display the docstring of the argument. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown table of the arguments. |
+
+______________________________________________________________________
+
+### <IconObjType type="method"/> `table_retval`
+
+```python
+v_1: str = self.table_retval(
+    is_renamed: bool = True, has_type: bool = True, has_doc: bool = True
+)
+```
+
+Format the returned values as a table.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `is_renamed` | `bool` | | A flag. If specified, will automatically rename the numbered returned value in the v2 format. |
+| `has_type` | `bool` | | A flag. If specified, will display the argument type. |
+| `has_doc` | `bool` | | A flag. If specified, will display the docstring of the argument. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown table of the arguments. |

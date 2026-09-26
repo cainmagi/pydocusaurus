@@ -1,0 +1,64 @@
+---
+id: DocClassAbstractAttrs
+title: DocClassAbstractAttrs
+sidebar_label: DocClassAbstractAttrs
+slug: /apis/core/classes/DocClassAbstractAttrs
+description: Additional abstract attributes of a class.
+---
+
+import APITopBar, {IconObjType} from "@site/src/components/APITopBar";
+import InlineIcon from "@site/src/components/InlineIcon";
+import vsiCheckIcon from "@iconify-icons/codicon/check";
+
+<APITopBar type="class" isDataClass={true} source="core.classes.DocClassAbstractAttrs" />
+
+```python
+DocClassAbstractAttrs(
+    methods: list[DocFunction] = [],
+    properties: list[DocProp] = [],
+    operators: list[DocOpTemplate] = []
+)
+```
+
+Additional abstract attributes of a class. If the class is not abstract, this collection will fall back to `None`.
+
+## Fields
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `methods` | `list[DocFunction]` | | The list of abstract methods of this class. |
+| `properties` | `list[DocProp]` | | The list of abstract properties of this class. |
+| `operators` | `list[DocOpTemplate]` | | The list of abstract operators of this class. |
+
+## Methods
+
+### <IconObjType type="method"/> `as_md_text`
+
+```python
+v_1: str = self.as_md_text(renderer: ProtocolComponent)
+```
+
+Render as Markdown text.
+
+#### Requires
+
+| Name | Type | Required | <center>Description</center> |
+| :-----: | :-----: | :-----: | :------ |
+| `renderer` | `ProtocolComponent` | <InlineIcon icon={vsiCheckIcon}/> | The renderer providing component rendering. |
+
+#### Returns
+
+| Name | Type | <center>Description</center> |
+| :-----: | :-----: | :------ |
+| `v_1` | `str` | The Markdown text rendered from the section. |
+
+## Properties
+
+### <IconObjType type="param"/> `is_not_implemented`
+
+```python
+is_not_implemented: bool = self.is_not_implemented
+```
+
+A flag. If it is `True`, the abstract class still have the methods that
+are not implemented.
