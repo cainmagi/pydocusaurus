@@ -227,6 +227,7 @@ const sidebars: SidebarsConfig = {
             "apis/core/classes/AbstractAttrs",
             "apis/core/classes/ClassProfile",
             "apis/core/classes/DocProp",
+            "apis/core/classes/DocClassAbstractAttrs",
             "apis/core/classes/DocClass",
             "apis/core/classes/parse_prop_docs",
             "apis/core/classes/parse_class_docs"
@@ -272,6 +273,7 @@ const sidebars: SidebarsConfig = {
             "apis/core/functions/ParameterKind",
             "apis/core/functions/FunctionType",
             "apis/core/functions/DocArgument",
+            "apis/core/functions/DocFunctionOverload",
             "apis/core/functions/DocFunction",
             "apis/core/functions/parse_argument_docs",
             "apis/core/functions/parse_return_docs",

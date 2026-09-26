@@ -9,6 +9,7 @@
 #### :mega: New
 
 1. Bump the documentation version to `v1.0.2`, where more missing pages are added.
+2. Bump the current documentation version name to `1.0.2`.
 
 ### 1.0.1 @ 09/24/2026
 
