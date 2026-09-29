@@ -10,6 +10,10 @@
 
 1. Fix: Correct a severe bug that causing all namespaces/resources not included.
 
+#### :floppy_disk: Change
+
+1. Add more details to the `python-publish` workflow.
+
 ### 1.0.2 @ 09/25/2026
 
 #### :wrench: Fix
