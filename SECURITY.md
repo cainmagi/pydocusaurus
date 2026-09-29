@@ -4,11 +4,12 @@
 
 The following list shows the maintenance status of all versions.
 
-| Version | Supported          | Available on [PyPI :link:][link-pypi] |
-| ------- | ------------------ | ------------------------------------- |
-| `1.0.2` | :white_check_mark: | :white_check_mark:                    |
-| `1.0.1` |                    | :white_check_mark:                    |
-| `1.0.0` |                    | :white_check_mark:                    |
+| Version     | Supported          | Available on [PyPI :link:][link-pypi] |
+| ----------- | ------------------ | ------------------------------------- |
+| `1.0.2`     | :white_check_mark: | :white_check_mark:                    |
+| ~~`1.0.2`~~ |                    |                                       |
+| ~~`1.0.1`~~ |                    |                                       |
+| ~~`1.0.0`~~ |                    |                                       |
 
 ## Reporting a Vulnerability
 

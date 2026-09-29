@@ -4,6 +4,12 @@
 
 ## CHANGELOG
 
+### 1.0.3 @ 09/29/2026
+
+#### :wrench: Fix
+
+1. Fix: Correct a severe bug that causing all namespaces/resources not included.
+
 ### 1.0.2 @ 09/25/2026
 
 #### :wrench: Fix

@@ -64,7 +64,7 @@ exclude = [
   "instance",
   "migrations",
 ]
-namespaces = false
+namespaces = true
 
 [tool.setuptools.package-data]
 pydocusaurus = [
