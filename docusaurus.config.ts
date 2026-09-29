@@ -75,6 +75,9 @@ const config: Config = {
           //   current: {
           //     label: "1.1.x",
           //   },
+          //   "1.0.3": {
+          //     noIndex: true,
+          //   },
           // },
         },
         blog: false,

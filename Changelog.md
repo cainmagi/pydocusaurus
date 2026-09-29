@@ -4,6 +4,12 @@
 
 ## CHANGELOG
 
+### 1.0.3 @ 09/29/2026
+
+#### :mega: New
+
+1. Bump the documentation version to `v1.0.3`.
+
 ### 1.0.2 @ 09/25/2026
 
 #### :mega: New

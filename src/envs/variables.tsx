@@ -19,18 +19,18 @@ interface EnvVariables {
   rawURL: string;
   sourceVersion: {
     "1.1.x": string;
-    "1.0.2": string;
+    "1.0.3": string;
     main: string;
     [key: string]: any;
   };
   dependencyVersion: {
     "1.1.x": string;
-    "1.0.2": string;
+    "1.0.3": string;
     main: string;
     [key: string]: any;
   };
   sourceURIs: {
-    "v1.0.2": {[key: string]: string};
+    "v1.0.3": {[key: string]: string};
     main: {[key: string]: string};
     [key: string]: any;
   };
@@ -42,16 +42,16 @@ const variables: EnvVariables = {
   rawURL: "https://raw.githubusercontent.com/cainmagi/pydocusaurus",
   sourceVersion: {
     "1.1.x": "main",
-    "1.0.2": "v1.0.2",
+    "1.0.3": "v1.0.3",
     main: "main",
   },
   dependencyVersion: {
     "1.1.x": "3.10.2",
-    "1.0.2": "3.10.2",
+    "1.0.3": "3.10.2",
     main: "3.10.2",
   },
   sourceURIs: {
-    "v1.0.2": {
+    "v1.0.3": {
       ".": "./__init__.py",
       "components": "components/__init__.py",
       "components.apibar": "components/apibar.py",
