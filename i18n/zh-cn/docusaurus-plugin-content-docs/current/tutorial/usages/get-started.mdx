@@ -392,7 +392,7 @@ class ExampleModel(BaseModel):
 
     val_4: list[str] = Field(default_factory=list)
     """A list field with a default value specified by the factory function."""
-[Field.description<IconExternalLink/>](https://pydantic.dev/docs/validation/latest/api/pydantic/fields/#pydantic.fields.FieldInfo.description)
+
     val_5: Annotated[list[str], Field(default_factory=list)]
     """A list field with the default value specified by the annotation."""
 ```
